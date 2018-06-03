@@ -15,6 +15,7 @@ interface ColorsModel {
     fun isLoading(): Boolean
     fun setLoading(loading: Boolean)
     fun setRandomSize(size: Int)
+    fun clear()
     fun getVisibleThreshold(): Int
     fun converterToItemColor(list: MutableList<ColorsGson>): MutableList<ItemColor>
 }

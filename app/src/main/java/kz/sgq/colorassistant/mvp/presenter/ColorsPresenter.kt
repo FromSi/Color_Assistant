@@ -1,5 +1,6 @@
 package kz.sgq.colorassistant.mvp.presenter
 
+import android.util.Log
 import android.view.View
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
@@ -22,8 +23,9 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
         getColors(true)
     }
 
-    fun handlerColorListner(itemCount: Int, lastVisibleItem: Int) {
-        if (!model.isLoading() && itemCount <= lastVisibleItem + model.getVisibleThreshold()) {
+    fun handlerColorListener(itemCount: Int, lastVisibleItem: Int) {
+        if (!model.isLoading() && itemCount <= lastVisibleItem + model.getVisibleThreshold()
+        && lastVisibleItem != 0) {
             getColorList()
             model.setLoading(true)
         }
@@ -38,6 +40,10 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
             }
     }
 
+    fun clear(){
+        model.clear()
+    }
+
     fun onItemViewClick(view: View, itemColor: ItemColor) {
         viewState.showActivityInfo(itemColor.colors)
     }
@@ -45,6 +51,7 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
     private fun getColors() {
         DataBaseRequest.getColors()
                 ?.subscribe({
+                    Log.d("TAG_API", "getColors")
                     if (it.size == 0) {
                         getAllColors()
                         ControllerApi.provider()
@@ -89,9 +96,13 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                     DataBaseRequest.insertColors(GsonConverter
                             .convertColorsList(it))
                     model.initRandom(it.size)
-                    viewState.showColorList()
                     getColorList()
+                    Log.d("TAG_API", "getAllColors")
+                    viewState.showColorList()
                     model.setLoading(false)
+                    Log.d("TAG_API", "getAllColors() ${it.size}")
+                }, {
+                    getAllColors()
                 })
     }
 
@@ -101,14 +112,16 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                     viewState.addItemsDB(model
                             .getItemColor(it))
                     model.setLoading(false)
+                    Log.d("TAG_API", "getColorList() ${it.size}")
                 })
     }
 
     private fun handlerColorList(colors: MutableList<Colors>) {
         model.initRandom(colors.size)
-        viewState.showColorList()
         getColorList()
+        viewState.showColorList()
         model.setLoading(false)
+        Log.d("TAG_API", "handlerColorList")
     }
 
     private fun getUpdateCheck(colors: MutableList<Colors>) {
@@ -122,9 +135,7 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                     } else {
                         handlerColorList(colors)
                     }
-                }, {
-                    handlerColorList(colors)
-                })
+                },{})
     }
 
     private fun getUpdateColorList(check: Int) {

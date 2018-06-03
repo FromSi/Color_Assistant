@@ -13,6 +13,7 @@ import kz.sgq.colorassistant.ui.util.interfaces.RandomItems
 import java.util.ArrayList
 
 class ColorsModelImpl : ColorsModel {
+
     private var update = 1
     private var loading = true
     private var idList: MutableList<Int> = arrayListOf()
@@ -36,6 +37,11 @@ class ColorsModelImpl : ColorsModel {
 
     override fun getCheck(): Int = update
 
+    override fun clear() {
+        idList.clear()
+        likeList.clear()
+    }
+
     override fun getItemColor(colors: MutableList<Colors>): MutableList<ItemColor> {
         val list = ArrayList<ItemColor>()
 
@@ -58,6 +64,10 @@ class ColorsModelImpl : ColorsModel {
             likeList.add(colors[i].like!!)
         }
         return list
+    }
+
+    override fun setLike(index: Int, like: Boolean) {
+        likeList[index] = like
     }
 
     override fun isLoading(): Boolean = loading

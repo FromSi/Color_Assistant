@@ -7,7 +7,7 @@ import kz.sgq.colorassistant.room.interfaces.ColorsDao
 import kz.sgq.colorassistant.room.table.Checking
 import kz.sgq.colorassistant.room.table.Colors
 
-@Database(entities = [(Checking::class), (Colors::class)], version = 1)
+@Database(entities = [(Colors::class), (Checking::class)], version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
     abstract fun colorsDao(): ColorsDao
 
