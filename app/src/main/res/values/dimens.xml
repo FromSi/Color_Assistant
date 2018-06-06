@@ -4,4 +4,6 @@
     <dimen name="item_icon_size">25dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="header_height">160dp</dimen>
+    <dimen name="imgColor_on">36dp</dimen>
+    <dimen name="imgColor_off">18dp</dimen>
 </resources>

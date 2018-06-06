@@ -11,7 +11,7 @@ class ComboModelImpl : ComboModel {
 
     override fun getColorList(): MutableList<Int> = colorList
 
-    override fun getNameType(): String = "Hex\nRGB\nHSV"
+    override fun getNameType(): String = "Hex\nRGB\nHSV\nCMYK"
 
     override fun getValue(): MutableList<String> {
         val answerList: MutableList<String> = arrayListOf()
