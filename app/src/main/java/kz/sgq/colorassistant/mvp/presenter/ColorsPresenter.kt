@@ -20,7 +20,7 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
     init {
         viewState.showLoadDB()
         getColors()
-        getColors(true)
+//        getColors(true)
     }
 
     fun handlerColorListener(itemCount: Int, lastVisibleItem: Int) {
@@ -51,7 +51,6 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
     private fun getColors() {
         DataBaseRequest.getColors()
                 ?.subscribe({
-                    Log.d("TAG_API", "getColors")
                     if (it.size == 0) {
                         getAllColors()
                         ControllerApi.provider()
@@ -63,23 +62,23 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                 })
     }
 
-    private fun getColors(like: Boolean) {
-        DataBaseRequest.getColors(like)
-                ?.subscribe({
-                    if (it.size == 0) {
-                        for (i in 0 until model.getIdList().size) {
-                            if (model.getLikeList().get(i))
-                                viewState.updateItemsDB(i)
-                        }
-                    } else {
-                        for (i in 0 until model.getIdList().size) {
-                            if (model.getLikeList()[i])
-                                if (isHandlerColor(i, it))
-                                    viewState.updateItemsDB(i)
-                        }
-                    }
-                })
-    }
+//    private fun getColors(like: Boolean) {
+//        DataBaseRequest.getColors(like)
+//                ?.subscribe({
+//                    if (it.size == 0) {
+//                        for (i in 0 until model.getIdList().size) {
+//                            if (model.getLikeList()[i])
+//                                viewState.updateItemsDB(i)
+//                        }
+//                    } else {
+//                        for (i in 0 until model.getIdList().size) {
+//                            if (model.getLikeList()[i])
+//                                if (isHandlerColor(i, it))
+//                                    viewState.updateItemsDB(i)
+//                        }
+//                    }
+//                })
+//    }
 
     private fun isHandlerColor(index: Int, colors: List<Colors>): Boolean {
         for (i in colors.indices) {
@@ -95,12 +94,12 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                 .subscribe({
                     DataBaseRequest.insertColors(GsonConverter
                             .convertColorsList(it))
-                    model.initRandom(it.size)
-                    getColorList()
-                    Log.d("TAG_API", "getAllColors")
-                    viewState.showColorList()
-                    model.setLoading(false)
-                    Log.d("TAG_API", "getAllColors() ${it.size}")
+                            .subscribe({
+                                model.initRandom(it.size)
+                                getColorList()
+                                viewState.showColorList()
+                                model.setLoading(false)
+                            })
                 }, {
                     getAllColors()
                 })
@@ -112,7 +111,6 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                     viewState.addItemsDB(model
                             .getItemColor(it))
                     model.setLoading(false)
-                    Log.d("TAG_API", "getColorList() ${it.size}")
                 })
     }
 
@@ -121,7 +119,6 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
         getColorList()
         viewState.showColorList()
         model.setLoading(false)
-        Log.d("TAG_API", "handlerColorList")
     }
 
     private fun getUpdateCheck(colors: MutableList<Colors>) {
@@ -144,10 +141,11 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                 .subscribe({
                     if (it.size != 0) {
                         DataBaseRequest.insertColors(GsonConverter
-                                .convertColorsList(it))
-                        viewState.addItemsDB(model
-                                .converterToItemColor(it))
-                        model.setRandomSize(it.size)
+                                .convertColorsList(it)).subscribe({
+//                            viewState.addItemsDB(model
+//                                    .converterToItemColor(it))
+                            model.setRandomSize(it.size)
+                        })
                     }
                 })
     }

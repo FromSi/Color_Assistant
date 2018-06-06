@@ -20,6 +20,6 @@ object ColorConverter {
         return "$h, $s, $v"
     }
 
-    fun getFullAnswer(color: Int) = "${getHex(color)}\n,${getRGB(color)}\n,${getHSV(color)}\n"
+    fun getFullAnswer(color: Int) = "${getHex(color)}\n ${getRGB(color)}\n ${getHSV(color)}"
 
 }

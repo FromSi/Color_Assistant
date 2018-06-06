@@ -1,5 +1,6 @@
 package kz.sgq.colorassistant.mvp.model
 
+import android.util.Log
 import io.reactivex.functions.Consumer
 import io.reactivex.subscribers.DisposableSubscriber
 import kz.sgq.colorassistant.infraestructure.networking.common.ControllerApi
@@ -26,6 +27,8 @@ class ColorsModelImpl : ColorsModel {
     }
 
     override fun initRandom(size: Int) {
+
+        Log.d("TAG_API", "initRandom $size")
         randomItems = RandomItemsImpl(size)
     }
 

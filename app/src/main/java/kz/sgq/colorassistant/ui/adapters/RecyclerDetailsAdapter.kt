@@ -1,6 +1,7 @@
 package kz.sgq.colorassistant.ui.adapters
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,9 @@ class RecyclerDetailsAdapter : RecyclerView.Adapter<DetailsHolder>() {
     private var list: MutableList<ItemDetails> = arrayListOf()
 
     fun addList(list: MutableList<ItemDetails>){
-        this.list.addAll(list)
+        this.list = list
+        Log.d("TAG_STICK", this.list.size.toString())
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsHolder = DetailsHolder(LayoutInflater

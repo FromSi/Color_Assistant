@@ -1,5 +1,6 @@
 package kz.sgq.colorassistant.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -12,9 +13,11 @@ import kotlinx.android.synthetic.main.fragment_color_list.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.ColorsPresenter
 import kz.sgq.colorassistant.mvp.view.ColorsView
+import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
 import kz.sgq.colorassistant.ui.util.interfaces.OnItemClickListener
+import java.io.Serializable
 
 class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     @InjectPresenter
@@ -81,7 +84,9 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val intent = Intent(context, ComboActivity::class.java)
+        intent.putExtra("map", list as Serializable)
+        startActivity(intent)
     }
 
     private fun onClickListenerAdapter(){

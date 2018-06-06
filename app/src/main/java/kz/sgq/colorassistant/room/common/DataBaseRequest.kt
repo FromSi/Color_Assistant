@@ -10,14 +10,16 @@ import kz.sgq.colorassistant.room.table.Colors
 object DataBaseRequest {
     private val dataBase = App.getInstance()?.getDataBase()
 
-    fun insertColors(colors: MutableList<Colors>) {
+    fun insertColors(colors: MutableList<Colors>): Completable =
         Completable.fromAction({ dataBase?.colorsDao()?.insert(colors) })
                 .subscribeOn(Schedulers.io())
-                .subscribe()
-    }
+                .observeOn(AndroidSchedulers.mainThread())
+
 
     fun insertUpdate(checking: Checking) {
-        dataBase?.updateDao()?.insert(checking)
+        Completable.fromAction({dataBase?.updateDao()?.insert(checking) })
+                .subscribeOn(Schedulers.io())
+                .subscribe()
     }
 
     fun updateColors(idCol: Int, like: Boolean) {
