@@ -7,6 +7,7 @@ interface LikesView : MvpView {
     fun clearItemsDB()
     fun showLoadDB()
     fun showColorList()
-    fun addItemsDB(colorList: MutableList<ItemColor>)
+    fun deleteItem(id: Int)
+    fun addItemsDB(item: ItemColor)
     fun showActivityInfo(list: MutableList<String>)
 }

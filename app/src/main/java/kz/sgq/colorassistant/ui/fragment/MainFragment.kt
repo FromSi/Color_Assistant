@@ -11,9 +11,12 @@ import kz.sgq.colorassistant.R
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kz.sgq.colorassistant.ui.adapters.SectionsPageAdapter
+import kz.sgq.colorassistant.ui.util.interfaces.OnSelectedButtonListener
 
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), OnSelectedButtonListener {
+    private val colorsFragment = ColorsFragment()
+    private val likesFragment = LikesFragment()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -21,6 +24,9 @@ class MainFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_colors, container, false)
 
+    override fun onLikeClickListener(id: Int) {
+        colorsFragment.dislike(id)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,15 +54,15 @@ class MainFragment : Fragment() {
 
     private fun setupViewPager(){
         tabLayout.setupWithViewPager(viewPager)
-        val adapter = SectionsPageAdapter(fragmentManager)
+        val adapter = SectionsPageAdapter(childFragmentManager)
 
         adapter.addFragment(
-                ColorsFragment(),
+                colorsFragment,
                 getString(R.string.fragmentColorsName)
         )
 
         adapter.addFragment(
-                LikesFragment(),
+                likesFragment,
                 getString(R.string.fragmentLikesName)
         )
 

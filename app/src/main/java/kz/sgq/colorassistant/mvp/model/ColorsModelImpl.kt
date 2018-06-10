@@ -27,8 +27,6 @@ class ColorsModelImpl : ColorsModel {
     }
 
     override fun initRandom(size: Int) {
-
-        Log.d("TAG_API", "initRandom $size")
         randomItems = RandomItemsImpl(size)
     }
 

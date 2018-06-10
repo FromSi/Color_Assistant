@@ -16,6 +16,16 @@ class RandomItemsImpl(private var limit: Int) : RandomItems{
         initCheckList()
     }
 
+    override fun delete(index: Int) {
+        limit--
+        listCheck.removeAt(index)
+    }
+
+    override fun clear() {
+        listCheck.clear()
+        limit = 0
+    }
+
     override fun getNumbers(): IntArray {
         var freeNum = 0
         for (i in 0 until limit) {
@@ -48,11 +58,11 @@ class RandomItemsImpl(private var limit: Int) : RandomItems{
     }
 
     private fun refresh(randNum: Int): Int {
-        if (listCheck[randNum]) {
+        return if (listCheck[randNum]) {
             listCheck[randNum] = false
-            return randNum
+            randNum
         } else {
-            return if (randNum + 1 <= limit - 1)
+            if (randNum + 1 <= limit - 1)
                 refresh(randNum + 1)
             else
                 refresh(0)

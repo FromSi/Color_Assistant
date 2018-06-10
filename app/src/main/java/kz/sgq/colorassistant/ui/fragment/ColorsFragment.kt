@@ -26,23 +26,6 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     private var adapter = RecyclerColorsAdapter()
     private lateinit var layoutManager: LinearLayoutManager
 
-//    private var mPager: Int = 0
-//
-//    companion object {
-//        fun newInstance(page: Int): ColorsFragment {
-//            val args = Bundle()
-//            args.putSerializable("ARG_PAGE", page)
-//            val fragment = ColorsFragment()
-//            fragment.arguments = args
-//            return fragment
-//        }
-//    }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        mPager = arguments.getInt("ARG_PAGE")
-//    }
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -87,6 +70,10 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
         val intent = Intent(context, ComboActivity::class.java)
         intent.putExtra("map", list as Serializable)
         startActivity(intent)
+    }
+
+    fun dislike(id: Int){
+        adapter.dislike(id)
     }
 
     private fun onClickListenerAdapter(){

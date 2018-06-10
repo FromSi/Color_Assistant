@@ -24,13 +24,23 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
         notifyDataSetChanged()
     }
 
+    fun addItem(item: ItemColor){
+        itemContainer.addItem(item)
+        notifyDataSetChanged()
+    }
+
+    fun deleteItem(id: Int){
+        itemContainer.deleteItem(id)
+        notifyDataSetChanged()
+    }
+
     fun clearItems(){
         itemContainer.clearItems()
         notifyDataSetChanged()
     }
 
-    fun setLike(index: Int, like: Boolean){
-        itemContainer.setLike(index, like)
+    fun dislike(id: Int){
+        itemContainer.dislike(id)
         notifyDataSetChanged()
     }
 

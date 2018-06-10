@@ -4,5 +4,13 @@ import kz.sgq.colorassistant.room.table.Colors
 import kz.sgq.colorassistant.ui.util.ItemColor
 
 interface LikesModel {
-    fun getItemColor(colors: MutableList<Colors>): MutableList<ItemColor>
+    fun addIdList(item: Colors)
+    fun deleteIdList(id: Int)
+    fun clearIdList()
+    fun getColorList(): MutableList<ItemColor>
+    fun getNumbers(): IntArray
+    fun isLoading(): Boolean
+    fun setLoading(loading: Boolean)
+    fun setRandomSize(size: Int)
+    fun getVisibleThreshold(): Int
 }
