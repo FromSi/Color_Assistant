@@ -1,12 +1,14 @@
 package kz.sgq.colorassistant.ui.activity
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
+import android.support.design.widget.TabLayout
+import android.support.v4.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.ui.fragment.CollectionFragment
+import kz.sgq.colorassistant.ui.adapters.MenuPageAdapter
 import kz.sgq.colorassistant.ui.fragment.ConstructorFragment
 import kz.sgq.colorassistant.ui.fragment.MainFragment
 import kz.sgq.colorassistant.ui.fragment.SettingsFragment
@@ -14,64 +16,46 @@ import kz.sgq.colorassistant.ui.fragment.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val colorsFragment = MainFragment()
-    private val constructorFragment = ConstructorFragment()
-    private val collectionFragment = CollectionFragment()
-    private val settingsFragment = SettingsFragment()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initFragments()
-        initClickMenuNavigation()
+        setupViewPager()
+        setupTab()
     }
 
-    private fun initFragments(){
-        nav_view.menu.getItem(0).isChecked = true
-        stepFragments(colorsFragment)
+    private fun setupViewPager() {
+        val menu = MenuPageAdapter(supportFragmentManager)
+        menu.addFragment(MainFragment())
+        menu.addFragment(ConstructorFragment())
+        menu.addFragment(SettingsFragment())
+        viewPager.adapter = menu
     }
 
-    private fun stepFragments(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.content_frame, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
+    private fun setupTab() {
+        tabLayout.setupWithViewPager(viewPager)
 
-    private fun initClickMenuNavigation() {
-        nav_view.setNavigationItemSelectedListener({ item ->
-            when (item.itemId) {
-                R.id.colors -> if (!item.isChecked) {
-                    nav_view.menu.getItem(0).isChecked = true
-                    nav_view.menu.getItem(1).isChecked = false
-                    nav_view.menu.getItem(2).isChecked = false
-                    nav_view.menu.getItem(3).isChecked = false
-                    stepFragments(colorsFragment)
-                }
-                R.id.constructor -> if (!item.isChecked) {
-                    nav_view.menu.getItem(0).isChecked = false
-                    nav_view.menu.getItem(1).isChecked = true
-                    nav_view.menu.getItem(2).isChecked = false
-                    nav_view.menu.getItem(3).isChecked = false
-                    stepFragments(constructorFragment)
-                }
-                R.id.collection -> if (!item.isChecked) {
-                    nav_view.menu.getItem(0).isChecked = false
-                    nav_view.menu.getItem(1).isChecked = false
-                    nav_view.menu.getItem(2).isChecked = true
-                    nav_view.menu.getItem(3).isChecked = false
-                    stepFragments(collectionFragment)
-                }
-                R.id.settings -> if (!item.isChecked) {
-                    nav_view.menu.getItem(0).isChecked = false
-                    nav_view.menu.getItem(1).isChecked = false
-                    nav_view.menu.getItem(2).isChecked = false
-                    nav_view.menu.getItem(3).isChecked = true
-                    stepFragments(settingsFragment)
-                }
+        tabLayout.getTabAt(0)?.icon = ContextCompat.getDrawable(this, R.drawable.colors)
+        tabLayout.getTabAt(1)?.icon = ContextCompat.getDrawable(this, R.drawable.constructor)
+        tabLayout.getTabAt(2)?.icon = ContextCompat.getDrawable(this, R.drawable.settings)
+
+        tabLayout.getTabAt(0)?.icon?.setColorFilter(
+                ContextCompat.getColor(this, R.color.icons),
+                PorterDuff.Mode.SRC_IN
+        )
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
             }
-            drawerLayout.closeDrawers()
-            false
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                val colorDef = ContextCompat.getColor(applicationContext, R.color.icon_def)
+                tab?.icon?.setColorFilter(colorDef, PorterDuff.Mode.SRC_IN)
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val color = ContextCompat.getColor(applicationContext, R.color.icons)
+                tab?.icon?.setColorFilter(color, PorterDuff.Mode.SRC_IN)
+            }
         })
     }
 }

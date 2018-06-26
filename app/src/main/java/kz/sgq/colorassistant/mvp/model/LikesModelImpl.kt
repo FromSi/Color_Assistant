@@ -32,9 +32,9 @@ class LikesModelImpl : LikesModel {
 
     override fun getColorList(): MutableList<ItemColor> = idList
 
-    override fun deleteIdList(index: Int) {
-        randomItems.delete(index)
-        idList.removeAt(index)
+    override fun deleteIdList(id: Int) {
+        randomItems.delete(id)
+        idList.removeAt(id)
         Log.d("TAG_LIKE", "deleteIdList ${idList.size}")
     }
 

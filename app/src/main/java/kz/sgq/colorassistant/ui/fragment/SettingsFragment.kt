@@ -25,19 +25,7 @@ class SettingsFragment : Fragment() {
     }
     private fun settingToolBar() {
         val actionBar = (activity as AppCompatActivity)
-        val drawer = actionBar.drawerLayout
         toolBar.title = getString(R.string.settings)
         actionBar.setSupportActionBar(toolBar)
-
-        val toggle = ActionBarDrawerToggle(
-                activity,
-                drawer,
-                toolBar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close
-        )
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
-
     }
 }
