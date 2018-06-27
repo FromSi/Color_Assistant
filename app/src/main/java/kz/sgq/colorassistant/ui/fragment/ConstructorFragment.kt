@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_colors.*
+import kotlinx.android.synthetic.main.fragment_constructor.*
 import kz.sgq.colorassistant.R
 
 class ConstructorFragment : Fragment() {
@@ -22,6 +22,9 @@ class ConstructorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settingToolBar()
+
+        color_picker.addLightnessView(lightness)
+        color_picker.addSaturationView(saturation)
     }
     private fun settingToolBar() {
         val actionBar = (activity as AppCompatActivity)

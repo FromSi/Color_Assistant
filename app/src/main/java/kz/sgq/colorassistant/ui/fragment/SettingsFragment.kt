@@ -7,8 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_colors.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 import kz.sgq.colorassistant.R
 
 class SettingsFragment : Fragment() {

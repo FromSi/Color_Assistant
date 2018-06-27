@@ -9,6 +9,8 @@ import android.view.View
 import kz.sgq.colorassistant.R
 
 class ColorPicker : View {
+    private var lightnessView: LightnessView? = null
+    private var saturationView: SaturationView? = null
 
     private val COLORS = intArrayOf(-0xffff01, -0xff0001, -0xff0100, -0x100, -0x10000, -0xff01, -0xffff01)
     private var translationOffset = 0f
@@ -136,8 +138,9 @@ class ColorPicker : View {
             MotionEvent.ACTION_MOVE -> {
                 if (userMoving) {
                     angle = Math.atan2((y - mSlopY).toDouble(), (x - mSlopX).toDouble())
-                    centerColor = calcColor()
-                    colorPointerPaint.color = centerColor
+                    calcColor()
+                    colorPointerPaint.color = color
+                    setColor(color)
                     colorPointerHaloPaint.color = centerColor
                     colorPointerHaloPaint.alpha = 0x50
                     setCenterColor(centerColor)
@@ -161,12 +164,6 @@ class ColorPicker : View {
             }
         }
         return true
-    }
-
-    private fun setCenterColor(color: Int) {
-        centerColor = color
-        colorCenterPaint.color = color
-        invalidate()
     }
 
     private fun initConstructor(attrs: AttributeSet?, defStyleAttr: Int) {
@@ -257,5 +254,28 @@ class ColorPicker : View {
         color = Color.argb(a, r, g, b)
         centerColor = Color.argb(a, r, g, b)
         return Color.argb(a, r, g, b)
+    }
+
+    private fun setColor(color: Int){
+        lightnessView?.setColor(color)
+        saturationView?.setColor(color)
+    }
+
+    fun setCenterColor(color: Int) {
+        centerColor = color
+        colorCenterPaint.color = centerColor
+        invalidate()
+    }
+
+    fun addLightnessView(lightnessView: LightnessView){
+        this.lightnessView = lightnessView
+        this.lightnessView?.addColorPicker(this)
+        this.lightnessView?.setColor(color)
+    }
+
+    fun addSaturationView(saturationView: SaturationView){
+        this.saturationView = saturationView
+        this.saturationView?.addColorPicker(this)
+        this.saturationView?.setColor(color)
     }
 }

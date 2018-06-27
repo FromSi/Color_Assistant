@@ -16,7 +16,6 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.ComboPresenter
 import kz.sgq.colorassistant.mvp.view.ComboView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickActivity
 
 class ComboFragment : MvpAppCompatFragment(), ComboView {
     @InjectPresenter
