@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.HSLConverter
 
 class SaturationView : View {
     private var colorPicker: ColorPicker? = null
@@ -21,6 +22,7 @@ class SaturationView : View {
     private var barPointerHaloRadius = 0
     private var barPointerPosition = 0
     private var color = 0
+    private var colorCurrent = 0
     private var movingPointer = false
     private val barPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val barPaintHalo = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -100,9 +102,9 @@ class SaturationView : View {
     }
 
     override fun onDraw(canvas: Canvas?) {
-        canvas?.drawRoundRect(barRectHalo,5f,5f, barPaintHalo)
+        canvas?.drawRoundRect(barRectHalo, 5f, 5f, barPaintHalo)
 
-        canvas?.drawRoundRect(barRect,5f,5f, barPaint)
+        canvas?.drawRoundRect(barRect, 5f, 5f, barPaint)
 
         canvas?.drawCircle(
                 barPointerHaloRadius.toFloat(),
@@ -129,10 +131,11 @@ class SaturationView : View {
                 if (event.y >= barPointerHaloRadius &&
                         event.y <= barPointerHaloRadius + barLength) {
                     barPointerPosition = Math.round(event.y)
-                    calcColor(Math.round(event.y))
+                    calcColor(Math.round(event.y) - barPointerHaloRadius)
                     barPointerPaint.color = color
                     barPointerHaloPaint.color = color
                     barPointerHaloPaint.alpha = 0x50
+
                     invalidate()
                 }
             }
@@ -141,27 +144,30 @@ class SaturationView : View {
                     if (event.y >= barPointerHaloRadius &&
                             event.y <= barPointerHaloRadius + barLength) {
                         barPointerPosition = Math.round(event.y)
-                        calcColor(Math.round(event.y))
+                        calcColor(Math.round(event.y) - barPointerHaloRadius)
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
                         barPointerHaloPaint.alpha = 0x50
-                        colorPicker?.setCenterColor(color)
+                        Log.d("TESTTESTTEST", (Math.round(event.y) - barPointerHaloRadius).toString())
+
                         invalidate()
                     } else if (event.y < barPointerHaloRadius) {
                         barPointerPosition = barPointerHaloRadius
-                        color = Color.HSVToColor(mHSVColor)
+                        calcColor(Math.round(event.y) - barPointerHaloRadius)
+                        color = colorCurrent
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
                         barPointerHaloPaint.alpha = 0x50
-                        colorPicker?.setCenterColor(color)
+
                         invalidate()
                     } else if (event.y > barPointerHaloRadius + barLength) {
                         barPointerPosition = barPointerHaloRadius + barLength
-                        color = Color.WHITE
+                        calcColor(Math.round(event.y) - barPointerHaloRadius)
+                        color = HSLConverter.getSaturation(colorCurrent, 0f)
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
                         barPointerHaloPaint.alpha = 0x50
-                        colorPicker?.setCenterColor(color)
+
                         invalidate()
                     }
                 }
@@ -194,20 +200,20 @@ class SaturationView : View {
         } else if (i > barLength) {
             j = barLength
         }
-        Log.d("TAG_CALC_COLOR", (1 - (posToSVFactor * j)).toString())
-        color = Color.HSVToColor(
-                floatArrayOf(mHSVColor[0], 1 - (posToSVFactor * j), 1f)
-        )
+        color = HSLConverter.getSaturation(colorCurrent, 1 - (posToSVFactor * j))
+        colorPicker?.setSaturation(1 - (posToSVFactor * j))
     }
 
     fun setColor(color: Int) {
         Color.colorToHSV(color, mHSVColor)
+        val colorWithSaturation = HSLConverter.getSaturation(color, 0f)
+        this.colorCurrent = color
         shader = LinearGradient(
                 barPointerHaloRadius.toFloat(),
                 0f,
                 barThickness.toFloat(),
                 (barLength + barPointerHaloRadius).toFloat(),
-                intArrayOf(color, Color.WHITE),
+                intArrayOf(color, colorWithSaturation),
                 null,
                 Shader.TileMode.CLAMP
         )
@@ -216,7 +222,7 @@ class SaturationView : View {
                 0f,
                 barThickness.toFloat(),
                 (barLength + barPointerHaloRadius).toFloat(),
-                intArrayOf(color, Color.alpha(color), color),
+                intArrayOf(color, Color.alpha(color), colorWithSaturation),
                 null,
                 Shader.TileMode.CLAMP
         )
@@ -227,7 +233,6 @@ class SaturationView : View {
         barPointerPaint.color = this.color
         barPointerHaloPaint.color = this.color
         barPointerHaloPaint.alpha = 0x50
-
 
         invalidate()
     }

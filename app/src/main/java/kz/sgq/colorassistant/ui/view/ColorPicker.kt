@@ -4,14 +4,19 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.HSLConverter
 
 class ColorPicker : View {
     private var lightnessView: LightnessView? = null
     private var saturationView: SaturationView? = null
 
+    private var valueSaturation = 1f
+    private var valueLightness = 1f
+    private var boolLightness = false
     private val COLORS = intArrayOf(-0xffff01, -0xff0001, -0xff0100, -0x100, -0x10000, -0xff01, -0xffff01)
     private var translationOffset = 0f
     private var colorWheelThickness = 0
@@ -35,6 +40,7 @@ class ColorPicker : View {
     private var mSlopX = 0f
     private var mSlopY = 0f
     private var touchColorWheelEnabled = true
+    private val mHSVColor = FloatArray(3)
 
     constructor(context: Context?) : super(context) {
         initConstructor(null, 0)
@@ -143,7 +149,6 @@ class ColorPicker : View {
                     setColor(color)
                     colorPointerHaloPaint.color = centerColor
                     colorPointerHaloPaint.alpha = 0x50
-                    setCenterColor(centerColor)
                     invalidate()
                 } else {
                     parent.requestDisallowInterceptTouchEvent(false)
@@ -246,34 +251,50 @@ class ColorPicker : View {
 
         val c0 = COLORS[i]
         val c1 = COLORS[i + 1]
-        val a = average(Color.alpha(c0), Color.alpha(c1), p)
         val r = average(Color.red(c0), Color.red(c1), p)
         val g = average(Color.green(c0), Color.green(c1), p)
         val b = average(Color.blue(c0), Color.blue(c1), p)
 
-        color = Color.argb(a, r, g, b)
-        centerColor = Color.argb(a, r, g, b)
-        return Color.argb(a, r, g, b)
+        color = Color.rgb(r, g, b)
+        centerColor = if (boolLightness) Color.HSVToColor(
+                floatArrayOf(mHSVColor[0], valueLightness, 1f)
+        )
+        else Color.HSVToColor(
+                floatArrayOf(mHSVColor[0], 1f, valueLightness)
+        )
+        centerColor = HSLConverter.getSaturation(centerColor, valueSaturation)
+        setCenterColor()
+        return Color.rgb(r, g, b)
     }
 
-    private fun setColor(color: Int){
+    private fun setColor(color: Int) {
         lightnessView?.setColor(color)
         saturationView?.setColor(color)
     }
 
-    fun setCenterColor(color: Int) {
-        centerColor = color
+    private fun setCenterColor() {
         colorCenterPaint.color = centerColor
         invalidate()
     }
 
-    fun addLightnessView(lightnessView: LightnessView){
+    fun setLightness(float: Float, bool: Boolean) {
+        valueLightness = float
+        boolLightness = bool
+        calcColor()
+    }
+
+    fun setSaturation(float: Float) {
+        valueSaturation = float
+        calcColor()
+    }
+
+    fun addLightnessView(lightnessView: LightnessView) {
         this.lightnessView = lightnessView
         this.lightnessView?.addColorPicker(this)
         this.lightnessView?.setColor(color)
     }
 
-    fun addSaturationView(saturationView: SaturationView){
+    fun addSaturationView(saturationView: SaturationView) {
         this.saturationView = saturationView
         this.saturationView?.addColorPicker(this)
         this.saturationView?.setColor(color)

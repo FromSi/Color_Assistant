@@ -1,6 +1,7 @@
 package kz.sgq.colorassistant.ui.util
 
 import android.graphics.Color
+import android.util.Log
 import java.util.ArrayList
 
 object HSLConverter {
@@ -25,6 +26,33 @@ object HSLConverter {
 
         return list
     }
+
+    fun getSaturation(color: Int, float: Float): Int {
+        val rgb = intArrayOf(Color.red(color),
+                Color.green(color),
+                Color.blue(color))
+        val arf = (Math.max(rgb[0],
+                Math.max(rgb[1], rgb[2])) + Math.min(rgb[0],
+                Math.min(rgb[1], rgb[2]))) / 2
+
+        Log.d("TAG_getSaturation", "$float")
+        Log.d("TAG_getSaturation_color", "$color")
+
+        val r = calcSaturation(rgb[0], arf,float)
+        val g = calcSaturation(rgb[1], arf, float)
+        val b = calcSaturation(rgb[2], arf, float)
+
+        return Color.rgb(r, g, b)
+    }
+
+    private fun calcSaturation(
+            rgbColor: Int,
+            arf: Int,
+            float: Float
+    ): Int = if (rgbColor <= 128 && rgbColor != arf) (arf - (arf - rgbColor) * (float)).toInt()
+    else if (rgbColor > 128 && rgbColor != arf) (arf + (rgbColor - arf) * (float)).toInt()
+    else arf
+
 
     fun getLightnessList(color: Int): MutableList<Int> {
         val list = ArrayList<Int>()
