@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kz.sgq.colorassistant.R
@@ -148,7 +147,6 @@ class SaturationView : View {
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
                         barPointerHaloPaint.alpha = 0x50
-                        Log.d("TESTTESTTEST", (Math.round(event.y) - barPointerHaloRadius).toString())
 
                         invalidate()
                     } else if (event.y < barPointerHaloRadius) {

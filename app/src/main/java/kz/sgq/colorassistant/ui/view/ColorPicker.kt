@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kz.sgq.colorassistant.R
@@ -256,12 +255,11 @@ class ColorPicker : View {
         val b = average(Color.blue(c0), Color.blue(c1), p)
 
         color = Color.rgb(r, g, b)
+        Color.colorToHSV(color, mHSVColor)
         centerColor = if (boolLightness) Color.HSVToColor(
                 floatArrayOf(mHSVColor[0], valueLightness, 1f)
         )
-        else Color.HSVToColor(
-                floatArrayOf(mHSVColor[0], 1f, valueLightness)
-        )
+        else Color.HSVToColor(floatArrayOf(mHSVColor[0], 1f, valueLightness))
         centerColor = HSLConverter.getSaturation(centerColor, valueSaturation)
         setCenterColor()
         return Color.rgb(r, g, b)

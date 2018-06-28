@@ -203,7 +203,7 @@ class LightnessView : View {
             colorPicker?.setLightness(0f, false)
             Color.BLACK
         } else if (i >= barLength) {
-            colorPicker?.setLightness(0f, false)
+            colorPicker?.setLightness(0f, true)
             Color.WHITE
         } else 0
     }
