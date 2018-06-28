@@ -12,7 +12,6 @@ class LightnessView : View {
     private var colorPicker: ColorPicker? = null
 
     private var posToSVFactor = 0f
-    private var svToPosFactor = 0f
     private var barThickness = 0
     private var barLength = 0
     private var preferredBarLength = 0
@@ -75,7 +74,6 @@ class LightnessView : View {
         barPointerHaloPaint.color = -0x7e0100
         barPointerHaloPaint.alpha = 0x50
         posToSVFactor = 1 / (barLength.toFloat() / 2)
-        svToPosFactor = (barLength.toFloat() / 2) / 1
 
         setColor(Color.BLUE)
     }
@@ -127,6 +125,7 @@ class LightnessView : View {
                 if (event.y >= barPointerHaloRadius &&
                         event.y <= barPointerHaloRadius + barLength) {
                     barPointerPosition = Math.round(event.y)
+                    colorPicker?.setPositionLightness(barPointerPosition)
                     calcColor(Math.round(event.y) - barPointerHaloRadius)
                     barPointerPaint.color = color
                     barPointerHaloPaint.color = color
@@ -140,6 +139,7 @@ class LightnessView : View {
                     if (event.y >= barPointerHaloRadius &&
                             event.y <= barPointerHaloRadius + barLength) {
                         barPointerPosition = Math.round(event.y)
+                        colorPicker?.setPositionLightness(barPointerPosition)
                         calcColor(Math.round(event.y) - barPointerHaloRadius)
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
@@ -148,6 +148,7 @@ class LightnessView : View {
                         invalidate()
                     } else if (event.y < barPointerHaloRadius) {
                         barPointerPosition = barPointerHaloRadius
+                        colorPicker?.setPositionLightness(barPointerPosition)
                         calcColor(Math.round(event.y) - barPointerHaloRadius)
                         color = Color.BLACK
                         barPointerPaint.color = color
@@ -157,7 +158,8 @@ class LightnessView : View {
                         invalidate()
                     } else if (event.y > barPointerHaloRadius + barLength) {
                         barPointerPosition = barPointerHaloRadius + barLength
-                        calcColor(Math.round(event.y) - barPointerHaloRadius) 
+                        colorPicker?.setPositionLightness(barPointerPosition)
+                        calcColor(Math.round(event.y) - barPointerHaloRadius)
                         color = Color.WHITE
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
@@ -239,6 +241,14 @@ class LightnessView : View {
 
         invalidate()
     }
+
+    fun setPosition(position: Int) {
+        barPointerPosition = position
+
+        invalidate()
+    }
+
+    fun getPosition(): Int = barPointerPosition
 
     fun addColorPicker(colorPicker: ColorPicker) {
         this.colorPicker = colorPicker

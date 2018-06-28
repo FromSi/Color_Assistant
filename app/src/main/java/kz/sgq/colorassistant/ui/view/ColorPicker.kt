@@ -12,6 +12,7 @@ import kz.sgq.colorassistant.ui.util.HSLConverter
 class ColorPicker : View {
     private var lightnessView: LightnessView? = null
     private var saturationView: SaturationView? = null
+    private var itemColor: ItemColor? = null
 
     private var valueSaturation = 1f
     private var valueLightness = 1f
@@ -40,6 +41,7 @@ class ColorPicker : View {
     private var mSlopY = 0f
     private var touchColorWheelEnabled = true
     private val mHSVColor = FloatArray(3)
+    private var switchPointer = true
 
     constructor(context: Context?) : super(context) {
         initConstructor(null, 0)
@@ -99,16 +101,22 @@ class ColorPicker : View {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        val pointerPosition = calcPointPosition()
+        val pointerPosition = if (switchPointer) {
+            itemColor?.setPosition(calcPointPosition())
+            itemColor?.getPosition()
+        } else {
+            switchPointer = true
+            itemColor?.getPosition()
+        }
 
         canvas?.translate(translationOffset, translationOffset)
 
         canvas?.drawOval(colorWheelRectangle, colorWheelPaint)
 
-        canvas?.drawCircle(pointerPosition[0], pointerPosition[1],
+        canvas?.drawCircle(pointerPosition!![0], pointerPosition[1],
                 colorPointerHaloRadius.toFloat(), colorPointerHaloPaint)
 
-        canvas?.drawCircle(pointerPosition[0], pointerPosition[1],
+        canvas?.drawCircle(pointerPosition!![0], pointerPosition[1],
                 colorPointerRadius.toFloat(), colorPointerPaint)
 
         canvas?.drawOval(colorCenterRectangle, colorCenterPaint)
@@ -122,6 +130,7 @@ class ColorPicker : View {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 val pointerPosition = calcPointPosition()
+                itemColor?.setPosition(pointerPosition)
                 if (x >= pointerPosition[0] - colorPointerHaloRadius
                         && x <= pointerPosition[0] + colorPointerHaloRadius
                         && y >= pointerPosition[1] - colorPointerHaloRadius
@@ -143,10 +152,11 @@ class ColorPicker : View {
             MotionEvent.ACTION_MOVE -> {
                 if (userMoving) {
                     angle = Math.atan2((y - mSlopY).toDouble(), (x - mSlopX).toDouble())
+                    itemColor?.setAngle(angle)
                     calcColor()
                     colorPointerPaint.color = color
                     setColor(color)
-                    colorPointerHaloPaint.color = centerColor
+                    colorPointerHaloPaint.color = color
                     colorPointerHaloPaint.alpha = 0x50
                     invalidate()
                 } else {
@@ -218,6 +228,7 @@ class ColorPicker : View {
         colorWheelPaint.strokeWidth = colorWheelThickness.toFloat()
 
         colorCenterPaint.color = calcColor()
+        itemColor?.setColor(calcColor())
     }
 
     private fun calcPointPosition(): FloatArray = floatArrayOf(
@@ -272,18 +283,63 @@ class ColorPicker : View {
 
     private fun setCenterColor() {
         colorCenterPaint.color = centerColor
+        itemColor?.setColor(centerColor)
+
         invalidate()
     }
 
     fun setLightness(float: Float, bool: Boolean) {
         valueLightness = float
         boolLightness = bool
+        itemColor?.setLightness(float)
+        itemColor?.setBoolLightness(bool)
         calcColor()
     }
 
     fun setSaturation(float: Float) {
         valueSaturation = float
+        itemColor?.setSaturation(float)
         calcColor()
+    }
+
+    fun setPositionLightness(position: Int) {
+        itemColor?.setPositionLightness(position)
+    }
+
+    fun setPositionSaturation(position: Int) {
+        itemColor?.setPositionSaturation(position)
+    }
+
+    fun setItemColor(itemColor: ItemColor) {
+        this.itemColor?.setEnable(false)
+
+        if (itemColor.getPosition() == null) {
+            this.itemColor = itemColor
+            this.itemColor?.setColor(centerColor)
+            this.itemColor?.setPositionLightness(lightnessView?.getPosition()!!)
+            this.itemColor?.setPositionSaturation(saturationView?.getPosition()!!)
+            itemColor.setAngle(angle)
+        } else {
+            this.itemColor = itemColor
+            switchPointer = false
+
+            lightnessView?.setPosition(itemColor.getPositionLightness())
+            saturationView?.setPosition(itemColor.getPositionSaturation())
+
+            angle = itemColor.getAngle()
+            valueLightness = itemColor.getLightness()
+            boolLightness = itemColor.getBoolLightness()
+            valueSaturation = itemColor.getSaturation()
+        }
+
+        this.itemColor?.setEnable(true)
+        calcColor()
+        colorPointerPaint.color = color
+        colorPointerHaloPaint.color = color
+        colorPointerHaloPaint.alpha = 0x50
+        setColor(color)
+
+        invalidate()
     }
 
     fun addLightnessView(lightnessView: LightnessView) {

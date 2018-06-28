@@ -13,4 +13,8 @@
         <attr name="bar_pointer_radius" format="dimension" />
         <attr name="bar_pointer_halo_radius" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="ItemColor">
+        <attr name="item_center_radius" format="dimension" />
+        <attr name="item_center_halo_radius" format="dimension" />
+    </declare-styleable>
 </resources>
