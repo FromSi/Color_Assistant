@@ -50,35 +50,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/item_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-
-            <kz.sgq.colorassistant.ui.view.ItemColor
-                android:id="@+id/itemOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <kz.sgq.colorassistant.ui.view.ItemColor
-                android:id="@+id/itemTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <kz.sgq.colorassistant.ui.view.ItemColor
-                android:id="@+id/itemThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <kz.sgq.colorassistant.ui.view.ItemColor
-                android:id="@+id/itemFour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <kz.sgq.colorassistant.ui.view.ItemColor
-                android:id="@+id/itemFive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:orientation="horizontal"/>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

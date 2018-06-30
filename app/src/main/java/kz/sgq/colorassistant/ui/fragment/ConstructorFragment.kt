@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.fragment_constructor.*
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
+import kz.sgq.colorassistant.ui.view.ItemColor
 
 class ConstructorFragment : Fragment() {
     override fun onCreateView(
@@ -23,23 +26,25 @@ class ConstructorFragment : Fragment() {
 
         color_picker.addLightnessView(lightness)
         color_picker.addSaturationView(saturation)
-        color_picker.setItemColor(itemOne)
-
-        setClickListenerItem()
-
-        itemOne.setEnable(true)
+        createNewItemColor()
+        createNewItemColor()
+        createNewItemColor()
+        color_picker.setItemColor(item_list.getChildAt(0) as ItemColor)
     }
 
-    private fun setClickListenerItem() {
-        itemOne.setOnClickListener {
-            color_picker.setItemColor(itemOne)
-        }
-        itemTwo.setOnClickListener {
-            color_picker.setItemColor(itemTwo)
-        }
-        itemThree.setOnClickListener {
-            color_picker.setItemColor(itemThree)
-        }
+    private fun createNewItemColor(){
+        val itemColor = ItemColor(context)
+        itemColor.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        item_list.addView(itemColor)
+
+        itemColor.setOnClickItemColorListener(object : OnClickItemColorListener{
+            override fun onClick() {
+                color_picker.setItemColor(itemColor)
+            }
+        })
     }
 
     private fun settingToolBar() {

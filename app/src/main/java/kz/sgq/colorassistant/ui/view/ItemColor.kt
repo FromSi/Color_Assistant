@@ -7,8 +7,11 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
 
 class ItemColor : View {
     private var valueLightness = 0f
@@ -23,11 +26,17 @@ class ItemColor : View {
     private var angle = -Math.PI / 2
     private var itemPointerPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var itemPointerHaloPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val itemPointerRectangle = RectF()
-    private val itemPointerHaloRectangle = RectF()
     private var enableHalo = false
     private var boolLightness = false
     private var position: FloatArray? = null
+    private var movingPointer = false
+    private var positionX = 0f
+    private var positionY = 0f
+    private var positionCurrent = 0f
+    private var clickItemColor: OnClickItemColorListener? = null
+    private var min = 0
+    private var act = false
+    private var actY = 0f
 
     constructor(context: Context?) : super(context) {
         initConstructor(null, 0)
@@ -46,9 +55,9 @@ class ItemColor : View {
 
         canvas?.translate(translationOffset, translationOffset)
 
-        if (enableHalo) canvas?.drawOval(itemPointerHaloRectangle, itemPointerHaloPaint)
+        if (enableHalo) canvas?.drawCircle(positionX, positionCurrent, itemPointerHaloRadius.toFloat(), itemPointerHaloPaint)
 
-        canvas?.drawOval(itemPointerRectangle, itemPointerPaint)
+        canvas?.drawCircle(positionX, positionCurrent, itemPointerRadius.toFloat(), itemPointerPaint)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -72,24 +81,61 @@ class ItemColor : View {
             else -> 0
         }
 
-        val min = Math.min(width, height)
-        setMeasuredDimension(min + (min / 4), min)
+        min = Math.min(width, height)
+        setMeasuredDimension(min + (min / 4), ((min * 0.3f) * 2 + min).toInt())
         translationOffset = min * 0.5f
+        positionX = (translationOffset - (min / 4)) / 2
+        positionY = min * 0.3f
+        positionCurrent = positionY
+    }
 
-        itemPointerHaloRadius = firstItemPointerHaloRadius
-        itemPointerHaloRectangle.set(
-                -itemPointerHaloRadius.toFloat(),
-                -itemPointerHaloRadius.toFloat(),
-                itemPointerHaloRadius.toFloat(),
-                itemPointerHaloRadius.toFloat()
-        )
-        itemPointerRadius = firstItemPointerRadius
-        itemPointerRectangle.set(
-                -itemPointerRadius.toFloat(),
-                -itemPointerRadius.toFloat(),
-                itemPointerRadius.toFloat(),
-                itemPointerRadius.toFloat()
-        )
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        val ave = ((min * 0.3f) * 2 + min) / 2
+
+        parent.requestDisallowInterceptTouchEvent(true)
+
+        when (event?.action) {
+            MotionEvent.ACTION_DOWN -> {
+                if (positionY <= event.y &&
+                        positionY + itemPointerHaloRadius * 2 >= event.y) {
+                    actY = event.y
+                    movingPointer = true
+                    clickItemColor?.onClick()
+                }
+            }
+
+            MotionEvent.ACTION_MOVE -> {
+                val delDistension = (positionY * 0.3)
+                val actTopOne = (positionY - (actY - event.y)) + delDistension
+                val actBottomOne = positionY + itemPointerHaloRadius * 2
+                val actBottomTwo = ((positionY + itemPointerHaloRadius * 2) +
+                        (event.y - actY)) - delDistension
+
+                if (movingPointer) {
+                    act = if (positionY >= event.y ||
+                            positionY >= actTopOne) {
+                        true
+                    } else if (actBottomOne <= event.y ||
+                            actBottomOne <= actBottomTwo) {
+                        true
+                    } else false
+                }
+            }
+
+            MotionEvent.ACTION_UP -> {
+                if (ave >= event.y && act) {
+//                    Log.d("TestACTION_UP", "IF1 ${event.y}")
+                } else if (ave <= event.y && act) {
+//                    Log.d("TestACTION_UP", "IF2 ${event.y}")
+                } else {
+//                    Log.d("TestACTION_UP", "IF3 ${event.y}")
+                }
+
+                movingPointer = false
+            }
+        }
+
+        return true
     }
 
     private fun initConstructor(attrs: AttributeSet?, defStyleAttr: Int) {
@@ -176,4 +222,8 @@ class ItemColor : View {
     }
 
     fun getAngle(): Double = angle
+
+    fun setOnClickItemColorListener(clickItemColor: OnClickItemColorListener) {
+        this.clickItemColor = clickItemColor
+    }
 }
