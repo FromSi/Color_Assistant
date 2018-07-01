@@ -24,6 +24,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
 
@@ -51,6 +52,9 @@ class ItemColor : View {
     private var min = 0
     private var act = false
     private var actY = 0f
+    private var invisibilityHalo = 0x50
+    private var deleting = false
+
 
     constructor(context: Context?) : super(context) {
         initConstructor(null, 0)
@@ -96,15 +100,15 @@ class ItemColor : View {
         }
 
         min = Math.min(width, height)
-        setMeasuredDimension(min + (min / 4), ((min * 0.3f) * 2 + min).toInt())
+        setMeasuredDimension(min + (min / 4), ((min * 0.5f) * 2 + min).toInt())
         translationOffset = min * 0.5f
         positionX = (translationOffset - (min / 4)) / 2
-        positionY = min * 0.3f
+        positionY = min * 0.5f
         positionCurrent = positionY
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        val ave = ((min * 0.3f) * 2 + min) / 2
+        val ave = ((min * 0.5f) * 2 + min) / 2
 
         parent.requestDisallowInterceptTouchEvent(true)
 
@@ -119,30 +123,55 @@ class ItemColor : View {
             }
 
             MotionEvent.ACTION_MOVE -> {
-                val delDistension = (positionY * 0.3)
-                val actTopOne = (positionY - (actY - event.y)) + delDistension
-                val actBottomOne = positionY + itemPointerHaloRadius * 2
-                val actBottomTwo = ((positionY + itemPointerHaloRadius * 2) +
-                        (event.y - actY)) - delDistension
-
                 if (movingPointer) {
+                    val delDistension = (positionY * 0.5)
+                    val actTopOne = (positionY - (actY - event.y)) + delDistension
+                    val actBottomOne = positionY + itemPointerHaloRadius * 2
+                    val actBottomTwo = ((positionY + itemPointerHaloRadius * 2) +
+                            (event.y - actY)) - delDistension
+                    val actBottomThree = ((positionY + itemPointerHaloRadius * 2) +
+                            (event.y - actY))
+
+                    positionCurrent = when {
+                        actY > event.y && (positionY - (actY - event.y)) >= 0 -> {
+                            positionY - (actY - event.y)
+                        }
+                        actY < event.y && actBottomThree < (min * 0.5f) * 2 + min -> {
+                            positionY + (event.y - actY)
+                        }
+                        else -> positionCurrent
+                    }
+
                     act = if (positionY >= event.y ||
                             positionY >= actTopOne) {
+                        deleting = false
                         true
                     } else if (actBottomOne <= event.y ||
                             actBottomOne <= actBottomTwo) {
+                        deleting = true
                         true
                     } else false
+
+                    invalidate()
                 }
             }
 
             MotionEvent.ACTION_UP -> {
-                if (ave >= event.y && act) {
-//                    Log.d("TestACTION_UP", "IF1 ${event.y}")
-                } else if (ave <= event.y && act) {
-//                    Log.d("TestACTION_UP", "IF2 ${event.y}")
+                if (!deleting && act) {
+                    Toast.makeText(context, "Info", Toast.LENGTH_SHORT).show()
+                    positionCurrent = positionY
+
+                    invalidate()
+                } else if (deleting && act) {
+                    Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+                    positionCurrent = positionY
+
+                    invalidate()
                 } else {
-//                    Log.d("TestACTION_UP", "IF3 ${event.y}")
+                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
+                    positionCurrent = positionY
+
+                    invalidate()
                 }
 
                 movingPointer = false
@@ -178,13 +207,13 @@ class ItemColor : View {
 
         itemPointerPaint.color = Color.BLUE
         itemPointerHaloPaint.color = Color.BLUE
-        itemPointerHaloPaint.alpha = 0x50
+        itemPointerHaloPaint.alpha = invisibilityHalo
     }
 
     fun setColor(color: Int) {
         itemPointerPaint.color = color
         itemPointerHaloPaint.color = color
-        itemPointerHaloPaint.alpha = 0x50
+        itemPointerHaloPaint.alpha = invisibilityHalo
 
         invalidate()
     }
