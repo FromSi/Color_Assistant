@@ -32,7 +32,7 @@ import kz.sgq.colorassistant.mvp.view.ColorsView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemClickListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
 import java.io.Serializable
 
 class ColorsFragment : MvpAppCompatFragment(), ColorsView {
@@ -55,7 +55,7 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_colors.layoutManager = layoutManager
         rv_colors.adapter = adapter
-        onClickListenerAdapter()
+        clickListener()
         setUpLoadMoreListener()
     }
 
@@ -88,25 +88,25 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
         startActivity(intent)
     }
 
-    fun dislike(id: Int){
+    fun dislike(id: Int) {
         adapter.dislike(id)
     }
 
-    private fun onClickListenerAdapter(){
-        adapter.SetOnItemClickListener(object : OnItemClickListener {
-            override fun onItemLikeClick(view: View, id: Int, like: Boolean) {
+    private fun clickListener() {
+        adapter.setOnItemClickListener(object : OnItemColorClickListener {
+            override fun likeClick(view: View, id: Int, like: Boolean) {
                 presenter.onItemLikeClick(view, id, like)
             }
 
-            override fun onItemViewClick(view: View, itemColor: ItemColor) {
+            override fun viewClick(view: View, itemColor: ItemColor) {
                 presenter.onItemViewClick(view, itemColor)
             }
         })
     }
 
-    private fun setUpLoadMoreListener(){
+    private fun setUpLoadMoreListener() {
         rv_colors.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 presenter.handlerColorListener(layoutManager.itemCount,
                         layoutManager.findLastVisibleItemPosition())

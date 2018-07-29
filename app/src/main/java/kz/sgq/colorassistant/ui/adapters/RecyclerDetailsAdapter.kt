@@ -48,11 +48,10 @@ class RecyclerDetailsAdapter : RecyclerView.Adapter<DetailsHolder>() {
 
         holder.init(list[position])
         holder.setPercent(position)
-        holder.itemView.cardView.setOnClickListener({
-            index = if (index == -1 || index != position) position else -1
+
+        holder.itemView.cardView.setOnClickListener {
+            index = if ((index == -1) || (index != position)) position else -1
             notifyDataSetChanged()
-        })
-
+        }
     }
-
 }

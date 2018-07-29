@@ -37,9 +37,10 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         settingToolBar()
     }
+
     private fun settingToolBar() {
         val actionBar = (activity as AppCompatActivity)
         toolBar.title = getString(R.string.settings)
-        actionBar.setSupportActionBar(toolBar)
+//        actionBar.setSupportActionBar(toolBar)
     }
 }

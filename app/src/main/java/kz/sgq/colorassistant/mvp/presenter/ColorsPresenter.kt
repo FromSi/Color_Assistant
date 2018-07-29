@@ -65,7 +65,7 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
 
     private fun getColors() {
         DataBaseRequest.getColors()
-                ?.subscribe({
+                ?.subscribe {
                     if (it.size == 0) {
                         getAllColors()
                         ControllerApi.provider()
@@ -74,7 +74,7 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                         handlerColorList(it)
                         getUpdateCheck(it)
                     }
-                })
+                }
     }
 
 //    private fun getColors(like: Boolean) {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ColorAssistant.iml" filepath="$PROJECT_DIR$/ColorAssistant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Color_Assistant.iml" filepath="$PROJECT_DIR$/Color_Assistant.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

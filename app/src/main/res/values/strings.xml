@@ -20,6 +20,12 @@
     <string name="navigation_drawer_close">close</string>
     <string name="info">Info</string>
     <string name="combo">Combo</string>
+    <string name="cloud">Cloud</string>
+    <string name="save">Save</string>
+
+    <string name="dialog_save">Are you sure you want to save?</string>
+    <string name="dialog_save_positive">OK</string>
+    <string name="dialog_save_neutral">Cancel</string>
 
 
 </resources>

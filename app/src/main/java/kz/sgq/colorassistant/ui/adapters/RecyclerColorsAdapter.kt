@@ -26,44 +26,44 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.holders.ColorsHolder
 import kz.sgq.colorassistant.ui.util.ItemColor
 import kz.sgq.colorassistant.ui.util.ItemContainer
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemClickListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
 import com.like.LikeButton
 
 class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     private val itemContainer = ItemContainer()
-    private lateinit var clickListener: OnItemClickListener
+    private lateinit var clickListener: OnItemColorClickListener
 
-    fun addItems(itemList: MutableList<ItemColor>){
+    fun addItems(itemList: MutableList<ItemColor>) {
         itemContainer.addItems(itemList)
         notifyDataSetChanged()
     }
 
-    fun addItem(item: ItemColor){
+    fun addItem(item: ItemColor) {
         itemContainer.addItem(item)
         notifyDataSetChanged()
     }
 
-    fun deleteItem(id: Int){
+    fun deleteItem(id: Int) {
         itemContainer.deleteItem(id)
         notifyDataSetChanged()
     }
 
-    fun clearItems(){
+    fun clearItems() {
         itemContainer.clearItems()
         notifyDataSetChanged()
     }
 
-    fun dislike(id: Int){
+    fun dislike(id: Int) {
         itemContainer.dislike(id)
         notifyDataSetChanged()
     }
 
-    fun updateItems(index: Int){
+    fun updateItems(index: Int) {
         itemContainer.updateItems(index)
         notifyDataSetChanged()
     }
 
-    fun SetOnItemClickListener(clickListener: OnItemClickListener){
+    fun setOnItemClickListener(clickListener: OnItemColorClickListener) {
         this.clickListener = clickListener
     }
 
@@ -72,33 +72,33 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
 
     override fun getItemCount(): Int = itemContainer.itemList.size
 
-    override fun onBindViewHolder(holder: ColorsHolder, position: Int) {
-        holder.setImagesView(itemContainer.itemList[position])
-        holder.setLiked(itemContainer.likeList[position])
-        holder.setViewButton(itemContainer.itemList[position], clickListener)
-        holder.onLoadVisibly(itemContainer.visiblyList[position])
-        holder.itemView.like.setOnLikeListener(object : OnLikeListener {
+    override fun onBindViewHolder(p0: ColorsHolder, p1: Int) {
+        p0.setImagesView(itemContainer.itemList[p1])
+        p0.setLiked(itemContainer.likeList[p1])
+        p0.setView(itemContainer.itemList[p1], clickListener)
+        p0.onLoadVisibly(itemContainer.visiblyList[p1])
+        p0.itemView.like.setOnLikeListener(object : OnLikeListener {
             override fun liked(likeButton: LikeButton) {
-                onLikeClick(position, true, likeButton.rootView)
+                onLikeClick(p1, true, likeButton.rootView)
             }
 
             override fun unLiked(likeButton: LikeButton) {
-                onLikeClick(position, false, likeButton.rootView)
+                onLikeClick(p1, false, likeButton.rootView)
             }
         })
-        holder.itemView.items.setOnClickListener({
-            if (itemContainer.visiblyList[position]){
-                holder.onLoadVisibly(View.GONE)
-                itemContainer.visiblyList[position] = false
+        p0.itemView.items.setOnClickListener {
+            if (itemContainer.visiblyList[p1]) {
+                p0.onLoadVisibly(View.GONE)
+                itemContainer.visiblyList[p1] = false
             } else {
-                holder.onLoadVisibly(View.VISIBLE)
-                itemContainer.visiblyList[position] = true
+                p0.onLoadVisibly(View.VISIBLE)
+                itemContainer.visiblyList[p1] = true
             }
-        })
+        }
     }
 
-    private fun onLikeClick(position: Int, like: Boolean, view: View){
-        clickListener.onItemLikeClick(view,
+    private fun onLikeClick(position: Int, like: Boolean, view: View) {
+        clickListener.likeClick(view,
                 itemContainer.itemList[position].id, like)
         itemContainer.likeList[position] = like
     }

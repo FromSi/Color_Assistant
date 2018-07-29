@@ -17,21 +17,31 @@
 package kz.sgq.colorassistant.ui.adapters.holders
 
 import android.view.View
-import kotlinx.android.synthetic.main.item_colors.view.*
+import kotlinx.android.synthetic.main.item_colors_cloud.view.*
+import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.holders.base.BaseComboCardHolder
-import kz.sgq.colorassistant.ui.util.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnItemCloudClickListener
 
-class ColorsHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
+class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
-    fun setLiked(like: Boolean) {
-        itemView.like.isLiked = like
+    fun setView(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+        itemView.view.setOnClickListener {
+            clickListener.viewClick(cloud)
+            itemView.view.isLiked = false
+        }
     }
 
-    fun setView(itemColor: ItemColor, clickListener: OnItemColorClickListener) {
-        itemView.view.setOnClickListener {
-            clickListener.viewClick(itemView.view.rootView, itemColor)
-            itemView.view.isLiked = false
+    fun setShare(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+        itemView.share.setOnClickListener {
+            clickListener.shareClick(cloud)
+            itemView.share.isLiked = false
+        }
+    }
+
+    fun setDelete(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+        itemView.delete.setOnClickListener {
+            clickListener.deleteClick(cloud)
+            itemView.delete.isLiked = false
         }
     }
 }

@@ -32,7 +32,7 @@ import kz.sgq.colorassistant.mvp.view.LikesView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemClickListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnSelectedButtonListener
 import java.io.Serializable
 
@@ -90,21 +90,21 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
     }
 
     private fun onClickListenerAdapter() {
-        adapter.SetOnItemClickListener(object : OnItemClickListener {
-            override fun onItemLikeClick(view: View, id: Int, like: Boolean) {
+        adapter.setOnItemClickListener(object : OnItemColorClickListener {
+            override fun likeClick(view: View, id: Int, like: Boolean) {
                 listener.onLikeClickListener(id)
                 presenter.onItemLikeClick(view, id, like)
             }
 
-            override fun onItemViewClick(view: View, itemColor: ItemColor) {
+            override fun viewClick(view: View, itemColor: ItemColor) {
                 presenter.onItemViewClick(view, itemColor)
             }
         })
     }
 
-    private fun setUpLoadMoreListener(){
+    private fun setUpLoadMoreListener() {
         rv_colors.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 presenter.handlerColorListener(layoutManager.itemCount,
                         layoutManager.findLastVisibleItemPosition())

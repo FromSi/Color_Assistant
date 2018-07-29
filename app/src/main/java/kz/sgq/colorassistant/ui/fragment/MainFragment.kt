@@ -23,10 +23,8 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_colors.*
 import kz.sgq.colorassistant.R
-import android.support.v7.app.AppCompatActivity
 import kz.sgq.colorassistant.ui.adapters.SectionsPageAdapter
 import kz.sgq.colorassistant.ui.util.interfaces.OnSelectedButtonListener
-
 
 class MainFragment : Fragment(), OnSelectedButtonListener {
     private val colorsFragment = ColorsFragment()
@@ -49,12 +47,12 @@ class MainFragment : Fragment(), OnSelectedButtonListener {
     }
 
     private fun settingToolBar() {
-        val actionBar = (activity as AppCompatActivity)
+//        val actionBar = (activity as AppCompatActivity)
         toolBar.title = getString(R.string.colors)
-        actionBar.setSupportActionBar(toolBar)
+//        actionBar.setSupportActionBar(toolBar)
     }
 
-    private fun setupViewPager(){
+    private fun setupViewPager() {
         tabLayout.setupWithViewPager(viewPager)
         val adapter = SectionsPageAdapter(childFragmentManager)
 
@@ -70,5 +68,4 @@ class MainFragment : Fragment(), OnSelectedButtonListener {
 
         viewPager.adapter = adapter
     }
-
 }
