@@ -16,6 +16,8 @@
 
 package kz.sgq.colorassistant.ui.fragment
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -28,19 +30,21 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.CloudPresenter
 import kz.sgq.colorassistant.mvp.view.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
+import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerCloudAdapter
 import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
 import kz.sgq.colorassistant.ui.view.ItemColor
 import kz.sgq.colorassistant.ui.fragment.dialog.SaveFragment
 import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnDeleteListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnItemCloudClickListener
+import java.io.Serializable
 
 class CloudFragment : MvpAppCompatFragment(), CloudView {
+    private var adapter = RecyclerCloudAdapter()
 
     @InjectPresenter
     lateinit var presenter: CloudPresenter
-
-    private var adapter = RecyclerCloudAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,40 +60,82 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settingToolBar()
-
-        val layoutManager = LinearLayoutManager(view.context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        cloud.layoutManager = layoutManager
-        cloud.adapter = adapter
-        clickListener()
-
-        presenter.initInitList()
-
-        color_picker.addLightnessView(lightness)
-        color_picker.addSaturationView(saturation)
-        createNewItemColor()
-        createNewItemColor()
-        createNewItemColor()
-        color_picker.setItemColor(item_list.getChildAt(0) as ItemColor)
+        initRecyclerAdapter(view.context)
+        initColorPicker()
     }
 
     override fun initColorList(list: MutableList<Cloud>) {
-        Log.d("TestList", "Yes")
         adapter.addList(list)
     }
 
     override fun addItem(cloud: Cloud) {
-        Log.d("TestAddItemInRoomORM", "Added item")
         adapter.addItem(cloud)
+    }
+
+    override fun deleteItem(index: Int) {
+        adapter.deleteItem(index)
+    }
+
+    override fun showActivityInfo(list: MutableList<String>) {
+        val intent = Intent(context, ComboActivity::class.java)
+        intent.putExtra("map", list as Serializable)
+        startActivity(intent)
+    }
+
+    private fun initRecyclerAdapter(context: Context) {
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        cloud.layoutManager = layoutManager
+        cloud.adapter = adapter
+
+        clickListener()
+
+        presenter.initInitList()
+    }
+
+    private fun initColorPicker() {
+        color_picker.addLightnessView(lightness)
+        color_picker.addSaturationView(saturation)
+
+        createNewItemColor()
+        createNewItemColor()
+        createNewItemColor()
+
+        color_picker.setItemColor(item_list.getChildAt(0) as ItemColor)
+
+        add.setOnClickListener {
+            ItemColor.ItemColor.boolDelete = true
+
+            if (item_list.childCount <= 3) {
+                createNewItemColor()
+            } else {
+                createNewItemColor()
+                add.visibility = View.GONE
+            }
+        }
     }
 
     private fun createNewItemColor() {
         val itemColor = ItemColor(context)
+
         itemColor.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         )
+
         item_list.addView(itemColor)
+
+        itemColor.setDeleteIndex(item_list.childCount - 1)
+
+        itemColor.setOnDeleteListener(object : OnDeleteListener{
+            override fun delete(index: Int) {
+                item_list.removeViewAt(index)
+                add.visibility = View.VISIBLE
+
+                if (item_list.childCount <= 3)
+                    ItemColor.ItemColor.boolDelete = false
+            }
+        })
 
         itemColor.setOnClickItemColorListener(object : OnClickItemColorListener {
             override fun onClick() {
@@ -100,51 +146,85 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     private fun clickListener() {
         adapter.setOnItemClickListener(object : OnItemCloudClickListener {
+
             override fun viewClick(cloud: Cloud) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                presenter.onItemViewClick(cloud)
             }
 
             override fun shareClick(cloud: Cloud) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                presenter.onItemShareClick(cloud)
             }
 
-            override fun deleteClick(cloud: Cloud) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            override fun deleteClick(cloud: Cloud, index: Int) {
+                presenter.onItemDeleteClick(cloud, index)
             }
-
         })
     }
 
+    private fun getColorHex(index: Int): String = (item_list.getChildAt(index) as ItemColor).getColorHex()
+
     private fun settingToolBar() {
-//        val actionBar = (activity as AppCompatActivity)
         toolBar.title = getString(R.string.constructor)
         toolBar.inflateMenu(R.menu.constructor_menu)
+
         toolBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.constructor -> {
-//                    constructor.visibility = View.VISIBLE
-//                    cloud.visibility = View.VISIBLE
-//                    cloud.visibility = View.GONE
+                    toolBar.menu.findItem(R.id.constructor).isVisible = false
+                    toolBar.menu.findItem(R.id.cloud).isVisible = true
+                    toolBar.menu.findItem(R.id.save).isVisible = true
+
+                    constructor.visibility = View.VISIBLE
+                    cloud.visibility = View.GONE
                 }
+
                 R.id.cloud -> {
-//                    Log.d("TAGtEST", "cloud")
-//                    toolBar.menu.findItem(R.id.constructor).isVisible = false
-//                    constructor.visibility = View.GONE
-//                    cloud.visibility = View.VISIBLE
+                    toolBar.menu.findItem(R.id.constructor).isVisible = true
+                    toolBar.menu.findItem(R.id.cloud).isVisible = false
+                    toolBar.menu.findItem(R.id.save).isVisible = false
+
+                    constructor.visibility = View.GONE
+                    cloud.visibility = View.VISIBLE
                 }
+
                 R.id.save -> {
                     val dialog = SaveFragment()
+
                     dialog.clickListener(object : OnClickListener {
                         override fun onClick() {
-                            presenter.addItem(Cloud("#323232", "#323232", "#323232", "#323232", "#323232"))
-                        }
+                            val cloud = when (item_list.childCount) {
+                                3 -> Cloud(
+                                        getColorHex(0),
+                                        getColorHex(1),
+                                        getColorHex(2)
+                                )
 
+                                4 -> Cloud(
+                                        getColorHex(0),
+                                        getColorHex(1),
+                                        getColorHex(2),
+                                        getColorHex(3)
+                                )
+
+                                5 -> Cloud(
+                                        getColorHex(0),
+                                        getColorHex(1),
+                                        getColorHex(2),
+                                        getColorHex(3),
+                                        getColorHex(4)
+                                )
+
+                                else -> return
+                            }
+
+                            presenter.addItem(cloud)
+                        }
                     })
+
                     dialog.show(fragmentManager, "save_dialog")
                 }
             }
             false
         }
-//        actionBar.setSupportActionBar(toolBar)
     }
 }

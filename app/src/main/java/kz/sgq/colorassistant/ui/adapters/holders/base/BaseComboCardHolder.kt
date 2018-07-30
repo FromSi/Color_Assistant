@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.item_colors.view.*
 import kz.sgq.colorassistant.ui.util.ItemColor
 
 open class BaseComboCardHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+
     private val listImage: Array<ImageView?> = arrayOf(
             itemView?.itemOne,
             itemView?.itemTwo,
@@ -33,6 +34,7 @@ open class BaseComboCardHolder(itemView: View?) : RecyclerView.ViewHolder(itemVi
     )
 
     fun setImagesView(itemColor: ItemColor) {
+
         for (i in 0..4) {
             itemView.itemsTwo.visibility = View.VISIBLE
 

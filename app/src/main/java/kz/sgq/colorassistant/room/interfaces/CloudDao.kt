@@ -17,6 +17,7 @@
 package kz.sgq.colorassistant.room.interfaces
 
 import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
 import io.reactivex.Maybe
@@ -26,6 +27,9 @@ import kz.sgq.colorassistant.room.table.Cloud
 interface CloudDao {
     @Insert
     fun insert(cloud: Cloud)
+
+    @Delete
+    fun delete(cloud: Cloud)
 
     @Query("SELECT * FROM `cloud`")
     fun getColors(): Maybe<MutableList<Cloud>>

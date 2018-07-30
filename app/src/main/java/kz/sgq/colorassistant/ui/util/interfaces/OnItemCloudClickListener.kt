@@ -21,5 +21,5 @@ import kz.sgq.colorassistant.room.table.Cloud
 interface OnItemCloudClickListener {
     fun viewClick(cloud: Cloud)
     fun shareClick(cloud: Cloud)
-    fun deleteClick(cloud: Cloud)
+    fun deleteClick(cloud: Cloud, index: Int)
 }

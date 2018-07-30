@@ -77,6 +77,7 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
         p0.setLiked(itemContainer.likeList[p1])
         p0.setView(itemContainer.itemList[p1], clickListener)
         p0.onLoadVisibly(itemContainer.visiblyList[p1])
+
         p0.itemView.like.setOnLikeListener(object : OnLikeListener {
             override fun liked(likeButton: LikeButton) {
                 onLikeClick(p1, true, likeButton.rootView)
@@ -86,6 +87,7 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
                 onLikeClick(p1, false, likeButton.rootView)
             }
         })
+
         p0.itemView.items.setOnClickListener {
             if (itemContainer.visiblyList[p1]) {
                 p0.onLoadVisibly(View.GONE)

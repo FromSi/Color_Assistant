@@ -23,7 +23,7 @@ import kz.sgq.colorassistant.mvp.model.CloudModelImpl
 import kz.sgq.colorassistant.mvp.model.interfaces.CloudModel
 import kz.sgq.colorassistant.mvp.view.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnAddItemListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 @InjectViewState
@@ -39,8 +39,30 @@ class CloudPresenter : MvpPresenter<CloudView>() {
         })
     }
 
+    fun onItemViewClick(cloud: Cloud){
+
+        viewState.showActivityInfo(model.initColorList(cloud))
+    }
+
+    fun onItemShareClick(cloud: Cloud){
+
+    }
+
+    fun onItemDeleteClick(cloud: Cloud, index: Int){
+        model.deleteItem(cloud, object : OnEventItemListener {
+
+            override fun success() {
+                viewState.deleteItem(index)
+            }
+
+            override fun error() {
+                Log.d("TestAddItemInRoomORM", "Error adding item")
+            }
+        })
+    }
+
     fun addItem(cloud: Cloud) {
-        model.addItem(cloud, object : OnAddItemListener {
+        model.addItem(cloud, object : OnEventItemListener {
 
             override fun success() {
                 viewState.addItem(cloud)

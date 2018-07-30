@@ -19,17 +19,37 @@ package kz.sgq.colorassistant.mvp.model
 import kz.sgq.colorassistant.mvp.model.interfaces.CloudModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnAddItemListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 class CloudModelImpl : CloudModel {
 
-    override fun addItem(cloud: Cloud, addItemListener: OnAddItemListener) {
-        DataBaseRequest.insertCloud(cloud, addItemListener)
+    override fun addItem(cloud: Cloud, eventListener: OnEventItemListener) {
+        DataBaseRequest.insertCloud(cloud, eventListener)
+    }
+
+    override fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener) {
+        DataBaseRequest.deleteCloud(cloud, eventListener)
     }
 
     override fun initItemList(initListener: OnInitItemListener) {
         DataBaseRequest.getCloud()
                 ?.subscribe { list: MutableList<Cloud>? -> initListener.answer(list!!) }
+    }
+
+    override fun initColorList(cloud: Cloud): MutableList<String> {
+        val list: MutableList<String> = arrayListOf()
+
+        list.add(cloud.colOne)
+        list.add(cloud.colTwo)
+        list.add(cloud.colThree)
+
+        if (cloud.colFour != null)
+            list.add(cloud.colFour!!)
+
+        if (cloud.colFive != null)
+            list.add(cloud.colFive!!)
+
+        return list
     }
 }

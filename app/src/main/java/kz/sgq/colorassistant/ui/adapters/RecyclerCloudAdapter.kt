@@ -17,6 +17,7 @@
 package kz.sgq.colorassistant.ui.adapters
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +36,7 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
     fun addList(list: MutableList<Cloud>) {
         this.list = list
 
-        for (i in 0 until visiblyList.size)
+        for (i in 0 until list.size)
             visiblyList.add(true)
 
         notifyDataSetChanged()
@@ -48,8 +49,11 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
         notifyDataSetChanged()
     }
 
-    fun deleteItem(id: Int) {
-//        visiblyList.removeAt(i)
+    fun deleteItem(index: Int) {
+        list.removeAt(index)
+        visiblyList.removeAt(index)
+
+        notifyDataSetChanged()
     }
 
     fun setOnItemClickListener(clickListener: OnItemCloudClickListener) {
@@ -65,7 +69,8 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
         p0.setImagesView(calcItemColor(p1))
         p0.setView(list[p1], clickListener)
         p0.setShare(list[p1], clickListener)
-        p0.setDelete(list[p1], clickListener)
+        p0.setDelete(list[p1], p1, clickListener)
+        p0.onLoadVisibly(visiblyList[p1])
 
         p0.itemView.items.setOnClickListener {
             if (visiblyList[p1]) {
@@ -84,9 +89,11 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
         list.add(this.list[index].colOne)
         list.add(this.list[index].colTwo)
         list.add(this.list[index].colThree)
+
         if (this.list[index].colFour != null)
             list.add(this.list[index].colFour!!)
-        if (this.list[index].colFour != null)
+
+        if (this.list[index].colFive != null)
             list.add(this.list[index].colFive!!)
 
         return ItemColor(0, list, false)

@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
 
         tabLayout.getTabAt(0)?.icon = ContextCompat.getDrawable(this, R.drawable.colors)
-        tabLayout.getTabAt(1)?.icon = ContextCompat.getDrawable(this, R.drawable.constructor)
+        tabLayout.getTabAt(1)?.icon = ContextCompat.getDrawable(this, R.drawable.cloud)
         tabLayout.getTabAt(2)?.icon = ContextCompat.getDrawable(this, R.drawable.settings)
 
         tabLayout.getTabAt(0)?.icon?.setColorFilter(

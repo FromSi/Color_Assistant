@@ -16,7 +16,7 @@
 
 package kz.sgq.colorassistant.ui.util.interfaces
 
-interface OnAddItemListener {
+interface OnEventItemListener {
     fun success()
     fun error()
 }

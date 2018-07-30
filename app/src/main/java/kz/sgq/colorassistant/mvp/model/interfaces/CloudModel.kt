@@ -17,10 +17,12 @@
 package kz.sgq.colorassistant.mvp.model.interfaces
 
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnAddItemListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 interface CloudModel {
     fun initItemList(initListener: OnInitItemListener)
-    fun addItem(cloud: Cloud, addItemListener: OnAddItemListener)
+    fun initColorList(cloud: Cloud): MutableList<String>
+    fun addItem(cloud: Cloud, eventListener: OnEventItemListener)
+    fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener)
 }

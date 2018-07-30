@@ -22,4 +22,6 @@ import kz.sgq.colorassistant.room.table.Cloud
 interface CloudView : MvpView {
     fun initColorList(list: MutableList<Cloud>)
     fun addItem(cloud: Cloud)
+    fun deleteItem(index: Int)
+    fun showActivityInfo(list: MutableList<String>)
 }

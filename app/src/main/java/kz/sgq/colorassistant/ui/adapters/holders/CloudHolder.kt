@@ -38,9 +38,9 @@ class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
         }
     }
 
-    fun setDelete(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+    fun setDelete(cloud: Cloud, index: Int, clickListener: OnItemCloudClickListener) {
         itemView.delete.setOnClickListener {
-            clickListener.deleteClick(cloud)
+            clickListener.deleteClick(cloud, index)
             itemView.delete.isLiked = false
         }
     }

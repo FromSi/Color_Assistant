@@ -25,7 +25,7 @@ import kz.sgq.colorassistant.application.App
 import kz.sgq.colorassistant.room.table.Checking
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.room.table.Colors
-import kz.sgq.colorassistant.ui.util.interfaces.OnAddItemListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 
 object DataBaseRequest {
     private val dataBase = App.getInstance()?.getDataBase()
@@ -42,13 +42,13 @@ object DataBaseRequest {
                 .subscribe()
     }
 
-    fun insertCloud(cloud: Cloud, addItemListener: OnAddItemListener) {
+    fun insertCloud(cloud: Cloud, eventListener: OnEventItemListener) {
         Completable.fromAction({ dataBase?.cloudDao()?.insert(cloud) })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CompletableObserver {
                     override fun onComplete() {
-                        addItemListener.success()
+                        eventListener.success()
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -56,7 +56,27 @@ object DataBaseRequest {
                     }
 
                     override fun onError(e: Throwable) {
-                        addItemListener.error()
+                        eventListener.error()
+                    }
+
+                })
+    }
+
+    fun deleteCloud(cloud: Cloud, eventListener: OnEventItemListener) {
+        Completable.fromAction({ dataBase?.cloudDao()?.delete(cloud) })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CompletableObserver {
+                    override fun onComplete() {
+                        eventListener.success()
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        eventListener.error()
                     }
 
                 })
