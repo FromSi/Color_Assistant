@@ -23,6 +23,7 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 interface CloudModel {
     fun initItemList(initListener: OnInitItemListener)
     fun initColorList(cloud: Cloud): MutableList<String>
+    fun calcShare(cloud: Cloud): String
     fun addItem(cloud: Cloud, eventListener: OnEventItemListener)
     fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener)
 }

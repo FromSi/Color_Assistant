@@ -23,6 +23,17 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 class CloudModelImpl : CloudModel {
+    override fun calcShare(cloud: Cloud): String {
+        val text = StringBuffer("${cloud.colOne}${cloud.colTwo}${cloud.colThree}")
+
+        if (cloud.colFour != null)
+            text.append(cloud.colFour)
+
+        if (cloud.colFive != null)
+            text.append(cloud.colFive)
+
+        return text.toString()
+    }
 
     override fun addItem(cloud: Cloud, eventListener: OnEventItemListener) {
         DataBaseRequest.insertCloud(cloud, eventListener)

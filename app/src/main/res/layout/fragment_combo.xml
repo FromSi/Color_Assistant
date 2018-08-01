@@ -21,7 +21,7 @@
                 layout="@layout/item_combo_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"/>
+                android:layout_margin="3dp" />
 
             <include
                 android:id="@+id/cardTwo"
@@ -78,8 +78,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:layout_margin="8dp">
+                            android:layout_margin="8dp"
+                            android:gravity="center_vertical">
 
                             <ImageView
                                 android:id="@+id/backgroundColorOne"
@@ -142,8 +142,8 @@
                             android:id="@+id/l_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:layout_margin="8dp">
+                            android:layout_margin="8dp"
+                            android:gravity="center_vertical">
 
                             <ImageView
                                 android:id="@+id/textColorOne"
@@ -208,8 +208,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/cv_background" />
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 </android.support.design.widget.CoordinatorLayout>

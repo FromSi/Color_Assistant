@@ -23,5 +23,6 @@ interface CloudView : MvpView {
     fun initColorList(list: MutableList<Cloud>)
     fun addItem(cloud: Cloud)
     fun deleteItem(index: Int)
+    fun shareItem(text: String)
     fun showActivityInfo(list: MutableList<String>)
 }

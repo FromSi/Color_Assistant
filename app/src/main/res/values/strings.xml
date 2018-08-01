@@ -21,11 +21,23 @@
     <string name="info">Info</string>
     <string name="combo">Combo</string>
     <string name="cloud">Cloud</string>
-    <string name="save">Save</string>
+    <string name="qr">QR scan</string>
 
-    <string name="dialog_save">Are you sure you want to save?</string>
-    <string name="dialog_save_positive">OK</string>
-    <string name="dialog_save_neutral">Cancel</string>
+    <string name="dialog_cloud_save_title">Save</string>
+    <string name="dialog_cloud_save_message">Are you sure you want to save?</string>
+    <string name="dialog_cloud_save_positive">OK</string>
+    <string name="dialog_cloud_save_neutral">Cancel</string>
 
+    <string name="dialog_cloud_share_title">Share</string>
+    <string name="dialog_cloud_share_positive">Share</string>
+    <string name="dialog_cloud_share_neutral">Cancel</string>
+
+    <string name="dialog_color_delete_title">Delete color</string>
+    <string name="dialog_color_delete_message">Are you sure you want to delete color?</string>
+    <string name="dialog_color_delete_positive">Delete</string>
+    <string name="dialog_color_delete_neutral">Cancel</string>
+
+    <string name="dialog_color_info_title">Information</string>
+    <string name="dialog_color_info_positive">OK</string>
 
 </resources>

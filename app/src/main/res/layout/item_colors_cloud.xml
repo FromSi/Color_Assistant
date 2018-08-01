@@ -87,7 +87,6 @@
                 android:layout_height="match_parent"
                 app:icon_size="@dimen/item_icon_size"
                 app:unlike_drawable="@drawable/delete" />
-
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

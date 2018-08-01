@@ -22,17 +22,16 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnDeleteListener
+import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorListener
 
 class ItemColor : View {
-    private var color = "#323232"
+    private var color = Color.BLUE
     private var valueLightness = 0f
     private var valueSaturation = 0f
     private var positionLightness = 0
@@ -53,7 +52,7 @@ class ItemColor : View {
     private var positionY = 0f
     private var positionCurrent = 0f
     private var clickItemColor: OnClickItemColorListener? = null
-    private var deleteListener: OnDeleteListener? = null
+    private var itemListener: OnItemColorListener? = null
     private var deleteIndex: Int = 0
     private var min = 0
     private var act = false
@@ -167,7 +166,7 @@ class ItemColor : View {
 
             MotionEvent.ACTION_UP -> {
                 if (!deleting && act) {
-                    Toast.makeText(context, "Info", Toast.LENGTH_SHORT).show()
+                    itemListener?.info(color)
                     positionCurrent = positionY
 
                     invalidate()
@@ -176,7 +175,7 @@ class ItemColor : View {
 
                     invalidate()
 
-                    deleteListener?.delete(deleteIndex)
+                    itemListener?.delete(deleteIndex)
                 } else {
                     Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
                     positionCurrent = positionY
@@ -220,12 +219,12 @@ class ItemColor : View {
         itemPointerHaloPaint.alpha = invisibilityHalo
     }
 
-    fun setOnDeleteListener(deleteListener: OnDeleteListener){
-        this.deleteListener = deleteListener
+    fun setOnItemColorListener(itemListener: OnItemColorListener){
+        this.itemListener = itemListener
     }
 
     fun setColor(color: Int) {
-        this.color = ColorConverter.getHex(color)
+        this.color = color
 
         itemPointerPaint.color = color
         itemPointerHaloPaint.color = color
@@ -238,7 +237,7 @@ class ItemColor : View {
         deleteIndex = index
     }
 
-    fun getColorHex(): String = color
+    fun getColorHex(): String = ColorConverter.getHex(color)
 
     fun setEnable(bool: Boolean) {
         this.enableHalo = bool

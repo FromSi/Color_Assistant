@@ -20,30 +20,25 @@ import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 
-class SaveFragment : DialogFragment() {
+class SaveDialog : DialogFragment() {
     private lateinit var clickListener: OnClickListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val title = resources.getString(R.string.save)
-        val massege = resources.getString(R.string.dialog_save)
-        val positive = resources.getString(R.string.dialog_save_positive)
-        val neutral = resources.getString(R.string.dialog_save_neutral)
+        val title = resources.getString(R.string.dialog_cloud_save_title)
+        val massege = resources.getString(R.string.dialog_cloud_save_message)
+        val positive = resources.getString(R.string.dialog_cloud_save_positive)
+        val neutral = resources.getString(R.string.dialog_cloud_save_neutral)
         val dialog = AlertDialog.Builder(activity!!)
+
         dialog.setTitle(title)
         dialog.setMessage(massege)
 
-        dialog.setPositiveButton(positive) { _, _ ->
-            Log.d("TestDialog", "1")
-            clickListener.onClick()
-        }
+        dialog.setPositiveButton(positive) { _, _ -> clickListener.onClick() }
 
-        dialog.setNeutralButton(neutral) { _, _ ->
-            Log.d("TestDialog", "2")
-        }
+        dialog.setNeutralButton(neutral) { _, _ -> }
 
         return dialog.create()
     }

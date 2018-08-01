@@ -5,7 +5,7 @@
     <item
         android:id="@+id/save"
         android:icon="@drawable/save"
-        android:title="@string/save"
+        android:title="@string/dialog_cloud_save_title"
         app:showAsAction="always"
         android:visible="false"/>
 
@@ -22,4 +22,9 @@
         android:title="@string/cloud"
         app:showAsAction="always"
         android:visible="false"/>
+
+    <item
+        android:id="@+id/qr"
+        android:title="@string/qr"
+        android:visible="true"/>
 </menu>

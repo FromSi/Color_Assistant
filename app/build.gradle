@@ -52,5 +52,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation 'com.arello-mobile:moxy:1.5.3'
     implementation 'com.arello-mobile:moxy-app-compat:1.5.3'
+    implementation 'com.github.kenglxn.QRGen:android:2.5.0'
     kapt 'com.arello-mobile:moxy-compiler:1.5.3'
 }

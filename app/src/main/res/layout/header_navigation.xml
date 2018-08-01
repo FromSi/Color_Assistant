@@ -2,6 +2,4 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/header_height"
-    android:background="@color/primary_dark">
-
-</android.support.constraint.ConstraintLayout>
+    android:background="@color/primary_dark"/>

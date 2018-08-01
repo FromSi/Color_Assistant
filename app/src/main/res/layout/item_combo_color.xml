@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
@@ -23,35 +22,35 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imgTwo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imgThree"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imgFour"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imgFive"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
 
         <ImageView
@@ -85,7 +84,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/nameTypeColor"
             app:layout_constraintTop_toTopOf="parent" />
-
     </android.support.constraint.ConstraintLayout>
-
 </android.support.v7.widget.CardView>

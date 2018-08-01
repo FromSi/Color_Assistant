@@ -1,5 +1,5 @@
 package kz.sgq.colorassistant.ui.util.interfaces
 
-interface OnDeleteListener {
+interface OnDeleteItemListener {
     fun delete(index: Int)
 }

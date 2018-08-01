@@ -20,7 +20,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import com.arellomobile.mvp.MvpAppCompatFragment
@@ -32,12 +31,12 @@ import kz.sgq.colorassistant.mvp.view.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerCloudAdapter
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
+import kz.sgq.colorassistant.ui.fragment.dialog.DeleteDialog
+import kz.sgq.colorassistant.ui.fragment.dialog.InfoDialog
 import kz.sgq.colorassistant.ui.view.ItemColor
-import kz.sgq.colorassistant.ui.fragment.dialog.SaveFragment
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnDeleteListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemCloudClickListener
+import kz.sgq.colorassistant.ui.fragment.dialog.SaveDialog
+import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
+import kz.sgq.colorassistant.ui.util.interfaces.*
 import java.io.Serializable
 
 class CloudFragment : MvpAppCompatFragment(), CloudView {
@@ -74,6 +73,12 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     override fun deleteItem(index: Int) {
         adapter.deleteItem(index)
+    }
+
+    override fun shareItem(text: String) {
+        val dialog = ShareDialog()
+        dialog.setText(text)
+        dialog.show(fragmentManager, "share_dialog")
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
@@ -127,13 +132,30 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
         itemColor.setDeleteIndex(item_list.childCount - 1)
 
-        itemColor.setOnDeleteListener(object : OnDeleteListener{
-            override fun delete(index: Int) {
-                item_list.removeViewAt(index)
-                add.visibility = View.VISIBLE
+        itemColor.setOnItemColorListener(object : OnItemColorListener {
+            override fun info(color: Int) {
+                val dialog = InfoDialog()
+                dialog.setColor(color)
+                dialog.show(fragmentManager, "info_dialog")
+            }
 
-                if (item_list.childCount <= 3)
-                    ItemColor.ItemColor.boolDelete = false
+            override fun delete(index: Int) {
+                val dialog = DeleteDialog()
+
+                dialog.clickListener(index, object : OnDeleteItemListener {
+                    override fun delete(index: Int) {
+                        item_list.removeViewAt(index)
+                        add.visibility = View.VISIBLE
+
+                        if (item_list.childCount <= 3)
+                            ItemColor.ItemColor.boolDelete = false
+
+                        for (i in index until item_list.childCount)
+                            (item_list.getChildAt(i) as ItemColor).setDeleteIndex(i)
+                    }
+                })
+
+                dialog.show(fragmentManager, "delete_dialog")
             }
         })
 
@@ -188,7 +210,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
                 }
 
                 R.id.save -> {
-                    val dialog = SaveFragment()
+                    val dialog = SaveDialog()
 
                     dialog.clickListener(object : OnClickListener {
                         override fun onClick() {
@@ -222,6 +244,10 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
                     })
 
                     dialog.show(fragmentManager, "save_dialog")
+                }
+
+                R.id.qr -> {
+
                 }
             }
             false

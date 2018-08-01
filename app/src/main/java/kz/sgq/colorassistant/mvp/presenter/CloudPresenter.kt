@@ -45,7 +45,7 @@ class CloudPresenter : MvpPresenter<CloudView>() {
     }
 
     fun onItemShareClick(cloud: Cloud){
-
+        viewState.shareItem(model.calcShare(cloud))
     }
 
     fun onItemDeleteClick(cloud: Cloud, index: Int){

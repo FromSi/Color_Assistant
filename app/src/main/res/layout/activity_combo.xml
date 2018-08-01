@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activity.ComboActivity">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -15,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     </android.support.design.widget.AppBarLayout>
 
     <kz.sgq.colorassistant.ui.util.view.ComboViewPager
