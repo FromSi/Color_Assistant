@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.ui.util.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
@@ -28,6 +29,7 @@ private var disable = true
         return if (disable) false else super.onInterceptTouchEvent(event)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return if (disable) false else super.onTouchEvent(event)
     }

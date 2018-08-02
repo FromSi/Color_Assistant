@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.*
@@ -138,6 +139,7 @@ class ColorPicker : View {
         canvas?.drawOval(colorCenterRectangle, colorCenterPaint)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         parent.requestDisallowInterceptTouchEvent(true)
         val x = event!!.x - translationOffset

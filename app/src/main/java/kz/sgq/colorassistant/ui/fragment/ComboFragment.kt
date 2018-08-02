@@ -119,23 +119,23 @@ class ComboFragment : MvpAppCompatFragment(), ComboView {
 
     private fun initClickBackgroundColor(){
         for (i in 0..4)
-            backgroundColorList[i].setOnClickListener({
+            backgroundColorList[i].setOnClickListener {
                 presenter.handlerBackgroundColor(i)
-            })
+            }
     }
 
     private fun initClickTextColor(){
         for(i in 0..4)
-            textColorList[i].setOnClickListener({
+            textColorList[i].setOnClickListener {
                 presenter.handlerTextColor(i)
-            })
+            }
     }
 
     private fun initClickCardView(){
         for(i in 0..4)
-            cardList[i].setOnClickListener({
+            cardList[i].setOnClickListener {
                 (activity as ComboActivity).initInfo(presenter.getColor(i))
-            })
+            }
     }
 
     private fun initListImageView(view: View) {

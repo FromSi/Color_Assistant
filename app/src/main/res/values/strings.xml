@@ -10,6 +10,7 @@
     <string name="background">Background</string>
     <string name="text">Text</string>
     <string name="noItems">No combo colors</string>
+    <string name="qr_scan">QR Scan</string>
 
 
     <string name="colors">Colors</string>
@@ -31,6 +32,16 @@
     <string name="dialog_cloud_share_title">Share</string>
     <string name="dialog_cloud_share_positive">Share</string>
     <string name="dialog_cloud_share_neutral">Cancel</string>
+
+    <string name="dialog_qr_scan_error_title">Error QR</string>
+    <string name="dialog_qr_scan_error_message">QR is not true</string>
+    <string name="dialog_qr_scan_error_positive">Try</string>
+    <string name="dialog_qr_scan_error_neutral">Cancel</string>
+
+
+    <string name="dialog_qr_scan_title">QR</string>
+    <string name="dialog_qr_scan_positive">Add</string>
+    <string name="dialog_qr_scan_neutral">Cancel</string>
 
     <string name="dialog_color_delete_title">Delete color</string>
     <string name="dialog_color_delete_message">Are you sure you want to delete color?</string>

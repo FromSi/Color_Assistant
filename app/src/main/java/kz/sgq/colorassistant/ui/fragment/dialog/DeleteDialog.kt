@@ -13,13 +13,13 @@ class DeleteDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_color_delete_title)
-        val massege = resources.getString(R.string.dialog_color_delete_message)
+        val message = resources.getString(R.string.dialog_color_delete_message)
         val positive = resources.getString(R.string.dialog_color_delete_positive)
         val neutral = resources.getString(R.string.dialog_color_delete_neutral)
         val dialog = AlertDialog.Builder(activity!!)
 
         dialog.setTitle(title)
-        dialog.setMessage(massege)
+        dialog.setMessage(message)
 
         dialog.setPositiveButton(positive) { _, _ -> deleteListener.delete(index) }
 

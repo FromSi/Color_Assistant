@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.ui.adapters
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -72,7 +73,7 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
 
     override fun getItemCount(): Int = itemContainer.itemList.size
 
-    override fun onBindViewHolder(p0: ColorsHolder, p1: Int) {
+    override fun onBindViewHolder(p0: ColorsHolder, @SuppressLint("RecyclerView") p1: Int) {
         p0.setImagesView(itemContainer.itemList[p1])
         p0.setLiked(itemContainer.likeList[p1])
         p0.setView(itemContainer.itemList[p1], clickListener)

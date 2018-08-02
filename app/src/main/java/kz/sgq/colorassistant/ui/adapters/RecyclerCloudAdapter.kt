@@ -17,7 +17,6 @@
 package kz.sgq.colorassistant.ui.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

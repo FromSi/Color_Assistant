@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Canvas
@@ -59,6 +60,7 @@ class ItemColor : View {
     private var actY = 0f
     private var invisibilityHalo = 0x50
     private var deleting = false
+    private var moveItem = true
 
     object ItemColor{
         var boolDelete = false
@@ -116,6 +118,7 @@ class ItemColor : View {
         positionCurrent = positionY
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         parent.requestDisallowInterceptTouchEvent(true)
@@ -125,6 +128,7 @@ class ItemColor : View {
                 if (positionY <= event.y &&
                         positionY + itemPointerHaloRadius * 2 >= event.y) {
                     actY = event.y
+                    if (moveItem)
                     movingPointer = true
                     clickItemColor?.onClick()
                 }
@@ -235,6 +239,10 @@ class ItemColor : View {
 
     fun setDeleteIndex(index: Int){
         deleteIndex = index
+    }
+
+    fun setMoveItem(moveItem: Boolean){
+        this.moveItem = moveItem
     }
 
     fun getColorHex(): String = ColorConverter.getHex(color)

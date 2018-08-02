@@ -75,9 +75,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:circle_end_color="@color/accent"
+                app:circle_end_color="@color/colorAccent"
                 app:circle_start_color="@color/primary"
-                app:dots_primary_color="@color/accent"
+                app:dots_primary_color="@color/colorAccent"
                 app:dots_secondary_color="@color/primary"
                 app:icon_size="@dimen/item_icon_size"
                 app:icon_type="heart" />

@@ -15,7 +15,7 @@ class ShareDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_cloud_share_title)
         val positive = resources.getString(R.string.dialog_cloud_share_positive)
-        val neutrral = resources.getString(R.string.dialog_cloud_share_neutral)
+        val neutral = resources.getString(R.string.dialog_cloud_share_neutral)
         val dialog = AlertDialog.Builder(activity!!)
         val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_share, null)
 
@@ -25,7 +25,7 @@ class ShareDialog : DialogFragment() {
         initView(customLayout)
 
         dialog.setPositiveButton(positive) { _, _ -> }
-        dialog.setNeutralButton(neutrral) { _, _ -> }
+        dialog.setNeutralButton(neutral) { _, _ -> }
 
         return dialog.create()
     }

@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.*
@@ -60,6 +61,7 @@ class SaturationView : View {
         initConstructor(attrs, defStyleAttr)
     }
 
+    @SuppressLint("CustomViewStyleable")
     private fun initConstructor(attrs: AttributeSet?, defStyleAttr: Int) {
         val resources = context.resources
         val typedArray: TypedArray = context.obtainStyledAttributes(
@@ -133,6 +135,7 @@ class SaturationView : View {
         )
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         parent.requestDisallowInterceptTouchEvent(true)
 

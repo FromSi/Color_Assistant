@@ -35,7 +35,7 @@ class ColorsModelImpl : ColorsModel {
 
     init {
         DataBaseRequest.getUpdate()
-                ?.subscribe({update = it.check})
+                ?.subscribe {update = it.check}
     }
 
     override fun initRandom(size: Int) {

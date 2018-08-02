@@ -33,7 +33,7 @@ class LikesPresenter : MvpPresenter<LikesView>() {
     init {
         viewState.showLoadDB()
         DataBaseRequest.getColors(true)
-                ?.subscribe({
+                ?.subscribe {
                     if (it.size == 0) {
                         model.clearIdList()
                         viewState.clearItemsDB()
@@ -59,7 +59,7 @@ class LikesPresenter : MvpPresenter<LikesView>() {
                         }
                         getColorList()
                     }
-                })
+                }
     }
 
     private fun isCheck(id: Int, size: Int): Boolean {

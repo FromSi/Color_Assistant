@@ -16,9 +16,13 @@
 
 package kz.sgq.colorassistant.ui.fragment
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import android.widget.LinearLayout
@@ -30,12 +34,10 @@ import kz.sgq.colorassistant.mvp.presenter.CloudPresenter
 import kz.sgq.colorassistant.mvp.view.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.activity.ComboActivity
+import kz.sgq.colorassistant.ui.activity.QRCodeScanActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerCloudAdapter
-import kz.sgq.colorassistant.ui.fragment.dialog.DeleteDialog
-import kz.sgq.colorassistant.ui.fragment.dialog.InfoDialog
+import kz.sgq.colorassistant.ui.fragment.dialog.*
 import kz.sgq.colorassistant.ui.view.ItemColor
-import kz.sgq.colorassistant.ui.fragment.dialog.SaveDialog
-import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 import kz.sgq.colorassistant.ui.util.interfaces.*
 import java.io.Serializable
 
@@ -75,6 +77,17 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         adapter.deleteItem(index)
     }
 
+    override fun errorQR() {
+        val dialog = QRScanErrorDialog()
+        dialog.clickListener(object : OnClickListener{
+            override fun onClick() {
+                checkCameraPermission()
+            }
+        })
+
+        dialog.show(fragmentManager, "error_qr_dialog")
+    }
+
     override fun shareItem(text: String) {
         val dialog = ShareDialog()
         dialog.setText(text)
@@ -85,6 +98,47 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         val intent = Intent(context, ComboActivity::class.java)
         intent.putExtra("map", list as Serializable)
         startActivity(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK)
+            presenter.calcQRCode(requestCode, resultCode, data)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == 10) {
+            val permission = permissions[0]
+            val grantResult = grantResults[0]
+            if (permission == Manifest.permission.CAMERA && grantResult == PackageManager.PERMISSION_GRANTED)
+                openScanActivity()
+        } else
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun answerQR(cloud: Cloud) {
+        val dialog = QRScanDialog()
+        dialog.cloud(cloud)
+
+        dialog.clickListener(object : OnClickListener{
+            override fun onClick() {
+                presenter.addItem(cloud)
+            }
+        })
+        dialog.show(fragmentManager, "qr_dialog")
+    }
+
+    private fun checkCameraPermission() {
+        if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), 10)
+        } else {
+            openScanActivity()
+        }
+    }
+
+    private fun openScanActivity() {
+        val intent = Intent(context, QRCodeScanActivity::class.java)
+        startActivityForResult(intent, 10)
     }
 
     private fun initRecyclerAdapter(context: Context) {
@@ -247,7 +301,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
                 }
 
                 R.id.qr -> {
-
+                    checkCameraPermission()
                 }
             }
             false

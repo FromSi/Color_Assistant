@@ -109,12 +109,12 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
                 .subscribe({
                     DataBaseRequest.insertColors(GsonConverter
                             .convertColorsList(it))
-                            .subscribe({
+                            .subscribe {
                                 model.initRandom(it.size)
                                 getColorList()
                                 viewState.showColorList()
                                 model.setLoading(false)
-                            })
+                            }
                 }, {
                     getAllColors()
                 })
@@ -122,11 +122,11 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
 
     private fun getColorList() {
         DataBaseRequest.getColors(model.getNumbers())
-                ?.subscribe({
+                ?.subscribe {
                     viewState.addItemsDB(model
                             .getItemColor(it))
                     model.setLoading(false)
-                })
+                }
     }
 
     private fun handlerColorList(colors: MutableList<Colors>) {
@@ -153,15 +153,15 @@ class ColorsPresenter : MvpPresenter<ColorsView>() {
     private fun getUpdateColorList(check: Int) {
         ControllerApi.provider()
                 .updateColors(check)
-                .subscribe({
+                .subscribe {
                     if (it.size != 0) {
                         DataBaseRequest.insertColors(GsonConverter
-                                .convertColorsList(it)).subscribe({
-//                            viewState.addItemsDB(model
-//                                    .converterToItemColor(it))
+                                .convertColorsList(it)).subscribe {
+                            //                            viewState.addItemsDB(model
+                            //                                    .converterToItemColor(it))
                             model.setRandomSize(it.size)
-                        })
+                        }
                     }
-                })
+                }
     }
 }

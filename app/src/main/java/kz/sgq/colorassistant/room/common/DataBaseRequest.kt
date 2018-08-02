@@ -31,19 +31,19 @@ object DataBaseRequest {
     private val dataBase = App.getInstance()?.getDataBase()
 
     fun insertColors(colors: MutableList<Colors>): Completable =
-            Completable.fromAction({ dataBase?.colorsDao()?.insert(colors) })
+            Completable.fromAction { dataBase?.colorsDao()?.insert(colors) }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 
 
     fun insertUpdate(checking: Checking) {
-        Completable.fromAction({ dataBase?.updateDao()?.insert(checking) })
+        Completable.fromAction { dataBase?.updateDao()?.insert(checking) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }
 
     fun insertCloud(cloud: Cloud, eventListener: OnEventItemListener) {
-        Completable.fromAction({ dataBase?.cloudDao()?.insert(cloud) })
+        Completable.fromAction { dataBase?.cloudDao()?.insert(cloud) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CompletableObserver {
@@ -63,7 +63,7 @@ object DataBaseRequest {
     }
 
     fun deleteCloud(cloud: Cloud, eventListener: OnEventItemListener) {
-        Completable.fromAction({ dataBase?.cloudDao()?.delete(cloud) })
+        Completable.fromAction { dataBase?.cloudDao()?.delete(cloud) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CompletableObserver {
@@ -83,13 +83,13 @@ object DataBaseRequest {
     }
 
     fun updateColors(idCol: Int, like: Boolean) {
-        Completable.fromAction({ dataBase?.colorsDao()?.update(idCol, like) })
+        Completable.fromAction { dataBase?.colorsDao()?.update(idCol, like) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }
 
     fun updateUpdate(first: Int, last: Int) {
-        Completable.fromAction({ dataBase?.updateDao()?.update(first, last) })
+        Completable.fromAction { dataBase?.updateDao()?.update(first, last) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }

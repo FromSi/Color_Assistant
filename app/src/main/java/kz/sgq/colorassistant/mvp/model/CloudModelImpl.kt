@@ -16,6 +16,8 @@
 
 package kz.sgq.colorassistant.mvp.model
 
+import android.app.Activity
+import android.content.Intent
 import kz.sgq.colorassistant.mvp.model.interfaces.CloudModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
@@ -23,6 +25,34 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 class CloudModelImpl : CloudModel {
+    override fun calcQRCode(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+        if (resultCode == Activity.RESULT_OK)
+            if (requestCode == 10) {
+                val scanResult = data!!.getStringExtra("scan_result")
+                val size = scanResult.length
+                if ((size == 21) || (size == 28) || (size == 35))
+                    return true
+            }
+        return false
+    }
+
+    override fun parseQRAnswer(data: Intent?): Cloud {
+        val scanResult = data!!.getStringExtra("scan_result")
+        val cloud = Cloud(
+                scanResult.substring(0, 7),
+                scanResult.substring(7, 14),
+                scanResult.substring(14, 21)
+        )
+
+        if (scanResult.length >= 28)
+            cloud.colFour = scanResult.substring(21, 28)
+
+        if (scanResult.length >= 35)
+            cloud.colFive = scanResult.substring(28, 35)
+
+        return cloud
+    }
+
     override fun calcShare(cloud: Cloud): String {
         val text = StringBuffer("${cloud.colOne}${cloud.colTwo}${cloud.colThree}")
 

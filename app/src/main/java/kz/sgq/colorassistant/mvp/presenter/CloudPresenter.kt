@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.mvp.presenter
 
+import android.content.Intent
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
@@ -31,7 +32,6 @@ class CloudPresenter : MvpPresenter<CloudView>() {
     private val model: CloudModel = CloudModelImpl()
 
     fun initInitList() {
-
         model.initItemList(object : OnInitItemListener {
             override fun answer(list: MutableList<Cloud>) {
                 viewState.initColorList(list)
@@ -39,18 +39,23 @@ class CloudPresenter : MvpPresenter<CloudView>() {
         })
     }
 
-    fun onItemViewClick(cloud: Cloud){
+    fun calcQRCode(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (model.calcQRCode(requestCode, resultCode, data)) {
+            viewState.answerQR(model.parseQRAnswer(data))
+        } else
+            viewState.errorQR()
+    }
 
+    fun onItemViewClick(cloud: Cloud) {
         viewState.showActivityInfo(model.initColorList(cloud))
     }
 
-    fun onItemShareClick(cloud: Cloud){
+    fun onItemShareClick(cloud: Cloud) {
         viewState.shareItem(model.calcShare(cloud))
     }
 
-    fun onItemDeleteClick(cloud: Cloud, index: Int){
+    fun onItemDeleteClick(cloud: Cloud, index: Int) {
         model.deleteItem(cloud, object : OnEventItemListener {
-
             override fun success() {
                 viewState.deleteItem(index)
             }
@@ -63,7 +68,6 @@ class CloudPresenter : MvpPresenter<CloudView>() {
 
     fun addItem(cloud: Cloud) {
         model.addItem(cloud, object : OnEventItemListener {
-
             override fun success() {
                 viewState.addItem(cloud)
             }
