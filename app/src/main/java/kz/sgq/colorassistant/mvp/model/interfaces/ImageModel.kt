@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.ui.util.interfaces
+package kz.sgq.colorassistant.mvp.model.interfaces
 
-interface OnItemColorListener {
-    fun info(color: Int)
-    fun delete(index: Int)
+interface ImageModel {
 }

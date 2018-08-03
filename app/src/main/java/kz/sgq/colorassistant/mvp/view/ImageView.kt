@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.ui.util.interfaces
+package kz.sgq.colorassistant.mvp.view
 
-interface OnItemColorListener {
-    fun info(color: Int)
-    fun delete(index: Int)
+import android.net.Uri
+import com.arellomobile.mvp.MvpView
+
+interface ImageView : MvpView {
+    fun initImage(photoUri: Uri)
 }

@@ -27,4 +27,9 @@
         android:id="@+id/qr"
         android:title="@string/qr"
         android:visible="true"/>
+
+    <item
+        android:id="@+id/image_scan"
+        android:title="@string/image_scan"
+        android:visible="true"/>
 </menu>

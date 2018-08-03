@@ -23,6 +23,7 @@
     <string name="combo">Combo</string>
     <string name="cloud">Cloud</string>
     <string name="qr">QR scan</string>
+    <string name="image_scan">Image scan</string>
 
     <string name="dialog_cloud_save_title">Save</string>
     <string name="dialog_cloud_save_message">Are you sure you want to save?</string>

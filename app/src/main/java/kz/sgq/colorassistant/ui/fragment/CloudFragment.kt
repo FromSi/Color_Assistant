@@ -34,6 +34,7 @@ import kz.sgq.colorassistant.mvp.presenter.CloudPresenter
 import kz.sgq.colorassistant.mvp.view.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.activity.ComboActivity
+import kz.sgq.colorassistant.ui.activity.ImageActivity
 import kz.sgq.colorassistant.ui.activity.QRCodeScanActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerCloudAdapter
 import kz.sgq.colorassistant.ui.fragment.dialog.*
@@ -302,6 +303,11 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
                 R.id.qr -> {
                     checkCameraPermission()
+                }
+
+                R.id.image_scan -> {
+                    val intent = Intent(this.context, ImageActivity::class.java)
+                    startActivity(intent)
                 }
             }
             false
