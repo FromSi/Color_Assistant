@@ -18,6 +18,7 @@ package kz.sgq.colorassistant.mvp.presenter
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import kz.sgq.colorassistant.mvp.model.ImageModelImpl
@@ -35,5 +36,18 @@ class ImagePresenter : MvpPresenter<ImageView>() {
                 viewState.initImage(photoUri)
             }
         }
+    }
+
+    fun setCurrentImage(currentImage: Bitmap){
+        model.setCurrentImage(currentImage)
+        viewState.initItemsColor(model.getCurrentImage())
+        viewState.initListBackground(model.calcAverageColor())
+    }
+
+    fun actionCloud(index: Int, bool: Boolean){
+        if (bool)
+            model.saveCloud(index)
+        else
+            model.deleteCloud(index)
     }
 }

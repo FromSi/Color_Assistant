@@ -33,4 +33,7 @@ interface CloudDao {
 
     @Query("SELECT * FROM `cloud`")
     fun getColors(): Maybe<MutableList<Cloud>>
+
+    @Query("SELECT * FROM `cloud` ORDER BY `idCol` DESC LIMIT 1")
+    fun getColor(): Maybe<Cloud>
 }

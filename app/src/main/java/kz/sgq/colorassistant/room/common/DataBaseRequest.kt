@@ -62,6 +62,13 @@ object DataBaseRequest {
                 })
     }
 
+    fun deleteCloud(cloud: Cloud) {
+        Completable.fromAction { dataBase?.cloudDao()?.delete(cloud) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+    }
+
     fun deleteCloud(cloud: Cloud, eventListener: OnEventItemListener) {
         Completable.fromAction { dataBase?.cloudDao()?.delete(cloud) }
                 .subscribeOn(Schedulers.io())
@@ -107,6 +114,11 @@ object DataBaseRequest {
 
     fun getColors(like: Boolean) = dataBase?.colorsDao()
             ?.getColors(like)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+
+    fun getColor() = dataBase?.cloudDao()
+            ?.getColor()
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
 

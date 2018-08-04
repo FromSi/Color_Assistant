@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -17,17 +16,23 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.activity.ComboActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.QRCodeScanActivity" />
-        <activity android:name=".ui.activity.ImageActivity"></activity>
+
+        <activity android:name=".ui.activity.QRCodeScanActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activity.ImageActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

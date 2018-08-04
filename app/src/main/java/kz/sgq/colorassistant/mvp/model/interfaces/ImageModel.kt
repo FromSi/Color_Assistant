@@ -16,5 +16,12 @@
 
 package kz.sgq.colorassistant.mvp.model.interfaces
 
+import android.graphics.Bitmap
+
 interface ImageModel {
+    fun setCurrentImage(currentImage: Bitmap)
+    fun getCurrentImage(): MutableList<IntArray>
+    fun calcAverageColor(): MutableList<Int>
+    fun saveCloud(index: Int)
+    fun deleteCloud(index: Int)
 }
