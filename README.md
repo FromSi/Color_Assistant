@@ -1,3 +1,8 @@
+<H2>Thanks for the Color Thief</H2>
+* Henrique Rocha - for the Java Color Thief version available at https://github.com/HenriqueRocha/android-colorthief
+* Simon Oualid (simon@oualid.net) - for the Java Color Thief version available at https://github.com/soualid/java-colorthief
+* Lokesh Dhakar - for the original Color Thief javascript version, available at http://lokeshdhakar.com/projects/color-thief/
+
 <H2>License</H2>
 
  	 Copyright 2018 Vlad Weber-Pflaumer
