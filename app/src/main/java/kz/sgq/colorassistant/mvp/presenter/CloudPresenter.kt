@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.mvp.presenter
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
@@ -33,17 +34,21 @@ class CloudPresenter : MvpPresenter<CloudView>() {
 
     fun initInitList() {
         model.initItemList(object : OnInitItemListener {
-            override fun answer(list: MutableList<Cloud>) {
+            override fun onResult(list: MutableList<Cloud>) {
                 viewState.initColorList(list)
             }
         })
     }
 
-    fun calcQRCode(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (model.calcQRCode(requestCode, resultCode, data)) {
-            viewState.answerQR(model.parseQRAnswer(data))
-        } else
-            viewState.errorQR()
+    fun initResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1) {
+            if (model.calcQRCode(resultCode, data)) {
+                viewState.answerQR(model.parseQRAnswer(data))
+            } else
+                viewState.errorQR()
+        } else if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+            initInitList()
+        }
     }
 
     fun onItemViewClick(cloud: Cloud) {
@@ -56,11 +61,11 @@ class CloudPresenter : MvpPresenter<CloudView>() {
 
     fun onItemDeleteClick(cloud: Cloud, index: Int) {
         model.deleteItem(cloud, object : OnEventItemListener {
-            override fun success() {
+            override fun onSuccess() {
                 viewState.deleteItem(index)
             }
 
-            override fun error() {
+            override fun onError() {
                 Log.d("TestAddItemInRoomORM", "Error adding item")
             }
         })
@@ -68,11 +73,11 @@ class CloudPresenter : MvpPresenter<CloudView>() {
 
     fun addItem(cloud: Cloud) {
         model.addItem(cloud, object : OnEventItemListener {
-            override fun success() {
+            override fun onSuccess() {
                 viewState.addItem(cloud)
             }
 
-            override fun error() {
+            override fun onError() {
                 Log.d("TestAddItemInRoomORM", "Error adding item")
             }
         })

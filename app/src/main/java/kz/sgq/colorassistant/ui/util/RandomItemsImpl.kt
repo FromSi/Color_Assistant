@@ -27,22 +27,22 @@ class RandomItemsImpl(private var limit: Int) : RandomItems{
         initCheckList()
     }
 
-    override fun resize(size: Int) {
+    override fun onResize(size: Int) {
         limit += size
         initCheckList()
     }
 
-    override fun delete(index: Int) {
+    override fun onDelete(index: Int) {
         limit--
         listCheck.removeAt(index)
     }
 
-    override fun clear() {
+    override fun onClear() {
         listCheck.clear()
         limit = 0
     }
 
-    override fun getNumbers(): IntArray {
+    override fun onNumbers(): IntArray {
         var freeNum = 0
         for (i in 0 until limit) {
             if (listCheck[i])

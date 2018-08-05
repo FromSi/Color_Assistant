@@ -36,7 +36,7 @@ class MainFragment : Fragment(), OnSelectedButtonListener {
             savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_colors, container, false)
 
-    override fun onLikeClickListener(id: Int) {
+    override fun onLike(id: Int) {
         colorsFragment.dislike(id)
     }
 

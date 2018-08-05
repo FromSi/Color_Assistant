@@ -19,5 +19,5 @@ package kz.sgq.colorassistant.ui.util.interfaces
 import kz.sgq.colorassistant.room.table.Cloud
 
 interface OnInitItemListener {
-    fun answer(list: MutableList<Cloud>)
+    fun onResult(list: MutableList<Cloud>)
 }

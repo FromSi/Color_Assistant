@@ -37,7 +37,7 @@ class DeleteDialog : DialogFragment() {
         dialog.setTitle(title)
         dialog.setMessage(message)
 
-        dialog.setPositiveButton(positive) { _, _ -> deleteListener.delete(index) }
+        dialog.setPositiveButton(positive) { _, _ -> deleteListener.onDelete(index) }
 
         dialog.setNeutralButton(neutral) { _, _ -> }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vlad Weber-Pflaumer
+ * CCopyright 2018 Vlad Weber-Pflaumer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model.interfaces
+package kz.sgq.colorassistant.ui.util.interfaces
 
-import android.graphics.Bitmap
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
-
-interface ImageModel {
-    fun setCurrentImage(currentImage: Bitmap, click: OnClickListener)
-    fun getColorList(): MutableList<MutableList<Int>>
-    fun saveCloud(index: Int)
-    fun deleteCloud(index: Int)
+interface OnSaveListener {
+    fun onSave(index: Int)
+    fun onDelete(index: Int)
 }

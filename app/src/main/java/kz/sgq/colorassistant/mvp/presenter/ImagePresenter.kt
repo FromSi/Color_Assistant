@@ -24,6 +24,7 @@ import com.arellomobile.mvp.MvpPresenter
 import kz.sgq.colorassistant.mvp.model.ImageModelImpl
 import kz.sgq.colorassistant.mvp.model.interfaces.ImageModel
 import kz.sgq.colorassistant.mvp.view.ImageView
+import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 
 @InjectViewState
 class ImagePresenter : MvpPresenter<ImageView>() {
@@ -35,19 +36,25 @@ class ImagePresenter : MvpPresenter<ImageView>() {
             if (photoUri != null) {
                 viewState.initImage(photoUri)
             }
+        } else {
+            viewState.finishActivity()
         }
     }
 
     fun setCurrentImage(currentImage: Bitmap){
-        model.setCurrentImage(currentImage)
-        viewState.initItemsColor(model.getCurrentImage())
-        viewState.initListBackground(model.calcAverageColor())
+        model.setCurrentImage(currentImage, object : OnClickListener{
+            override fun onClick() {
+                viewState.initItemsColor(model.getColorList())
+            }
+
+        })
     }
 
-    fun actionCloud(index: Int, bool: Boolean){
-        if (bool)
-            model.saveCloud(index)
-        else
-            model.deleteCloud(index)
+    fun cloudSave(index: Int){
+        model.saveCloud(index)
+    }
+
+    fun cloudDelete(index: Int){
+        model.deleteCloud(index)
     }
 }

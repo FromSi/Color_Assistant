@@ -41,22 +41,22 @@ class LikesModelImpl : LikesModel {
 
         idList.add(ItemColor(item.idCol,
                 stringList, item.like!!))
-        randomItems.resize(1)
+        randomItems.onResize(1)
     }
 
     override fun getColorList(): MutableList<ItemColor> = idList
 
     override fun deleteIdList(id: Int) {
-        randomItems.delete(id)
+        randomItems.onDelete(id)
         idList.removeAt(id)
     }
 
     override fun clearIdList() {
         idList.clear()
-        randomItems.clear()
+        randomItems.onClear()
     }
 
-    override fun getNumbers(): IntArray = randomItems.getNumbers()
+    override fun getNumbers(): IntArray = randomItems.onNumbers()
 
     override fun isLoading(): Boolean = loading
 
@@ -65,7 +65,7 @@ class LikesModelImpl : LikesModel {
     }
 
     override fun setRandomSize(size: Int) {
-        randomItems.resize(size)
+        randomItems.onResize(size)
     }
 
     override fun getVisibleThreshold(): Int = 1

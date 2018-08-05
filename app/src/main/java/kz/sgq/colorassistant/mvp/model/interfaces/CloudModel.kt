@@ -26,7 +26,7 @@ interface CloudModel {
     fun initColorList(cloud: Cloud): MutableList<String>
     fun calcShare(cloud: Cloud): String
     fun parseQRAnswer(data: Intent?): Cloud
-    fun calcQRCode(requestCode: Int, resultCode: Int, data: Intent?): Boolean
+    fun calcQRCode(resultCode: Int, data: Intent?): Boolean
     fun addItem(cloud: Cloud, eventListener: OnEventItemListener)
     fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener)
 }

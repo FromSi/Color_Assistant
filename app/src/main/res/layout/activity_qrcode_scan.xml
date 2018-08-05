@@ -18,7 +18,7 @@
     <!--app:centerLineColor="@android:color/holo_red_dark"-->
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorMusk"

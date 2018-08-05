@@ -61,7 +61,7 @@ class ComboActivity : AppCompatActivity(), OnClickActivity {
         viewPager.adapter = adapter
     }
 
-    override fun initInfo(color: Int) {
+    override fun onInfo(color: Int) {
         infoFragment.initPresenter(color)
         viewPager.currentItem = 1
         viewPager.disableScroll(false)

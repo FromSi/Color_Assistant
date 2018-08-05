@@ -25,14 +25,13 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 class CloudModelImpl : CloudModel {
-    override fun calcQRCode(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        if (resultCode == Activity.RESULT_OK)
-            if (requestCode == 10) {
-                val scanResult = data!!.getStringExtra("scan_result")
-                val size = scanResult.length
-                if ((size == 21) || (size == 28) || (size == 35))
-                    return true
-            }
+    override fun calcQRCode(resultCode: Int, data: Intent?): Boolean {
+        if (resultCode == Activity.RESULT_OK) {
+            val scanResult = data!!.getStringExtra("scan_result")
+            val size = scanResult.length
+            if ((size == 21) || (size == 28) || (size == 35))
+                return true
+        }
         return false
     }
 
@@ -75,7 +74,7 @@ class CloudModelImpl : CloudModel {
 
     override fun initItemList(initListener: OnInitItemListener) {
         DataBaseRequest.getCloud()
-                ?.subscribe { list: MutableList<Cloud>? -> initListener.answer(list!!) }
+                ?.subscribe { list: MutableList<Cloud>? -> initListener.onResult(list!!) }
     }
 
     override fun initColorList(cloud: Cloud): MutableList<String> {

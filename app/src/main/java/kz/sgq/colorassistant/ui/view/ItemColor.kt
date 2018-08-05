@@ -170,7 +170,7 @@ class ItemColor : View {
 
             MotionEvent.ACTION_UP -> {
                 if (!deleting && act) {
-                    itemListener?.info(color)
+                    itemListener?.onInfo(color)
                     positionCurrent = positionY
 
                     invalidate()
@@ -179,7 +179,7 @@ class ItemColor : View {
 
                     invalidate()
 
-                    itemListener?.delete(deleteIndex)
+                    itemListener?.onDelete(deleteIndex)
                 } else {
                     Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
                     positionCurrent = positionY

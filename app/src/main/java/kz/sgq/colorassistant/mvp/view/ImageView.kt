@@ -21,6 +21,6 @@ import com.arellomobile.mvp.MvpView
 
 interface ImageView : MvpView {
     fun initImage(photoUri: Uri)
-    fun initItemsColor(list: MutableList<IntArray>)
-    fun initListBackground(list: MutableList<Int>)
+    fun initItemsColor(list: MutableList<MutableList<Int>>)
+    fun finishActivity()
 }

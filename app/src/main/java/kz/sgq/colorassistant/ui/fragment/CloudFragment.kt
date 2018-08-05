@@ -80,7 +80,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     override fun errorQR() {
         val dialog = QRScanErrorDialog()
-        dialog.clickListener(object : OnClickListener{
+        dialog.clickListener(object : OnClickListener {
             override fun onClick() {
                 checkCameraPermission()
             }
@@ -103,8 +103,9 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (resultCode == Activity.RESULT_OK)
-            presenter.calcQRCode(requestCode, resultCode, data)
+            presenter.initResult(requestCode, resultCode, data)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -121,7 +122,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         val dialog = QRScanDialog()
         dialog.cloud(cloud)
 
-        dialog.clickListener(object : OnClickListener{
+        dialog.clickListener(object : OnClickListener {
             override fun onClick() {
                 presenter.addItem(cloud)
             }
@@ -139,7 +140,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     private fun openScanActivity() {
         val intent = Intent(context, QRCodeScanActivity::class.java)
-        startActivityForResult(intent, 10)
+        startActivityForResult(intent, 1)
     }
 
     private fun initRecyclerAdapter(context: Context) {
@@ -188,17 +189,17 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         itemColor.setDeleteIndex(item_list.childCount - 1)
 
         itemColor.setOnItemColorListener(object : OnItemColorListener {
-            override fun info(color: Int) {
+            override fun onInfo(color: Int) {
                 val dialog = InfoDialog()
                 dialog.setColor(color)
                 dialog.show(fragmentManager, "info_dialog")
             }
 
-            override fun delete(index: Int) {
+            override fun onDelete(index: Int) {
                 val dialog = DeleteDialog()
 
                 dialog.clickListener(index, object : OnDeleteItemListener {
-                    override fun delete(index: Int) {
+                    override fun onDelete(index: Int) {
                         item_list.removeViewAt(index)
                         add.visibility = View.VISIBLE
 
@@ -224,15 +225,15 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     private fun clickListener() {
         adapter.setOnItemClickListener(object : OnItemCloudClickListener {
 
-            override fun viewClick(cloud: Cloud) {
+            override fun onView(cloud: Cloud) {
                 presenter.onItemViewClick(cloud)
             }
 
-            override fun shareClick(cloud: Cloud) {
+            override fun onShare(cloud: Cloud) {
                 presenter.onItemShareClick(cloud)
             }
 
-            override fun deleteClick(cloud: Cloud, index: Int) {
+            override fun onDelete(cloud: Cloud, index: Int) {
                 presenter.onItemDeleteClick(cloud, index)
             }
         })
@@ -307,7 +308,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
                 R.id.image_scan -> {
                     val intent = Intent(this.context, ImageActivity::class.java)
-                    startActivity(intent)
+                    startActivityForResult(intent, 2)
                 }
             }
             false

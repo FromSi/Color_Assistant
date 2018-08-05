@@ -30,7 +30,7 @@ class ColorsHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
     fun setView(itemColor: ItemColor, clickListener: OnItemColorClickListener) {
         itemView.view.setOnClickListener {
-            clickListener.viewClick(itemView.view.rootView, itemColor)
+            clickListener.onView(itemView.view.rootView, itemColor)
             itemView.view.isLiked = false
         }
     }

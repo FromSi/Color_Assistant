@@ -134,7 +134,7 @@ class ComboFragment : MvpAppCompatFragment(), ComboView {
     private fun initClickCardView(){
         for(i in 0..4)
             cardList[i].setOnClickListener {
-                (activity as ComboActivity).initInfo(presenter.getColor(i))
+                (activity as ComboActivity).onInfo(presenter.getColor(i))
             }
     }
 

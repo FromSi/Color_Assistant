@@ -48,7 +48,7 @@ object DataBaseRequest {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CompletableObserver {
                     override fun onComplete() {
-                        eventListener.success()
+                        eventListener.onSuccess()
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -56,7 +56,7 @@ object DataBaseRequest {
                     }
 
                     override fun onError(e: Throwable) {
-                        eventListener.error()
+                        eventListener.onError()
                     }
 
                 })
@@ -75,7 +75,7 @@ object DataBaseRequest {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CompletableObserver {
                     override fun onComplete() {
-                        eventListener.success()
+                        eventListener.onSuccess()
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -83,7 +83,7 @@ object DataBaseRequest {
                     }
 
                     override fun onError(e: Throwable) {
-                        eventListener.error()
+                        eventListener.onError()
                     }
 
                 })

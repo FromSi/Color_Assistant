@@ -26,21 +26,21 @@ class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
     fun setView(cloud: Cloud, clickListener: OnItemCloudClickListener) {
         itemView.view.setOnClickListener {
-            clickListener.viewClick(cloud)
+            clickListener.onView(cloud)
             itemView.view.isLiked = false
         }
     }
 
     fun setShare(cloud: Cloud, clickListener: OnItemCloudClickListener) {
         itemView.share.setOnClickListener {
-            clickListener.shareClick(cloud)
+            clickListener.onShare(cloud)
             itemView.share.isLiked = false
         }
     }
 
     fun setDelete(cloud: Cloud, index: Int, clickListener: OnItemCloudClickListener) {
         itemView.delete.setOnClickListener {
-            clickListener.deleteClick(cloud, index)
+            clickListener.onDelete(cloud, index)
             itemView.delete.isLiked = false
         }
     }

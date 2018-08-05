@@ -20,6 +20,6 @@ import android.view.View
 import kz.sgq.colorassistant.ui.util.ItemColor
 
 interface OnItemColorClickListener {
-    fun likeClick(view: View, id: Int, like: Boolean)
-    fun viewClick(view: View, itemColor: ItemColor)
+    fun onLike(view: View, id: Int, like: Boolean)
+    fun onView(view: View, itemColor: ItemColor)
 }

@@ -101,7 +101,7 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     }
 
     private fun onLikeClick(position: Int, like: Boolean, view: View) {
-        clickListener.likeClick(view,
+        clickListener.onLike(view,
                 itemContainer.itemList[position].id, like)
         itemContainer.likeList[position] = like
     }

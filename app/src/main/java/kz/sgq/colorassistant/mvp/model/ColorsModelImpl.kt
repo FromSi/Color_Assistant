@@ -46,7 +46,7 @@ class ColorsModelImpl : ColorsModel {
 
     override fun getLikeList(): MutableList<Boolean> = likeList
 
-    override fun getNumbers(): IntArray = randomItems.getNumbers()
+    override fun getNumbers(): IntArray = randomItems.onNumbers()
 
     override fun getCheck(): Int = update
 
@@ -90,7 +90,7 @@ class ColorsModelImpl : ColorsModel {
     }
 
     override fun setRandomSize(size: Int) {
-        randomItems.resize(size)
+        randomItems.onResize(size)
     }
 
     override fun getVisibleThreshold(): Int = 1

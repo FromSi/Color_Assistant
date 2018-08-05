@@ -94,11 +94,11 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
 
     private fun clickListener() {
         adapter.setOnItemClickListener(object : OnItemColorClickListener {
-            override fun likeClick(view: View, id: Int, like: Boolean) {
+            override fun onLike(view: View, id: Int, like: Boolean) {
                 presenter.onItemLikeClick(view, id, like)
             }
 
-            override fun viewClick(view: View, itemColor: ItemColor) {
+            override fun onView(view: View, itemColor: ItemColor) {
                 presenter.onItemViewClick(view, itemColor)
             }
         })

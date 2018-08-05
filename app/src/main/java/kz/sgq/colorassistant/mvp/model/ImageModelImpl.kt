@@ -18,63 +18,56 @@ package kz.sgq.colorassistant.mvp.model
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.util.Log
-import io.reactivex.functions.Consumer
+import io.reactivex.Completable
+import io.reactivex.Maybe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kz.sgq.colorassistant.mvp.model.interfaces.ImageModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.ColorConverter
+import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.java.MMCQ
+import java.util.*
 
 class ImageModelImpl : ImageModel {
-    private var result: MutableList<IntArray> = arrayListOf()
+    private var colorList: MutableList<MutableList<Int>> = arrayListOf()
     private var cloudList: MutableList<Cloud> = arrayListOf()
+    private val count = 10
 
-    override fun setCurrentImage(currentImage: Bitmap) {
-        val changeBitmap = Bitmap.createScaledBitmap(
-                currentImage,
-                (currentImage.width * 0.3f).toInt(),
-                (currentImage.height * 0.3f).toInt(),
-                false
-        )
-        result = MMCQ.compute(changeBitmap, 5)
-        initCloud()
-    }
+    override fun setCurrentImage(currentImage: Bitmap, click: OnClickListener) {
+        val maybe: Maybe<MutableList<IntArray>> = Maybe.create {
+            val changeBitmap = Bitmap.createScaledBitmap(
+                    currentImage,
+                    (currentImage.width * 0.3f).toInt(),
+                    (currentImage.height * 0.3f).toInt(),
+                    false
+            )
 
-    override fun getCurrentImage(): MutableList<IntArray> = result
-
-    override fun calcAverageColor(): MutableList<Int> {
-        val list: MutableList<Int> = arrayListOf()
-        val count = 0
-
-        for (i in 3 until result.size){
-            var r = 0
-            var g = 0
-            var b = 0
-
-            for (j in count until i){
-                r += result[j][0]
-                g += result[j][1]
-                b += result[j][2]
-            }
-
-            list.add(Color.rgb(255 - (r / (i - count)), 255 - (g / (i - count)), 255 - (b / (i - count))))
+            it.onSuccess(MMCQ.compute(changeBitmap, count))
         }
 
-        return list
+        maybe.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    initColorList(it)
+                    click.onClick()
+                }
     }
 
+    override fun getColorList(): MutableList<MutableList<Int>> = colorList
+
     override fun saveCloud(index: Int) {
-        DataBaseRequest.insertCloud(cloudList[index], object : OnEventItemListener{
-            override fun success() {
+        DataBaseRequest.insertCloud(cloudList[index], object : OnEventItemListener {
+            override fun onSuccess() {
                 DataBaseRequest.getColor()
                         ?.subscribe {
                             cloudList[index] = it
                         }
             }
 
-            override fun error() {
+            override fun onError() {
 
             }
 
@@ -85,21 +78,43 @@ class ImageModelImpl : ImageModel {
         DataBaseRequest.deleteCloud(cloudList[index])
     }
 
-    private fun initCloud(){
-        for (i in 0..2){
-            val cloud = Cloud(
-                    ColorConverter.getHex(Color.rgb(result[0][0], result[0][1], result[0][2])),
-                    ColorConverter.getHex(Color.rgb(result[1][0], result[1][1], result[1][2])),
-                    ColorConverter.getHex(Color.rgb(result[2][0], result[2][1], result[2][2]))
-            )
+    private fun initColorList(result: MutableList<IntArray>) {
+        val r = Random(System.currentTimeMillis())
+        for (i in 0 until count) {
+            val list: MutableList<Int> = arrayListOf()
+            if (i <= 2) {
+                for (j in 0 until (i + 3)) {
+                    val num = Color.rgb(result[j][0], result[j][1], result[j][2])
+                    list.add(num)
+                }
+            } else {
+                val r0 = 3 + r.nextInt(count - 3)
+                val r1 = 3 + r.nextInt(5 - 3 + 1)
 
-            if (i >= 1)
-                cloud.colFour = ColorConverter.getHex(Color.rgb(result[3][0], result[3][1], result[3][2]))
+                for (j in 0 until r1) {
+                    val num = Color.rgb(result[r0][0], result[r0][1], result[r0][2])
+                    list.add(num)
+                }
+            }
 
-            if (i >= 2)
-                cloud.colFive = ColorConverter.getHex(Color.rgb(result[4][0], result[4][1], result[4][2]))
-
-            cloudList.add(cloud)
+            cloudList.add(initCloud(list))
+            colorList.add(list)
         }
+    }
+
+    private fun initCloud(list: MutableList<Int>): Cloud {
+        val cloud = Cloud(
+                ColorConverter.getHex(list[0]),
+                ColorConverter.getHex(list[1]),
+                ColorConverter.getHex(list[2])
+        )
+
+        if (list.size >= 4)
+            cloud.colFour = ColorConverter.getHex(list[3])
+
+        if (list.size >= 5)
+            cloud.colFive = ColorConverter.getHex(list[4])
+
+        return cloud
     }
 }

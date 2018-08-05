@@ -19,7 +19,7 @@ package kz.sgq.colorassistant.ui.util.interfaces
 import kz.sgq.colorassistant.room.table.Cloud
 
 interface OnItemCloudClickListener {
-    fun viewClick(cloud: Cloud)
-    fun shareClick(cloud: Cloud)
-    fun deleteClick(cloud: Cloud, index: Int)
+    fun onView(cloud: Cloud)
+    fun onShare(cloud: Cloud)
+    fun onDelete(cloud: Cloud, index: Int)
 }

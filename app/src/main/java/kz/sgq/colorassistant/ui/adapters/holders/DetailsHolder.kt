@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.item_details.view.*
 import kz.sgq.colorassistant.ui.util.ItemDetails
 
 class DetailsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+
     @SuppressLint("SetTextI18n")
     fun init(itemDetails: ItemDetails) {
         itemView.imgLine.setBackgroundColor(itemDetails.color)

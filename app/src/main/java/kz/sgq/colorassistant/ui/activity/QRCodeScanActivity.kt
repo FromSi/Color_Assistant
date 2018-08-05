@@ -50,7 +50,7 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback{
     }
 
     private fun initView() {
-        mToolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        mToolbar = findViewById<View>(R.id.toolBar) as Toolbar
         mSurfaceView = findViewById<View>(R.id.surfaceView) as SurfaceView
         mQRCodeScanView = findViewById<View>(R.id.qrscan_view) as QRCodeScanView
     }
