@@ -23,13 +23,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.item_color_image.view.*
-import kotlinx.android.synthetic.main.item_colors.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.view.ItemColor
 
 class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
     fun initColors(colors: MutableList<Int>) {
+
+        itemView.list.removeAllViews()
+
         for (i in 0 until colors.size) {
             val itemColor = ItemColor(itemView.context)
 
@@ -39,8 +41,8 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
             )
 
             itemColor.setMoveItem(false)
+            itemColor.setScroll(true)
             itemColor.setColor(colors[i])
-
             itemView.list.addView(itemColor)
         }
     }
@@ -52,6 +54,7 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
                 itemView.resources.getColor(R.color.like)
         )
         d.colorFilter = f
+
         itemView.save.setLikeDrawable(d)
     }
 
@@ -60,6 +63,7 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
     }
 
     fun initBackground(color: Int) {
+
         itemView.list.setBackgroundColor(color)
     }
 }

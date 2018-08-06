@@ -20,7 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kz.sgq.colorassistant.infraestructure.networking.interfaces.SocketApiService
 
-class SocketRequest(val api: SocketApiService) {
+class SocketRequest(private val api: SocketApiService) {
 
     fun getAllColors() = api.getAllColors()
             .subscribeOn(Schedulers.io())

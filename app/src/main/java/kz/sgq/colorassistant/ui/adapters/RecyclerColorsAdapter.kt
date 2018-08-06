@@ -35,31 +35,37 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     private lateinit var clickListener: OnItemColorClickListener
 
     fun addItems(itemList: MutableList<ItemColor>) {
+
         itemContainer.addItems(itemList)
         notifyDataSetChanged()
     }
 
     fun addItem(item: ItemColor) {
+
         itemContainer.addItem(item)
         notifyDataSetChanged()
     }
 
     fun deleteItem(id: Int) {
+
         itemContainer.deleteItem(id)
         notifyDataSetChanged()
     }
 
     fun clearItems() {
+
         itemContainer.clearItems()
         notifyDataSetChanged()
     }
 
     fun dislike(id: Int) {
+
         itemContainer.dislike(id)
         notifyDataSetChanged()
     }
 
     fun updateItems(index: Int) {
+
         itemContainer.updateItems(index)
         notifyDataSetChanged()
     }
@@ -68,41 +74,57 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
         this.clickListener = clickListener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorsHolder = ColorsHolder(LayoutInflater
-            .from(parent.context).inflate(R.layout.item_colors, parent, false))
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+    ): ColorsHolder = ColorsHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_colors, parent, false)
+    )
 
     override fun getItemCount(): Int = itemContainer.itemList.size
 
     override fun onBindViewHolder(p0: ColorsHolder, @SuppressLint("RecyclerView") p1: Int) {
+
         p0.setImagesView(itemContainer.itemList[p1])
         p0.setLiked(itemContainer.likeList[p1])
         p0.setView(itemContainer.itemList[p1], clickListener)
         p0.onLoadVisibly(itemContainer.visiblyList[p1])
+        p0.itemView.like.setOnLikeListener(initLike(p1))
+        p0.itemView.items.setOnClickListener(initClick(p0, p1))
+    }
 
-        p0.itemView.like.setOnLikeListener(object : OnLikeListener {
-            override fun liked(likeButton: LikeButton) {
-                onLikeClick(p1, true, likeButton.rootView)
-            }
+    private fun initLike(p1: Int): OnLikeListener = object : OnLikeListener {
 
-            override fun unLiked(likeButton: LikeButton) {
-                onLikeClick(p1, false, likeButton.rootView)
-            }
-        })
+        override fun liked(likeButton: LikeButton) {
 
-        p0.itemView.items.setOnClickListener {
-            if (itemContainer.visiblyList[p1]) {
-                p0.onLoadVisibly(View.GONE)
-                itemContainer.visiblyList[p1] = false
-            } else {
-                p0.onLoadVisibly(View.VISIBLE)
-                itemContainer.visiblyList[p1] = true
-            }
+            onLikeClick(p1, true, likeButton.rootView)
+        }
+
+        override fun unLiked(likeButton: LikeButton) {
+
+            onLikeClick(p1, false, likeButton.rootView)
+        }
+    }
+
+    private fun initClick(
+            p0: ColorsHolder,
+            p1: Int
+    ): View.OnClickListener = View.OnClickListener {
+
+        if (itemContainer.visiblyList[p1]) {
+            itemContainer.visiblyList[p1] = false
+
+            p0.onLoadVisibly(View.GONE)
+        } else {
+            itemContainer.visiblyList[p1] = true
+
+            p0.onLoadVisibly(View.VISIBLE)
         }
     }
 
     private fun onLikeClick(position: Int, like: Boolean, view: View) {
-        clickListener.onLike(view,
-                itemContainer.itemList[position].id, like)
+
+        clickListener.onLike(view, itemContainer.itemList[position].id, like)
         itemContainer.likeList[position] = like
     }
 }

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model
+package kz.sgq.colorassistant.mvp.model.fragment
 
-import kz.sgq.colorassistant.mvp.model.interfaces.LikesModel
+import kz.sgq.colorassistant.mvp.model.fragment.interfaces.LikesModel
 import kz.sgq.colorassistant.room.table.Colors
 import kz.sgq.colorassistant.ui.util.ItemColor
 import kz.sgq.colorassistant.ui.util.RandomItemsImpl
@@ -29,6 +29,7 @@ class LikesModelImpl : LikesModel {
 
     override fun addIdList(item: Colors) {
         val stringList = ArrayList<String>()
+
         stringList.add(item.colOne)
         stringList.add(item.colTwo)
         stringList.add(item.colThree)
@@ -39,19 +40,20 @@ class LikesModelImpl : LikesModel {
         if (item.colFive != null)
             stringList.add(item.colFive!!)
 
-        idList.add(ItemColor(item.idCol,
-                stringList, item.like!!))
+        idList.add(ItemColor(item.idCol, stringList, item.like!!))
         randomItems.onResize(1)
     }
 
     override fun getColorList(): MutableList<ItemColor> = idList
 
     override fun deleteIdList(id: Int) {
+
         randomItems.onDelete(id)
         idList.removeAt(id)
     }
 
     override fun clearIdList() {
+
         idList.clear()
         randomItems.onClear()
     }
@@ -65,6 +67,7 @@ class LikesModelImpl : LikesModel {
     }
 
     override fun setRandomSize(size: Int) {
+
         randomItems.onResize(size)
     }
 

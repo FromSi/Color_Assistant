@@ -36,15 +36,16 @@ open class BaseComboCardHolder(itemView: View?) : RecyclerView.ViewHolder(itemVi
     fun setImagesView(itemColor: ItemColor) {
 
         for (i in 0..4) {
+
             itemView.itemsTwo.visibility = View.VISIBLE
 
             if (itemColor.colors.size > i) {
+
                 listImage[i]?.setBackgroundColor(Color
                         .parseColor(itemColor.colors[i]))
                 listImage[i]?.visibility = View.VISIBLE
-            } else {
+            } else
                 listImage[i]?.visibility = View.GONE
-            }
         }
     }
 

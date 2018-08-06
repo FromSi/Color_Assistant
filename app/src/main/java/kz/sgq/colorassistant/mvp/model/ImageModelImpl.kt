@@ -18,7 +18,6 @@ package kz.sgq.colorassistant.mvp.model
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -32,11 +31,15 @@ import kz.sgq.colorassistant.ui.util.java.MMCQ
 import java.util.*
 
 class ImageModelImpl : ImageModel {
-    private var colorList: MutableList<MutableList<Int>> = arrayListOf()
-    private var cloudList: MutableList<Cloud> = arrayListOf()
+    private lateinit var colorList: MutableList<MutableList<Int>>
+    private lateinit var cloudList: MutableList<Cloud>
     private val count = 10
+    private var state = false
 
     override fun setCurrentImage(currentImage: Bitmap, click: OnClickListener) {
+        colorList = arrayListOf()
+        cloudList = arrayListOf()
+
         val maybe: Maybe<MutableList<IntArray>> = Maybe.create {
             val changeBitmap = Bitmap.createScaledBitmap(
                     currentImage,
@@ -51,55 +54,85 @@ class ImageModelImpl : ImageModel {
         maybe.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
+
                     initColorList(it)
                     click.onClick()
                 }
     }
 
+    override fun setState(state: Boolean) {
+        this.state = state
+    }
+
+    override fun getCloud(index: Int): Cloud = cloudList[index]
+
+    override fun getState(): Boolean = state
+
     override fun getColorList(): MutableList<MutableList<Int>> = colorList
 
     override fun saveCloud(index: Int) {
+
         DataBaseRequest.insertCloud(cloudList[index], object : OnEventItemListener {
+
             override fun onSuccess() {
+
                 DataBaseRequest.getColor()
-                        ?.subscribe {
-                            cloudList[index] = it
-                        }
+                        ?.subscribe { cloudList[index] = it }
             }
 
             override fun onError() {
 
             }
-
         })
     }
 
     override fun deleteCloud(index: Int) {
+
         DataBaseRequest.deleteCloud(cloudList[index])
     }
 
     private fun initColorList(result: MutableList<IntArray>) {
         val r = Random(System.currentTimeMillis())
+
         for (i in 0 until count) {
             val list: MutableList<Int> = arrayListOf()
+
             if (i <= 2) {
+
                 for (j in 0 until (i + 3)) {
                     val num = Color.rgb(result[j][0], result[j][1], result[j][2])
+
                     list.add(num)
                 }
             } else {
-                val r0 = 3 + r.nextInt(count - 3)
                 val r1 = 3 + r.nextInt(5 - 3 + 1)
+                val array = IntArray(r1)
+                array[0] = 3 + r.nextInt(count - 3)
 
-                for (j in 0 until r1) {
-                    val num = Color.rgb(result[r0][0], result[r0][1], result[r0][2])
-                    list.add(num)
-                }
+                for (j in 1 until r1)
+                    array[j] = randomNumber(r1, array, r, count)
+
+                for (j in 0 until r1)
+                    list.add(Color.rgb(
+                            result[array[j]][0],
+                            result[array[j]][1],
+                            result[array[j]][2]
+                    ))
             }
 
             cloudList.add(initCloud(list))
             colorList.add(list)
         }
+    }
+
+    private fun randomNumber(r1: Int, array: IntArray, r: Random, count: Int): Int {
+        val r0 = 3 + r.nextInt(count - 3)
+
+        for (k in 0 until array.size)
+            if (array[k] == r0)
+                return randomNumber(r1, array, r, count)
+
+        return r0
     }
 
     private fun initCloud(list: MutableList<Int>): Cloud {

@@ -25,23 +25,29 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnItemCloudClickListener
 class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
     fun setView(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+
         itemView.view.setOnClickListener {
-            clickListener.onView(cloud)
             itemView.view.isLiked = false
+
+            clickListener.onView(cloud)
         }
     }
 
     fun setShare(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+
         itemView.share.setOnClickListener {
-            clickListener.onShare(cloud)
             itemView.share.isLiked = false
+
+            clickListener.onShare(cloud)
         }
     }
 
     fun setDelete(cloud: Cloud, index: Int, clickListener: OnItemCloudClickListener) {
+
         itemView.delete.setOnClickListener {
-            clickListener.onDelete(cloud, index)
             itemView.delete.isLiked = false
+
+            clickListener.onDelete(cloud, index)
         }
     }
 }

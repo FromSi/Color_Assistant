@@ -23,16 +23,16 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 
 class ComboViewPager(context: Context, attrs: AttributeSet) : ViewPager(context, attrs) {
-private var disable = true
+    private var disable = true
 
-    override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
-        return if (disable) false else super.onInterceptTouchEvent(event)
-    }
+    override fun onInterceptTouchEvent(event: MotionEvent): Boolean = if (disable) false
+    else super.onInterceptTouchEvent(event)
+
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        return if (disable) false else super.onTouchEvent(event)
-    }
+    override fun onTouchEvent(event: MotionEvent): Boolean = if (disable) false
+    else super.onTouchEvent(event)
+
 
     fun disableScroll(disable: Boolean) {
         this.disable = disable

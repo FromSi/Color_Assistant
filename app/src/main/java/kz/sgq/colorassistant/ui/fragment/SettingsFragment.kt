@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 import kz.sgq.colorassistant.R
 
 class SettingsFragment : Fragment() {
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -35,12 +36,14 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         settingToolBar()
     }
 
     private fun settingToolBar() {
-        val actionBar = (activity as AppCompatActivity)
         toolBar.title = getString(R.string.settings)
+//        val actionBar = (activity as AppCompatActivity)
+
 //        actionBar.setSupportActionBar(toolBar)
     }
 }

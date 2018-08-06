@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model.interfaces
+package kz.sgq.colorassistant.mvp.view.fragment
 
-import android.content.Intent
+import com.arellomobile.mvp.MvpView
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
-interface CloudModel {
-    fun initItemList(initListener: OnInitItemListener)
-    fun initColorList(cloud: Cloud): MutableList<String>
-    fun calcShare(cloud: Cloud): String
-    fun parseQRAnswer(data: Intent?): Cloud
-    fun calcQRCode(resultCode: Int, data: Intent?): Boolean
-    fun addItem(cloud: Cloud, eventListener: OnEventItemListener)
-    fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener)
+interface CloudView : MvpView {
+
+    fun initColorList(list: MutableList<Cloud>)
+
+    fun addItem(cloud: Cloud)
+
+    fun deleteItem(index: Int)
+
+    fun errorQR()
+
+    fun answerQR(cloud: Cloud)
+
+    fun shareItem(text: String)
+
+    fun showActivityInfo(list: MutableList<String>)
 }

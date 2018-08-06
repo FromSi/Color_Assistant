@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.view
+package kz.sgq.colorassistant.mvp.view.fragment
 
-import android.net.Uri
 import com.arellomobile.mvp.MvpView
-import kz.sgq.colorassistant.room.table.Cloud
 
-interface ImageView : MvpView {
+interface ComboView : MvpView {
 
-    fun initImage(photoUri: Uri)
+    fun init(size: Int)
 
-    fun initItemsColor(list: MutableList<MutableList<Int>>)
+    fun initHeader(i: Int, j: Int, color: Int)
 
-    fun finishActivity()
+    fun initColor(i: Int, color: Int)
 
-    fun showMore(cloud: Cloud)
+    fun initColors(i: Int, nameTypeColor: String, value: String)
+
+    fun setBackgroundColor(color: Int)
+
+    fun setTextColor(color: Int)
 }

@@ -34,7 +34,7 @@ import com.sqsong.qrcodelib.util.DensityUtil
 import com.sqsong.qrcodelib.view.QRCodeScanView
 import kz.sgq.colorassistant.R
 
-class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback{
+class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
     private var mSurfaceView: SurfaceView? = null
     private var mQRCodeScanView: QRCodeScanView? = null
     private var mSurfaceHolder: SurfaceHolder? = null
@@ -43,8 +43,8 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_qrcode_scan)
 
+        setContentView(R.layout.activity_qrcode_scan)
         initView()
         initEvent()
     }
@@ -56,44 +56,46 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback{
     }
 
     private fun initEvent() {
+
         setSupportActionBar(mToolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         mToolbar!!.setNavigationOnClickListener { finish() }
 
         val layoutParams = mToolbar!!.layoutParams as RelativeLayout.LayoutParams
         layoutParams.topMargin = DensityUtil.getStatusBarHeight(this)
-
         mSurfaceHolder = mSurfaceView!!.holder
         mQRCodeManager = QRCodeManager(applicationContext, this)
     }
 
     override fun onResume() {
         super.onResume()
+
         mQRCodeManager!!.onResume(mSurfaceHolder!!)
     }
 
     override fun onPause() {
-        mQRCodeManager!!.onPause(mSurfaceHolder)
         super.onPause()
+
+        mQRCodeManager!!.onPause(mSurfaceHolder)
     }
 
     override fun cameraManagerInitFinish(cameraManager: CameraManager?) {
-        if (mQRCodeScanView != null && cameraManager != null) {
+
+        if (mQRCodeScanView != null && cameraManager != null)
             mQRCodeScanView!!.setCameraManager(cameraManager)
-        }
     }
 
     override fun foundPossibleResultPoint(point: ResultPoint) {
-        if (mQRCodeScanView != null) {
+
+        if (mQRCodeScanView != null)
             mQRCodeScanView!!.addPossibleResultPoint(point)
-        }
     }
 
     override fun onDecodeSuccess(result: Result) {
         val intent = Intent()
+
         intent.putExtra("scan_result", result.text)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
-
 }

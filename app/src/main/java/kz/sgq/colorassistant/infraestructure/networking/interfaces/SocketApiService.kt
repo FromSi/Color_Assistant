@@ -26,6 +26,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface SocketApiService {
+
     @GET("colors")
     fun getAllColors(): Observable<MutableList<ColorsGson>>
 
@@ -36,6 +37,7 @@ interface SocketApiService {
     fun updateColors(@Query("update") check: Int): Observable<MutableList<ColorsGson>>
 
     companion object {
+
         fun create(): SocketApiService = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

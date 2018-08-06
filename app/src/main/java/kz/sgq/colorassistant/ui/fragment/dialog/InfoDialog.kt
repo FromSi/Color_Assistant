@@ -39,7 +39,6 @@ class InfoDialog : DialogFragment() {
 
         dialog.setTitle(title)
         dialog.setView(customLayout)
-
         initView(customLayout)
 
         dialog.setPositiveButton(positive) { _, _ -> }
@@ -50,15 +49,12 @@ class InfoDialog : DialogFragment() {
     @SuppressLint("SetTextI18n")
     private fun initView(view: View) {
         view.hex_text.text = "Hex ${ColorConverter.getHex(color)}"
-
         view.r_text.text = "R ${Color.red(color)}"
         view.g_text.text = "G ${Color.green(color)}"
         view.b_text.text = "B ${Color.blue(color)}"
-
         view.h_text.text = "H ${ColorConverter.getHSV(color, 0)}"
         view.s_text.text = "S ${ColorConverter.getHSV(color, 1)}"
         view.v_text.text = "V ${ColorConverter.getHSV(color, 2)}"
-
         view.c_text.text = "C ${ColorConverter.getCMYK(color, 0)}"
         view.m_text.text = "M ${ColorConverter.getCMYK(color, 1)}"
         view.y_text.text = "Y ${ColorConverter.getCMYK(color, 2)}"

@@ -25,6 +25,7 @@ import kz.sgq.colorassistant.room.table.Colors
 
 @Dao
 interface ColorsDao {
+
     @Insert
     fun insert(colors: MutableList<Colors>)
 

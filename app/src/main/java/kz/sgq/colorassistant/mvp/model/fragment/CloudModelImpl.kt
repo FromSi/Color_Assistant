@@ -14,28 +14,32 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model
+package kz.sgq.colorassistant.mvp.model.fragment
 
 import android.app.Activity
 import android.content.Intent
-import kz.sgq.colorassistant.mvp.model.interfaces.CloudModel
+import kz.sgq.colorassistant.mvp.model.fragment.interfaces.CloudModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 class CloudModelImpl : CloudModel {
+
     override fun calcQRCode(resultCode: Int, data: Intent?): Boolean {
+
         if (resultCode == Activity.RESULT_OK) {
             val scanResult = data!!.getStringExtra("scan_result")
             val size = scanResult.length
+
             if ((size == 21) || (size == 28) || (size == 35))
                 return true
         }
+
         return false
     }
 
-    override fun parseQRAnswer(data: Intent?): Cloud {
+    override fun calcQRAnswer(data: Intent?): Cloud {
         val scanResult = data!!.getStringExtra("scan_result")
         val cloud = Cloud(
                 scanResult.substring(0, 7),
@@ -65,19 +69,22 @@ class CloudModelImpl : CloudModel {
     }
 
     override fun addItem(cloud: Cloud, eventListener: OnEventItemListener) {
+
         DataBaseRequest.insertCloud(cloud, eventListener)
     }
 
     override fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener) {
+
         DataBaseRequest.deleteCloud(cloud, eventListener)
     }
 
     override fun initItemList(initListener: OnInitItemListener) {
+
         DataBaseRequest.getCloud()
                 ?.subscribe { list: MutableList<Cloud>? -> initListener.onResult(list!!) }
     }
 
-    override fun initColorList(cloud: Cloud): MutableList<String> {
+    override fun calcColorList(cloud: Cloud): MutableList<String> {
         val list: MutableList<String> = arrayListOf()
 
         list.add(cloud.colOne)

@@ -25,6 +25,7 @@ import kz.sgq.colorassistant.room.table.Checking
 
 @Dao
 interface CheckingDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(checking: Checking)
 

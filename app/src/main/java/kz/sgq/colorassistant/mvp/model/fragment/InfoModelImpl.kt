@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model
+package kz.sgq.colorassistant.mvp.model.fragment
 
-import kz.sgq.colorassistant.mvp.model.interfaces.InfoModel
+import kz.sgq.colorassistant.mvp.model.fragment.interfaces.InfoModel
 import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.util.HSLConverter
 import kz.sgq.colorassistant.ui.util.ItemDetails
@@ -24,28 +24,26 @@ import kz.sgq.colorassistant.ui.util.ItemDetails
 class InfoModelImpl : InfoModel {
     private var saturationList: MutableList<ItemDetails> = arrayListOf()
     private var lightnessList: MutableList<ItemDetails> = arrayListOf()
-
     private var color: Int = 0
 
-    override fun create(color: Int) {
+    override fun initModel(color: Int) {
         this.color = color
         val saturation = HSLConverter.getSaturationList(color)
         val lightness = HSLConverter.getLightnessList(color)
+
         clearAllList()
 
-        for (i in saturation.indices) {
-            saturationList
-                    .add(ItemDetails(ColorConverter
-                            .getFullAnswer(saturation[i]),
-                            saturation[i]))
-        }
+        for (i in saturation.indices)
+            saturationList.add(ItemDetails(
+                    ColorConverter.getFullAnswer(saturation[i]),
+                    saturation[i]
+            ))
 
-        for (i in lightness.indices) {
-            lightnessList
-                    .add(ItemDetails(ColorConverter
-                            .getFullAnswer(lightness[i]),
-                            lightness[i]))
-        }
+        for (i in lightness.indices)
+            lightnessList.add(ItemDetails(
+                    ColorConverter.getFullAnswer(lightness[i]),
+                    lightness[i]
+            ))
     }
 
     override fun getSaturation(): MutableList<ItemDetails> = saturationList
@@ -54,7 +52,8 @@ class InfoModelImpl : InfoModel {
 
     override fun getColor(): Int = color
 
-    private fun clearAllList(){
+    private fun clearAllList() {
+
         saturationList.clear()
         lightnessList.clear()
     }

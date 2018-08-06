@@ -42,16 +42,16 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
     }
 
     fun addItem(cloud: Cloud) {
+
         list.add(0, cloud)
         visiblyList.add(true)
-
         notifyDataSetChanged()
     }
 
     fun deleteItem(index: Int) {
+
         list.removeAt(index)
         visiblyList.removeAt(index)
-
         notifyDataSetChanged()
     }
 
@@ -59,26 +59,34 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
         this.clickListener = clickListener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CloudHolder = CloudHolder(LayoutInflater
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+    ): CloudHolder = CloudHolder(LayoutInflater
             .from(parent.context).inflate(R.layout.item_colors_cloud, parent, false))
 
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(p0: CloudHolder, p1: Int) {
+
         p0.setImagesView(calcItemColor(p1))
         p0.setView(list[p1], clickListener)
         p0.setShare(list[p1], clickListener)
         p0.setDelete(list[p1], p1, clickListener)
         p0.onLoadVisibly(visiblyList[p1])
+        p0.itemView.items.setOnClickListener(initClick(p0, p1))
+    }
 
-        p0.itemView.items.setOnClickListener {
-            if (visiblyList[p1]) {
-                p0.onLoadVisibly(View.GONE)
-                visiblyList[p1] = false
-            } else {
-                p0.onLoadVisibly(View.VISIBLE)
-                visiblyList[p1] = true
-            }
+    private fun initClick(p0: CloudHolder, p1: Int): View.OnClickListener = View.OnClickListener {
+
+        if (visiblyList[p1]) {
+            visiblyList[p1] = false
+
+            p0.onLoadVisibly(View.GONE)
+        } else {
+            visiblyList[p1] = true
+
+            p0.onLoadVisibly(View.VISIBLE)
         }
     }
 

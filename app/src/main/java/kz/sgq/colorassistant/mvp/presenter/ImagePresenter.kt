@@ -28,33 +28,45 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 
 @InjectViewState
 class ImagePresenter : MvpPresenter<ImageView>() {
-    private var model:ImageModel = ImageModelImpl()
+    private var model: ImageModel = ImageModelImpl()
 
-    fun initImage(resultCode: Int, data: Intent?){
+    fun initImage(resultCode: Int, data: Intent?) {
+
         if (resultCode == Activity.RESULT_OK) {
             val photoUri = data?.data
-            if (photoUri != null) {
+
+            if (photoUri != null)
                 viewState.initImage(photoUri)
-            }
-        } else {
+
+        } else if (!model.getState())
             viewState.finishActivity()
-        }
+
     }
 
-    fun setCurrentImage(currentImage: Bitmap){
-        model.setCurrentImage(currentImage, object : OnClickListener{
+    fun showMore(index: Int) {
+
+        viewState.showMore(model.getCloud(index))
+    }
+
+    fun setCurrentImage(currentImage: Bitmap) {
+
+        model.setState(true)
+        model.setCurrentImage(currentImage, object : OnClickListener {
+
             override fun onClick() {
+
                 viewState.initItemsColor(model.getColorList())
             }
-
         })
     }
 
-    fun cloudSave(index: Int){
+    fun cloudSave(index: Int) {
+
         model.saveCloud(index)
     }
 
-    fun cloudDelete(index: Int){
+    fun cloudDelete(index: Int) {
+
         model.deleteCloud(index)
     }
 }

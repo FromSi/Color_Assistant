@@ -37,32 +37,35 @@ object DataBaseRequest {
 
 
     fun insertUpdate(checking: Checking) {
+
         Completable.fromAction { dataBase?.updateDao()?.insert(checking) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }
 
     fun insertCloud(cloud: Cloud, eventListener: OnEventItemListener) {
+
         Completable.fromAction { dataBase?.cloudDao()?.insert(cloud) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CompletableObserver {
+
                     override fun onComplete() {
+
                         eventListener.onSuccess()
                     }
 
-                    override fun onSubscribe(d: Disposable) {
-
-                    }
+                    override fun onSubscribe(d: Disposable) {}
 
                     override fun onError(e: Throwable) {
+
                         eventListener.onError()
                     }
-
                 })
     }
 
     fun deleteCloud(cloud: Cloud) {
+
         Completable.fromAction { dataBase?.cloudDao()?.delete(cloud) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -70,11 +73,14 @@ object DataBaseRequest {
     }
 
     fun deleteCloud(cloud: Cloud, eventListener: OnEventItemListener) {
+
         Completable.fromAction { dataBase?.cloudDao()?.delete(cloud) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CompletableObserver {
+
                     override fun onComplete() {
+
                         eventListener.onSuccess()
                     }
 
@@ -85,17 +91,18 @@ object DataBaseRequest {
                     override fun onError(e: Throwable) {
                         eventListener.onError()
                     }
-
                 })
     }
 
     fun updateColors(idCol: Int, like: Boolean) {
+
         Completable.fromAction { dataBase?.colorsDao()?.update(idCol, like) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }
 
     fun updateUpdate(first: Int, last: Int) {
+
         Completable.fromAction { dataBase?.updateDao()?.update(first, last) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()

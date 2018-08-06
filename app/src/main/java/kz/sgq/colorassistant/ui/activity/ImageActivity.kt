@@ -30,49 +30,48 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_image.*
 import kz.sgq.colorassistant.mvp.presenter.ImagePresenter
 import kz.sgq.colorassistant.mvp.view.ImageView
+import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.RecyclerImageAdapter
+import kz.sgq.colorassistant.ui.fragment.dialog.ImageMoreDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
+import kz.sgq.colorassistant.ui.util.interfaces.OnMoreListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnSaveListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnShareListener
 
 class ImageActivity : MvpAppCompatActivity(), ImageView {
     @InjectPresenter
     lateinit var presenter: ImagePresenter
-
-    private var adapter = RecyclerImageAdapter()
+    private lateinit var adapter: RecyclerImageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_image)
-
-        toolBar.title = resources.getString(R.string.image_scan)
-        setSupportActionBar(toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        initToolBar()
+        initScan()
         setResult(Activity.RESULT_OK, null)
-
-        val photoPickerIntent = Intent(Intent.ACTION_PICK)
-        photoPickerIntent.type = "image/*"
-        startActivityForResult(photoPickerIntent, 1)
+        openGallery()
     }
 
     override fun finishActivity() {
+
         setResult(Activity.RESULT_CANCELED, null)
         finish()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when(item?.itemId){
-            android.R.id.home ->{
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
+        android.R.id.home -> {
+
+            finish()
+
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         presenter.initImage(resultCode, data)
     }
 
@@ -80,47 +79,107 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         colors.layoutManager = layoutManager
+        adapter = RecyclerImageAdapter()
         colors.adapter = adapter
-        adapter.initColors(list)
 
+        adapter.initColors(list)
         initSave()
         initShare()
-
-        loading.visibility = View.GONE
-        colors.visibility = View.VISIBLE
+        initShow()
+        setVisibly(true)
     }
 
     override fun initImage(photoUri: Uri) {
+
         try {
             val currentImage = MediaStore.Images.Media.getBitmap(this.contentResolver, photoUri)
+
             image.setImageBitmap(currentImage)
             presenter.setCurrentImage(currentImage)
+            setVisibly(false)
         } catch (e: Exception) {
+
             e.printStackTrace()
         }
     }
 
-    private fun initSave(){
-        adapter.setSaveListener(object : OnSaveListener{
+    override fun showMore(cloud: Cloud) {
+        val dialog = ImageMoreDialog()
+
+        dialog.cloud(cloud)
+        dialog.show(supportFragmentManager, "image_more_dialog")
+    }
+
+    private fun setVisibly(bool: Boolean) {
+
+        if (bool) {
+            loading.visibility = View.GONE
+            colors.visibility = View.VISIBLE
+        } else {
+            loading.visibility = View.VISIBLE
+            colors.visibility = View.GONE
+        }
+    }
+
+    private fun initShow() {
+
+        adapter.setMoreListener(object : OnMoreListener {
+
+            override fun show(index: Int) {
+
+                presenter.showMore(index)
+            }
+        })
+    }
+
+    private fun initToolBar() {
+        toolBar.title = resources.getString(R.string.image_scan)
+
+        setSupportActionBar(toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private fun openGallery() {
+        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+
+        startActivityForResult(photoPickerIntent, 1)
+    }
+
+    private fun initSave() {
+
+        adapter.setSaveListener(object : OnSaveListener {
+
             override fun onSave(index: Int) {
+
                 presenter.cloudSave(index)
             }
 
             override fun onDelete(index: Int) {
+
                 presenter.cloudDelete(index)
             }
-
         })
     }
 
-    private fun initShare(){
-        adapter.setShareListener(object : OnShareListener{
+    private fun initScan() {
+
+        scan.setOnClickListener {
+
+            openGallery()
+        }
+    }
+
+    private fun initShare() {
+
+        adapter.setShareListener(object : OnShareListener {
+
             override fun onShare(share: String) {
                 val dialog = ShareDialog()
+
                 dialog.setText(share)
                 dialog.show(supportFragmentManager, "share_dialog")
             }
-
         })
     }
 }

@@ -21,7 +21,6 @@ import android.arch.persistence.room.Room
 import kz.sgq.colorassistant.room.AppDataBase
 
 class App : Application() {
-
     private lateinit var dataBase: AppDataBase
 
     companion object {
@@ -36,6 +35,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         dataBase = Room.databaseBuilder(this, AppDataBase::class.java, "local")
                 .build()
     }

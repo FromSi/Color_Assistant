@@ -37,21 +37,22 @@ class ShareDialog : DialogFragment() {
 
         dialog.setTitle(title)
         dialog.setView(customLayout)
-
         initView(customLayout)
 
         dialog.setPositiveButton(positive) { _, _ -> }
+
         dialog.setNeutralButton(neutral) { _, _ -> }
 
         return dialog.create()
     }
 
-    private fun initView(view: View){
+    private fun initView(view: View) {
         val size = resources.getDimension(R.dimen.dialog_share_size)
+
         view.qr.setImageBitmap(QRCode.from(text).withSize(size.toInt(), size.toInt()).bitmap())
     }
 
-    fun setText(text: String){
+    fun setText(text: String) {
         this.text = text
     }
 }

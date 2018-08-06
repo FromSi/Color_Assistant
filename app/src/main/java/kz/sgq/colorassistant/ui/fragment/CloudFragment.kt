@@ -24,14 +24,15 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import android.view.*
 import android.widget.LinearLayout
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.fragment_cloud.*
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.mvp.presenter.CloudPresenter
-import kz.sgq.colorassistant.mvp.view.CloudView
+import kz.sgq.colorassistant.mvp.presenter.fragment.CloudPresenter
+import kz.sgq.colorassistant.mvp.view.fragment.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.activity.ImageActivity
@@ -50,6 +51,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setHasOptionsMenu(true)
     }
 
@@ -61,42 +63,44 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         settingToolBar()
         initRecyclerAdapter(view.context)
         initColorPicker()
     }
 
     override fun initColorList(list: MutableList<Cloud>) {
+
         adapter.addList(list)
     }
 
     override fun addItem(cloud: Cloud) {
+
         adapter.addItem(cloud)
     }
 
     override fun deleteItem(index: Int) {
+
         adapter.deleteItem(index)
     }
 
     override fun errorQR() {
         val dialog = QRScanErrorDialog()
-        dialog.clickListener(object : OnClickListener {
-            override fun onClick() {
-                checkCameraPermission()
-            }
-        })
 
+        dialog.clickListener(initClickError())
         dialog.show(fragmentManager, "error_qr_dialog")
     }
 
     override fun shareItem(text: String) {
         val dialog = ShareDialog()
+
         dialog.setText(text)
         dialog.show(fragmentManager, "share_dialog")
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
         val intent = Intent(context, ComboActivity::class.java)
+
         intent.putExtra("map", list as Serializable)
         startActivity(intent)
     }
@@ -112,6 +116,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         if (requestCode == 10) {
             val permission = permissions[0]
             val grantResult = grantResults[0]
+
             if (permission == Manifest.permission.CAMERA && grantResult == PackageManager.PERMISSION_GRANTED)
                 openScanActivity()
         } else
@@ -120,26 +125,43 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     override fun answerQR(cloud: Cloud) {
         val dialog = QRScanDialog()
-        dialog.cloud(cloud)
 
-        dialog.clickListener(object : OnClickListener {
-            override fun onClick() {
-                presenter.addItem(cloud)
-            }
-        })
+        dialog.cloud(cloud)
+        dialog.clickListener(initClickAnswer(cloud))
         dialog.show(fragmentManager, "qr_dialog")
     }
 
-    private fun checkCameraPermission() {
-        if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), 10)
-        } else {
-            openScanActivity()
+    private fun initClickError(): OnClickListener = object : OnClickListener {
+
+        override fun onClick() {
+
+            checkCameraPermission()
         }
+    }
+
+    private fun initClickAnswer(cloud: Cloud): OnClickListener = object : OnClickListener {
+
+        override fun onClick() {
+
+            presenter.addItem(cloud)
+        }
+    }
+
+    private fun checkCameraPermission() {
+        if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) !=
+                PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.CAMERA),
+                    10
+            )
+        else
+            openScanActivity()
     }
 
     private fun openScanActivity() {
         val intent = Intent(context, QRCodeScanActivity::class.java)
+
         startActivityForResult(intent, 1)
     }
 
@@ -150,168 +172,179 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         cloud.adapter = adapter
 
         clickListener()
-
         presenter.initInitList()
     }
 
     private fun initColorPicker() {
+
         color_picker.addLightnessView(lightness)
         color_picker.addSaturationView(saturation)
-
         createNewItemColor()
         createNewItemColor()
         createNewItemColor()
-
         color_picker.setItemColor(item_list.getChildAt(0) as ItemColor)
+        add.setOnClickListener(initClickAdd())
+    }
 
-        add.setOnClickListener {
-            ItemColor.ItemColor.boolDelete = true
+    private fun initClickAdd(): View.OnClickListener = View.OnClickListener {
+        ItemColor.ItemColor.boolDelete = true
 
-            if (item_list.childCount <= 3) {
-                createNewItemColor()
-            } else {
-                createNewItemColor()
-                add.visibility = View.GONE
-            }
+        if (item_list.childCount <= 3)
+            createNewItemColor()
+        else {
+            add.visibility = View.GONE
+
+            createNewItemColor()
         }
     }
 
     private fun createNewItemColor() {
         val itemColor = ItemColor(context)
-
         itemColor.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         )
 
         item_list.addView(itemColor)
-
         itemColor.setDeleteIndex(item_list.childCount - 1)
+        itemColor.setOnItemColorListener(initItemColor())
+        itemColor.setOnClickItemColorListener(initItemClickColor(itemColor))
+    }
 
-        itemColor.setOnItemColorListener(object : OnItemColorListener {
-            override fun onInfo(color: Int) {
-                val dialog = InfoDialog()
-                dialog.setColor(color)
-                dialog.show(fragmentManager, "info_dialog")
-            }
+    private fun initItemClickColor(
+            itemColor: ItemColor
+    ): OnClickItemColorListener = object : OnClickItemColorListener {
 
-            override fun onDelete(index: Int) {
-                val dialog = DeleteDialog()
+        override fun onClick() {
 
-                dialog.clickListener(index, object : OnDeleteItemListener {
-                    override fun onDelete(index: Int) {
-                        item_list.removeViewAt(index)
-                        add.visibility = View.VISIBLE
+            color_picker.setItemColor(itemColor)
+        }
+    }
 
-                        if (item_list.childCount <= 3)
-                            ItemColor.ItemColor.boolDelete = false
+    private fun initItemColor(): OnItemColorListener = object : OnItemColorListener {
 
-                        for (i in index until item_list.childCount)
-                            (item_list.getChildAt(i) as ItemColor).setDeleteIndex(i)
-                    }
-                })
+        override fun onInfo(color: Int) {
+            val dialog = InfoDialog()
+            dialog.setColor(color)
+            dialog.show(fragmentManager, "info_dialog")
+        }
 
-                dialog.show(fragmentManager, "delete_dialog")
-            }
-        })
+        override fun onDelete(index: Int) {
+            val dialog = DeleteDialog()
 
-        itemColor.setOnClickItemColorListener(object : OnClickItemColorListener {
-            override fun onClick() {
-                color_picker.setItemColor(itemColor)
-            }
-        })
+            dialog.clickListener(index, object : OnDeleteItemListener {
+                override fun onDelete(index: Int) {
+                    item_list.removeViewAt(index)
+                    add.visibility = View.VISIBLE
+
+                    if (item_list.childCount <= 3)
+                        ItemColor.ItemColor.boolDelete = false
+
+                    for (i in index until item_list.childCount)
+                        (item_list.getChildAt(i) as ItemColor).setDeleteIndex(i)
+                }
+            })
+
+            dialog.show(fragmentManager, "delete_dialog")
+        }
     }
 
     private fun clickListener() {
         adapter.setOnItemClickListener(object : OnItemCloudClickListener {
 
             override fun onView(cloud: Cloud) {
+
                 presenter.onItemViewClick(cloud)
             }
 
             override fun onShare(cloud: Cloud) {
+
                 presenter.onItemShareClick(cloud)
             }
 
             override fun onDelete(cloud: Cloud, index: Int) {
+
                 presenter.onItemDeleteClick(cloud, index)
             }
         })
     }
 
-    private fun getColorHex(index: Int): String = (item_list.getChildAt(index) as ItemColor).getColorHex()
+    private fun getColorHex(index: Int): String = (item_list.getChildAt(index) as ItemColor)
+            .getColorHex()
 
     private fun settingToolBar() {
         toolBar.title = getString(R.string.constructor)
+
         toolBar.inflateMenu(R.menu.constructor_menu)
+        toolBar.setOnMenuItemClickListener(initClickMenu())
+    }
 
-        toolBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.constructor -> {
-                    toolBar.menu.findItem(R.id.constructor).isVisible = false
-                    toolBar.menu.findItem(R.id.cloud).isVisible = true
-                    toolBar.menu.findItem(R.id.save).isVisible = true
+    private fun initClickMenu(): Toolbar.OnMenuItemClickListener = Toolbar.OnMenuItemClickListener {
 
-                    constructor.visibility = View.VISIBLE
-                    cloud.visibility = View.GONE
-                }
-
-                R.id.cloud -> {
-                    toolBar.menu.findItem(R.id.constructor).isVisible = true
-                    toolBar.menu.findItem(R.id.cloud).isVisible = false
-                    toolBar.menu.findItem(R.id.save).isVisible = false
-
-                    constructor.visibility = View.GONE
-                    cloud.visibility = View.VISIBLE
-                }
-
-                R.id.save -> {
-                    val dialog = SaveDialog()
-
-                    dialog.clickListener(object : OnClickListener {
-                        override fun onClick() {
-                            val cloud = when (item_list.childCount) {
-                                3 -> Cloud(
-                                        getColorHex(0),
-                                        getColorHex(1),
-                                        getColorHex(2)
-                                )
-
-                                4 -> Cloud(
-                                        getColorHex(0),
-                                        getColorHex(1),
-                                        getColorHex(2),
-                                        getColorHex(3)
-                                )
-
-                                5 -> Cloud(
-                                        getColorHex(0),
-                                        getColorHex(1),
-                                        getColorHex(2),
-                                        getColorHex(3),
-                                        getColorHex(4)
-                                )
-
-                                else -> return
-                            }
-
-                            presenter.addItem(cloud)
-                        }
-                    })
-
-                    dialog.show(fragmentManager, "save_dialog")
-                }
-
-                R.id.qr -> {
-                    checkCameraPermission()
-                }
-
-                R.id.image_scan -> {
-                    val intent = Intent(this.context, ImageActivity::class.java)
-                    startActivityForResult(intent, 2)
-                }
+        when (it.itemId) {
+            R.id.constructor -> {
+                toolBar.menu.findItem(R.id.constructor).isVisible = false
+                toolBar.menu.findItem(R.id.cloud).isVisible = true
+                toolBar.menu.findItem(R.id.save).isVisible = true
+                constructor.visibility = View.VISIBLE
+                cloud.visibility = View.GONE
             }
-            false
+            R.id.cloud -> {
+                toolBar.menu.findItem(R.id.constructor).isVisible = true
+                toolBar.menu.findItem(R.id.cloud).isVisible = false
+                toolBar.menu.findItem(R.id.save).isVisible = false
+                constructor.visibility = View.GONE
+                cloud.visibility = View.VISIBLE
+            }
+            R.id.save -> {
+                val dialog = SaveDialog()
+
+                dialog.clickListener(initClickSave())
+                dialog.show(fragmentManager, "save_dialog")
+            }
+            R.id.qr -> {
+
+                checkCameraPermission()
+            }
+            R.id.image_scan -> {
+                val intent = Intent(this.context, ImageActivity::class.java)
+
+                startActivityForResult(intent, 2)
+            }
+        }
+
+        false
+    }
+
+    private fun initClickSave(): OnClickListener = object : OnClickListener {
+
+        override fun onClick() {
+            val cloud = when (item_list.childCount) {
+                3 -> Cloud(
+
+                        getColorHex(0),
+                        getColorHex(1),
+                        getColorHex(2)
+                )
+                4 -> Cloud(
+
+                        getColorHex(0),
+                        getColorHex(1),
+                        getColorHex(2),
+                        getColorHex(3)
+                )
+                5 -> Cloud(
+
+                        getColorHex(0),
+                        getColorHex(1),
+                        getColorHex(2),
+                        getColorHex(3),
+                        getColorHex(4)
+                )
+                else -> return
+            }
+
+            presenter.addItem(cloud)
         }
     }
 }

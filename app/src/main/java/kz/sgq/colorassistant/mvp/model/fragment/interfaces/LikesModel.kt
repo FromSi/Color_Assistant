@@ -14,24 +14,28 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model.interfaces
+package kz.sgq.colorassistant.mvp.model.fragment.interfaces
 
-import kz.sgq.colorassistant.infraestructure.networking.gson.ColorsGson
 import kz.sgq.colorassistant.room.table.Colors
 import kz.sgq.colorassistant.ui.util.ItemColor
 
-interface ColorsModel {
-    fun initRandom(size: Int)
-    fun getNumbers(): IntArray
-    fun getCheck(): Int
-    fun getIdList(): MutableList<Int>
-    fun getLikeList(): MutableList<Boolean>
-    fun setLike(index: Int, like: Boolean)
-    fun getItemColor(colors: MutableList<Colors>): MutableList<ItemColor>
-    fun isLoading(): Boolean
-    fun setLoading(loading: Boolean)
-    fun setRandomSize(size: Int)
-    fun clear()
+interface LikesModel {
+
     fun getVisibleThreshold(): Int
-    fun converterToItemColor(list: MutableList<ColorsGson>): MutableList<ItemColor>
+
+    fun getColorList(): MutableList<ItemColor>
+
+    fun getNumbers(): IntArray
+
+    fun setLoading(loading: Boolean)
+
+    fun setRandomSize(size: Int)
+
+    fun addIdList(item: Colors)
+
+    fun deleteIdList(id: Int)
+
+    fun clearIdList()
+
+    fun isLoading(): Boolean
 }

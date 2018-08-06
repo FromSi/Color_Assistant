@@ -14,13 +14,25 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.view
+package kz.sgq.colorassistant.mvp.view.fragment
 
 import com.arellomobile.mvp.MvpView
-import kz.sgq.colorassistant.ui.util.ItemDetails
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import kz.sgq.colorassistant.ui.util.ItemColor
 
-interface InfoView : MvpView {
-    fun createSaturation(color: Int, itemList: MutableList<ItemDetails>)
-    fun createLightness(color: Int, itemList: MutableList<ItemDetails>)
-    fun installViewPager()
+interface LikesView : MvpView {
+
+    fun clearItemsDB()
+
+    fun showLoadDB()
+
+    fun showColorList()
+
+    fun deleteItem(id: Int)
+
+    fun addItemsDB(item: ItemColor)
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showActivityInfo(list: MutableList<String>)
 }

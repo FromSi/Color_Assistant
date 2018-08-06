@@ -26,10 +26,11 @@ class DetailsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
     @SuppressLint("SetTextI18n")
     fun init(itemDetails: ItemDetails) {
-        itemView.imgLine.setBackgroundColor(itemDetails.color)
-        itemView.imgColor.setBackgroundColor(itemDetails.color)
         itemView.nameTypeColor.text = "Hex\nRGB\nHSV\nCMYK"
         itemView.value.text = itemDetails.value
+
+        itemView.imgLine.setBackgroundColor(itemDetails.color)
+        itemView.imgColor.setBackgroundColor(itemDetails.color)
     }
 
     @SuppressLint("SetTextI18n")

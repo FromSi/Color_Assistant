@@ -27,8 +27,8 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.fragment_color_list.*
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.mvp.presenter.LikesPresenter
-import kz.sgq.colorassistant.mvp.view.LikesView
+import kz.sgq.colorassistant.mvp.presenter.fragment.LikesPresenter
+import kz.sgq.colorassistant.mvp.view.fragment.LikesView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
@@ -52,16 +52,19 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         listener = (parentFragment as OnSelectedButtonListener)
         layoutManager = LinearLayoutManager(view.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_colors.layoutManager = layoutManager
         rv_colors.adapter = adapter
+
         onClickListenerAdapter()
         setUpLoadMoreListener()
     }
 
     override fun clearItemsDB() {
+
         adapter.clearItems()
     }
 
@@ -76,36 +79,46 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
     }
 
     override fun addItemsDB(item: ItemColor) {
+
         adapter.addItem(item)
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
         val intent = Intent(context, ComboActivity::class.java)
+
         intent.putExtra("map", list as Serializable)
         startActivity(intent)
     }
 
     override fun deleteItem(id: Int) {
+
         adapter.deleteItem(id)
     }
 
     private fun onClickListenerAdapter() {
+
         adapter.setOnItemClickListener(object : OnItemColorClickListener {
+
             override fun onLike(view: View, id: Int, like: Boolean) {
+
                 listener.onLike(id)
                 presenter.onItemLikeClick(view, id, like)
             }
 
             override fun onView(view: View, itemColor: ItemColor) {
+
                 presenter.onItemViewClick(view, itemColor)
             }
         })
     }
 
     private fun setUpLoadMoreListener() {
+
         rv_colors.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+
                 presenter.handlerColorListener(layoutManager.itemCount,
                         layoutManager.findLastVisibleItemPosition())
             }

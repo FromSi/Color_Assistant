@@ -16,7 +16,6 @@
 
 package kz.sgq.colorassistant.ui.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_combo.*
 import kz.sgq.colorassistant.R
@@ -25,56 +24,92 @@ import kz.sgq.colorassistant.ui.fragment.ComboFragment
 import kz.sgq.colorassistant.ui.fragment.InfoFragment
 import kz.sgq.colorassistant.ui.util.interfaces.OnClickActivity
 import android.support.v4.view.ViewPager
+import android.view.Menu
 import android.view.MenuItem
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import kz.sgq.colorassistant.mvp.presenter.ComboPresenter
+import kz.sgq.colorassistant.mvp.view.ComboView
+import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 
-class ComboActivity : AppCompatActivity(), OnClickActivity {
+class ComboActivity : MvpAppCompatActivity(), ComboView, OnClickActivity {
+    @InjectPresenter
+    lateinit var presenter: ComboPresenter
     private var adapter = SectionsPageAdapter(supportFragmentManager)
     private val comboFragment = ComboFragment()
     private val infoFragment = InfoFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_combo)
-        toolBar.title = getString(R.string.combo)
-        setSupportActionBar(toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        initToolBar()
+        presenter.initList(intent.getSerializableExtra("map") as MutableList<String>)
         settingToolBar()
-        initFragment()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when(item?.itemId){
-            android.R.id.home ->{
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.combo_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
+        android.R.id.home -> {
+
+            finish()
+
+            true
         }
+        R.id.share -> {
+
+            presenter.showShare()
+
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
-    private fun initFragment() {
-        val list = intent
-                .getSerializableExtra("map") as MutableList<String>
-        comboFragment.initPresenter(list)
-        adapter.addFragment(comboFragment, getString(R.string.combo))
-        adapter.addFragment(infoFragment, getString(R.string.info))
-        viewPager.adapter = adapter
-    }
 
     override fun onInfo(color: Int) {
-        infoFragment.initPresenter(color)
         viewPager.currentItem = 1
+
+        infoFragment.initPresenter(color)
         viewPager.disableScroll(false)
     }
 
+    override fun showShare(textShare: String) {
+        val dialog = ShareDialog()
+
+        dialog.setText(textShare)
+        dialog.show(supportFragmentManager, "share_dialog")
+    }
+
+    override fun initFragment(list: MutableList<String>) {
+
+        comboFragment.initPresenter(list)
+        adapter.addFragment(comboFragment, getString(R.string.combo))
+        adapter.addFragment(infoFragment, getString(R.string.info))
+
+        viewPager.adapter = adapter
+    }
+
     private fun settingToolBar() {
+
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+            ) {
 
             }
 
             override fun onPageSelected(position: Int) {
-                when (position){
+
+                when (position) {
                     0 -> toolBar.title = getString(R.string.combo)
                     1 -> toolBar.title = getString(R.string.info)
                 }
@@ -84,5 +119,13 @@ class ComboActivity : AppCompatActivity(), OnClickActivity {
 
             }
         })
+    }
+
+    private fun initToolBar() {
+        toolBar.title = getString(R.string.combo)
+
+        toolBar.inflateMenu(R.menu.combo_menu)
+        setSupportActionBar(toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

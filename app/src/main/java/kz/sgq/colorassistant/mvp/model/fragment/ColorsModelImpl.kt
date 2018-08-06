@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model
+package kz.sgq.colorassistant.mvp.model.fragment
 
 import kz.sgq.colorassistant.infraestructure.networking.gson.ColorsGson
-import kz.sgq.colorassistant.mvp.model.interfaces.ColorsModel
+import kz.sgq.colorassistant.mvp.model.fragment.interfaces.ColorsModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Colors
 import kz.sgq.colorassistant.ui.util.ItemColor
@@ -26,7 +26,6 @@ import kz.sgq.colorassistant.ui.util.interfaces.RandomItems
 import java.util.ArrayList
 
 class ColorsModelImpl : ColorsModel {
-
     private var update = 1
     private var loading = true
     private var idList: MutableList<Int> = arrayListOf()
@@ -34,8 +33,9 @@ class ColorsModelImpl : ColorsModel {
     private lateinit var randomItems: RandomItems
 
     init {
+
         DataBaseRequest.getUpdate()
-                ?.subscribe {update = it.check}
+                ?.subscribe { update = it.check }
     }
 
     override fun initRandom(size: Int) {
@@ -51,6 +51,7 @@ class ColorsModelImpl : ColorsModel {
     override fun getCheck(): Int = update
 
     override fun clear() {
+
         idList.clear()
         likeList.clear()
     }
@@ -60,6 +61,7 @@ class ColorsModelImpl : ColorsModel {
 
         for (i in colors.indices) {
             val stringList = ArrayList<String>()
+
             stringList.add(colors[i].colOne)
             stringList.add(colors[i].colTwo)
             stringList.add(colors[i].colThree)
@@ -70,8 +72,11 @@ class ColorsModelImpl : ColorsModel {
             if (colors[i].colFive != null)
                 stringList.add(colors[i].colFive!!)
 
-            list.add(ItemColor(colors[i].idCol,
-                    stringList, colors[i].like!!))
+            list.add(ItemColor(
+                    colors[i].idCol,
+                    stringList,
+                    colors[i].like!!
+            ))
 
             idList.add(colors[i].idCol)
             likeList.add(colors[i].like!!)
@@ -90,6 +95,7 @@ class ColorsModelImpl : ColorsModel {
     }
 
     override fun setRandomSize(size: Int) {
+
         randomItems.onResize(size)
     }
 
@@ -97,8 +103,10 @@ class ColorsModelImpl : ColorsModel {
 
     override fun converterToItemColor(list: MutableList<ColorsGson>): MutableList<ItemColor> {
         val itemColorList = ArrayList<ItemColor>()
+
         for (i in list.indices) {
             val stringList = ArrayList<String>()
+
             stringList.add(list[i].col1!!)
             stringList.add(list[i].col2!!)
             stringList.add(list[i].col3!!)
@@ -109,16 +117,17 @@ class ColorsModelImpl : ColorsModel {
             if (list[i].col5 != null)
                 stringList.add(list[i].col5!!)
 
-            val itemColor = ItemColor(Integer
-                    .parseInt(list[i].idCol),
-                    stringList, false)
-            itemColorList.add(itemColor)
+            val itemColor = ItemColor(
+                    Integer.parseInt(list[i].idCol),
+                    stringList,
+                    false
+            )
 
-            idList.add(Integer
-                    .parseInt(list[i].idCol))
+            itemColorList.add(itemColor)
+            idList.add(Integer.parseInt(list[i].idCol))
             likeList.add(false)
         }
+
         return itemColorList
     }
-
 }

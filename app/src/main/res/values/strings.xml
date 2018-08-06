@@ -11,6 +11,7 @@
     <string name="text">Text</string>
     <string name="noItems">No combo colors</string>
     <string name="qr_scan">QR Scan</string>
+    <string name="share">Share</string>
 
 
     <string name="colors">Colors</string>
@@ -43,6 +44,10 @@
     <string name="dialog_qr_scan_title">QR</string>
     <string name="dialog_qr_scan_positive">Add</string>
     <string name="dialog_qr_scan_neutral">Cancel</string>
+
+
+    <string name="dialog_image_more_title">More</string>
+    <string name="dialog_image_more_positive">OK</string>
 
     <string name="dialog_color_delete_title">Delete color</string>
     <string name="dialog_color_delete_message">Are you sure you want to delete color?</string>

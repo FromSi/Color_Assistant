@@ -19,6 +19,7 @@ package kz.sgq.colorassistant.ui.adapters
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.like.LikeButton
 import com.like.OnLikeListener
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.item_color_image.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.holders.ImageHolder
 import kz.sgq.colorassistant.ui.util.ColorConverter
+import kz.sgq.colorassistant.ui.util.interfaces.OnMoreListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnSaveListener
 import kz.sgq.colorassistant.ui.util.interfaces.OnShareListener
 
@@ -36,12 +38,17 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
     private var likeList: MutableList<Boolean> = arrayListOf()
     private lateinit var saveListener: OnSaveListener
     private lateinit var shareListener: OnShareListener
+    private lateinit var moreListener: OnMoreListener
 
     fun initColors(colors: MutableList<MutableList<Int>>) {
         this.colors = colors
         calcAverageColor()
         initShare()
         notifyDataSetChanged()
+    }
+
+    fun setMoreListener(moreListener: OnMoreListener) {
+        this.moreListener = moreListener
     }
 
     fun setSaveListener(saveListener: OnSaveListener) {
@@ -64,10 +71,11 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
         p0.initSaveColor()
         p0.itemView.save.setOnLikeListener(initSave(p1))
         p0.itemView.share.setOnLikeListener(initShare(p1))
+        p0.itemView.more.setOnClickListener(initMore(p1))
         initShare(p1)
     }
 
-    private fun initShare(index: Int): OnLikeListener = object : OnLikeListener{
+    private fun initShare(index: Int): OnLikeListener = object : OnLikeListener {
         override fun liked(p0: LikeButton?) {
             p0?.isLiked = false
             shareListener.onShare(shareList[index])
@@ -77,6 +85,9 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
 
         }
     }
+
+    private fun initMore(index: Int): View.OnClickListener = View
+            .OnClickListener { moreListener.show(index) }
 
     private fun initSave(index: Int): OnLikeListener = object : OnLikeListener {
         override fun liked(p0: LikeButton?) {
@@ -91,7 +102,7 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
     }
 
     private fun initShare() {
-        for (i in 0 until colors.size){
+        for (i in 0 until colors.size) {
             val share = StringBuffer()
 
             for (j in 0 until colors[i].size)

@@ -19,44 +19,49 @@ package kz.sgq.colorassistant.ui.util
 import kz.sgq.colorassistant.ui.util.interfaces.RandomItems
 import java.util.*
 
-class RandomItemsImpl(private var limit: Int) : RandomItems{
+class RandomItemsImpl(private var limit: Int) : RandomItems {
     private var random: Random = Random(System.currentTimeMillis())
     private var listCheck: MutableList<Boolean> = arrayListOf()
 
     init {
+
         initCheckList()
     }
 
     override fun onResize(size: Int) {
         limit += size
+
         initCheckList()
     }
 
     override fun onDelete(index: Int) {
         limit--
+
         listCheck.removeAt(index)
     }
 
     override fun onClear() {
-        listCheck.clear()
         limit = 0
+
+        listCheck.clear()
     }
 
     override fun onNumbers(): IntArray {
         var freeNum = 0
-        for (i in 0 until limit) {
+
+        for (i in 0 until limit)
             if (listCheck[i])
                 freeNum++
-        }
-        return if (freeNum >= 20) {
+
+        return if (freeNum >= 20)
             calc(20)
-        } else {
+        else
             calc(freeNum)
-        }
     }
 
     private fun initCheckList() {
         val size = listCheck.size
+
         if (size != 0)
             for (i in size - 1 until limit)
                 listCheck.add(true)
@@ -67,22 +72,23 @@ class RandomItemsImpl(private var limit: Int) : RandomItems{
 
     private fun calc(num: Int): IntArray {
         val number = IntArray(num)
+
         if (num != 0)
             for (i in 0 until num)
                 number[i] = refresh(random.nextInt(limit))
+
         return number
     }
 
     private fun refresh(randNum: Int): Int {
         return if (listCheck[randNum]) {
             listCheck[randNum] = false
+
             randNum
-        } else {
+        } else
             if (randNum + 1 <= limit - 1)
                 refresh(randNum + 1)
             else
                 refresh(0)
-        }
     }
-
 }

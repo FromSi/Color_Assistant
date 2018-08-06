@@ -25,6 +25,7 @@ import kz.sgq.colorassistant.room.table.Cloud
 
 @Dao
 interface CloudDao {
+
     @Insert
     fun insert(cloud: Cloud)
 

@@ -27,6 +27,7 @@ import kz.sgq.colorassistant.room.table.Colors
 
 @Database(entities = [(Colors::class), (Checking::class), (Cloud::class)], version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
+
     abstract fun colorsDao(): ColorsDao
 
     abstract fun updateDao(): CheckingDao

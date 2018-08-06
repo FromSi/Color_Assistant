@@ -57,6 +57,7 @@ class ItemColor : View {
     private var deleteIndex: Int = 0
     private var min = 0
     private var act = false
+    private var scroll = false
     private var actY = 0f
     private var invisibilityHalo = 0x50
     private var deleting = false
@@ -120,6 +121,9 @@ class ItemColor : View {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+
+        if (scroll)
+            return true
 
         parent.requestDisallowInterceptTouchEvent(true)
 
@@ -235,6 +239,10 @@ class ItemColor : View {
         itemPointerHaloPaint.alpha = invisibilityHalo
 
         invalidate()
+    }
+
+    fun setScroll(scroll: Boolean){
+        this.scroll = scroll
     }
 
     fun setDeleteIndex(index: Int){

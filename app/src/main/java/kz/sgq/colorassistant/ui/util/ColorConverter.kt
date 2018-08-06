@@ -21,15 +21,16 @@ import java.text.DecimalFormat
 import kotlin.math.max
 
 object ColorConverter {
-    fun getHex(color: Int) = "#${Integer.toHexString(color)
-            .substring(2)}"
 
-    fun getRGB(color: Int) = "${Color.red(color)}  " +
-            "${Color.green(color)}  ${Color.blue(color)}"
+    fun getHex(color: Int) = "#${Integer.toHexString(color).substring(2)}"
+
+    fun getRGB(color: Int) = "${Color.red(color)}  ${Color.green(color)}  ${Color.blue(color)}"
 
     fun getHSV(color: Int, index: Int): String {
         val a = FloatArray(3)
+
         Color.colorToHSV(color, a)
+
         val h = (a[0].toInt()).toString()
         val s = DecimalFormat("0.#").format(a[1].toDouble() * 100).toString()
         val v = DecimalFormat("0.#").format(a[2].toDouble() * 100).toString()
@@ -42,9 +43,10 @@ object ColorConverter {
         }
     }
 
-    fun getHSV(color: Int): String {
-        return "${getHSV(color, 0)}  ${getHSV(color, 1)}  ${getHSV(color, 2)}"
-    }
+    fun getHSV(color: Int): String = "${getHSV(color, 0)}  " +
+            "${getHSV(color, 1)}  " +
+            getHSV(color, 2)
+
 
     fun getCMYK(color: Int, index: Int): String {
         val red = Color.red(color) / 255.0
@@ -66,10 +68,12 @@ object ColorConverter {
 
     fun getCMYK(color: Int): String = "${getCMYK(color, 0)} " +
             " ${getCMYK(color, 1)} " +
-            " ${getCMYK(color, 2)} " +
-            " ${getCMYK(color, 3)}"
+            " ${getCMYK(color, 2)}  " +
+            getCMYK(color, 3)
 
 
-    fun getFullAnswer(color: Int) = "${getHex(color)}\n ${getRGB(color)}\n " +
-            "${getHSV(color)}\n ${getCMYK(color)}"
+    fun getFullAnswer(color: Int) = "${getHex(color)}\n " +
+            "${getRGB(color)}\n " +
+            "${getHSV(color)}\n " +
+            getCMYK(color)
 }

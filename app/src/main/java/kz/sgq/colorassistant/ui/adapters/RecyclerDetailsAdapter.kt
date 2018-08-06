@@ -18,6 +18,7 @@ package kz.sgq.colorassistant.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_details.view.*
 import kz.sgq.colorassistant.R
@@ -30,28 +31,36 @@ class RecyclerDetailsAdapter : RecyclerView.Adapter<DetailsHolder>() {
 
     fun addList(list: MutableList<ItemDetails>) {
         this.list = list
+
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsHolder = DetailsHolder(LayoutInflater
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+    ): DetailsHolder = DetailsHolder(LayoutInflater
             .from(parent.context).inflate(R.layout.item_details, parent, false))
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: DetailsHolder, position: Int) {
+    override fun onBindViewHolder(p0: DetailsHolder, p1: Int) {
 
-        if (index >= 0 && index == position) {
-            holder.itemView.imgColor.layoutParams.width = holder.itemView.resources.getDimension(R.dimen.imgColor_on).toInt()
-        } else {
-            holder.itemView.imgColor.layoutParams.width = holder.itemView.resources.getDimension(R.dimen.imgColor_off).toInt()
-        }
+        if (index >= 0 && index == p1)
+            p0.itemView.imgColor.layoutParams.width = p0.itemView
+                    .resources.getDimension(R.dimen.imgColor_on).toInt()
+        else
+            p0.itemView.imgColor.layoutParams.width = p0.itemView
+                    .resources.getDimension(R.dimen.imgColor_off).toInt()
 
-        holder.init(list[position])
-        holder.setPercent(position)
+        p0.init(list[p1])
+        p0.setPercent(p1)
 
-        holder.itemView.cardView.setOnClickListener {
-            index = if ((index == -1) || (index != position)) position else -1
-            notifyDataSetChanged()
-        }
+        p0.itemView.cardView.setOnClickListener(initClick(p1))
+    }
+
+    private fun initClick(p1: Int): View.OnClickListener = View.OnClickListener {
+        index = if ((index == -1) || (index != p1)) p1 else -1
+
+        notifyDataSetChanged()
     }
 }

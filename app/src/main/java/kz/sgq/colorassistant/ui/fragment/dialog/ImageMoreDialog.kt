@@ -1,19 +1,3 @@
-/*
- * Copyright 2018 Vlad Weber-Pflaumer
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package kz.sgq.colorassistant.ui.fragment.dialog
 
 import android.app.Dialog
@@ -28,19 +12,16 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 import kz.sgq.colorassistant.ui.view.ItemColor
 
-class QRScanDialog : DialogFragment() {
+class ImageMoreDialog : DialogFragment() {
     private var index: Int = 0
     private lateinit var cloud: Cloud
-    private lateinit var clickListener: OnClickListener
     private var text: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val title = resources.getString(R.string.dialog_qr_scan_title)
-        val positive = resources.getString(R.string.dialog_qr_scan_positive)
-        val neutral = resources.getString(R.string.dialog_qr_scan_neutral)
+        val title = resources.getString(R.string.dialog_image_more_title)
+        val positive = resources.getString(R.string.dialog_image_more_positive)
         val dialog = AlertDialog.Builder(activity!!)
         val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_qr, null)
 
@@ -49,9 +30,7 @@ class QRScanDialog : DialogFragment() {
         initView(customLayout)
         textClick(customLayout)
 
-        dialog.setPositiveButton(positive) { _, _ -> clickListener.onClick() }
-
-        dialog.setNeutralButton(neutral) { _, _ -> }
+        dialog.setPositiveButton(positive) { _, _ -> }
 
         return dialog.create()
     }
@@ -87,6 +66,7 @@ class QRScanDialog : DialogFragment() {
     }
 
     private fun enableItems(view: View, itemColor: ItemColor) {
+
         for (i in 0 until view.item_list.childCount)
             (view.item_list.getChildAt(i) as ItemColor).setEnable(false)
 
@@ -98,7 +78,6 @@ class QRScanDialog : DialogFragment() {
 
         itemColor.setColor(color)
         itemColor.setMoveItem(false)
-
         itemColor.setOnClickItemColorListener(initClick(view, color, itemColor))
 
         itemColor.layoutParams = LinearLayout.LayoutParams(
@@ -128,10 +107,6 @@ class QRScanDialog : DialogFragment() {
         text[2] = "HSV\n${ColorConverter.getHSV(color)}"
         text[3] = "CMYK\n${ColorConverter.getCMYK(color)}"
         view.info.text = this.text[index]
-    }
-
-    fun clickListener(clickListener: OnClickListener) {
-        this.clickListener = clickListener
     }
 
     fun cloud(cloud: Cloud) {

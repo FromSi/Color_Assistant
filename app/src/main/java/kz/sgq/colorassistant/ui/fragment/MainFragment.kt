@@ -37,30 +37,32 @@ class MainFragment : Fragment(), OnSelectedButtonListener {
     ): View = inflater.inflate(R.layout.fragment_colors, container, false)
 
     override fun onLike(id: Int) {
+
         colorsFragment.dislike(id)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         settingToolBar()
         setupViewPager()
     }
 
     private fun settingToolBar() {
-//        val actionBar = (activity as AppCompatActivity)
         toolBar.title = getString(R.string.colors)
+//        val actionBar = (activity as AppCompatActivity)
+
 //        actionBar.setSupportActionBar(toolBar)
     }
 
     private fun setupViewPager() {
-        tabLayout.setupWithViewPager(viewPager)
         val adapter = SectionsPageAdapter(childFragmentManager)
 
+        tabLayout.setupWithViewPager(viewPager)
         adapter.addFragment(
                 colorsFragment,
                 getString(R.string.fragmentColorsName)
         )
-
         adapter.addFragment(
                 likesFragment,
                 getString(R.string.fragmentLikesName)
