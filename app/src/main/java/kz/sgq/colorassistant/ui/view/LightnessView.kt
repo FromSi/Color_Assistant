@@ -27,7 +27,6 @@ import kz.sgq.colorassistant.R
 
 class LightnessView : View {
     private var colorPicker: ColorPicker? = null
-
     private var posToSVFactor = 0f
     private var barThickness = 0
     private var barLength = 0
@@ -37,6 +36,8 @@ class LightnessView : View {
     private var barPointerPosition = 0
     private var color = 0
     private var movingPointer = false
+    private var shader: Shader? = null
+    private var shaderHalo: Shader? = null
     private val barPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val barPaintHalo = Paint(Paint.ANTI_ALIAS_FLAG)
     private val barPointerPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -44,18 +45,23 @@ class LightnessView : View {
     private val barRect = RectF()
     private val barRectHalo = RectF()
     private val mHSVColor = FloatArray(3)
-    private var shader: Shader? = null
-    private var shaderHalo: Shader? = null
 
     constructor(context: Context?) : super(context) {
+
         initConstructor(null, 0)
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+
         initConstructor(attrs, 0)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(
+            context: Context?,
+            attrs: AttributeSet?,
+            defStyleAttr: Int
+    ) : super(context, attrs, defStyleAttr) {
+
         initConstructor(attrs, defStyleAttr)
     }
 
@@ -68,19 +74,23 @@ class LightnessView : View {
                 defStyleAttr,
                 0
         )
-
         barThickness = typedArray.getDimensionPixelSize(
                 R.styleable.ColorBar_bar_thickness,
-                resources.getDimensionPixelSize(R.dimen.bar_thickness))
-        barLength = typedArray.getDimensionPixelSize(R.styleable.ColorBar_bar_length,
-                resources.getDimensionPixelSize(R.dimen.bar_length))
+                resources.getDimensionPixelSize(R.dimen.bar_thickness)
+        )
+        barLength = typedArray.getDimensionPixelSize(
+                R.styleable.ColorBar_bar_length,
+                resources.getDimensionPixelSize(R.dimen.bar_length)
+        )
         preferredBarLength = barLength
         barPointerRadius = typedArray.getDimensionPixelSize(
                 R.styleable.ColorBar_bar_pointer_radius,
-                resources.getDimensionPixelSize(R.dimen.bar_pointer_radius))
+                resources.getDimensionPixelSize(R.dimen.bar_pointer_radius)
+        )
         barPointerHaloRadius = typedArray.getDimensionPixelSize(
                 R.styleable.ColorBar_bar_pointer_halo_radius,
-                resources.getDimensionPixelSize(R.dimen.bar_pointer_halo_radius))
+                resources.getDimensionPixelSize(R.dimen.bar_pointer_halo_radius)
+        )
 
         typedArray.recycle()
 
@@ -101,30 +111,27 @@ class LightnessView : View {
         val intrinsicSize = preferredBarLength + (barPointerHaloRadius * 2)
         val lengthMode = View.MeasureSpec.getMode(heightMeasureSpec)
         val lengthSize = View.MeasureSpec.getSize(heightMeasureSpec)
-
         val length = when (lengthMode) {
             MeasureSpec.EXACTLY -> lengthSize
             MeasureSpec.AT_MOST -> Math.min(intrinsicSize, lengthSize)
             MeasureSpec.UNSPECIFIED -> intrinsicSize
             else -> 0
         }
-
         barLength = length - barPointerRadius
+
         setMeasuredDimension(barPointerRadius, (barLength + barPointerRadius))
     }
 
     override fun onDraw(canvas: Canvas?) {
+
         canvas?.drawRoundRect(barRectHalo, 5f, 5f, barPaintHalo)
-
         canvas?.drawRoundRect(barRect, 5f, 5f, barPaint)
-
         canvas?.drawCircle(
                 barPointerHaloRadius.toFloat(),
                 barPointerPosition.toFloat(),
                 barPointerHaloRadius.toFloat(),
                 barPointerHaloPaint
         )
-
         canvas?.drawCircle(
                 barPointerHaloRadius.toFloat(),
                 barPointerPosition.toFloat(),
@@ -135,17 +142,20 @@ class LightnessView : View {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+
         parent.requestDisallowInterceptTouchEvent(true)
 
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
                 movingPointer = true
 
-                if (event.y >= barPointerHaloRadius &&
-                        event.y <= barPointerHaloRadius + barLength) {
+                if ((event.y >= barPointerHaloRadius) &&
+                        (event.y <= (barPointerHaloRadius + barLength))) {
                     barPointerPosition = Math.round(event.y)
+
                     colorPicker?.setPositionLightness(barPointerPosition)
                     calcColor(Math.round(event.y) - barPointerHaloRadius)
+
                     barPointerPaint.color = color
                     barPointerHaloPaint.color = color
                     barPointerHaloPaint.alpha = 0x50
@@ -154,12 +164,15 @@ class LightnessView : View {
                 }
             }
             MotionEvent.ACTION_MOVE -> {
-                if (movingPointer) {
-                    if (event.y >= barPointerHaloRadius &&
-                            event.y <= barPointerHaloRadius + barLength) {
+
+                if (movingPointer)
+                    if ((event.y >= barPointerHaloRadius) &&
+                            (event.y <= (barPointerHaloRadius + barLength))) {
                         barPointerPosition = Math.round(event.y)
+
                         colorPicker?.setPositionLightness(barPointerPosition)
                         calcColor(Math.round(event.y) - barPointerHaloRadius)
+
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
                         barPointerHaloPaint.alpha = 0x50
@@ -167,18 +180,22 @@ class LightnessView : View {
                         invalidate()
                     } else if (event.y < barPointerHaloRadius) {
                         barPointerPosition = barPointerHaloRadius
+
                         colorPicker?.setPositionLightness(barPointerPosition)
                         calcColor(Math.round(event.y) - barPointerHaloRadius)
+
                         color = Color.BLACK
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
                         barPointerHaloPaint.alpha = 0x50
 
                         invalidate()
-                    } else if (event.y > barPointerHaloRadius + barLength) {
+                    } else if (event.y > (barPointerHaloRadius + barLength)) {
                         barPointerPosition = barPointerHaloRadius + barLength
+
                         colorPicker?.setPositionLightness(barPointerPosition)
                         calcColor(Math.round(event.y) - barPointerHaloRadius)
+
                         color = Color.WHITE
                         barPointerPaint.color = color
                         barPointerHaloPaint.color = color
@@ -186,7 +203,6 @@ class LightnessView : View {
 
                         invalidate()
                     }
-                }
             }
             MotionEvent.ACTION_UP -> movingPointer = false
         }
@@ -199,38 +215,24 @@ class LightnessView : View {
 
         barLength = h - barPointerHaloRadius * 2
 
-        barRect.set((barPointerHaloRadius - barThickness / 2).toFloat(),
+        barRect.set(
+                (barPointerHaloRadius - barThickness / 2).toFloat(),
                 barPointerHaloRadius.toFloat(),
                 (barPointerHaloRadius + barThickness / 2).toFloat(),
-                (barLength + barPointerHaloRadius).toFloat())
-
-        barRectHalo.set((barPointerHaloRadius - barThickness / 2).toFloat() - 2f,
+                (barLength + barPointerHaloRadius).toFloat()
+        )
+        barRectHalo.set(
+                (barPointerHaloRadius - barThickness / 2).toFloat() - 2f,
                 barPointerHaloRadius.toFloat() - 2f,
                 (barPointerHaloRadius + barThickness / 2).toFloat() + 2f,
-                (barLength + barPointerHaloRadius).toFloat() + 2f)
-    }
-
-    private fun calcColor(i: Int) {
-        color = if (i > (barLength / 2) && (i < barLength)) {
-            colorPicker?.setLightness(1 - posToSVFactor * (i - barLength / 2), true)
-            Color.HSVToColor(floatArrayOf(mHSVColor[0], 1 - posToSVFactor * (i - barLength / 2), 1f))
-        } else if (i in 1..(barLength - 1)) {
-            colorPicker?.setLightness(posToSVFactor * i, false)
-            Color.HSVToColor(floatArrayOf(mHSVColor[0], 1f, posToSVFactor * i))
-        } else if (i == (barLength / 2)) {
-            colorPicker?.setLightness(1f, false)
-            Color.HSVToColor(floatArrayOf(mHSVColor[0], 1f, 1f))
-        } else if (i <= 0) {
-            colorPicker?.setLightness(0f, false)
-            Color.BLACK
-        } else if (i >= barLength) {
-            colorPicker?.setLightness(0f, true)
-            Color.WHITE
-        } else 0
+                (barLength + barPointerHaloRadius).toFloat() + 2f
+        )
     }
 
     fun setColor(color: Int) {
+
         Color.colorToHSV(color, mHSVColor)
+
         shader = LinearGradient(
                 barPointerHaloRadius.toFloat(),
                 0f,
@@ -252,11 +254,12 @@ class LightnessView : View {
         barPaint.shader = shader
         barPaintHalo.shader = shaderHalo
         barPaintHalo.alpha = 0x50
+
         calcColor(barPointerPosition)
+
         barPointerPaint.color = this.color
         barPointerHaloPaint.color = this.color
         barPointerHaloPaint.alpha = 0x50
-
 
         invalidate()
     }
@@ -271,5 +274,36 @@ class LightnessView : View {
 
     fun addColorPicker(colorPicker: ColorPicker) {
         this.colorPicker = colorPicker
+    }
+
+    private fun calcColor(i: Int) {
+        color = if ((i > (barLength / 2)) && (i < barLength)) {
+
+            colorPicker?.setLightness(1 - posToSVFactor * (i - barLength / 2), true)
+
+            Color.HSVToColor(
+                    floatArrayOf(mHSVColor[0], 1 - posToSVFactor * (i - barLength / 2), 1f)
+            )
+        } else if (i in 1..(barLength - 1)) {
+
+            colorPicker?.setLightness(posToSVFactor * i, false)
+
+            Color.HSVToColor(floatArrayOf(mHSVColor[0], 1f, posToSVFactor * i))
+        } else if (i == (barLength / 2)) {
+
+            colorPicker?.setLightness(1f, false)
+
+            Color.HSVToColor(floatArrayOf(mHSVColor[0], 1f, 1f))
+        } else if (i <= 0) {
+
+            colorPicker?.setLightness(0f, false)
+
+            Color.BLACK
+        } else if (i >= barLength) {
+
+            colorPicker?.setLightness(0f, true)
+
+            Color.WHITE
+        } else 0
     }
 }

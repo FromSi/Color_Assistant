@@ -21,6 +21,6 @@ import com.google.gson.annotations.SerializedName
 
 data class UpdateGson(
         @SerializedName("check")
-                 @Expose
-                 var check: String? = null
+        @Expose
+        var check: String? = null
 )

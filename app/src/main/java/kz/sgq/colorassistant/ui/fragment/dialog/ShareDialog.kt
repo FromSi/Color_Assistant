@@ -46,13 +46,13 @@ class ShareDialog : DialogFragment() {
         return dialog.create()
     }
 
+    fun setText(text: String) {
+        this.text = text
+    }
+
     private fun initView(view: View) {
         val size = resources.getDimension(R.dimen.dialog_share_size)
 
         view.qr.setImageBitmap(QRCode.from(text).withSize(size.toInt(), size.toInt()).bitmap())
-    }
-
-    fun setText(text: String) {
-        this.text = text
     }
 }

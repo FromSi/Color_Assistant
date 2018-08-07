@@ -32,7 +32,27 @@ import com.like.LikeButton
 
 class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     private val itemContainer = ItemContainer()
+
     private lateinit var clickListener: OnItemColorClickListener
+
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+    ): ColorsHolder = ColorsHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_colors, parent, false)
+    )
+
+    override fun getItemCount(): Int = itemContainer.itemList.size
+
+    override fun onBindViewHolder(p0: ColorsHolder, @SuppressLint("RecyclerView") p1: Int) {
+
+        p0.setImagesView(itemContainer.itemList[p1])
+        p0.setLiked(itemContainer.likeList[p1])
+        p0.setView(itemContainer.itemList[p1], clickListener)
+        p0.onLoadVisibly(itemContainer.visiblyList[p1])
+        p0.itemView.like.setOnLikeListener(initLike(p1))
+        p0.itemView.items.setOnClickListener(initClick(p0, p1))
+    }
 
     fun addItems(itemList: MutableList<ItemColor>) {
 
@@ -72,25 +92,6 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
 
     fun setOnItemClickListener(clickListener: OnItemColorClickListener) {
         this.clickListener = clickListener
-    }
-
-    override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-    ): ColorsHolder = ColorsHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_colors, parent, false)
-    )
-
-    override fun getItemCount(): Int = itemContainer.itemList.size
-
-    override fun onBindViewHolder(p0: ColorsHolder, @SuppressLint("RecyclerView") p1: Int) {
-
-        p0.setImagesView(itemContainer.itemList[p1])
-        p0.setLiked(itemContainer.likeList[p1])
-        p0.setView(itemContainer.itemList[p1], clickListener)
-        p0.onLoadVisibly(itemContainer.visiblyList[p1])
-        p0.itemView.like.setOnLikeListener(initLike(p1))
-        p0.itemView.items.setOnClickListener(initClick(p0, p1))
     }
 
     private fun initLike(p1: Int): OnLikeListener = object : OnLikeListener {

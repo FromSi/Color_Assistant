@@ -28,11 +28,9 @@ class ComboViewPager(context: Context, attrs: AttributeSet) : ViewPager(context,
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean = if (disable) false
     else super.onInterceptTouchEvent(event)
 
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean = if (disable) false
     else super.onTouchEvent(event)
-
 
     fun disableScroll(disable: Boolean) {
         this.disable = disable

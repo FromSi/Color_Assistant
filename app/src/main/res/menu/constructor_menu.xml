@@ -6,30 +6,30 @@
         android:id="@+id/save"
         android:icon="@drawable/save"
         android:title="@string/dialog_cloud_save_title"
-        app:showAsAction="always"
-        android:visible="false"/>
+        android:visible="false"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/constructor"
         android:icon="@drawable/constructor"
         android:title="@string/constructor"
-        app:showAsAction="always"
-        android:visible="true"/>
+        android:visible="true"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/cloud"
         android:icon="@drawable/cloud"
         android:title="@string/cloud"
-        app:showAsAction="always"
-        android:visible="false"/>
+        android:visible="false"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/qr"
         android:title="@string/qr"
-        android:visible="true"/>
+        android:visible="true" />
 
     <item
         android:id="@+id/image_scan"
         android:title="@string/image_scan"
-        android:visible="true"/>
+        android:visible="true" />
 </menu>

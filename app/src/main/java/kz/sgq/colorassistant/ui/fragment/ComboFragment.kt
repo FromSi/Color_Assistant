@@ -32,12 +32,13 @@ import kz.sgq.colorassistant.mvp.view.fragment.ComboView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 
 class ComboFragment : MvpAppCompatFragment(), ComboView {
-    @InjectPresenter
-    lateinit var presenter: ComboPresenter
     private var backgroundColorList: MutableList<ImageView> = arrayListOf()
     private var textColorList: MutableList<ImageView> = arrayListOf()
     private var cardList: MutableList<CardView> = arrayListOf()
     private var list: MutableList<String> = arrayListOf()
+
+    @InjectPresenter
+    lateinit var presenter: ComboPresenter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -52,10 +53,6 @@ class ComboFragment : MvpAppCompatFragment(), ComboView {
         initListImageView(view)
         initListTextView(view)
         initListCardView(view)
-    }
-
-    fun initPresenter(list: MutableList<String>) {
-        this.list = list
     }
 
     override fun init(size: Int) {
@@ -113,6 +110,10 @@ class ComboFragment : MvpAppCompatFragment(), ComboView {
     override fun setTextColor(color: Int) {
 
         text.setTextColor(color)
+    }
+
+    fun initPresenter(list: MutableList<String>) {
+        this.list = list
     }
 
     private fun removeView(index: Int) {

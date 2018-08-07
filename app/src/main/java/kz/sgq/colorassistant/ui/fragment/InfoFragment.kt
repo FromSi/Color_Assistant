@@ -30,11 +30,12 @@ import kz.sgq.colorassistant.ui.adapters.SectionsPageAdapter
 import kz.sgq.colorassistant.ui.util.ItemDetails
 
 class InfoFragment : MvpAppCompatFragment(), InfoView {
+    private val saturation = DetailsFragment()
+    private val lightness = DetailsFragment()
+
     @InjectPresenter
     lateinit var presenter: InfoPresenter
     private lateinit var adapter: SectionsPageAdapter
-    private val saturation = DetailsFragment()
-    private val lightness = DetailsFragment()
 
     override fun onCreateView(
             inflater: LayoutInflater,

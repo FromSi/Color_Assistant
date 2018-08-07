@@ -31,10 +31,11 @@ import kz.sgq.colorassistant.ui.util.java.MMCQ
 import java.util.*
 
 class ImageModelImpl : ImageModel {
+    private var state = false
+    private val count = 10
+
     private lateinit var colorList: MutableList<MutableList<Int>>
     private lateinit var cloudList: MutableList<Cloud>
-    private val count = 10
-    private var state = false
 
     override fun setCurrentImage(currentImage: Bitmap, click: OnClickListener) {
         colorList = arrayListOf()

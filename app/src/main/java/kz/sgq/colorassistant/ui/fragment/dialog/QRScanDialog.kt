@@ -33,9 +33,10 @@ import kz.sgq.colorassistant.ui.view.ItemColor
 
 class QRScanDialog : DialogFragment() {
     private var index: Int = 0
+    private var text: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
+
     private lateinit var cloud: Cloud
     private lateinit var clickListener: OnClickListener
-    private var text: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_qr_scan_title)
@@ -54,6 +55,22 @@ class QRScanDialog : DialogFragment() {
         dialog.setNeutralButton(neutral) { _, _ -> }
 
         return dialog.create()
+    }
+
+    fun parseColor(view: View, color: Int) {
+        text[0] = "Hex\n${ColorConverter.getHex(color)}"
+        text[1] = "RGB\n${ColorConverter.getRGB(color)}"
+        text[2] = "HSV\n${ColorConverter.getHSV(color)}"
+        text[3] = "CMYK\n${ColorConverter.getCMYK(color)}"
+        view.info.text = this.text[index]
+    }
+
+    fun clickListener(clickListener: OnClickListener) {
+        this.clickListener = clickListener
+    }
+
+    fun cloud(cloud: Cloud) {
+        this.cloud = cloud
     }
 
     private fun initView(view: View) {
@@ -120,21 +137,5 @@ class QRScanDialog : DialogFragment() {
             enableItems(view, itemColor)
             parseColor(view, color)
         }
-    }
-
-    fun parseColor(view: View, color: Int) {
-        text[0] = "Hex\n${ColorConverter.getHex(color)}"
-        text[1] = "RGB\n${ColorConverter.getRGB(color)}"
-        text[2] = "HSV\n${ColorConverter.getHSV(color)}"
-        text[3] = "CMYK\n${ColorConverter.getCMYK(color)}"
-        view.info.text = this.text[index]
-    }
-
-    fun clickListener(clickListener: OnClickListener) {
-        this.clickListener = clickListener
-    }
-
-    fun cloud(cloud: Cloud) {
-        this.cloud = cloud
     }
 }

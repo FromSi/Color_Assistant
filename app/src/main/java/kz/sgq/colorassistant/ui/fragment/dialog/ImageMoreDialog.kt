@@ -16,8 +16,9 @@ import kz.sgq.colorassistant.ui.view.ItemColor
 
 class ImageMoreDialog : DialogFragment() {
     private var index: Int = 0
-    private lateinit var cloud: Cloud
     private var text: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
+
+    private lateinit var cloud: Cloud
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_image_more_title)
@@ -33,6 +34,18 @@ class ImageMoreDialog : DialogFragment() {
         dialog.setPositiveButton(positive) { _, _ -> }
 
         return dialog.create()
+    }
+
+    fun parseColor(view: View, color: Int) {
+        text[0] = "Hex\n${ColorConverter.getHex(color)}"
+        text[1] = "RGB\n${ColorConverter.getRGB(color)}"
+        text[2] = "HSV\n${ColorConverter.getHSV(color)}"
+        text[3] = "CMYK\n${ColorConverter.getCMYK(color)}"
+        view.info.text = this.text[index]
+    }
+
+    fun cloud(cloud: Cloud) {
+        this.cloud = cloud
     }
 
     private fun initView(view: View) {
@@ -99,17 +112,5 @@ class ImageMoreDialog : DialogFragment() {
             enableItems(view, itemColor)
             parseColor(view, color)
         }
-    }
-
-    fun parseColor(view: View, color: Int) {
-        text[0] = "Hex\n${ColorConverter.getHex(color)}"
-        text[1] = "RGB\n${ColorConverter.getRGB(color)}"
-        text[2] = "HSV\n${ColorConverter.getHSV(color)}"
-        text[3] = "CMYK\n${ColorConverter.getCMYK(color)}"
-        view.info.text = this.text[index]
-    }
-
-    fun cloud(cloud: Cloud) {
-        this.cloud = cloud
     }
 }

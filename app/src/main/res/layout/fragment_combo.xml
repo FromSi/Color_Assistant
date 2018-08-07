@@ -50,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp" />
 
-
             <android.support.v7.widget.CardView
                 android:id="@+id/background"
                 android:layout_width="match_parent"

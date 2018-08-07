@@ -13,7 +13,6 @@
     <string name="qr_scan">QR Scan</string>
     <string name="share">Share</string>
 
-
     <string name="colors">Colors</string>
     <string name="constructor">Constructor</string>
     <string name="collection">Collection</string>
@@ -40,11 +39,9 @@
     <string name="dialog_qr_scan_error_positive">Try</string>
     <string name="dialog_qr_scan_error_neutral">Cancel</string>
 
-
     <string name="dialog_qr_scan_title">QR</string>
     <string name="dialog_qr_scan_positive">Add</string>
     <string name="dialog_qr_scan_neutral">Cancel</string>
-
 
     <string name="dialog_image_more_title">More</string>
     <string name="dialog_image_more_positive">OK</string>
@@ -56,5 +53,4 @@
 
     <string name="dialog_color_info_title">Information</string>
     <string name="dialog_color_info_positive">OK</string>
-
 </resources>

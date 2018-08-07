@@ -36,7 +36,6 @@ class DetailsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_details, container, false)
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

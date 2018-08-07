@@ -30,7 +30,26 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnItemCloudClickListener
 class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
     private var list: MutableList<Cloud> = arrayListOf()
     private var visiblyList: MutableList<Boolean> = arrayListOf()
+
     private lateinit var clickListener: OnItemCloudClickListener
+
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+    ): CloudHolder = CloudHolder(LayoutInflater
+            .from(parent.context).inflate(R.layout.item_colors_cloud, parent, false))
+
+    override fun getItemCount(): Int = list.size
+
+    override fun onBindViewHolder(p0: CloudHolder, p1: Int) {
+
+        p0.setImagesView(calcItemColor(p1))
+        p0.setView(list[p1], clickListener)
+        p0.setShare(list[p1], clickListener)
+        p0.setDelete(list[p1], p1, clickListener)
+        p0.onLoadVisibly(visiblyList[p1])
+        p0.itemView.items.setOnClickListener(initClick(p0, p1))
+    }
 
     fun addList(list: MutableList<Cloud>) {
         this.list = list
@@ -57,24 +76,6 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
 
     fun setOnItemClickListener(clickListener: OnItemCloudClickListener) {
         this.clickListener = clickListener
-    }
-
-    override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-    ): CloudHolder = CloudHolder(LayoutInflater
-            .from(parent.context).inflate(R.layout.item_colors_cloud, parent, false))
-
-    override fun getItemCount(): Int = list.size
-
-    override fun onBindViewHolder(p0: CloudHolder, p1: Int) {
-
-        p0.setImagesView(calcItemColor(p1))
-        p0.setView(list[p1], clickListener)
-        p0.setShare(list[p1], clickListener)
-        p0.setDelete(list[p1], p1, clickListener)
-        p0.onLoadVisibly(visiblyList[p1])
-        p0.itemView.items.setOnClickListener(initClick(p0, p1))
     }
 
     private fun initClick(p0: CloudHolder, p1: Int): View.OnClickListener = View.OnClickListener {

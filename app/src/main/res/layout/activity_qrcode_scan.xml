@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ui.activity.QRCodeScanActivity">
 
     <SurfaceView
@@ -12,10 +12,9 @@
         android:layout_height="match_parent" />
 
     <com.sqsong.qrcodelib.view.QRCodeScanView
-        android:id="@+id/qrscan_view"
+        android:id="@+id/qr_scan_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <!--app:centerLineColor="@android:color/holo_red_dark"-->
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolBar"

@@ -72,24 +72,6 @@ class LikesPresenter : MvpPresenter<LikesView>() {
                 }
     }
 
-    private fun isCheck(id: Int, size: Int): Boolean {
-
-        for (i in 0 until size)
-            if (id == model.getColorList()[i].id)
-                return false
-
-        return true
-    }
-
-    private fun calcDelete(id: Int, list: MutableList<Colors>): Boolean {
-
-        for (i in 0 until list.size)
-            if (list[i].idCol == id)
-                return false
-
-        return true
-    }
-
     fun handlerColorListener(itemCount: Int, lastVisibleItem: Int) {
 
         if (!model.isLoading() &&
@@ -109,6 +91,24 @@ class LikesPresenter : MvpPresenter<LikesView>() {
     fun onItemViewClick(view: View, itemColor: ItemColor) {
 
         viewState.showActivityInfo(itemColor.colors)
+    }
+
+    private fun isCheck(id: Int, size: Int): Boolean {
+
+        for (i in 0 until size)
+            if (id == model.getColorList()[i].id)
+                return false
+
+        return true
+    }
+
+    private fun calcDelete(id: Int, list: MutableList<Colors>): Boolean {
+
+        for (i in 0 until list.size)
+            if (list[i].idCol == id)
+                return false
+
+        return true
     }
 
     private fun getColorList() {

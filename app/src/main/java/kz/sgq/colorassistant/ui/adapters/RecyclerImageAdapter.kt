@@ -36,9 +36,26 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
     private var background: MutableList<Int> = arrayListOf()
     private var shareList: MutableList<String> = arrayListOf()
     private var likeList: MutableList<Boolean> = arrayListOf()
+
     private lateinit var saveListener: OnSaveListener
     private lateinit var shareListener: OnShareListener
     private lateinit var moreListener: OnMoreListener
+
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ImageHolder = ImageHolder(LayoutInflater
+            .from(p0.context).inflate(R.layout.item_color_image, p0, false))
+
+    override fun getItemCount(): Int = background.size
+
+    override fun onBindViewHolder(p0: ImageHolder, p1: Int) {
+        p0.initColors(colors[p1])
+        p0.initLike(likeList[p1])
+        p0.initBackground(background[p1])
+        p0.initSaveColor()
+        p0.itemView.save.setOnLikeListener(initSave(p1))
+        p0.itemView.share.setOnLikeListener(initShare(p1))
+        p0.itemView.more.setOnClickListener(initMore(p1))
+        initShare(p1)
+    }
 
     fun initColors(colors: MutableList<MutableList<Int>>) {
         this.colors = colors
@@ -57,22 +74,6 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
 
     fun setShareListener(shareListener: OnShareListener) {
         this.shareListener = shareListener
-    }
-
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ImageHolder = ImageHolder(LayoutInflater
-            .from(p0.context).inflate(R.layout.item_color_image, p0, false))
-
-    override fun getItemCount(): Int = background.size
-
-    override fun onBindViewHolder(p0: ImageHolder, p1: Int) {
-        p0.initColors(colors[p1])
-        p0.initLike(likeList[p1])
-        p0.initBackground(background[p1])
-        p0.initSaveColor()
-        p0.itemView.save.setOnLikeListener(initSave(p1))
-        p0.itemView.share.setOnLikeListener(initShare(p1))
-        p0.itemView.more.setOnClickListener(initMore(p1))
-        initShare(p1)
     }
 
     private fun initShare(index: Int): OnLikeListener = object : OnLikeListener {

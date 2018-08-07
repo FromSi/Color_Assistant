@@ -63,20 +63,26 @@ class ItemColor : View {
     private var deleting = false
     private var moveItem = true
 
-    object ItemColor{
+    object ItemColor {
         var boolDelete = false
     }
 
-
     constructor(context: Context?) : super(context) {
+
         initConstructor(null, 0)
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+
         initConstructor(attrs, 0)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(
+            context: Context?,
+            attrs: AttributeSet?,
+            defStyleAttr: Int
+    ) : super(context, attrs, defStyleAttr) {
+
         initConstructor(attrs, defStyleAttr)
     }
 
@@ -85,9 +91,19 @@ class ItemColor : View {
 
         canvas?.translate(translationOffset, translationOffset)
 
-        if (enableHalo) canvas?.drawCircle(positionX, positionCurrent, itemPointerHaloRadius.toFloat(), itemPointerHaloPaint)
+        if (enableHalo) canvas?.drawCircle(
+                positionX,
+                positionCurrent,
+                itemPointerHaloRadius.toFloat(),
+                itemPointerHaloPaint
+        )
 
-        canvas?.drawCircle(positionX, positionCurrent, itemPointerRadius.toFloat(), itemPointerPaint)
+        canvas?.drawCircle(
+                positionX,
+                positionCurrent,
+                itemPointerRadius.toFloat(),
+                itemPointerPaint
+        )
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -96,14 +112,12 @@ class ItemColor : View {
         val widthSize = View.MeasureSpec.getSize(widthMeasureSpec)
         val heightMode = View.MeasureSpec.getMode(heightMeasureSpec)
         val heightSize = View.MeasureSpec.getSize(heightMeasureSpec)
-
         val width = when (widthMode) {
             MeasureSpec.EXACTLY -> widthSize
             MeasureSpec.AT_MOST -> Math.min(intrinsicSize, widthSize)
             MeasureSpec.UNSPECIFIED -> intrinsicSize
             else -> 0
         }
-
         val height = when (heightMode) {
             MeasureSpec.EXACTLY -> heightSize
             MeasureSpec.AT_MOST -> Math.min(intrinsicSize, heightSize)
@@ -112,7 +126,9 @@ class ItemColor : View {
         }
 
         min = Math.min(width, height)
+
         setMeasuredDimension(min + (min / 4), ((min * 0.5f) * 2 + min).toInt())
+
         translationOffset = min * 0.5f
         positionX = (translationOffset - (min / 4)) / 2
         positionY = min * 0.5f
@@ -129,16 +145,20 @@ class ItemColor : View {
 
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
-                if (positionY <= event.y &&
-                        positionY + itemPointerHaloRadius * 2 >= event.y) {
+
+                if ((positionY <= event.y) &&
+                        ((positionY + (itemPointerHaloRadius * 2)) >= event.y)) {
                     actY = event.y
+
                     if (moveItem)
-                    movingPointer = true
+                        movingPointer = true
+
                     clickItemColor?.onClick()
                 }
             }
 
             MotionEvent.ACTION_MOVE -> {
+
                 if (movingPointer) {
                     val delDistension = (positionY * 0.5)
                     val actTopOne = (positionY - (actY - event.y)) + delDistension
@@ -147,24 +167,26 @@ class ItemColor : View {
                             (event.y - actY)) - delDistension
                     val actBottomThree = ((positionY + itemPointerHaloRadius * 2) +
                             (event.y - actY))
-
                     positionCurrent = when {
-                        actY > event.y && (positionY - (actY - event.y)) >= 0 -> {
+                        (actY > event.y) &&
+                                ((positionY - (actY - event.y)) >= 0) -> {
                             positionY - (actY - event.y)
                         }
-                        actY < event.y && actBottomThree < (min * 0.5f) * 2 + min && ItemColor.boolDelete -> {
+                        (actY < event.y) &&
+                                (actBottomThree < ((min * 0.5f) * 2) + min) &&
+                                ItemColor.boolDelete -> {
                             positionY + (event.y - actY)
                         }
                         else -> positionCurrent
                     }
 
-                    act = if (positionY >= event.y ||
-                            positionY >= actTopOne) {
+                    act = if ((positionY >= event.y) || (positionY >= actTopOne)) {
                         deleting = false
+
                         true
-                    } else if (actBottomOne <= event.y ||
-                            actBottomOne <= actBottomTwo) {
+                    } else if ((actBottomOne <= event.y) || (actBottomOne <= actBottomTwo)) {
                         deleting = true
+
                         true
                     } else false
 
@@ -174,20 +196,19 @@ class ItemColor : View {
 
             MotionEvent.ACTION_UP -> {
                 if (!deleting && act) {
-                    itemListener?.onInfo(color)
                     positionCurrent = positionY
 
+                    itemListener?.onInfo(color)
                     invalidate()
                 } else if (deleting && act && ItemColor.boolDelete) {
                     positionCurrent = positionY
 
                     invalidate()
-
                     itemListener?.onDelete(deleteIndex)
                 } else {
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
                     positionCurrent = positionY
 
+                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
                     invalidate()
                 }
 
@@ -198,42 +219,12 @@ class ItemColor : View {
         return true
     }
 
-    private fun initConstructor(attrs: AttributeSet?, defStyleAttr: Int) {
-        val resources = context.resources
-        val typedArray: TypedArray = context.obtainStyledAttributes(
-                attrs,
-                R.styleable.ItemColor,
-                defStyleAttr,
-                0
-        )
-
-        itemPointerRadius = typedArray.getDimensionPixelSize(
-                R.styleable.ItemColor_item_center_radius,
-                resources.getDimensionPixelSize(R.dimen.item_pointer_radius)
-        )
-
-        itemPointerHaloRadius = typedArray.getDimensionPixelSize(
-                R.styleable.ItemColor_item_center_halo_radius,
-                resources.getDimensionPixelSize(R.dimen.item_pointer_halo_radius)
-        )
-
-        typedArray.recycle()
-
-        firstItemPointerRadius = itemPointerRadius
-        firstItemPointerHaloRadius = itemPointerHaloRadius
-
-        itemPointerPaint.color = Color.BLUE
-        itemPointerHaloPaint.color = Color.BLUE
-        itemPointerHaloPaint.alpha = invisibilityHalo
-    }
-
-    fun setOnItemColorListener(itemListener: OnItemColorListener){
+    fun setOnItemColorListener(itemListener: OnItemColorListener) {
         this.itemListener = itemListener
     }
 
     fun setColor(color: Int) {
         this.color = color
-
         itemPointerPaint.color = color
         itemPointerHaloPaint.color = color
         itemPointerHaloPaint.alpha = invisibilityHalo
@@ -241,15 +232,15 @@ class ItemColor : View {
         invalidate()
     }
 
-    fun setScroll(scroll: Boolean){
+    fun setScroll(scroll: Boolean) {
         this.scroll = scroll
     }
 
-    fun setDeleteIndex(index: Int){
+    fun setDeleteIndex(index: Int) {
         deleteIndex = index
     }
 
-    fun setMoveItem(moveItem: Boolean){
+    fun setMoveItem(moveItem: Boolean) {
         this.moveItem = moveItem
     }
 
@@ -305,5 +296,31 @@ class ItemColor : View {
 
     fun setOnClickItemColorListener(clickItemColor: OnClickItemColorListener) {
         this.clickItemColor = clickItemColor
+    }
+
+    private fun initConstructor(attrs: AttributeSet?, defStyleAttr: Int) {
+        val resources = context.resources
+        val typedArray: TypedArray = context.obtainStyledAttributes(
+                attrs,
+                R.styleable.ItemColor,
+                defStyleAttr,
+                0
+        )
+        itemPointerRadius = typedArray.getDimensionPixelSize(
+                R.styleable.ItemColor_item_center_radius,
+                resources.getDimensionPixelSize(R.dimen.item_pointer_radius)
+        )
+        itemPointerHaloRadius = typedArray.getDimensionPixelSize(
+                R.styleable.ItemColor_item_center_halo_radius,
+                resources.getDimensionPixelSize(R.dimen.item_pointer_halo_radius)
+        )
+
+        typedArray.recycle()
+
+        firstItemPointerRadius = itemPointerRadius
+        firstItemPointerHaloRadius = itemPointerHaloRadius
+        itemPointerPaint.color = Color.BLUE
+        itemPointerHaloPaint.color = Color.BLUE
+        itemPointerHaloPaint.alpha = invisibilityHalo
     }
 }

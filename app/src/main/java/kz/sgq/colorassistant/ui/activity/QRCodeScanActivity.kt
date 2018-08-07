@@ -49,24 +49,6 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
         initEvent()
     }
 
-    private fun initView() {
-        mToolbar = findViewById<View>(R.id.toolBar) as Toolbar
-        mSurfaceView = findViewById<View>(R.id.surfaceView) as SurfaceView
-        mQRCodeScanView = findViewById<View>(R.id.qrscan_view) as QRCodeScanView
-    }
-
-    private fun initEvent() {
-
-        setSupportActionBar(mToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        mToolbar!!.setNavigationOnClickListener { finish() }
-
-        val layoutParams = mToolbar!!.layoutParams as RelativeLayout.LayoutParams
-        layoutParams.topMargin = DensityUtil.getStatusBarHeight(this)
-        mSurfaceHolder = mSurfaceView!!.holder
-        mQRCodeManager = QRCodeManager(applicationContext, this)
-    }
-
     override fun onResume() {
         super.onResume()
 
@@ -97,5 +79,23 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
         intent.putExtra("scan_result", result.text)
         setResult(Activity.RESULT_OK, intent)
         finish()
+    }
+
+    private fun initView() {
+        mToolbar = findViewById<View>(R.id.toolBar) as Toolbar
+        mSurfaceView = findViewById<View>(R.id.surfaceView) as SurfaceView
+        mQRCodeScanView = findViewById<View>(R.id.qr_scan_view) as QRCodeScanView
+    }
+
+    private fun initEvent() {
+
+        setSupportActionBar(mToolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        mToolbar!!.setNavigationOnClickListener { finish() }
+
+        val layoutParams = mToolbar!!.layoutParams as RelativeLayout.LayoutParams
+        layoutParams.topMargin = DensityUtil.getStatusBarHeight(this)
+        mSurfaceHolder = mSurfaceView!!.holder
+        mQRCodeManager = QRCodeManager(applicationContext, this)
     }
 }

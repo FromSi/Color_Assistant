@@ -27,13 +27,7 @@ import kz.sgq.colorassistant.ui.util.ItemDetails
 
 class RecyclerDetailsAdapter : RecyclerView.Adapter<DetailsHolder>() {
     private var list: MutableList<ItemDetails> = arrayListOf()
-    var index: Int = -1
-
-    fun addList(list: MutableList<ItemDetails>) {
-        this.list = list
-
-        notifyDataSetChanged()
-    }
+    private var index: Int = -1
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -56,6 +50,12 @@ class RecyclerDetailsAdapter : RecyclerView.Adapter<DetailsHolder>() {
         p0.setPercent(p1)
 
         p0.itemView.cardView.setOnClickListener(initClick(p1))
+    }
+
+    fun addList(list: MutableList<ItemDetails>) {
+        this.list = list
+
+        notifyDataSetChanged()
     }
 
     private fun initClick(p1: Int): View.OnClickListener = View.OnClickListener {

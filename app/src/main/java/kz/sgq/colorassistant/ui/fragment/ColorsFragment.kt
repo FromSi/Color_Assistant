@@ -36,9 +36,10 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
 import java.io.Serializable
 
 class ColorsFragment : MvpAppCompatFragment(), ColorsView {
+    private var adapter = RecyclerColorsAdapter()
+
     @InjectPresenter
     lateinit var presenter: ColorsPresenter
-    private var adapter = RecyclerColorsAdapter()
     private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
@@ -46,7 +47,6 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_color_list, container, false)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

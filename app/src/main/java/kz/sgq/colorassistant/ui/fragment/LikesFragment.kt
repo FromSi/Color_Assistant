@@ -37,10 +37,11 @@ import kz.sgq.colorassistant.ui.util.interfaces.OnSelectedButtonListener
 import java.io.Serializable
 
 class LikesFragment : MvpAppCompatFragment(), LikesView {
+    private var adapter = RecyclerColorsAdapter()
+
     @InjectPresenter
     lateinit var presenter: LikesPresenter
     private lateinit var listener: OnSelectedButtonListener
-    private var adapter = RecyclerColorsAdapter()
     private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
@@ -48,7 +49,6 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_color_list, container, false)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

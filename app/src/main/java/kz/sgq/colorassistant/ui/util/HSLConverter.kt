@@ -54,14 +54,6 @@ object HSLConverter {
         return Color.rgb(r, g, b)
     }
 
-    private fun calcSaturation(
-            rgbColor: Int,
-            arf: Int,
-            float: Float
-    ): Int = if (rgbColor <= 128 && rgbColor != arf) (arf - (arf - rgbColor) * (float)).toInt()
-    else if (rgbColor > 128 && rgbColor != arf) (arf + (rgbColor - arf) * (float)).toInt()
-    else arf
-
     fun getLightnessList(color: Int): MutableList<Int> {
         val list = ArrayList<Int>()
         val r = getCalcLightnessRGB(Color.red(color))
@@ -73,6 +65,14 @@ object HSLConverter {
 
         return list
     }
+
+    private fun calcSaturation(
+            rgbColor: Int,
+            arf: Int,
+            float: Float
+    ): Int = if (rgbColor <= 128 && rgbColor != arf) (arf - (arf - rgbColor) * (float)).toInt()
+    else if (rgbColor > 128 && rgbColor != arf) (arf + (rgbColor - arf) * (float)).toInt()
+    else arf
 
     private fun getCalcLightnessRGB(rgbColor: Int): MutableList<Int> {
         var list: MutableList<Int> = arrayListOf()

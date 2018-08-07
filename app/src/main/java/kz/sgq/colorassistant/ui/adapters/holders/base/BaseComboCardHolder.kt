@@ -25,14 +25,6 @@ import kz.sgq.colorassistant.ui.util.ItemColor
 
 open class BaseComboCardHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
-    private val listImage: Array<ImageView?> = arrayOf(
-            itemView?.itemOne,
-            itemView?.itemTwo,
-            itemView?.itemThree,
-            itemView?.itemFour,
-            itemView?.itemFive
-    )
-
     fun setImagesView(itemColor: ItemColor) {
 
         for (i in 0..4) {
@@ -59,4 +51,12 @@ open class BaseComboCardHolder(itemView: View?) : RecyclerView.ViewHolder(itemVi
         else
             itemView.itemsTwo.visibility = View.GONE
     }
+
+    private val listImage: Array<ImageView?> = arrayOf(
+            itemView?.itemOne,
+            itemView?.itemTwo,
+            itemView?.itemThree,
+            itemView?.itemFour,
+            itemView?.itemFive
+    )
 }

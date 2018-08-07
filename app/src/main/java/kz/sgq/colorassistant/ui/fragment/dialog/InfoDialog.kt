@@ -46,6 +46,10 @@ class InfoDialog : DialogFragment() {
         return dialog.create()
     }
 
+    fun setColor(color: Int) {
+        this.color = color
+    }
+
     @SuppressLint("SetTextI18n")
     private fun initView(view: View) {
         view.hex_text.text = "Hex ${ColorConverter.getHex(color)}"
@@ -59,9 +63,5 @@ class InfoDialog : DialogFragment() {
         view.m_text.text = "M ${ColorConverter.getCMYK(color, 1)}"
         view.y_text.text = "Y ${ColorConverter.getCMYK(color, 2)}"
         view.k_text.text = "K ${ColorConverter.getCMYK(color, 3)}"
-    }
-
-    fun setColor(color: Int) {
-        this.color = color
     }
 }

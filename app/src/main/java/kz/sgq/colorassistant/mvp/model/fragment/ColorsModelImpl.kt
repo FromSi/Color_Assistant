@@ -30,6 +30,7 @@ class ColorsModelImpl : ColorsModel {
     private var loading = true
     private var idList: MutableList<Int> = arrayListOf()
     private var likeList: MutableList<Boolean> = arrayListOf()
+
     private lateinit var randomItems: RandomItems
 
     init {

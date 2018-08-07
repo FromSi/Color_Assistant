@@ -33,11 +33,12 @@ import kz.sgq.colorassistant.mvp.view.ComboView
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 
 class ComboActivity : MvpAppCompatActivity(), ComboView, OnClickActivity {
-    @InjectPresenter
-    lateinit var presenter: ComboPresenter
     private var adapter = SectionsPageAdapter(supportFragmentManager)
     private val comboFragment = ComboFragment()
     private val infoFragment = InfoFragment()
+
+    @InjectPresenter
+    lateinit var presenter: ComboPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

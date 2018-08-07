@@ -24,8 +24,9 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.interfaces.OnDeleteItemListener
 
 class DeleteDialog : DialogFragment() {
-    private lateinit var deleteListener: OnDeleteItemListener
     private var index: Int = 0
+
+    private lateinit var deleteListener: OnDeleteItemListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_color_delete_title)
