@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_color_list.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.fragment.ColorsPresenter
 import kz.sgq.colorassistant.mvp.view.fragment.ColorsView
+import kz.sgq.colorassistant.ui.activity.BetaComboActivity
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
@@ -87,7 +88,7 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
-        val intent = Intent(context, ComboActivity::class.java)
+        val intent = Intent(context, BetaComboActivity::class.java)
 
         intent.putExtra("map", list as Serializable)
         startActivity(intent)

@@ -42,6 +42,10 @@ import kz.sgq.colorassistant.ui.fragment.dialog.*
 import kz.sgq.colorassistant.ui.view.ItemColor
 import kz.sgq.colorassistant.ui.util.interfaces.*
 import java.io.Serializable
+import android.support.design.widget.Snackbar
+import android.widget.TextView
+import kz.sgq.colorassistant.ui.activity.BetaComboActivity
+
 
 class CloudFragment : MvpAppCompatFragment(), CloudView {
     private var adapter = RecyclerCloudAdapter()
@@ -85,10 +89,21 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     override fun errorQR() {
-        val dialog = QRScanErrorDialog()
+        val snack = Snackbar.make(
+                view!!,
+                resources.getString(R.string.snack_qr_scan_error_title),
+                Snackbar.LENGTH_LONG
+        )
+                .setAction(
+                        resources.getString(R.string.snack_qr_scan_error_click),
+                        initClickError()
+                )
+                .setActionTextColor(resources.getColor(R.color.snack_error))
 
-        dialog.clickListener(initClickError())
-        dialog.show(fragmentManager, "error_qr_dialog")
+        snack.view
+                .findViewById<TextView>(android.support.design.R.id.snackbar_text)
+                .setTextColor(resources.getColor(R.color.snack_text))
+        snack.show()
     }
 
     override fun shareItem(text: String) {
@@ -99,7 +114,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
-        val intent = Intent(context, ComboActivity::class.java)
+        val intent = Intent(context, BetaComboActivity::class.java)
 
         intent.putExtra("map", list as Serializable)
         startActivity(intent)
@@ -131,12 +146,9 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         dialog.show(fragmentManager, "qr_dialog")
     }
 
-    private fun initClickError(): OnClickListener = object : OnClickListener {
+    private fun initClickError(): View.OnClickListener = View.OnClickListener {
 
-        override fun onClick() {
-
-            checkCameraPermission()
-        }
+        checkCameraPermission()
     }
 
     private fun initClickAnswer(cloud: Cloud): OnClickListener = object : OnClickListener {
@@ -224,9 +236,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     private fun initItemColor(): OnItemColorListener = object : OnItemColorListener {
 
         override fun onInfo(color: Int) {
-            val dialog = InfoDialog()
-            dialog.setColor(color)
-            dialog.show(fragmentManager, "info_dialog")
+            initInfoSheet(color)
         }
 
         override fun onDelete(index: Int) {
@@ -346,5 +356,11 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
             presenter.addItem(cloud)
         }
+    }
+
+    private fun initInfoSheet(color: Int) {
+        val dialog = InfoColorBottomSheet()
+        dialog.setColor(color)
+        dialog.show(fragmentManager, "info_color_bottom_sheet")
     }
 }

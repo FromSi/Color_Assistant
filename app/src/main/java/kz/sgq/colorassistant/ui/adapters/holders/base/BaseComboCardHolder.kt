@@ -53,7 +53,7 @@ open class BaseComboCardHolder(itemView: View?) : RecyclerView.ViewHolder(itemVi
     }
 
     private val listImage: Array<ImageView?> = arrayOf(
-            itemView?.itemOne,
+            itemView?.list,
             itemView?.itemTwo,
             itemView?.itemThree,
             itemView?.itemFour,

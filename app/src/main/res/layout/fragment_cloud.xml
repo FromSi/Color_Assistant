@@ -81,4 +81,6 @@
         android:layout_height="wrap_content"
         android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <include layout="@layout/dialog_info" />
 </android.support.design.widget.CoordinatorLayout>

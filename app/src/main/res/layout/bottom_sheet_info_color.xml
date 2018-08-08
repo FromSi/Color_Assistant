@@ -7,17 +7,28 @@
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_sheet_height"
+        android:layout_marginStart="@dimen/bottom_sheet_margin"
+        android:textSize="@dimen/bottom_sheet_text"
+        android:gravity="center_vertical"
+        android:text="@string/dialog_color_info_title"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/hex_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_sheet_height"
+        android:layout_marginStart="@dimen/bottom_sheet_margin"
+        android:gravity="center"
         android:paddingTop="@dimen/dialog_info_indent"
-        android:textSize="@dimen/dialog_info_text" />
+        android:textSize="@dimen/bottom_sheet_text" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/bottom_sheet_margin">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -30,19 +41,19 @@
                 android:id="@+id/r_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
 
             <TextView
                 android:id="@+id/g_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
 
             <TextView
                 android:id="@+id/b_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,19 +67,19 @@
                 android:id="@+id/h_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
 
             <TextView
                 android:id="@+id/s_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
 
             <TextView
                 android:id="@+id/v_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,25 +93,25 @@
                 android:id="@+id/c_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
 
             <TextView
                 android:id="@+id/m_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
 
             <TextView
                 android:id="@+id/y_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
 
             <TextView
                 android:id="@+id/k_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog_info_text" />
+                android:textSize="@dimen/bottom_sheet_text" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

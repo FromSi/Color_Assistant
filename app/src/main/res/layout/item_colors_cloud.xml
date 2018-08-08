@@ -20,7 +20,7 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <ImageView
-                android:id="@+id/itemOne"
+                android:id="@+id/list"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

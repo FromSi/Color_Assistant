@@ -12,4 +12,7 @@
     <color name="icon_def">#000</color>
 
     <color name="colorMusk">#70000000</color>
+
+    <color name="snack_text">#fff</color>
+    <color name="snack_error">#ff0000</color>
 </resources>
