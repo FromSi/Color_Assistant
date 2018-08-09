@@ -22,7 +22,6 @@ import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Colors
 import kz.sgq.colorassistant.ui.util.ItemColor
 import kz.sgq.colorassistant.ui.util.RandomItemsImpl
-import kz.sgq.colorassistant.ui.util.interfaces.RandomItems
 import java.util.ArrayList
 
 class ColorsModelImpl : ColorsModel {
@@ -31,7 +30,18 @@ class ColorsModelImpl : ColorsModel {
     private var idList: MutableList<Int> = arrayListOf()
     private var likeList: MutableList<Boolean> = arrayListOf()
 
-    private lateinit var randomItems: RandomItems
+    private lateinit var randomItems: RandomListener
+
+    interface RandomListener{
+
+        fun onResize(size: Int)
+
+        fun onDelete(index: Int)
+
+        fun onClear()
+
+        fun onNumbers(): IntArray
+    }
 
     init {
 

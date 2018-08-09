@@ -24,7 +24,6 @@ import com.arellomobile.mvp.MvpPresenter
 import kz.sgq.colorassistant.mvp.model.ImageModelImpl
 import kz.sgq.colorassistant.mvp.model.interfaces.ImageModel
 import kz.sgq.colorassistant.mvp.view.ImageView
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 
 @InjectViewState
 class ImagePresenter : MvpPresenter<ImageView>() {
@@ -51,8 +50,7 @@ class ImagePresenter : MvpPresenter<ImageView>() {
     fun setCurrentImage(currentImage: Bitmap) {
 
         model.setState(true)
-        model.setCurrentImage(currentImage, object : OnClickListener {
-
+        model.setCurrentImage(currentImage, object : ImageModelImpl.OnClickListener {
             override fun onClick() {
 
                 viewState.initItemsColor(model.getColorList())

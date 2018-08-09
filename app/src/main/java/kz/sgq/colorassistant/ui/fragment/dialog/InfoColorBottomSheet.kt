@@ -56,7 +56,6 @@ class InfoColorBottomSheet : BottomSheetDialogFragment() {
 
     private fun initCallback(): BottomSheetBehavior.BottomSheetCallback =
             object : BottomSheetBehavior.BottomSheetCallback() {
-
                 override fun onSlide(p0: View, p1: Float) {
 
                 }

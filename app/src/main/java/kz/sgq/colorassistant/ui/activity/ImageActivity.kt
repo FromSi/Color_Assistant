@@ -34,9 +34,6 @@ import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.RecyclerImageAdapter
 import kz.sgq.colorassistant.ui.fragment.dialog.ImageMoreDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
-import kz.sgq.colorassistant.ui.util.interfaces.OnMoreListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnSaveListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnShareListener
 
 class ImageActivity : MvpAppCompatActivity(), ImageView {
     @InjectPresenter
@@ -83,9 +80,7 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         colors.adapter = adapter
 
         adapter.initColors(list)
-        initSave()
-        initShare()
-        initShow()
+        initClick()
         setVisibly(true)
     }
 
@@ -121,17 +116,6 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         }
     }
 
-    private fun initShow() {
-
-        adapter.setMoreListener(object : OnMoreListener {
-
-            override fun show(index: Int) {
-
-                presenter.showMore(index)
-            }
-        })
-    }
-
     private fun initToolBar() {
         toolBar.title = resources.getString(R.string.image_scan)
 
@@ -146,9 +130,20 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         startActivityForResult(photoPickerIntent, 1)
     }
 
-    private fun initSave() {
+    private fun initScan() {
 
-        adapter.setSaveListener(object : OnSaveListener {
+        scan.setOnClickListener {
+
+            openGallery()
+        }
+    }
+
+    private fun initClick(){
+        adapter.setClickListener(object : RecyclerImageAdapter.OnClickListener{
+            override fun show(index: Int) {
+
+                presenter.showMore(index)
+            }
 
             override fun onSave(index: Int) {
 
@@ -159,20 +154,6 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
 
                 presenter.cloudDelete(index)
             }
-        })
-    }
-
-    private fun initScan() {
-
-        scan.setOnClickListener {
-
-            openGallery()
-        }
-    }
-
-    private fun initShare() {
-
-        adapter.setShareListener(object : OnShareListener {
 
             override fun onShare(share: String) {
                 val dialog = ShareDialog()

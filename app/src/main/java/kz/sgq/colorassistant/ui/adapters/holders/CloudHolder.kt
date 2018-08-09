@@ -20,11 +20,19 @@ import android.view.View
 import kotlinx.android.synthetic.main.item_colors_cloud.view.*
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.holders.base.BaseComboCardHolder
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemCloudClickListener
 
 class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
-    fun setView(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+    interface OnClickListener {
+
+        fun onView(cloud: Cloud)
+
+        fun onShare(cloud: Cloud)
+
+        fun onDelete(cloud: Cloud, index: Int)
+    }
+
+    fun setView(cloud: Cloud, clickListener: OnClickListener) {
 
         itemView.view.setOnClickListener {
             itemView.view.isLiked = false
@@ -33,7 +41,7 @@ class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
         }
     }
 
-    fun setShare(cloud: Cloud, clickListener: OnItemCloudClickListener) {
+    fun setShare(cloud: Cloud, clickListener: OnClickListener) {
 
         itemView.share.setOnClickListener {
             itemView.share.isLiked = false
@@ -42,7 +50,7 @@ class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
         }
     }
 
-    fun setDelete(cloud: Cloud, index: Int, clickListener: OnItemCloudClickListener) {
+    fun setDelete(cloud: Cloud, index: Int, clickListener: OnClickListener) {
 
         itemView.delete.setOnClickListener {
             itemView.delete.isLiked = false

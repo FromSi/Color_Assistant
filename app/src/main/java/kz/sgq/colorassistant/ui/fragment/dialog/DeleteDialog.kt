@@ -21,12 +21,16 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.ui.util.interfaces.OnDeleteItemListener
 
 class DeleteDialog : DialogFragment() {
     private var index: Int = 0
 
-    private lateinit var deleteListener: OnDeleteItemListener
+    private lateinit var deleteListener: OnDeleteListener
+
+    interface OnDeleteListener{
+
+        fun onDelete(index: Int)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_color_delete_title)
@@ -45,7 +49,7 @@ class DeleteDialog : DialogFragment() {
         return dialog.create()
     }
 
-    fun clickListener(index: Int, deleteListener: OnDeleteItemListener) {
+    fun clickListener(index: Int, deleteListener: OnDeleteListener) {
         this.index = index
         this.deleteListener = deleteListener
     }

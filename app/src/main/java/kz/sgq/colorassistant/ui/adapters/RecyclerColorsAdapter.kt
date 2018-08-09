@@ -27,13 +27,19 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.holders.ColorsHolder
 import kz.sgq.colorassistant.ui.util.ItemColor
 import kz.sgq.colorassistant.ui.util.ItemContainer
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
 import com.like.LikeButton
 
 class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     private val itemContainer = ItemContainer()
 
-    private lateinit var clickListener: OnItemColorClickListener
+    private lateinit var clickListener: OnClickListener
+
+    interface OnClickListener {
+
+        fun onLike(view: View, id: Int, like: Boolean)
+
+        fun onView(view: View, itemColor: ItemColor)
+    }
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -90,12 +96,11 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setOnItemClickListener(clickListener: OnItemColorClickListener) {
+    fun setOnItemClickListener(clickListener: OnClickListener) {
         this.clickListener = clickListener
     }
 
     private fun initLike(p1: Int): OnLikeListener = object : OnLikeListener {
-
         override fun liked(likeButton: LikeButton) {
 
             onLikeClick(p1, true, likeButton.rootView)

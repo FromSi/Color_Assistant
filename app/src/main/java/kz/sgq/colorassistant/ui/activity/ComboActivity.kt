@@ -17,26 +17,22 @@
 package kz.sgq.colorassistant.ui.activity
 
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_combo.*
-import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.ui.adapters.SectionsPageAdapter
-import kz.sgq.colorassistant.ui.fragment.ComboFragment
-import kz.sgq.colorassistant.ui.fragment.InfoFragment
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickActivity
-import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import kotlinx.android.synthetic.main.activity_combo.*
+import kotlinx.android.synthetic.main.item_combo_color.view.*
+import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.ComboPresenter
 import kz.sgq.colorassistant.mvp.view.ComboView
+import kz.sgq.colorassistant.ui.fragment.dialog.ComboListBottomSheet
+import kz.sgq.colorassistant.ui.fragment.dialog.HSLBottomSheet
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
+import kz.sgq.colorassistant.ui.util.ItemDetails
 
-class ComboActivity : MvpAppCompatActivity(), ComboView, OnClickActivity {
-    private var adapter = SectionsPageAdapter(supportFragmentManager)
-    private val comboFragment = ComboFragment()
-    private val infoFragment = InfoFragment()
-
+class ComboActivity : MvpAppCompatActivity(), ComboView {
     @InjectPresenter
     lateinit var presenter: ComboPresenter
 
@@ -44,9 +40,8 @@ class ComboActivity : MvpAppCompatActivity(), ComboView, OnClickActivity {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_combo)
+        presenter.initColorList(intent.getSerializableExtra("map") as MutableList<String>)
         initToolBar()
-        presenter.initList(intent.getSerializableExtra("map") as MutableList<String>)
-        settingToolBar()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -72,61 +67,116 @@ class ComboActivity : MvpAppCompatActivity(), ComboView, OnClickActivity {
         else -> super.onOptionsItemSelected(item)
     }
 
+    override fun setBackgroundColor(color: Int) {
 
-    override fun onInfo(color: Int) {
-        viewPager.currentItem = 1
-
-        infoFragment.initPresenter(color)
-        viewPager.disableScroll(false)
+        background.setBackgroundColor(color)
     }
 
-    override fun showShare(textShare: String) {
+    override fun setTextColor(color: Int) {
+
+        text.setTextColor(color)
+    }
+
+    override fun initCardClick(size: Int) {
+
+        for (i in 0 until size)
+            list_card.getChildAt(i)
+                    .setOnClickListener { presenter.cardClick(i) }
+    }
+
+    override fun openShare(share: String) {
         val dialog = ShareDialog()
 
-        dialog.setText(textShare)
+        dialog.setText(share)
         dialog.show(supportFragmentManager, "share_dialog")
     }
 
-    override fun initFragment(list: MutableList<String>) {
+    override fun cardClick(index: Int) {
+        val dialog = ComboListBottomSheet()
 
-        comboFragment.initPresenter(list)
-        adapter.addFragment(comboFragment, getString(R.string.combo))
-        adapter.addFragment(infoFragment, getString(R.string.info))
+        dialog.setClick(object : ComboListBottomSheet.OnClickListener{
+            override fun onClickSaturation() {
 
-        viewPager.adapter = adapter
-    }
-
-    private fun settingToolBar() {
-
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-
-            override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-            ) {
-
+                presenter.openSaturation(index)
             }
 
-            override fun onPageSelected(position: Int) {
+            override fun onClickLightness() {
 
-                when (position) {
-                    0 -> toolBar.title = getString(R.string.combo)
-                    1 -> toolBar.title = getString(R.string.info)
-                }
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-
+                presenter.openLightness(index)
             }
         })
+        dialog.show(supportFragmentManager, "combo_list_bottom_sheet")
+    }
+
+    override fun openSaturation(list: MutableList<ItemDetails>) {
+        val dialog = HSLBottomSheet()
+
+        dialog.setTitle(resources.getString(R.string.saturation))
+        dialog.setList(list)
+        dialog.show(supportFragmentManager, "hsl_bottom_sheet")
+    }
+
+    override fun openLightness(list: MutableList<ItemDetails>) {
+        val dialog = HSLBottomSheet()
+
+        dialog.setTitle(resources.getString(R.string.lightness))
+        dialog.setList(list)
+        dialog.show(supportFragmentManager, "hsl_bottom_sheet")
+    }
+
+    override fun initHeader(i: Int, j: Int, color: Int) {
+        list_card.getChildAt(i).list.getChildAt(j).visibility = View.VISIBLE
+
+        list_card.getChildAt(i).list.getChildAt(j).setBackgroundColor(color)
+    }
+
+    override fun initItemBackground(i: Int, color: Int) {
+
+        list_card.getChildAt(i).imgColor.setBackgroundColor(color)
+        initExample(i, color)
+    }
+
+    override fun handlerVisibly(size: Int) {
+
+        for (i in 0 until size)
+            list_card.getChildAt(i).visibility = View.VISIBLE
+    }
+
+    override fun initItemValue(index: Int, value: String) {
+        list_card.getChildAt(index).value.text = value
+    }
+
+    override fun initClicks(size: Int){
+
+        for (i in 0 until size)
+            list_item_bg.getChildAt(i).setOnClickListener {
+                presenter.handlerBackgroundColor(i)
+            }
+
+        for (i in 0 until size)
+            list_item_text.getChildAt(i).setOnClickListener {
+                presenter.handlerTextColor(i)
+            }
     }
 
     private fun initToolBar() {
         toolBar.title = getString(R.string.combo)
 
-        toolBar.inflateMenu(R.menu.combo_menu)
         setSupportActionBar(toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private fun initExample(index: Int, color: Int) {
+        list_item_bg.getChildAt(index).visibility = View.VISIBLE
+        list_item_text.getChildAt(index).visibility = View.VISIBLE
+
+        list_item_bg.getChildAt(index).setBackgroundColor(color)
+        list_item_text.getChildAt(index).setBackgroundColor(color)
+
+        if (index == 0)
+            background.setBackgroundColor(color)
+
+        if (index == 1)
+            text.setTextColor(color)
     }
 }

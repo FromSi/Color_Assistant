@@ -21,10 +21,14 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 
 class SaveDialog : DialogFragment() {
     private lateinit var clickListener: OnClickListener
+
+    interface OnClickListener {
+
+        fun onClick()
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_cloud_save_title)

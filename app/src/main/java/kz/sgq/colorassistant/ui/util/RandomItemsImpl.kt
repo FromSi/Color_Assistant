@@ -16,10 +16,10 @@
 
 package kz.sgq.colorassistant.ui.util
 
-import kz.sgq.colorassistant.ui.util.interfaces.RandomItems
+import kz.sgq.colorassistant.mvp.model.fragment.ColorsModelImpl
 import java.util.*
 
-class RandomItemsImpl(private var limit: Int) : RandomItems {
+class RandomItemsImpl(private var limit: Int) : ColorsModelImpl.RandomListener {
     private var random: Random = Random(System.currentTimeMillis())
     private var listCheck: MutableList<Boolean> = arrayListOf()
 
@@ -81,14 +81,14 @@ class RandomItemsImpl(private var limit: Int) : RandomItems {
     }
 
     private fun refresh(randNum: Int): Int {
-        return if (listCheck[randNum]) {
-            listCheck[randNum] = false
+        return when {
+            listCheck[randNum] -> {
+                listCheck[randNum] = false
 
-            randNum
-        } else
-            if (randNum + 1 <= limit - 1)
-                refresh(randNum + 1)
-            else
-                refresh(0)
+                randNum
+            }
+            randNum + 1 <= limit - 1 -> refresh(randNum + 1)
+            else -> refresh(0)
+        }
     }
 }

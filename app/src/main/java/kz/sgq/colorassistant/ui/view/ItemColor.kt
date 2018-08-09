@@ -28,8 +28,6 @@ import android.view.View
 import android.widget.Toast
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.ColorConverter
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorListener
 
 class ItemColor : View {
     private var color = Color.BLUE
@@ -52,8 +50,8 @@ class ItemColor : View {
     private var positionX = 0f
     private var positionY = 0f
     private var positionCurrent = 0f
-    private var clickItemColor: OnClickItemColorListener? = null
-    private var itemListener: OnItemColorListener? = null
+    private var clickColor: OnClickListener? = null
+    private var itemListener: OnItemListener? = null
     private var deleteIndex: Int = 0
     private var min = 0
     private var act = false
@@ -62,6 +60,18 @@ class ItemColor : View {
     private var invisibilityHalo = 0x50
     private var deleting = false
     private var moveItem = true
+
+    interface OnClickListener{
+
+        fun onClick()
+    }
+
+    interface OnItemListener{
+
+        fun onInfo(color: Int)
+
+        fun onDelete(index: Int)
+    }
 
     object ItemColor {
         var boolDelete = false
@@ -153,7 +163,7 @@ class ItemColor : View {
                     if (moveItem)
                         movingPointer = true
 
-                    clickItemColor?.onClick()
+                    clickColor?.onClick()
                 }
             }
 
@@ -219,7 +229,7 @@ class ItemColor : View {
         return true
     }
 
-    fun setOnItemColorListener(itemListener: OnItemColorListener) {
+    fun setOnItemColorListener(itemListener: OnItemListener) {
         this.itemListener = itemListener
     }
 
@@ -294,8 +304,8 @@ class ItemColor : View {
 
     fun getAngle(): Double = angle
 
-    fun setOnClickItemColorListener(clickItemColor: OnClickItemColorListener) {
-        this.clickItemColor = clickItemColor
+    fun setOnClickItemColorListener(clickColor: OnClickListener) {
+        this.clickColor = clickColor
     }
 
     private fun initConstructor(attrs: AttributeSet?, defStyleAttr: Int) {

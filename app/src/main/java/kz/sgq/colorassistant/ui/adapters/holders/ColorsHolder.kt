@@ -18,9 +18,9 @@ package kz.sgq.colorassistant.ui.adapters.holders
 
 import android.view.View
 import kotlinx.android.synthetic.main.item_colors.view.*
+import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.adapters.holders.base.BaseComboCardHolder
 import kz.sgq.colorassistant.ui.util.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
 
 class ColorsHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
@@ -28,7 +28,7 @@ class ColorsHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
         itemView.like.isLiked = like
     }
 
-    fun setView(itemColor: ItemColor, clickListener: OnItemColorClickListener) {
+    fun setView(itemColor: ItemColor, clickListener: RecyclerColorsAdapter.OnClickListener) {
 
         itemView.view.setOnClickListener {
             itemView.view.isLiked = false

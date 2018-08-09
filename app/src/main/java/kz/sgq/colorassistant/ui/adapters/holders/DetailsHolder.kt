@@ -19,7 +19,7 @@ package kz.sgq.colorassistant.ui.adapters.holders
 import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import kotlinx.android.synthetic.main.item_details.view.*
+import kotlinx.android.synthetic.main.item_hsl.view.*
 import kz.sgq.colorassistant.ui.util.ItemDetails
 
 class DetailsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {

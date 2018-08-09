@@ -27,8 +27,6 @@ import kotlinx.android.synthetic.main.dialog_qr.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.ColorConverter
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 import kz.sgq.colorassistant.ui.view.ItemColor
 
 class QRScanDialog : DialogFragment() {
@@ -36,7 +34,7 @@ class QRScanDialog : DialogFragment() {
     private var text: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
 
     private lateinit var cloud: Cloud
-    private lateinit var clickListener: OnClickListener
+    private lateinit var clickListener: ItemColor.OnClickListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_qr_scan_title)
@@ -65,7 +63,7 @@ class QRScanDialog : DialogFragment() {
         view.info.text = this.text[index]
     }
 
-    fun clickListener(clickListener: OnClickListener) {
+    fun clickListener(clickListener: ItemColor.OnClickListener) {
         this.clickListener = clickListener
     }
 
@@ -130,8 +128,7 @@ class QRScanDialog : DialogFragment() {
             view: View,
             color: Int,
             itemColor: ItemColor
-    ): OnClickItemColorListener = object : OnClickItemColorListener {
-
+    ): ItemColor.OnClickListener = object : ItemColor.OnClickListener {
         override fun onClick() {
 
             enableItems(view, itemColor)

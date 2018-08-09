@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <LinearLayout
+        android:id="@+id/saturation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_sheet_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/saturation"
+            android:layout_marginStart="@dimen/bottom_sheet_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/bottom_sheet_text"
+            android:text="@string/saturation"
+            android:layout_marginStart="@dimen/bottom_sheet_margin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lightness"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_sheet_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/lightness"
+            android:layout_marginStart="@dimen/bottom_sheet_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/bottom_sheet_text"
+            android:text="@string/lightness"
+            android:layout_marginStart="@dimen/bottom_sheet_margin" />
+    </LinearLayout>
+</LinearLayout>

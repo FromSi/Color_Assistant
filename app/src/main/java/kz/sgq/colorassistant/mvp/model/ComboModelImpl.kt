@@ -1,25 +1,80 @@
+/*
+ * Copyright 2018 Vlad Weber-Pflaumer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package kz.sgq.colorassistant.mvp.model
 
+import android.graphics.Color
 import kz.sgq.colorassistant.mvp.model.interfaces.ComboModel
+import kz.sgq.colorassistant.ui.util.ColorConverter
+import kz.sgq.colorassistant.ui.util.HSLConverter
+import kz.sgq.colorassistant.ui.util.ItemDetails
 
 class ComboModelImpl : ComboModel {
-    private lateinit var list: MutableList<String>
-    private lateinit var textShare: String
+    private var colorList: MutableList<Int> = arrayListOf()
 
-    override fun initList(list: MutableList<String>) {
-        this.list = list
-        val text = StringBuffer("${list[0]}${list[1]}${list[2]}")
+    private lateinit var share: String
 
-        if (list.size >= 4)
-            text.append(list[3])
+    override fun getSize(): Int = colorList.size
 
-        if (list.size >= 5)
-            text.append(list[4])
+    override fun getShare(): String = share
 
-        textShare = text.toString()
+    override fun getColor(index: Int): Int = colorList[index]
+
+    override fun getValue(index: Int): String = ColorConverter.getFullAnswer(colorList[index])
+
+    override fun getSaturation(index: Int): MutableList<ItemDetails> {
+        val saturation = HSLConverter.getSaturationList(getColor(index))
+        val saturationList: MutableList<ItemDetails> = arrayListOf()
+
+        for (i in saturation.indices)
+            saturationList.add(ItemDetails(
+                    ColorConverter.getFullAnswer(saturation[i]),
+                    saturation[i]
+            ))
+
+        return saturationList
     }
 
-    override fun getList(): MutableList<String> = list
+    override fun getLightness(index: Int): MutableList<ItemDetails> {
+        val lightness = HSLConverter.getLightnessList(getColor(index))
+        val lightnessList: MutableList<ItemDetails> = arrayListOf()
 
-    override fun getTextShare(): String = textShare
+        for (i in lightness.indices)
+            lightnessList.add(ItemDetails(
+                    ColorConverter.getFullAnswer(lightness[i]),
+                    lightness[i]
+            ))
+
+        return lightnessList
+    }
+
+    override fun initColorList(list: MutableList<String>) {
+
+        for (i in 0 until list.size)
+            this.colorList.add(Color.parseColor(list[i]))
+
+        calcShare()
+    }
+
+    private fun calcShare() {
+        val text = StringBuffer()
+
+        for (i in 0 until colorList.size)
+            text.append(colorList[i])
+
+        share = text.toString()
+    }
 }

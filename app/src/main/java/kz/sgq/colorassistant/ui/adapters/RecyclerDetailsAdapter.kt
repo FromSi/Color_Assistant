@@ -20,7 +20,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.item_details.view.*
+import kotlinx.android.synthetic.main.item_hsl.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.holders.DetailsHolder
 import kz.sgq.colorassistant.ui.util.ItemDetails
@@ -33,7 +33,7 @@ class RecyclerDetailsAdapter : RecyclerView.Adapter<DetailsHolder>() {
             parent: ViewGroup,
             viewType: Int
     ): DetailsHolder = DetailsHolder(LayoutInflater
-            .from(parent.context).inflate(R.layout.item_details, parent, false))
+            .from(parent.context).inflate(R.layout.item_hsl, parent, false))
 
     override fun getItemCount(): Int = list.size
 
@@ -49,7 +49,7 @@ class RecyclerDetailsAdapter : RecyclerView.Adapter<DetailsHolder>() {
         p0.init(list[p1])
         p0.setPercent(p1)
 
-        p0.itemView.cardView.setOnClickListener(initClick(p1))
+        p0.itemView.item.setOnClickListener(initClick(p1))
     }
 
     fun addList(list: MutableList<ItemDetails>) {

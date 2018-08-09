@@ -20,12 +20,11 @@ import kz.sgq.colorassistant.mvp.model.fragment.interfaces.LikesModel
 import kz.sgq.colorassistant.room.table.Colors
 import kz.sgq.colorassistant.ui.util.ItemColor
 import kz.sgq.colorassistant.ui.util.RandomItemsImpl
-import kz.sgq.colorassistant.ui.util.interfaces.RandomItems
 
 class LikesModelImpl : LikesModel {
     private var idList: MutableList<ItemColor> = arrayListOf()
     private var loading = true
-    private var randomItems: RandomItems = RandomItemsImpl(0)
+    private var randomItems: ColorsModelImpl.RandomListener = RandomItemsImpl(0)
 
     override fun addIdList(item: Colors) {
         val stringList = ArrayList<String>()

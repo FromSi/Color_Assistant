@@ -24,9 +24,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_colors.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.SectionsPageAdapter
-import kz.sgq.colorassistant.ui.util.interfaces.OnSelectedButtonListener
 
-class MainFragment : Fragment(), OnSelectedButtonListener {
+class MainFragment : Fragment(), LikesFragment.OnLikeListener {
     private val colorsFragment = ColorsFragment()
     private val likesFragment = LikesFragment()
 

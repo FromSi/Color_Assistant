@@ -34,7 +34,6 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.fragment.CloudPresenter
 import kz.sgq.colorassistant.mvp.view.fragment.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.activity.ImageActivity
 import kz.sgq.colorassistant.ui.activity.QRCodeScanActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerCloudAdapter
@@ -44,8 +43,8 @@ import kz.sgq.colorassistant.ui.util.interfaces.*
 import java.io.Serializable
 import android.support.design.widget.Snackbar
 import android.widget.TextView
-import kz.sgq.colorassistant.ui.activity.BetaComboActivity
-
+import kz.sgq.colorassistant.ui.activity.ComboActivity
+import kz.sgq.colorassistant.ui.adapters.holders.CloudHolder
 
 class CloudFragment : MvpAppCompatFragment(), CloudView {
     private var adapter = RecyclerCloudAdapter()
@@ -114,7 +113,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
-        val intent = Intent(context, BetaComboActivity::class.java)
+        val intent = Intent(context, ComboActivity::class.java)
 
         intent.putExtra("map", list as Serializable)
         startActivity(intent)
@@ -151,8 +150,9 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         checkCameraPermission()
     }
 
-    private fun initClickAnswer(cloud: Cloud): OnClickListener = object : OnClickListener {
-
+    private fun initClickAnswer(
+            cloud: Cloud
+    ): ItemColor.OnClickListener = object : ItemColor.OnClickListener {
         override fun onClick() {
 
             presenter.addItem(cloud)
@@ -225,16 +225,14 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
     private fun initItemClickColor(
             itemColor: ItemColor
-    ): OnClickItemColorListener = object : OnClickItemColorListener {
-
+    ): ItemColor.OnClickListener = object : ItemColor.OnClickListener {
         override fun onClick() {
 
             color_picker.setItemColor(itemColor)
         }
     }
 
-    private fun initItemColor(): OnItemColorListener = object : OnItemColorListener {
-
+    private fun initItemColor(): ItemColor.OnItemListener = object : ItemColor.OnItemListener {
         override fun onInfo(color: Int) {
             initInfoSheet(color)
         }
@@ -242,7 +240,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         override fun onDelete(index: Int) {
             val dialog = DeleteDialog()
 
-            dialog.clickListener(index, object : OnDeleteItemListener {
+            dialog.clickListener(index, object : DeleteDialog.OnDeleteListener {
                 override fun onDelete(index: Int) {
                     item_list.removeViewAt(index)
                     add.visibility = View.VISIBLE
@@ -260,8 +258,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     private fun clickListener() {
-        adapter.setOnItemClickListener(object : OnItemCloudClickListener {
-
+        adapter.setOnItemClickListener(object : CloudHolder.OnClickListener {
             override fun onView(cloud: Cloud) {
 
                 presenter.onItemViewClick(cloud)
@@ -326,8 +323,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         false
     }
 
-    private fun initClickSave(): OnClickListener = object : OnClickListener {
-
+    private fun initClickSave(): SaveDialog.OnClickListener = object : SaveDialog.OnClickListener {
         override fun onClick() {
             val cloud = when (item_list.childCount) {
                 3 -> Cloud(

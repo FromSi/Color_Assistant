@@ -29,11 +29,9 @@ import kotlinx.android.synthetic.main.fragment_color_list.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.fragment.ColorsPresenter
 import kz.sgq.colorassistant.mvp.view.fragment.ColorsView
-import kz.sgq.colorassistant.ui.activity.BetaComboActivity
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
 import java.io.Serializable
 
 class ColorsFragment : MvpAppCompatFragment(), ColorsView {
@@ -88,7 +86,7 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
-        val intent = Intent(context, BetaComboActivity::class.java)
+        val intent = Intent(context, ComboActivity::class.java)
 
         intent.putExtra("map", list as Serializable)
         startActivity(intent)
@@ -101,8 +99,7 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
 
     private fun clickListener() {
 
-        adapter.setOnItemClickListener(object : OnItemColorClickListener {
-
+        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
             override fun onLike(view: View, id: Int, like: Boolean) {
 
                 presenter.onItemLikeClick(view, id, like)
@@ -118,7 +115,6 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     private fun setUpLoadMoreListener() {
 
         rv_colors.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 

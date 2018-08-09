@@ -12,7 +12,7 @@
         android:layout_marginStart="@dimen/bottom_sheet_margin"
         android:textSize="@dimen/bottom_sheet_text"
         android:gravity="center_vertical"
-        android:text="@string/dialog_color_info_title"
+        android:text="@string/bottom_sheet_info_color_title"
         android:textStyle="bold" />
 
     <TextView

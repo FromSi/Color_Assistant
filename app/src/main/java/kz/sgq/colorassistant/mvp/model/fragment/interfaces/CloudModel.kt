@@ -17,13 +17,12 @@
 package kz.sgq.colorassistant.mvp.model.fragment.interfaces
 
 import android.content.Intent
+import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 interface CloudModel {
 
-    fun initItemList(initListener: OnInitItemListener)
+    fun initItemList(initListener: CloudModelImpl.OnInitListener)
 
     fun calcColorList(cloud: Cloud): MutableList<String>
 
@@ -33,7 +32,7 @@ interface CloudModel {
 
     fun calcQRCode(resultCode: Int, data: Intent?): Boolean
 
-    fun addItem(cloud: Cloud, eventListener: OnEventItemListener)
+    fun addItem(cloud: Cloud, eventListener: CloudModelImpl.OnEventListener)
 
-    fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener)
+    fun deleteItem(cloud: Cloud, eventListener: CloudModelImpl.OnEventListener)
 }

@@ -17,8 +17,8 @@
 package kz.sgq.colorassistant.mvp.model.interfaces
 
 import android.graphics.Bitmap
+import kz.sgq.colorassistant.mvp.model.ImageModelImpl
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickListener
 
 interface ImageModel {
 
@@ -28,7 +28,7 @@ interface ImageModel {
 
     fun getCloud(index: Int): Cloud
 
-    fun setCurrentImage(currentImage: Bitmap, click: OnClickListener)
+    fun setCurrentImage(currentImage: Bitmap, click: ImageModelImpl.OnClickListener)
 
     fun setState(state: Boolean)
 

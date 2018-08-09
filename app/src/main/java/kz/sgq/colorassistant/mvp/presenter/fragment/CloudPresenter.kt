@@ -24,8 +24,6 @@ import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
 import kz.sgq.colorassistant.mvp.model.fragment.interfaces.CloudModel
 import kz.sgq.colorassistant.mvp.view.fragment.CloudView
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 @InjectViewState
 class CloudPresenter : MvpPresenter<CloudView>() {
@@ -33,8 +31,7 @@ class CloudPresenter : MvpPresenter<CloudView>() {
 
     fun initInitList() {
 
-        model.initItemList(object : OnInitItemListener {
-
+        model.initItemList(object : CloudModelImpl.OnInitListener {
             override fun onResult(list: MutableList<Cloud>) {
 
                 viewState.initColorList(list)
@@ -63,8 +60,7 @@ class CloudPresenter : MvpPresenter<CloudView>() {
 
     fun onItemDeleteClick(cloud: Cloud, index: Int) {
 
-        model.deleteItem(cloud, object : OnEventItemListener {
-
+        model.deleteItem(cloud, object : CloudModelImpl.OnEventListener {
             override fun onSuccess() {
 
                 viewState.deleteItem(index)
@@ -78,8 +74,7 @@ class CloudPresenter : MvpPresenter<CloudView>() {
 
     fun addItem(cloud: Cloud) {
 
-        model.addItem(cloud, object : OnEventItemListener {
-
+        model.addItem(cloud, object : CloudModelImpl.OnEventListener {
             override fun onSuccess() {
 
                 viewState.addItem(cloud)

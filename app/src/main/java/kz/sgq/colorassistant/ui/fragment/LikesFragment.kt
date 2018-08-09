@@ -32,8 +32,6 @@ import kz.sgq.colorassistant.mvp.view.fragment.LikesView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemColorClickListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnSelectedButtonListener
 import java.io.Serializable
 
 class LikesFragment : MvpAppCompatFragment(), LikesView {
@@ -41,8 +39,13 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
 
     @InjectPresenter
     lateinit var presenter: LikesPresenter
-    private lateinit var listener: OnSelectedButtonListener
+    private lateinit var likeListener: OnLikeListener
     private lateinit var layoutManager: LinearLayoutManager
+
+    interface OnLikeListener{
+
+        fun onLike(id: Int)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -53,7 +56,7 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        listener = (parentFragment as OnSelectedButtonListener)
+        likeListener = (parentFragment as OnLikeListener)
         layoutManager = LinearLayoutManager(view.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_colors.layoutManager = layoutManager
@@ -97,11 +100,10 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
 
     private fun onClickListenerAdapter() {
 
-        adapter.setOnItemClickListener(object : OnItemColorClickListener {
-
+        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
             override fun onLike(view: View, id: Int, like: Boolean) {
 
-                listener.onLike(id)
+                likeListener.onLike(id)
                 presenter.onItemLikeClick(view, id, like)
             }
 
@@ -115,7 +117,6 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
     private fun setUpLoadMoreListener() {
 
         rv_colors.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 

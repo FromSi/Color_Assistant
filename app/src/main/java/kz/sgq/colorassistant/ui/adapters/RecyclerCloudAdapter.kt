@@ -25,13 +25,12 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.holders.CloudHolder
 import kz.sgq.colorassistant.ui.util.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.OnItemCloudClickListener
 
 class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
     private var list: MutableList<Cloud> = arrayListOf()
     private var visiblyList: MutableList<Boolean> = arrayListOf()
 
-    private lateinit var clickListener: OnItemCloudClickListener
+    private lateinit var clickListener: CloudHolder.OnClickListener
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -74,7 +73,7 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setOnItemClickListener(clickListener: OnItemCloudClickListener) {
+    fun setOnItemClickListener(clickListener: CloudHolder.OnClickListener) {
         this.clickListener = clickListener
     }
 

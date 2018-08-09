@@ -22,10 +22,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kz.sgq.colorassistant.application.App
+import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
 import kz.sgq.colorassistant.room.table.Checking
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.room.table.Colors
-import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
 
 object DataBaseRequest {
     private val dataBase = App.getInstance()?.getDataBase()
@@ -43,7 +43,7 @@ object DataBaseRequest {
                 .subscribe()
     }
 
-    fun insertCloud(cloud: Cloud, eventListener: OnEventItemListener) {
+    fun insertCloud(cloud: Cloud, eventListener: CloudModelImpl.OnEventListener) {
 
         Completable.fromAction { dataBase?.cloudDao()?.insert(cloud) }
                 .subscribeOn(Schedulers.io())
@@ -72,7 +72,7 @@ object DataBaseRequest {
                 .subscribe()
     }
 
-    fun deleteCloud(cloud: Cloud, eventListener: OnEventItemListener) {
+    fun deleteCloud(cloud: Cloud, eventListener: CloudModelImpl.OnEventListener) {
 
         Completable.fromAction { dataBase?.cloudDao()?.delete(cloud) }
                 .subscribeOn(Schedulers.io())

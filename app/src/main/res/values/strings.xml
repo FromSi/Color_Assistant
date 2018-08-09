@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Color Assistant</string>
+
+
+    <string name="bottom_sheet_info_color_title">Information</string>
+    <string name="bottom_sheet_info_color_positive">OK</string>
+
+
     <string name="properties">Свойства</string>
     <string name="color_handler">Обработчик цвета</string>
     <string name="fragmentColorsName">Colors</string>
@@ -13,6 +19,8 @@
     <string name="qr_scan">QR Scan</string>
     <string name="share">Share</string>
     <string name="combo_item_type">Hex\nRGB\nHSV\nCMYK</string>
+    <string name="saturation">Saturation</string>
+    <string name="lightness">Lightness</string>
 
     <string name="colors">Colors</string>
     <string name="constructor">Constructor</string>
@@ -50,6 +58,5 @@
     <string name="dialog_color_delete_positive">Delete</string>
     <string name="dialog_color_delete_neutral">Cancel</string>
 
-    <string name="dialog_color_info_title">Information</string>
-    <string name="dialog_color_info_positive">OK</string>
+
 </resources>

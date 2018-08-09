@@ -21,10 +21,20 @@ import android.content.Intent
 import kz.sgq.colorassistant.mvp.model.fragment.interfaces.CloudModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
-import kz.sgq.colorassistant.ui.util.interfaces.OnEventItemListener
-import kz.sgq.colorassistant.ui.util.interfaces.OnInitItemListener
 
 class CloudModelImpl : CloudModel {
+
+    interface OnInitListener{
+
+        fun onResult(list: MutableList<Cloud>)
+    }
+
+    interface OnEventListener {
+
+        fun onSuccess()
+
+        fun onError()
+    }
 
     override fun calcQRCode(resultCode: Int, data: Intent?): Boolean {
 
@@ -68,17 +78,17 @@ class CloudModelImpl : CloudModel {
         return text.toString()
     }
 
-    override fun addItem(cloud: Cloud, eventListener: OnEventItemListener) {
+    override fun addItem(cloud: Cloud, eventListener: OnEventListener) {
 
         DataBaseRequest.insertCloud(cloud, eventListener)
     }
 
-    override fun deleteItem(cloud: Cloud, eventListener: OnEventItemListener) {
+    override fun deleteItem(cloud: Cloud, eventListener: OnEventListener) {
 
         DataBaseRequest.deleteCloud(cloud, eventListener)
     }
 
-    override fun initItemList(initListener: OnInitItemListener) {
+    override fun initItemList(initListener: OnInitListener) {
 
         DataBaseRequest.getCloud()
                 ?.subscribe { list: MutableList<Cloud>? -> initListener.onResult(list!!) }

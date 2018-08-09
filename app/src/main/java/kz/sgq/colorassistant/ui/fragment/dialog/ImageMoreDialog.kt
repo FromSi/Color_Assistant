@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.dialog_qr.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.ColorConverter
-import kz.sgq.colorassistant.ui.util.interfaces.OnClickItemColorListener
 import kz.sgq.colorassistant.ui.view.ItemColor
 
 class ImageMoreDialog : DialogFragment() {
@@ -105,8 +104,7 @@ class ImageMoreDialog : DialogFragment() {
             view: View,
             color: Int,
             itemColor: ItemColor
-    ): OnClickItemColorListener = object : OnClickItemColorListener {
-
+    ): ItemColor.OnClickListener = object : ItemColor.OnClickListener {
         override fun onClick() {
 
             enableItems(view, itemColor)
