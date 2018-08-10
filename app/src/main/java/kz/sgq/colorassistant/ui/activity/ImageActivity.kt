@@ -32,7 +32,7 @@ import kz.sgq.colorassistant.mvp.presenter.ImagePresenter
 import kz.sgq.colorassistant.mvp.view.ImageView
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.RecyclerImageAdapter
-import kz.sgq.colorassistant.ui.fragment.dialog.ImageMoreDialog
+import kz.sgq.colorassistant.ui.fragment.dialog.MoreDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 
 class ImageActivity : MvpAppCompatActivity(), ImageView {
@@ -99,7 +99,7 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
     }
 
     override fun showMore(cloud: Cloud) {
-        val dialog = ImageMoreDialog()
+        val dialog = MoreDialog()
 
         dialog.cloud(cloud)
         dialog.show(supportFragmentManager, "image_more_dialog")
@@ -117,9 +117,9 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
     }
 
     private fun initToolBar() {
-        toolBar.title = resources.getString(R.string.image_scan)
+        toolbar.title = resources.getString(R.string.toolbar_image_scan)
 
-        setSupportActionBar(toolBar)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

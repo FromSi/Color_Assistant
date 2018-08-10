@@ -1,4 +1,4 @@
-package kz.sgq.colorassistant.ui.fragment.dialog
+package kz.sgq.colorassistant.ui.fragment.sheet
 
 import android.annotation.SuppressLint
 import android.app.Dialog

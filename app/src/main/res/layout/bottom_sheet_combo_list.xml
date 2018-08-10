@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/bottom_sheet_text"
-            android:text="@string/saturation"
+            android:text="@string/bottom_sheet_combo_list_saturation"
             android:layout_marginStart="@dimen/bottom_sheet_margin" />
     </LinearLayout>
 
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/bottom_sheet_text"
-            android:text="@string/lightness"
+            android:text="@string/bottom_sheet_combo_list_lightness"
             android:layout_marginStart="@dimen/bottom_sheet_margin" />
     </LinearLayout>
 </LinearLayout>

@@ -65,7 +65,7 @@
             android:layout_marginTop="8dp"
             android:textAlignment="textStart"
             android:textStyle="bold"
-            android:text="@string/combo_item_type"
+            android:text="@string/type"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgColor"
             app:layout_constraintTop_toTopOf="parent" />

@@ -60,12 +60,12 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     }
 
     override fun showLoadDB() {
-        progressDownload.visibility = View.VISIBLE
+        download.visibility = View.VISIBLE
         rv_colors.visibility = View.GONE
     }
 
     override fun showColorList() {
-        progressDownload.visibility = View.GONE
+        download.visibility = View.GONE
         rv_colors.visibility = View.VISIBLE
     }
 

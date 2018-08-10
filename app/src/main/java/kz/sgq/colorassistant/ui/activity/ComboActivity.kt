@@ -27,8 +27,8 @@ import kotlinx.android.synthetic.main.item_combo_color.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.ComboPresenter
 import kz.sgq.colorassistant.mvp.view.ComboView
-import kz.sgq.colorassistant.ui.fragment.dialog.ComboListBottomSheet
-import kz.sgq.colorassistant.ui.fragment.dialog.HSLBottomSheet
+import kz.sgq.colorassistant.ui.fragment.sheet.ComboListBottomSheet
+import kz.sgq.colorassistant.ui.fragment.sheet.HSLBottomSheet
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 import kz.sgq.colorassistant.ui.util.ItemDetails
 
@@ -111,7 +111,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     override fun openSaturation(list: MutableList<ItemDetails>) {
         val dialog = HSLBottomSheet()
 
-        dialog.setTitle(resources.getString(R.string.saturation))
+        dialog.setTitle(resources.getString(R.string.bottom_sheet_hsl_saturation))
         dialog.setList(list)
         dialog.show(supportFragmentManager, "hsl_bottom_sheet")
     }
@@ -119,7 +119,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     override fun openLightness(list: MutableList<ItemDetails>) {
         val dialog = HSLBottomSheet()
 
-        dialog.setTitle(resources.getString(R.string.lightness))
+        dialog.setTitle(resources.getString(R.string.bottom_sheet_hsl_lightness))
         dialog.setList(list)
         dialog.show(supportFragmentManager, "hsl_bottom_sheet")
     }
@@ -160,9 +160,9 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     }
 
     private fun initToolBar() {
-        toolBar.title = getString(R.string.combo)
+        toolbar.title = getString(R.string.toolbar_combo)
 
-        setSupportActionBar(toolBar)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

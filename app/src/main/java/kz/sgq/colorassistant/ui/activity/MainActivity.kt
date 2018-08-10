@@ -45,16 +45,16 @@ class MainActivity : AppCompatActivity() {
         menu.addFragment(CloudFragment())
         menu.addFragment(SettingsFragment())
 
-        viewPager.adapter = menu
+        view_pager.adapter = menu
     }
 
     private fun setupTab() {
 
-        tabLayout.setupWithViewPager(viewPager)
-        tabLayout.getTabAt(0)?.icon = ContextCompat.getDrawable(this, R.drawable.colors)
-        tabLayout.getTabAt(1)?.icon = ContextCompat.getDrawable(this, R.drawable.cloud)
-        tabLayout.getTabAt(2)?.icon = ContextCompat.getDrawable(this, R.drawable.settings)
-        tabLayout.getTabAt(0)?.icon?.setColorFilter(
+        tab_layout.setupWithViewPager(view_pager)
+        tab_layout.getTabAt(0)?.icon = ContextCompat.getDrawable(this, R.drawable.colors)
+        tab_layout.getTabAt(1)?.icon = ContextCompat.getDrawable(this, R.drawable.cloud)
+        tab_layout.getTabAt(2)?.icon = ContextCompat.getDrawable(this, R.drawable.settings)
+        tab_layout.getTabAt(0)?.icon?.setColorFilter(
                 ContextCompat.getColor(this, R.color.icons),
                 PorterDuff.Mode.SRC_IN
         )
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun tabListener() {
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }

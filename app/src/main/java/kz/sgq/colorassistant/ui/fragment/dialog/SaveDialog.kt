@@ -31,10 +31,10 @@ class SaveDialog : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val title = resources.getString(R.string.dialog_cloud_save_title)
-        val message = resources.getString(R.string.dialog_cloud_save_message)
-        val positive = resources.getString(R.string.dialog_cloud_save_positive)
-        val neutral = resources.getString(R.string.dialog_cloud_save_neutral)
+        val title = resources.getString(R.string.dialog_save_title)
+        val message = resources.getString(R.string.dialog_save_message)
+        val positive = resources.getString(R.string.dialog_save_positive)
+        val neutral = resources.getString(R.string.dialog_save_neutral)
         val dialog = AlertDialog.Builder(activity!!)
 
         dialog.setTitle(title)

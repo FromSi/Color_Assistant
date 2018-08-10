@@ -72,12 +72,12 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
     }
 
     override fun showLoadDB() {
-        textNoItem.visibility = View.VISIBLE
+        text_no_item.visibility = View.VISIBLE
         rv_colors.visibility = View.GONE
     }
 
     override fun showColorList() {
-        textNoItem.visibility = View.GONE
+        text_no_item.visibility = View.GONE
         rv_colors.visibility = View.VISIBLE
     }
 

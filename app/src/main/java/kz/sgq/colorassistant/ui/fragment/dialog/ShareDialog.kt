@@ -29,9 +29,9 @@ class ShareDialog : DialogFragment() {
     private var text: String = "Error"
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val title = resources.getString(R.string.dialog_cloud_share_title)
-        val positive = resources.getString(R.string.dialog_cloud_share_positive)
-        val neutral = resources.getString(R.string.dialog_cloud_share_neutral)
+        val title = resources.getString(R.string.dialog_share_title)
+        val positive = resources.getString(R.string.dialog_share_positive)
+        val neutral = resources.getString(R.string.dialog_share_neutral)
         val dialog = AlertDialog.Builder(activity!!)
         val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_share, null)
 

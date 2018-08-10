@@ -13,15 +13,15 @@ import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.view.ItemColor
 
-class ImageMoreDialog : DialogFragment() {
+class MoreDialog : DialogFragment() {
     private var index: Int = 0
     private var text: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
 
     private lateinit var cloud: Cloud
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val title = resources.getString(R.string.dialog_image_more_title)
-        val positive = resources.getString(R.string.dialog_image_more_positive)
+        val title = resources.getString(R.string.dialog_more_title)
+        val positive = resources.getString(R.string.dialog_more_positive)
         val dialog = AlertDialog.Builder(activity!!)
         val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_qr, null)
 

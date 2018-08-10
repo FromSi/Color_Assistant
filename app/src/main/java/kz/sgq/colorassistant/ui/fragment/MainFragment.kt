@@ -48,7 +48,7 @@ class MainFragment : Fragment(), LikesFragment.OnLikeListener {
     }
 
     private fun settingToolBar() {
-        toolBar.title = getString(R.string.colors)
+        toolbar.title = getString(R.string.colors)
 //        val actionBar = (activity as AppCompatActivity)
 
 //        actionBar.setSupportActionBar(toolBar)
@@ -57,16 +57,16 @@ class MainFragment : Fragment(), LikesFragment.OnLikeListener {
     private fun setupViewPager() {
         val adapter = SectionsPageAdapter(childFragmentManager)
 
-        tabLayout.setupWithViewPager(viewPager)
+        tab_layout.setupWithViewPager(view_pager)
         adapter.addFragment(
                 colorsFragment,
-                getString(R.string.fragmentColorsName)
+                getString(R.string.colors)
         )
         adapter.addFragment(
                 likesFragment,
-                getString(R.string.fragmentLikesName)
+                getString(R.string.likes)
         )
 
-        viewPager.adapter = adapter
+        view_pager.adapter = adapter
     }
 }

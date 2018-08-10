@@ -7,7 +7,7 @@
     tools:context=".ui.activity.QRCodeScanActivity">
 
     <SurfaceView
-        android:id="@+id/surfaceView"
+        android:id="@+id/surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -17,12 +17,12 @@
         android:layout_height="match_parent" />
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolBar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorMusk"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="@string/qr_scan"
+        app:title="@string/toolbar_qr_scan"
         app:titleTextColor="@android:color/white" />
 </RelativeLayout>

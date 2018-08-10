@@ -39,12 +39,12 @@ import kz.sgq.colorassistant.ui.activity.QRCodeScanActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerCloudAdapter
 import kz.sgq.colorassistant.ui.fragment.dialog.*
 import kz.sgq.colorassistant.ui.view.ItemColor
-import kz.sgq.colorassistant.ui.util.interfaces.*
 import java.io.Serializable
 import android.support.design.widget.Snackbar
 import android.widget.TextView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.holders.CloudHolder
+import kz.sgq.colorassistant.ui.fragment.sheet.InfoColorBottomSheet
 
 class CloudFragment : MvpAppCompatFragment(), CloudView {
     private var adapter = RecyclerCloudAdapter()
@@ -280,26 +280,26 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
             .getColorHex()
 
     private fun settingToolBar() {
-        toolBar.title = getString(R.string.constructor)
+        toolbar.title = getString(R.string.toolbar_constructor)
 
-        toolBar.inflateMenu(R.menu.constructor_menu)
-        toolBar.setOnMenuItemClickListener(initClickMenu())
+        toolbar.inflateMenu(R.menu.cloud_menu)
+        toolbar.setOnMenuItemClickListener(initClickMenu())
     }
 
     private fun initClickMenu(): Toolbar.OnMenuItemClickListener = Toolbar.OnMenuItemClickListener {
 
         when (it.itemId) {
             R.id.constructor -> {
-                toolBar.menu.findItem(R.id.constructor).isVisible = false
-                toolBar.menu.findItem(R.id.cloud).isVisible = true
-                toolBar.menu.findItem(R.id.save).isVisible = true
+                toolbar.menu.findItem(R.id.constructor).isVisible = false
+                toolbar.menu.findItem(R.id.cloud).isVisible = true
+                toolbar.menu.findItem(R.id.save).isVisible = true
                 constructor.visibility = View.VISIBLE
                 cloud.visibility = View.GONE
             }
             R.id.cloud -> {
-                toolBar.menu.findItem(R.id.constructor).isVisible = true
-                toolBar.menu.findItem(R.id.cloud).isVisible = false
-                toolBar.menu.findItem(R.id.save).isVisible = false
+                toolbar.menu.findItem(R.id.constructor).isVisible = true
+                toolbar.menu.findItem(R.id.cloud).isVisible = false
+                toolbar.menu.findItem(R.id.save).isVisible = false
                 constructor.visibility = View.GONE
                 cloud.visibility = View.VISIBLE
             }
