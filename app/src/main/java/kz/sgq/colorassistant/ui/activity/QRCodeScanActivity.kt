@@ -20,33 +20,35 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.SurfaceHolder
-import android.view.SurfaceView
-import android.view.View
-import android.widget.RelativeLayout
 import com.google.zxing.Result
 import com.google.zxing.ResultPoint
 import com.sqsong.qrcodelib.camera.CameraManager
 import com.sqsong.qrcodelib.camera.QRCodeDecodeCallback
 import com.sqsong.qrcodelib.camera.QRCodeManager
-import com.sqsong.qrcodelib.util.DensityUtil
 import com.sqsong.qrcodelib.view.QRCodeScanView
+import kotlinx.android.synthetic.main.activity_qrcode_scan.*
 import kz.sgq.colorassistant.R
+import me.imid.swipebacklayout.lib.SwipeBackLayout
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
 class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
-    private var mSurfaceView: SurfaceView? = null
     private var mQRCodeScanView: QRCodeScanView? = null
     private var mSurfaceHolder: SurfaceHolder? = null
     private var mQRCodeManager: QRCodeManager? = null
-    private var mToolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
+        val helper = SwipeBackActivityHelper(this)
+
+        helper.onActivityCreate()
         setContentView(R.layout.activity_qrcode_scan)
-        initView()
+        helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         initEvent()
+        helper.onPostCreate()
     }
 
     override fun onResume() {
@@ -63,8 +65,8 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
 
     override fun cameraManagerInitFinish(cameraManager: CameraManager?) {
 
-        if (mQRCodeScanView != null && cameraManager != null)
-            mQRCodeScanView!!.setCameraManager(cameraManager)
+        if (qr_scan_view != null && cameraManager != null)
+            qr_scan_view!!.setCameraManager(cameraManager)
     }
 
     override fun foundPossibleResultPoint(point: ResultPoint) {
@@ -79,23 +81,21 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
         intent.putExtra("scan_result", result.text)
         setResult(Activity.RESULT_OK, intent)
         finish()
-    }
-
-    private fun initView() {
-        mToolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        mSurfaceView = findViewById<View>(R.id.surface_view) as SurfaceView
-        mQRCodeScanView = findViewById<View>(R.id.qr_scan_view) as QRCodeScanView
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun initEvent() {
+        bar.title = ""
 
-        setSupportActionBar(mToolbar)
+        setSupportActionBar(bar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        mToolbar!!.setNavigationOnClickListener { finish() }
+        bar!!.setNavigationOnClickListener {
 
-        val layoutParams = mToolbar!!.layoutParams as RelativeLayout.LayoutParams
-        layoutParams.topMargin = DensityUtil.getStatusBarHeight(this)
-        mSurfaceHolder = mSurfaceView!!.holder
+            finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
+
+        mSurfaceHolder = surface_view!!.holder
         mQRCodeManager = QRCodeManager(applicationContext, this)
     }
 }

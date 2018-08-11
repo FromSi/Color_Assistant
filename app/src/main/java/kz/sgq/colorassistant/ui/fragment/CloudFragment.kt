@@ -26,7 +26,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.*
-import android.widget.LinearLayout
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.fragment_cloud.*
@@ -43,8 +42,8 @@ import java.io.Serializable
 import android.support.design.widget.Snackbar
 import android.widget.TextView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
+import kz.sgq.colorassistant.ui.activity.ConstructorActivity
 import kz.sgq.colorassistant.ui.adapters.holders.CloudHolder
-import kz.sgq.colorassistant.ui.fragment.sheet.InfoColorBottomSheet
 
 class CloudFragment : MvpAppCompatFragment(), CloudView {
     private var adapter = RecyclerCloudAdapter()
@@ -69,7 +68,6 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
 
         settingToolBar()
         initRecyclerAdapter(view.context)
-        initColorPicker()
     }
 
     override fun initColorList(list: MutableList<Cloud>) {
@@ -155,7 +153,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     ): ItemColor.OnClickListener = object : ItemColor.OnClickListener {
         override fun onClick() {
 
-            presenter.addItem(cloud)
+            presenter.save(cloud)
         }
     }
 
@@ -187,76 +185,6 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         presenter.initInitList()
     }
 
-    private fun initColorPicker() {
-
-        color_picker.addLightnessView(lightness)
-        color_picker.addSaturationView(saturation)
-        createNewItemColor()
-        createNewItemColor()
-        createNewItemColor()
-        color_picker.setItemColor(item_list.getChildAt(0) as ItemColor)
-        add.setOnClickListener(initClickAdd())
-    }
-
-    private fun initClickAdd(): View.OnClickListener = View.OnClickListener {
-        ItemColor.ItemColor.boolDelete = true
-
-        if (item_list.childCount <= 3)
-            createNewItemColor()
-        else {
-            add.visibility = View.GONE
-
-            createNewItemColor()
-        }
-    }
-
-    private fun createNewItemColor() {
-        val itemColor = ItemColor(context)
-        itemColor.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        item_list.addView(itemColor)
-        itemColor.setDeleteIndex(item_list.childCount - 1)
-        itemColor.setOnItemColorListener(initItemColor())
-        itemColor.setOnClickItemColorListener(initItemClickColor(itemColor))
-    }
-
-    private fun initItemClickColor(
-            itemColor: ItemColor
-    ): ItemColor.OnClickListener = object : ItemColor.OnClickListener {
-        override fun onClick() {
-
-            color_picker.setItemColor(itemColor)
-        }
-    }
-
-    private fun initItemColor(): ItemColor.OnItemListener = object : ItemColor.OnItemListener {
-        override fun onInfo(color: Int) {
-            initInfoSheet(color)
-        }
-
-        override fun onDelete(index: Int) {
-            val dialog = DeleteDialog()
-
-            dialog.clickListener(index, object : DeleteDialog.OnDeleteListener {
-                override fun onDelete(index: Int) {
-                    item_list.removeViewAt(index)
-                    add.visibility = View.VISIBLE
-
-                    if (item_list.childCount <= 3)
-                        ItemColor.ItemColor.boolDelete = false
-
-                    for (i in index until item_list.childCount)
-                        (item_list.getChildAt(i) as ItemColor).setDeleteIndex(i)
-                }
-            })
-
-            dialog.show(fragmentManager, "delete_dialog")
-        }
-    }
-
     private fun clickListener() {
         adapter.setOnItemClickListener(object : CloudHolder.OnClickListener {
             override fun onView(cloud: Cloud) {
@@ -276,38 +204,20 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         })
     }
 
-    private fun getColorHex(index: Int): String = (item_list.getChildAt(index) as ItemColor)
-            .getColorHex()
-
     private fun settingToolBar() {
-        toolbar.title = getString(R.string.toolbar_constructor)
+        bar.title = getString(R.string.toolbar_constructor)
 
-        toolbar.inflateMenu(R.menu.cloud_menu)
-        toolbar.setOnMenuItemClickListener(initClickMenu())
+        bar.inflateMenu(R.menu.cloud_menu)
+        bar.setOnMenuItemClickListener(initClickMenu())
     }
 
     private fun initClickMenu(): Toolbar.OnMenuItemClickListener = Toolbar.OnMenuItemClickListener {
 
         when (it.itemId) {
             R.id.constructor -> {
-                toolbar.menu.findItem(R.id.constructor).isVisible = false
-                toolbar.menu.findItem(R.id.cloud).isVisible = true
-                toolbar.menu.findItem(R.id.save).isVisible = true
-                constructor.visibility = View.VISIBLE
-                cloud.visibility = View.GONE
-            }
-            R.id.cloud -> {
-                toolbar.menu.findItem(R.id.constructor).isVisible = true
-                toolbar.menu.findItem(R.id.cloud).isVisible = false
-                toolbar.menu.findItem(R.id.save).isVisible = false
-                constructor.visibility = View.GONE
-                cloud.visibility = View.VISIBLE
-            }
-            R.id.save -> {
-                val dialog = SaveDialog()
+                val intent = Intent(context!!, ConstructorActivity::class.java)
 
-                dialog.clickListener(initClickSave())
-                dialog.show(fragmentManager, "save_dialog")
+                startActivityForResult(intent, 2)
             }
             R.id.qr -> {
 
@@ -321,42 +231,5 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         }
 
         false
-    }
-
-    private fun initClickSave(): SaveDialog.OnClickListener = object : SaveDialog.OnClickListener {
-        override fun onClick() {
-            val cloud = when (item_list.childCount) {
-                3 -> Cloud(
-
-                        getColorHex(0),
-                        getColorHex(1),
-                        getColorHex(2)
-                )
-                4 -> Cloud(
-
-                        getColorHex(0),
-                        getColorHex(1),
-                        getColorHex(2),
-                        getColorHex(3)
-                )
-                5 -> Cloud(
-
-                        getColorHex(0),
-                        getColorHex(1),
-                        getColorHex(2),
-                        getColorHex(3),
-                        getColorHex(4)
-                )
-                else -> return
-            }
-
-            presenter.addItem(cloud)
-        }
-    }
-
-    private fun initInfoSheet(color: Int) {
-        val dialog = InfoColorBottomSheet()
-        dialog.setColor(color)
-        dialog.show(fragmentManager, "info_color_bottom_sheet")
     }
 }

@@ -24,16 +24,9 @@ import kz.sgq.colorassistant.room.table.Cloud
 
 class CloudModelImpl : CloudModel {
 
-    interface OnInitListener{
+    interface OnInitListener {
 
         fun onResult(list: MutableList<Cloud>)
-    }
-
-    interface OnEventListener {
-
-        fun onSuccess()
-
-        fun onError()
     }
 
     override fun calcQRCode(resultCode: Int, data: Intent?): Boolean {
@@ -78,12 +71,12 @@ class CloudModelImpl : CloudModel {
         return text.toString()
     }
 
-    override fun addItem(cloud: Cloud, eventListener: OnEventListener) {
+    override fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
 
         DataBaseRequest.insertCloud(cloud, eventListener)
     }
 
-    override fun deleteItem(cloud: Cloud, eventListener: OnEventListener) {
+    override fun deleteItem(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
 
         DataBaseRequest.deleteCloud(cloud, eventListener)
     }

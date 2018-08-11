@@ -48,7 +48,7 @@ class MainFragment : Fragment(), LikesFragment.OnLikeListener {
     }
 
     private fun settingToolBar() {
-        toolbar.title = getString(R.string.colors)
+        bar.title = getString(R.string.colors)
 //        val actionBar = (activity as AppCompatActivity)
 
 //        actionBar.setSupportActionBar(toolBar)

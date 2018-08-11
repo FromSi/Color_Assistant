@@ -22,7 +22,9 @@ import kz.sgq.colorassistant.R
 import android.content.Intent
 import android.provider.MediaStore
 import android.net.Uri
+import android.support.design.bottomappbar.BottomAppBar
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -34,6 +36,9 @@ import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.RecyclerImageAdapter
 import kz.sgq.colorassistant.ui.fragment.dialog.MoreDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
+import me.imid.swipebacklayout.lib.SwipeBackLayout
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
+
 
 class ImageActivity : MvpAppCompatActivity(), ImageView {
     @InjectPresenter
@@ -43,23 +48,32 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
+        val helper = SwipeBackActivityHelper(this)
+
+        helper.onActivityCreate()
         setContentView(R.layout.activity_image)
-        initToolBar()
-        initScan()
+        helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
+        initActionBar()
         setResult(Activity.RESULT_OK, null)
+        colors.addOnScrollListener(initScrollListener())
         openGallery()
+        helper.onPostCreate()
     }
 
     override fun finishActivity() {
 
         setResult(Activity.RESULT_CANCELED, null)
         finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
         android.R.id.home -> {
 
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
             true
         }
@@ -116,11 +130,27 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         }
     }
 
-    private fun initToolBar() {
-        toolbar.title = resources.getString(R.string.toolbar_image_scan)
+    private fun initScrollListener(): RecyclerView.OnScrollListener =
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
-        setSupportActionBar(toolbar)
+                    if (dy > 0)
+                        fab.hide()
+
+                    if (dy < 0)
+                        fab.show()
+                }
+            }
+
+    private fun initActionBar() {
+        bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+
+        setSupportActionBar(bar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        fab.setOnClickListener {
+
+            openGallery()
+        }
     }
 
     private fun openGallery() {
@@ -130,16 +160,8 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         startActivityForResult(photoPickerIntent, 1)
     }
 
-    private fun initScan() {
-
-        scan.setOnClickListener {
-
-            openGallery()
-        }
-    }
-
-    private fun initClick(){
-        adapter.setClickListener(object : RecyclerImageAdapter.OnClickListener{
+    private fun initClick() {
+        adapter.setClickListener(object : RecyclerImageAdapter.OnClickListener {
             override fun show(index: Int) {
 
                 presenter.showMore(index)

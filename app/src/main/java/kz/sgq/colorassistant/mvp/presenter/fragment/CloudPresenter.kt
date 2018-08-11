@@ -23,6 +23,7 @@ import com.arellomobile.mvp.MvpPresenter
 import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
 import kz.sgq.colorassistant.mvp.model.fragment.interfaces.CloudModel
 import kz.sgq.colorassistant.mvp.view.fragment.CloudView
+import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
 
 @InjectViewState
@@ -51,19 +52,21 @@ class CloudPresenter : MvpPresenter<CloudView>() {
     }
 
     fun onItemViewClick(cloud: Cloud) {
+
         viewState.showActivityInfo(model.calcColorList(cloud))
     }
 
     fun onItemShareClick(cloud: Cloud) {
+
         viewState.shareItem(model.calcShare(cloud))
     }
 
-    fun onItemDeleteClick(cloud: Cloud, index: Int) {
+    fun save(cloud: Cloud) {
 
-        model.deleteItem(cloud, object : CloudModelImpl.OnEventListener {
+        model.save(cloud, object : DataBaseRequest.OnEventListener {
             override fun onSuccess() {
 
-                viewState.deleteItem(index)
+                viewState.addItem(cloud)
             }
 
             override fun onError() {
@@ -72,12 +75,12 @@ class CloudPresenter : MvpPresenter<CloudView>() {
         })
     }
 
-    fun addItem(cloud: Cloud) {
+    fun onItemDeleteClick(cloud: Cloud, index: Int) {
 
-        model.addItem(cloud, object : CloudModelImpl.OnEventListener {
+        model.deleteItem(cloud, object : DataBaseRequest.OnEventListener {
             override fun onSuccess() {
 
-                viewState.addItem(cloud)
+                viewState.deleteItem(index)
             }
 
             override fun onError() {

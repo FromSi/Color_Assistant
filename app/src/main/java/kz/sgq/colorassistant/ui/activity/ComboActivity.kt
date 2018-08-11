@@ -17,7 +17,8 @@
 package kz.sgq.colorassistant.ui.activity
 
 import android.os.Bundle
-import android.view.Menu
+import android.support.design.bottomappbar.BottomAppBar
+import android.support.v4.widget.NestedScrollView
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -31,6 +32,8 @@ import kz.sgq.colorassistant.ui.fragment.sheet.ComboListBottomSheet
 import kz.sgq.colorassistant.ui.fragment.sheet.HSLBottomSheet
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 import kz.sgq.colorassistant.ui.util.ItemDetails
+import me.imid.swipebacklayout.lib.SwipeBackLayout
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
 class ComboActivity : MvpAppCompatActivity(), ComboView {
     @InjectPresenter
@@ -39,28 +42,23 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
+        val helper = SwipeBackActivityHelper(this)
+
+        helper.onActivityCreate()
         setContentView(R.layout.activity_combo)
+        helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         presenter.initColorList(intent.getSerializableExtra("map") as MutableList<String>)
-        initToolBar()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        menuInflater.inflate(R.menu.combo_menu, menu)
-
-        return true
+        initActionBar()
+        helper.onPostCreate()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
         android.R.id.home -> {
 
             finish()
-
-            true
-        }
-        R.id.share -> {
-
-            presenter.showShare()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
             true
         }
@@ -69,7 +67,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
 
     override fun setBackgroundColor(color: Int) {
 
-        background.setBackgroundColor(color)
+        constructor.setBackgroundColor(color)
     }
 
     override fun setTextColor(color: Int) {
@@ -94,7 +92,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     override fun cardClick(index: Int) {
         val dialog = ComboListBottomSheet()
 
-        dialog.setClick(object : ComboListBottomSheet.OnClickListener{
+        dialog.setClick(object : ComboListBottomSheet.OnClickListener {
             override fun onClickSaturation() {
 
                 presenter.openSaturation(index)
@@ -146,7 +144,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
         list_card.getChildAt(index).value.text = value
     }
 
-    override fun initClicks(size: Int){
+    override fun initClicks(size: Int) {
 
         for (i in 0 until size)
             list_item_bg.getChildAt(i).setOnClickListener {
@@ -159,12 +157,28 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
             }
     }
 
-    private fun initToolBar() {
-        toolbar.title = getString(R.string.toolbar_combo)
+    private fun initActionBar() {
+        bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(bar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        fab.setOnClickListener {
+
+            presenter.showShare()
+        }
+        scroll.setOnScrollChangeListener(initScroll())
     }
+
+    private fun initScroll(): NestedScrollView.OnScrollChangeListener =
+            NestedScrollView.OnScrollChangeListener { n: NestedScrollView, i: Int, i1: Int,
+                                                      i2: Int, i3: Int ->
+
+                if (i1 > i3)
+                    fab.hide()
+
+                if (i1 < i3)
+                    fab.show()
+            }
 
     private fun initExample(index: Int, color: Int) {
         list_item_bg.getChildAt(index).visibility = View.VISIBLE
@@ -174,7 +188,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
         list_item_text.getChildAt(index).setBackgroundColor(color)
 
         if (index == 0)
-            background.setBackgroundColor(color)
+            constructor.setBackgroundColor(color)
 
         if (index == 1)
             text.setTextColor(color)

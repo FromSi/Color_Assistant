@@ -14,26 +14,16 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model.fragment.interfaces
+package kz.sgq.colorassistant.mvp.model
 
-import android.content.Intent
-import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
+import kz.sgq.colorassistant.mvp.model.interfaces.ConstructorModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
 
-interface CloudModel {
+class ConstructorModelImpl : ConstructorModel {
 
-    fun initItemList(initListener: CloudModelImpl.OnInitListener)
+    override fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
 
-    fun calcColorList(cloud: Cloud): MutableList<String>
-
-    fun calcShare(cloud: Cloud): String
-
-    fun calcQRAnswer(data: Intent?): Cloud
-
-    fun calcQRCode(resultCode: Int, data: Intent?): Boolean
-
-    fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener)
-
-    fun deleteItem(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener)
+        DataBaseRequest.insertCloud(cloud, eventListener)
+    }
 }

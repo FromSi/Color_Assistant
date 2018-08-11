@@ -21,7 +21,6 @@ import android.graphics.Color
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
 import kz.sgq.colorassistant.mvp.model.interfaces.ImageModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
@@ -77,7 +76,7 @@ class ImageModelImpl : ImageModel {
 
     override fun saveCloud(index: Int) {
 
-        DataBaseRequest.insertCloud(cloudList[index], object : CloudModelImpl.OnEventListener {
+        DataBaseRequest.insertCloud(cloudList[index], object : DataBaseRequest.OnEventListener {
             override fun onSuccess() {
 
                 DataBaseRequest.getColor()

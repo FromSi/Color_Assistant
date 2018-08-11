@@ -3,24 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/save"
-        android:icon="@drawable/save"
-        android:title="@string/cloud_menu_save"
-        android:visible="false"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/constructor"
         android:icon="@drawable/constructor"
         android:title="@string/cloud_menu_constructor"
         android:visible="true"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/cloud"
-        android:icon="@drawable/cloud"
-        android:title="@string/cloud_menu_cloud"
-        android:visible="false"
         app:showAsAction="always" />
 
     <item
