@@ -39,7 +39,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun settingToolBar() {
-        bar.title = getString(R.string.toolbar_settings)
+        bar.title = getString(R.string.bar_settings)
 //        val actionBar = (activity as AppCompatActivity)
 
 //        actionBar.setSupportActionBar(toolBar)

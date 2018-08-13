@@ -72,6 +72,10 @@ class LikesPresenter : MvpPresenter<LikesView>() {
                 }
     }
 
+    fun initPresenter(){
+        viewState.showLoadDB()
+    }
+
     fun handlerColorListener(itemCount: Int, lastVisibleItem: Int) {
 
         if (!model.isLoading() &&

@@ -86,11 +86,12 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     override fun errorQR() {
-        val snack = Snackbar.make(
-                view!!,
-                resources.getString(R.string.snack_qr_scan_error_title),
-                Snackbar.LENGTH_LONG
-        )
+        val snack = Snackbar
+                .make(
+                        view!!,
+                        resources.getString(R.string.snack_qr_scan_error_title),
+                        Snackbar.LENGTH_LONG
+                )
                 .setAction(
                         resources.getString(R.string.snack_qr_scan_error_click),
                         initClickError()
@@ -205,7 +206,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     private fun settingToolBar() {
-        bar.title = getString(R.string.toolbar_constructor)
+        bar.title = getString(R.string.bar_constructor)
 
         bar.inflateMenu(R.menu.cloud_menu)
         bar.setOnMenuItemClickListener(initClickMenu())

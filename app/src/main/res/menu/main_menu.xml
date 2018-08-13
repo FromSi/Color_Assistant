@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/main_settings"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/qr"
+        android:title="@string/main_menu_qr"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/image_scan"
+        android:title="@string/main_menu_image_scan"
+        android:visible="true" />
+</menu>

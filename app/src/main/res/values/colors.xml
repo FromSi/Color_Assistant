@@ -7,7 +7,7 @@
     <color name="colorAccent">#7C4DFF</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
-    <color name="icons">#FFFFFF</color>
+    <color name="icon">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="icon_def">#000</color>
 

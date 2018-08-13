@@ -51,11 +51,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupTab() {
 
         tab_layout.setupWithViewPager(view_pager)
-        tab_layout.getTabAt(0)?.icon = ContextCompat.getDrawable(this, R.drawable.colors)
+        tab_layout.getTabAt(0)?.icon = ContextCompat.getDrawable(this, R.drawable.global)
         tab_layout.getTabAt(1)?.icon = ContextCompat.getDrawable(this, R.drawable.cloud)
         tab_layout.getTabAt(2)?.icon = ContextCompat.getDrawable(this, R.drawable.settings)
         tab_layout.getTabAt(0)?.icon?.setColorFilter(
-                ContextCompat.getColor(this, R.color.icons),
+                ContextCompat.getColor(this, R.color.icon),
                 PorterDuff.Mode.SRC_IN
         )
         tabListener()
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                val color = ContextCompat.getColor(applicationContext, R.color.icons)
+                val color = ContextCompat.getColor(applicationContext, R.color.icon)
 
                 tab?.icon?.setColorFilter(color, PorterDuff.Mode.SRC_IN)
             }

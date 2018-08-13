@@ -235,7 +235,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/toolbar_combo"
+                android:text="@string/bar_combo"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="bold" />
