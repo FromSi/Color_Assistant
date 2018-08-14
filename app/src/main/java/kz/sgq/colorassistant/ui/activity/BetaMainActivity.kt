@@ -16,9 +16,17 @@
 
 package kz.sgq.colorassistant.ui.activity
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v4.app.ActivityCompat
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_beta_main.*
@@ -26,7 +34,10 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.mvp.presenter.MainPresenter
 import kz.sgq.colorassistant.mvp.view.MainView
+import kz.sgq.colorassistant.room.table.Cloud
+import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
+import kz.sgq.colorassistant.ui.view.ItemColor
 
 class BetaMainActivity : MvpAppCompatActivity(), MainView {
     @InjectPresenter
@@ -53,9 +64,26 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
 
             true
         }
-        R.id.settings -> true
-        R.id.qr -> true
-        R.id.image_scan -> true
+        R.id.settings -> {
+            val intent = Intent(this, SettingsActivity::class.java)
+
+            startActivity(intent)
+
+            true
+        }
+        R.id.qr -> {
+
+            checkCameraPermission()
+
+            true
+        }
+        R.id.image_scan -> {
+            val intent = Intent(this, ImageActivity::class.java)
+
+            startActivityForResult(intent, 2)
+
+            true
+        }
         else -> super.onOptionsItemSelected(item)
     }
 
@@ -100,6 +128,83 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
             }
         })
         dialog.show(supportFragmentManager, "menu_bottom_sheet")
+    }
+
+    override fun answerQR(cloud: Cloud) {
+        val dialog = QRScanDialog()
+
+        dialog.cloud(cloud)
+        dialog.clickListener(initClickAnswer(cloud))
+        dialog.show(supportFragmentManager, "qr_dialog")
+    }
+
+    override fun errorQR() {
+        val snack = Snackbar
+                .make(
+                        fab,
+                        resources.getString(R.string.snack_qr_scan_error_title),
+                        Snackbar.LENGTH_LONG
+                )
+                .setAction(
+                        resources.getString(R.string.snack_qr_scan_error_click),
+                        initClickError()
+                )
+                .setActionTextColor(resources.getColor(R.color.snack_error))
+
+        snack.view
+                .findViewById<TextView>(android.support.design.R.id.snackbar_text)
+                .setTextColor(resources.getColor(R.color.snack_text))
+        snack.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK)
+            presenter.initResult(requestCode, resultCode, data)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == 10) {
+            val permission = permissions[0]
+            val grantResult = grantResults[0]
+
+            if (permission == Manifest.permission.CAMERA && grantResult == PackageManager.PERMISSION_GRANTED)
+                openScanActivity()
+        } else
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun initClickAnswer(
+            cloud: Cloud
+    ): ItemColor.OnClickListener = object : ItemColor.OnClickListener {
+        override fun onClick() {
+
+            presenter.save(cloud)
+        }
+    }
+
+    private fun initClickError(): View.OnClickListener = View.OnClickListener {
+
+        checkCameraPermission()
+    }
+
+    private fun checkCameraPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
+                PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(
+                    parent,
+                    arrayOf(Manifest.permission.CAMERA),
+                    10
+            )
+        else
+            openScanActivity()
+    }
+
+    private fun openScanActivity() {
+        val intent = Intent(this, QRCodeScanActivity::class.java)
+
+        startActivityForResult(intent, 1)
     }
 
     private fun initActionBar(){

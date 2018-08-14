@@ -26,7 +26,6 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.MenuPageAdapter
 import kz.sgq.colorassistant.ui.fragment.CloudFragment
 import kz.sgq.colorassistant.ui.fragment.MainFragment
-import kz.sgq.colorassistant.ui.fragment.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         menu.addFragment(MainFragment())
         menu.addFragment(CloudFragment())
-        menu.addFragment(SettingsFragment())
+        menu.addFragment(CloudFragment())
 
         view_pager.adapter = menu
     }

@@ -16,7 +16,11 @@
 
 package kz.sgq.colorassistant.mvp.model
 
+import android.app.Activity
+import android.content.Intent
 import kz.sgq.colorassistant.mvp.model.interfaces.MainModel
+import kz.sgq.colorassistant.room.common.DataBaseRequest
+import kz.sgq.colorassistant.room.table.Cloud
 
 class MainModelImpl : MainModel {
     private var fragmentCurrent = MainFragment.GLOBAL
@@ -27,5 +31,40 @@ class MainModelImpl : MainModel {
 
     override fun setCurrentFragment(fragmentCurrent: MainFragment) {
         this.fragmentCurrent = fragmentCurrent
+    }
+
+    override fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
+
+        DataBaseRequest.insertCloud(cloud, eventListener)
+    }
+
+    override fun calcQRCode(resultCode: Int, data: Intent?): Boolean {
+
+        if (resultCode == Activity.RESULT_OK) {
+            val scanResult = data!!.getStringExtra("scan_result")
+            val size = scanResult.length
+
+            if ((size == 21) || (size == 28) || (size == 35))
+                return true
+        }
+
+        return false
+    }
+
+    override fun calcQRAnswer(data: Intent?): Cloud {
+        val scanResult = data!!.getStringExtra("scan_result")
+        val cloud = Cloud(
+                scanResult.substring(0, 7),
+                scanResult.substring(7, 14),
+                scanResult.substring(14, 21)
+        )
+
+        if (scanResult.length >= 28)
+            cloud.colFour = scanResult.substring(21, 28)
+
+        if (scanResult.length >= 35)
+            cloud.colFive = scanResult.substring(28, 35)
+
+        return cloud
     }
 }

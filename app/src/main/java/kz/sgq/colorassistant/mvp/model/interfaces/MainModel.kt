@@ -16,11 +16,20 @@
 
 package kz.sgq.colorassistant.mvp.model.interfaces
 
+import android.content.Intent
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
+import kz.sgq.colorassistant.room.common.DataBaseRequest
+import kz.sgq.colorassistant.room.table.Cloud
 
 interface MainModel {
 
     fun getCurrentFragment(): MainModelImpl.MainFragment
 
     fun setCurrentFragment(fragmentCurrent: MainModelImpl.MainFragment)
+
+    fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener)
+
+    fun calcQRAnswer(data: Intent?): Cloud
+
+    fun calcQRCode(resultCode: Int, data: Intent?): Boolean
 }

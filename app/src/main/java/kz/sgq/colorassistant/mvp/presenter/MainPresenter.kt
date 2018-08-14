@@ -16,11 +16,15 @@
 
 package kz.sgq.colorassistant.mvp.presenter
 
+import android.app.Activity
+import android.content.Intent
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.mvp.model.interfaces.MainModel
 import kz.sgq.colorassistant.mvp.view.MainView
+import kz.sgq.colorassistant.room.common.DataBaseRequest
+import kz.sgq.colorassistant.room.table.Cloud
 
 @InjectViewState
 class MainPresenter : MvpPresenter<MainView>() {
@@ -41,6 +45,31 @@ class MainPresenter : MvpPresenter<MainView>() {
 
                 viewState.constructor()
             }
+        }
+    }
+
+    fun save(cloud: Cloud) {
+
+        model.save(cloud, object : DataBaseRequest.OnEventListener {
+            override fun onSuccess() {
+
+            }
+
+            override fun onError() {
+
+            }
+        })
+    }
+
+    fun initResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == 1)
+            if (model.calcQRCode(resultCode, data))
+                viewState.answerQR(model.calcQRAnswer(data))
+            else
+                viewState.errorQR()
+        else if (requestCode == 2 && resultCode == Activity.RESULT_OK){
+
         }
     }
 
