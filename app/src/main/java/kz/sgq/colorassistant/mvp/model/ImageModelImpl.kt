@@ -41,8 +41,8 @@ class ImageModelImpl : ImageModel {
     }
 
     override fun setCurrentImage(currentImage: Bitmap, click: OnClickListener) {
-        colorList = arrayListOf()
-        cloudList = arrayListOf()
+
+        cleaning()
 
         val maybe: Maybe<MutableList<IntArray>> = Maybe.create {
             val changeBitmap = Bitmap.createScaledBitmap(
@@ -94,6 +94,11 @@ class ImageModelImpl : ImageModel {
         DataBaseRequest.deleteCloud(cloudList[index])
     }
 
+    private fun cleaning(){
+        colorList = arrayListOf()
+        cloudList = arrayListOf()
+    }
+
     private fun initColorList(result: MutableList<IntArray>) {
         val r = Random(System.currentTimeMillis())
 
@@ -138,19 +143,17 @@ class ImageModelImpl : ImageModel {
         return r0
     }
 
-    private fun initCloud(list: MutableList<Int>): Cloud {
-        val cloud = Cloud(
-                ColorConverter.getHex(list[0]),
-                ColorConverter.getHex(list[1]),
-                ColorConverter.getHex(list[2])
-        )
+    private fun initCloud(list: MutableList<Int>): Cloud = Cloud(
+            ColorConverter.getHex(list[0]),
+            ColorConverter.getHex(list[1]),
+            ColorConverter.getHex(list[2])
+    ).apply {
 
         if (list.size >= 4)
-            cloud.colFour = ColorConverter.getHex(list[3])
+            colFour = ColorConverter.getHex(list[3])
 
         if (list.size >= 5)
-            cloud.colFive = ColorConverter.getHex(list[4])
-
-        return cloud
+            colFive = ColorConverter.getHex(list[4])
     }
+
 }

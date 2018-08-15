@@ -21,6 +21,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.view.Menu
@@ -37,7 +38,9 @@ import kz.sgq.colorassistant.mvp.view.MainView
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
+import kz.sgq.colorassistant.ui.util.CodeActivity
 import kz.sgq.colorassistant.ui.view.ItemColor
+import kotlin.math.PI
 
 class BetaMainActivity : MvpAppCompatActivity(), MainView {
     @InjectPresenter
@@ -80,7 +83,7 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
         R.id.image_scan -> {
             val intent = Intent(this, ImageActivity::class.java)
 
-            startActivityForResult(intent, 2)
+            startActivityForResult(intent, CodeActivity.IMAGE_SCAN.ID)
 
             true
         }
@@ -90,6 +93,7 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
     override fun global() {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.GLOBAL)
+
         fab.setImageDrawable(resources.getDrawable(R.drawable.like))
     }
 
@@ -107,7 +111,9 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
 
     override fun constructor() {
 
+        val intent = Intent(this, ConstructorActivity::class.java)
 
+        startActivityForResult(intent, CodeActivity.CONSTRUCTOR.ID)
     }
 
     override fun cancel() {
@@ -141,7 +147,7 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
     override fun errorQR() {
         val snack = Snackbar
                 .make(
-                        fab,
+                        coordinator_layout,
                         resources.getString(R.string.snack_qr_scan_error_title),
                         Snackbar.LENGTH_LONG
                 )
@@ -154,6 +160,19 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
         snack.view
                 .findViewById<TextView>(android.support.design.R.id.snackbar_text)
                 .setTextColor(resources.getColor(R.color.snack_text))
+
+        val snackBar = snack.view
+        val params = snackBar.layoutParams as CoordinatorLayout.LayoutParams
+
+        params.setMargins(
+                params.leftMargin,
+                params.topMargin,
+                params.rightMargin,
+                params.bottomMargin + bar.height + (fab.height / (PI / 2)).toInt()
+        )
+
+        snackBar.layoutParams = params
+
         snack.show()
     }
 
@@ -204,7 +223,7 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
     private fun openScanActivity() {
         val intent = Intent(this, QRCodeScanActivity::class.java)
 
-        startActivityForResult(intent, 1)
+        startActivityForResult(intent, CodeActivity.QR_SCAN.ID)
     }
 
     private fun initActionBar(){

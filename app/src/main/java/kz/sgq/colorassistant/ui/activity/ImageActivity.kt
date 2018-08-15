@@ -24,7 +24,6 @@ import android.provider.MediaStore
 import android.net.Uri
 import android.support.design.bottomappbar.BottomAppBar
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -39,27 +38,25 @@ import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
-
 class ImageActivity : MvpAppCompatActivity(), ImageView {
     @InjectPresenter
     lateinit var presenter: ImagePresenter
-    private lateinit var adapter: RecyclerImageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
-        val helper = SwipeBackActivityHelper(this)
-
-        helper.onActivityCreate()
         setContentView(R.layout.activity_image)
-        helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         initActionBar()
         setResult(Activity.RESULT_OK, null)
-        colors.addOnScrollListener(initScrollListener())
         openGallery()
-        helper.onPostCreate()
+        SwipeBackActivityHelper(this)
+                .apply {
+                    onActivityCreate()
+                    swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
+                    onPostCreate()
+                }
     }
 
     override fun finishActivity() {
@@ -87,24 +84,31 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
     }
 
     override fun initItemsColor(list: MutableList<MutableList<Int>>) {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        colors.layoutManager = layoutManager
-        adapter = RecyclerImageAdapter()
-        colors.adapter = adapter
 
-        adapter.initColors(list)
-        initClick()
+        LinearLayoutManager(this).apply {
+            orientation = LinearLayoutManager.VERTICAL
+            colors.layoutManager = this
+        }
+        RecyclerImageAdapter().apply {
+            colors.adapter = this
+
+            initColors(list)
+            initClick(this)
+        }
         setVisibly(true)
     }
 
     override fun initImage(photoUri: Uri) {
 
         try {
-            val currentImage = MediaStore.Images.Media.getBitmap(this.contentResolver, photoUri)
 
-            image.setImageBitmap(currentImage)
-            presenter.setCurrentImage(currentImage)
+            MediaStore.Images.Media
+                    .getBitmap(this.contentResolver, photoUri)
+                    .apply {
+
+                        image.setImageBitmap(this)
+                        presenter.setCurrentImage(this)
+                    }
             setVisibly(false)
         } catch (e: Exception) {
 
@@ -113,10 +117,11 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
     }
 
     override fun showMore(cloud: Cloud) {
-        val dialog = MoreDialog()
+        MoreDialog().apply {
 
-        dialog.cloud(cloud)
-        dialog.show(supportFragmentManager, "image_more_dialog")
+            cloud(cloud)
+            show(supportFragmentManager, "image_more_dialog")
+        }
     }
 
     private fun setVisibly(bool: Boolean) {
@@ -130,18 +135,6 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         }
     }
 
-    private fun initScrollListener(): RecyclerView.OnScrollListener =
-            object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-
-                    if (dy > 0)
-                        fab.hide()
-
-                    if (dy < 0)
-                        fab.show()
-                }
-            }
-
     private fun initActionBar() {
         bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
 
@@ -154,13 +147,14 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
     }
 
     private fun openGallery() {
-        val photoPickerIntent = Intent(Intent.ACTION_PICK)
-        photoPickerIntent.type = "image/*"
 
-        startActivityForResult(photoPickerIntent, 1)
+        startActivityForResult(
+                Intent(Intent.ACTION_PICK).apply { type = "image/*" },
+                1
+        )
     }
 
-    private fun initClick() {
+    private fun initClick(adapter: RecyclerImageAdapter) {
         adapter.setClickListener(object : RecyclerImageAdapter.OnClickListener {
             override fun show(index: Int) {
 
@@ -178,10 +172,12 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
             }
 
             override fun onShare(share: String) {
-                val dialog = ShareDialog()
 
-                dialog.setText(share)
-                dialog.show(supportFragmentManager, "share_dialog")
+                ShareDialog().apply {
+
+                    setText(share)
+                    show(supportFragmentManager, "share_dialog")
+                }
             }
         })
     }

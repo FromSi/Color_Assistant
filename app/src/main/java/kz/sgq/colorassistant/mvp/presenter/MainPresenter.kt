@@ -18,6 +18,7 @@ package kz.sgq.colorassistant.mvp.presenter
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
@@ -25,6 +26,7 @@ import kz.sgq.colorassistant.mvp.model.interfaces.MainModel
 import kz.sgq.colorassistant.mvp.view.MainView
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
+import kz.sgq.colorassistant.ui.util.CodeActivity
 
 @InjectViewState
 class MainPresenter : MvpPresenter<MainView>() {
@@ -63,13 +65,17 @@ class MainPresenter : MvpPresenter<MainView>() {
 
     fun initResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        if (requestCode == 1)
+        if (requestCode == CodeActivity.QR_SCAN.ID)
             if (model.calcQRCode(resultCode, data))
                 viewState.answerQR(model.calcQRAnswer(data))
             else
                 viewState.errorQR()
-        else if (requestCode == 2 && resultCode == Activity.RESULT_OK){
+        else if (requestCode == CodeActivity.IMAGE_SCAN.ID && resultCode == Activity.RESULT_OK){
 
+            Log.d("TestTAGSSSS", "IMAGE_SCAN")
+        } else if (requestCode == CodeActivity.CONSTRUCTOR.ID && resultCode == Activity.RESULT_OK){
+
+            Log.d("TestTAGSSSS", "CONSTRUCTOR")
         }
     }
 

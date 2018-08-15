@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.BetaMainActivity">
 
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"/>
+
     <android.support.design.bottomappbar.BottomAppBar
         android:id="@+id/bar"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
@@ -13,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:fabAlignmentMode="center"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <android.support.design.widget.FloatingActionButton

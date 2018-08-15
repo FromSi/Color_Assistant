@@ -32,14 +32,12 @@ class ImagePresenter : MvpPresenter<ImageView>() {
     fun initImage(resultCode: Int, data: Intent?) {
 
         if (resultCode == Activity.RESULT_OK) {
-            val photoUri = data?.data
 
-            if (photoUri != null)
-                viewState.initImage(photoUri)
+            if (data?.data != null)
+                viewState.initImage(data.data!!)
 
         } else if (!model.getState())
             viewState.finishActivity()
-
     }
 
     fun showMore(index: Int) {
@@ -49,13 +47,15 @@ class ImagePresenter : MvpPresenter<ImageView>() {
 
     fun setCurrentImage(currentImage: Bitmap) {
 
-        model.setState(true)
-        model.setCurrentImage(currentImage, object : ImageModelImpl.OnClickListener {
-            override fun onClick() {
+        model.apply {
+            setState(true)
+            setCurrentImage(currentImage, object : ImageModelImpl.OnClickListener {
+                override fun onClick() {
 
-                viewState.initItemsColor(model.getColorList())
-            }
-        })
+                    viewState.initItemsColor(model.getColorList())
+                }
+            })
+        }
     }
 
     fun cloudSave(index: Int) {
