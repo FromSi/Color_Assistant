@@ -39,9 +39,7 @@ interface ComboView : MvpView {
 
     fun handlerVisibly(size: Int)
 
-    fun openSaturation(list: MutableList<ItemDetails>)
-
-    fun openLightness(list: MutableList<ItemDetails>)
+    fun openHSLSheet(list: MutableList<ItemDetails>)
 
     fun openShare(share: String)
 }

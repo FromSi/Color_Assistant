@@ -99,21 +99,23 @@ class ItemColor : View {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        canvas?.translate(translationOffset, translationOffset)
+        canvas?.apply {
+            translate(translationOffset, translationOffset)
 
-        if (enableHalo) canvas?.drawCircle(
-                positionX,
-                positionCurrent,
-                itemPointerHaloRadius.toFloat(),
-                itemPointerHaloPaint
-        )
+            if (enableHalo) drawCircle(
+                    positionX,
+                    positionCurrent,
+                    itemPointerHaloRadius.toFloat(),
+                    itemPointerHaloPaint
+            )
 
-        canvas?.drawCircle(
-                positionX,
-                positionCurrent,
-                itemPointerRadius.toFloat(),
-                itemPointerPaint
-        )
+            drawCircle(
+                    positionX,
+                    positionCurrent,
+                    itemPointerRadius.toFloat(),
+                    itemPointerPaint
+            )
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

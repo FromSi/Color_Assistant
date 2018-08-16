@@ -68,9 +68,8 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
             true
         }
         R.id.settings -> {
-            val intent = Intent(this, SettingsActivity::class.java)
 
-            startActivity(intent)
+            startActivity(Intent(this, SettingsActivity::class.java))
 
             true
         }
@@ -81,9 +80,11 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
             true
         }
         R.id.image_scan -> {
-            val intent = Intent(this, ImageActivity::class.java)
 
-            startActivityForResult(intent, CodeActivity.IMAGE_SCAN.ID)
+            startActivityForResult(
+                    Intent(this, ImageActivity::class.java),
+                    CodeActivity.IMAGE_SCAN.ID
+            )
 
             true
         }
@@ -93,7 +94,6 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
     override fun global() {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.GLOBAL)
-
         fab.setImageDrawable(resources.getDrawable(R.drawable.like))
     }
 
@@ -111,9 +111,10 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
 
     override fun constructor() {
 
-        val intent = Intent(this, ConstructorActivity::class.java)
-
-        startActivityForResult(intent, CodeActivity.CONSTRUCTOR.ID)
+        startActivityForResult(
+                Intent(this, ConstructorActivity::class.java),
+                CodeActivity.CONSTRUCTOR.ID
+        )
     }
 
     override fun cancel() {
@@ -123,57 +124,60 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun openMenu(fragmentCurrent: MainModelImpl.MainFragment) {
-        val dialog = MenuBottomSheet()
 
-        dialog.setFragmentCurrent(fragmentCurrent)
-        dialog.setClick(object : MenuBottomSheet.OnClickListener {
-            override fun onClick(fragmentCurrent: MainModelImpl.MainFragment) {
+        MenuBottomSheet().apply {
 
-                presenter.setCurrentFragment(fragmentCurrent)
-                presenter.menuClick()
-            }
-        })
-        dialog.show(supportFragmentManager, "menu_bottom_sheet")
+            setFragmentCurrent(fragmentCurrent)
+            setClick(object : MenuBottomSheet.OnClickListener {
+                override fun onClick(fragmentCurrent: MainModelImpl.MainFragment) {
+
+                    presenter.setCurrentFragment(fragmentCurrent)
+                    presenter.menuClick()
+                }
+            })
+            show(supportFragmentManager, "menu_bottom_sheet")
+        }
     }
 
     override fun answerQR(cloud: Cloud) {
-        val dialog = QRScanDialog()
 
-        dialog.cloud(cloud)
-        dialog.clickListener(initClickAnswer(cloud))
-        dialog.show(supportFragmentManager, "qr_dialog")
+        QRScanDialog().apply {
+
+            cloud(cloud)
+            clickListener(initClickAnswer(cloud))
+            show(supportFragmentManager, "qr_dialog")
+        }
     }
 
     override fun errorQR() {
-        val snack = Snackbar
-                .make(
-                        coordinator_layout,
-                        resources.getString(R.string.snack_qr_scan_error_title),
-                        Snackbar.LENGTH_LONG
-                )
-                .setAction(
-                        resources.getString(R.string.snack_qr_scan_error_click),
-                        initClickError()
-                )
-                .setActionTextColor(resources.getColor(R.color.snack_error))
 
-        snack.view
-                .findViewById<TextView>(android.support.design.R.id.snackbar_text)
-                .setTextColor(resources.getColor(R.color.snack_text))
+        Snackbar.make(
+                coordinator_layout,
+                resources.getString(R.string.snack_qr_scan_error_title),
+                Snackbar.LENGTH_LONG
+        ).apply {
 
-        val snackBar = snack.view
-        val params = snackBar.layoutParams as CoordinatorLayout.LayoutParams
+            setAction(
+                    resources.getString(R.string.snack_qr_scan_error_click),
+                    initClickError()
+            )
+            setActionTextColor(resources.getColor(R.color.snack_error))
+            view.findViewById<TextView>(android.support.design.R.id.snackbar_text)
+                    .setTextColor(resources.getColor(R.color.snack_text))
 
-        params.setMargins(
-                params.leftMargin,
-                params.topMargin,
-                params.rightMargin,
-                params.bottomMargin + bar.height + (fab.height / (PI / 2)).toInt()
-        )
+            val params = view.layoutParams as CoordinatorLayout.LayoutParams
 
-        snackBar.layoutParams = params
+            params.setMargins(
+                    params.leftMargin,
+                    params.topMargin,
+                    params.rightMargin,
+                    params.bottomMargin + bar.height + (fab.height / (PI / 2)).toInt()
+            )
 
-        snack.show()
+            view.layoutParams = params
+
+            show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -185,10 +189,9 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (requestCode == 10) {
-            val permission = permissions[0]
-            val grantResult = grantResults[0]
 
-            if (permission == Manifest.permission.CAMERA && grantResult == PackageManager.PERMISSION_GRANTED)
+            if ((permissions[0] == Manifest.permission.CAMERA) &&
+                    (grantResults[0] == PackageManager.PERMISSION_GRANTED))
                 openScanActivity()
         } else
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -226,7 +229,7 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
         startActivityForResult(intent, CodeActivity.QR_SCAN.ID)
     }
 
-    private fun initActionBar(){
+    private fun initActionBar() {
 
         setSupportActionBar(bar)
         supportActionBar?.apply {

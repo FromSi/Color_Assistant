@@ -32,18 +32,17 @@ class ShareDialog : DialogFragment() {
         val title = resources.getString(R.string.dialog_share_title)
         val positive = resources.getString(R.string.dialog_share_positive)
         val neutral = resources.getString(R.string.dialog_share_neutral)
-        val dialog = AlertDialog.Builder(activity!!)
-        val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_share, null)
 
-        dialog.setTitle(title)
-        dialog.setView(customLayout)
-        initView(customLayout)
+        return AlertDialog.Builder(activity!!).apply {
+            val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_share, null)
 
-        dialog.setPositiveButton(positive) { _, _ -> }
+            setTitle(title)
+            setView(customLayout)
+            initView(customLayout)
+            setPositiveButton(positive) { _, _ -> }
+            setNeutralButton(neutral) { _, _ -> }
 
-        dialog.setNeutralButton(neutral) { _, _ -> }
-
-        return dialog.create()
+        }.create()
     }
 
     fun setText(text: String) {

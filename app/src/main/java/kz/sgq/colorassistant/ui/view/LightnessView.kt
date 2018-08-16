@@ -124,20 +124,23 @@ class LightnessView : View {
 
     override fun onDraw(canvas: Canvas?) {
 
-        canvas?.drawRoundRect(barRectHalo, 5f, 5f, barPaintHalo)
-        canvas?.drawRoundRect(barRect, 5f, 5f, barPaint)
-        canvas?.drawCircle(
-                barPointerHaloRadius.toFloat(),
-                barPointerPosition.toFloat(),
-                barPointerHaloRadius.toFloat(),
-                barPointerHaloPaint
-        )
-        canvas?.drawCircle(
-                barPointerHaloRadius.toFloat(),
-                barPointerPosition.toFloat(),
-                barPointerRadius.toFloat(),
-                barPointerPaint
-        )
+        canvas?.apply {
+
+            drawRoundRect(barRectHalo, 5f, 5f, barPaintHalo)
+            drawRoundRect(barRect, 5f, 5f, barPaint)
+            drawCircle(
+                    barPointerHaloRadius.toFloat(),
+                    barPointerPosition.toFloat(),
+                    barPointerHaloRadius.toFloat(),
+                    barPointerHaloPaint
+            )
+            drawCircle(
+                    barPointerHaloRadius.toFloat(),
+                    barPointerPosition.toFloat(),
+                    barPointerRadius.toFloat(),
+                    barPointerPaint
+            )
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")

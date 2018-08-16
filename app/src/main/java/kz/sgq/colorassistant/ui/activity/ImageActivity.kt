@@ -46,13 +46,13 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
         super.onCreate(savedInstanceState)
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-
         setContentView(R.layout.activity_image)
         initActionBar()
         setResult(Activity.RESULT_OK, null)
         openGallery()
         SwipeBackActivityHelper(this)
                 .apply {
+
                     onActivityCreate()
                     swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
                     onPostCreate()

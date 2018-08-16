@@ -37,16 +37,13 @@ class DeleteDialog : DialogFragment() {
         val message = resources.getString(R.string.dialog_color_delete_message)
         val positive = resources.getString(R.string.dialog_color_delete_positive)
         val neutral = resources.getString(R.string.dialog_color_delete_neutral)
-        val dialog = AlertDialog.Builder(activity!!)
+        return AlertDialog.Builder(activity!!).apply {
 
-        dialog.setTitle(title)
-        dialog.setMessage(message)
-
-        dialog.setPositiveButton(positive) { _, _ -> deleteListener.onDelete(index) }
-
-        dialog.setNeutralButton(neutral) { _, _ -> }
-
-        return dialog.create()
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton(positive) { _, _ -> deleteListener.onDelete(index) }
+            setNeutralButton(neutral) { _, _ -> }
+        }.create()
     }
 
     fun clickListener(index: Int, deleteListener: OnDeleteListener) {

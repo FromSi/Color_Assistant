@@ -31,7 +31,7 @@ import kz.sgq.colorassistant.ui.view.ItemColor
 
 class QRScanDialog : DialogFragment() {
     private var index: Int = 0
-    private var text: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
+    private var textType: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
 
     private lateinit var cloud: Cloud
     private lateinit var clickListener: ItemColor.OnClickListener
@@ -40,27 +40,25 @@ class QRScanDialog : DialogFragment() {
         val title = resources.getString(R.string.dialog_qr_scan_title)
         val positive = resources.getString(R.string.dialog_qr_scan_positive)
         val neutral = resources.getString(R.string.dialog_qr_scan_neutral)
-        val dialog = AlertDialog.Builder(activity!!)
-        val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_qr, null)
 
-        dialog.setTitle(title)
-        dialog.setView(customLayout)
-        initView(customLayout)
-        textClick(customLayout)
+        return AlertDialog.Builder(activity!!).apply {
+            val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_qr, null)
 
-        dialog.setPositiveButton(positive) { _, _ -> clickListener.onClick() }
-
-        dialog.setNeutralButton(neutral) { _, _ -> }
-
-        return dialog.create()
+            setTitle(title)
+            setView(customLayout)
+            initView(customLayout)
+            textClick(customLayout)
+            setPositiveButton(positive) { _, _ -> clickListener.onClick() }
+            setNeutralButton(neutral) { _, _ -> }
+        }.create()
     }
 
     fun parseColor(view: View, color: Int) {
-        text[0] = "Hex\n${ColorConverter.getHex(color)}"
-        text[1] = "RGB\n${ColorConverter.getRGB(color)}"
-        text[2] = "HSV\n${ColorConverter.getHSV(color)}"
-        text[3] = "CMYK\n${ColorConverter.getCMYK(color)}"
-        view.info.text = this.text[index]
+        textType[0] = "Hex\n${ColorConverter.getHex(color)}"
+        textType[1] = "RGB\n${ColorConverter.getRGB(color)}"
+        textType[2] = "HSV\n${ColorConverter.getHSV(color)}"
+        textType[3] = "CMYK\n${ColorConverter.getCMYK(color)}"
+        view.info.text = textType[index]
     }
 
     fun clickListener(clickListener: ItemColor.OnClickListener) {
@@ -73,30 +71,35 @@ class QRScanDialog : DialogFragment() {
 
     private fun initView(view: View) {
 
-        view.item_list.addView(createItem(view, Color.parseColor(cloud.colOne)))
-        (view.item_list.getChildAt(0) as ItemColor).setEnable(true)
-        parseColor(view, Color.parseColor(cloud.colOne))
-        view.item_list.addView(createItem(view, Color.parseColor(cloud.colTwo)))
-        view.item_list.addView(createItem(view, Color.parseColor(cloud.colThree)))
+        view.item_list.apply {
+            addView(createItem(view, Color.parseColor(cloud.colOne)))
+            (getChildAt(0) as ItemColor).setEnable(true)
+            parseColor(view, Color.parseColor(cloud.colOne))
+            addView(createItem(view, Color.parseColor(cloud.colTwo)))
+            addView(createItem(view, Color.parseColor(cloud.colThree)))
 
-        if (cloud.colFour != null)
-            view.item_list.addView(createItem(view, Color.parseColor(cloud.colFour)))
+            if (cloud.colFour != null)
+                addView(createItem(view, Color.parseColor(cloud.colFour)))
 
-        if (cloud.colFive != null)
-            view.item_list.addView(createItem(view, Color.parseColor(cloud.colFive)))
+            if (cloud.colFive != null)
+                addView(createItem(view, Color.parseColor(cloud.colFive)))
+        }
     }
 
     private fun textClick(view: View) {
-        view.info.text = this.text[index]
 
-        view.info.setOnClickListener {
-            index++
+        view.info.apply {
+            text = textType[index]
 
-            if (index <= 3)
-                view.info.text = this.text[index]
-            else {
-                index = 0
-                view.info.text = this.text[index]
+            setOnClickListener {
+                index++
+
+                if (index <= 3)
+                    view.info.text = textType[index]
+                else {
+                    index = 0
+                    view.info.text = textType[index]
+                }
             }
         }
     }
@@ -108,21 +111,18 @@ class QRScanDialog : DialogFragment() {
         itemColor.setEnable(true)
     }
 
-    private fun createItem(view: View, color: Int): View {
-        val itemColor = ItemColor(context)
+    private fun createItem(view: View, color: Int): View = ItemColor(context)
+            .apply {
 
-        itemColor.setColor(color)
-        itemColor.setMoveItem(false)
+                setColor(color)
+                setMoveItem(false)
+                setOnClickItemColorListener(initClick(view, color, this))
+                layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+            }
 
-        itemColor.setOnClickItemColorListener(initClick(view, color, itemColor))
-
-        itemColor.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        return itemColor
-    }
 
     private fun initClick(
             view: View,

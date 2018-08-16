@@ -144,21 +144,24 @@ class ColorPicker : View {
             itemColor?.getPosition()
         }
 
-        canvas?.translate(translationOffset, translationOffset)
-        canvas?.drawOval(colorWheelRectangle, colorWheelPaint)
-        canvas?.drawCircle(
-                pointerPosition!![0],
-                pointerPosition[1],
-                colorPointerHaloRadius.toFloat(),
-                colorPointerHaloPaint
-        )
-        canvas?.drawCircle(
-                pointerPosition!![0],
-                pointerPosition[1],
-                colorPointerRadius.toFloat(),
-                colorPointerPaint
-        )
-        canvas?.drawOval(colorCenterRectangle, colorCenterPaint)
+        canvas?.apply {
+
+            translate(translationOffset, translationOffset)
+            drawOval(colorWheelRectangle, colorWheelPaint)
+            drawCircle(
+                    pointerPosition!![0],
+                    pointerPosition[1],
+                    colorPointerHaloRadius.toFloat(),
+                    colorPointerHaloPaint
+            )
+            drawCircle(
+                    pointerPosition!![0],
+                    pointerPosition[1],
+                    colorPointerRadius.toFloat(),
+                    colorPointerPaint
+            )
+            drawOval(colorCenterRectangle, colorCenterPaint)
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -268,24 +271,25 @@ class ColorPicker : View {
 
         this.itemColor?.setEnable(false)
 
-        if (itemColor.getPosition() == null) {
-            this.itemColor = itemColor
+        this.itemColor = itemColor.apply {
 
-            this.itemColor?.setColor(centerColor)
-            this.itemColor?.setPositionLightness(lightnessView?.getPosition()!!)
-            this.itemColor?.setPositionSaturation(saturationView?.getPosition()!!)
-            itemColor.setAngle(angle)
-        } else {
-            this.itemColor = itemColor
-            switchPointer = false
+            if (getPosition() == null) {
 
-            lightnessView?.setPosition(itemColor.getPositionLightness())
-            saturationView?.setPosition(itemColor.getPositionSaturation())
+                setColor(centerColor)
+                setPositionLightness(lightnessView?.getPosition()!!)
+                setPositionSaturation(saturationView?.getPosition()!!)
+                setAngle(angle)
+            } else {
+                switchPointer = false
 
-            angle = itemColor.getAngle()
-            valueLightness = itemColor.getLightness()
-            boolLightness = itemColor.getBoolLightness()
-            valueSaturation = itemColor.getSaturation()
+                lightnessView?.setPosition(getPositionLightness())
+                saturationView?.setPosition(getPositionSaturation())
+
+                angle = getAngle()
+                valueLightness = getLightness()
+                boolLightness = getBoolLightness()
+                valueSaturation = getSaturation()
+            }
         }
 
         this.itemColor?.setEnable(true)

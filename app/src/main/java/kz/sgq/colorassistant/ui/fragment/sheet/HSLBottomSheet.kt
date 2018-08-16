@@ -30,7 +30,7 @@ import android.util.DisplayMetrics
 import android.widget.ImageButton
 
 class HSLBottomSheet : BottomSheetDialogFragment() {
-    private lateinit var title: String
+    private lateinit var titleText: String
     private lateinit var list: MutableList<ItemDetails>
     private lateinit var button: ImageButton
 
@@ -38,30 +38,31 @@ class HSLBottomSheet : BottomSheetDialogFragment() {
     override fun setupDialog(dialog: Dialog?, style: Int) {
         super.setupDialog(dialog, style)
 
-        val view = View.inflate(context, R.layout.bottom_sheet_hsl, null)
+        View.inflate(context, R.layout.bottom_sheet_hsl, null).apply {
 
-        dialog!!.setContentView(view)
+            dialog!!.setContentView(this)
 
-        val bottomSheet = BottomSheetBehavior.from(view.parent as View)
+            val bottomSheet = BottomSheetBehavior.from(parent as View)
 
-        if (bottomSheet != null) {
-            val diametric = DisplayMetrics()
+            if (bottomSheet != null) {
+                val diametric = DisplayMetrics()
 
-            activity!!.windowManager.defaultDisplay.getMetrics(diametric)
+                activity!!.windowManager.defaultDisplay.getMetrics(diametric)
 
-            bottomSheet.peekHeight = diametric.heightPixels / 2
-            view.title.text = title
-            button = view.exit
+                bottomSheet.peekHeight = diametric.heightPixels / 2
+                title.text = titleText
+                button = exit
 
-            button.setOnClickListener(initClickExit())
-            initList(view)
-            bottomSheet.setBottomSheetCallback(initCallback())
-            view.requestLayout()
+                button.setOnClickListener(initClickExit())
+                initList(this)
+                bottomSheet.setBottomSheetCallback(initCallback())
+                requestLayout()
+            }
         }
     }
 
-    fun setTitle(title: String) {
-        this.title = title
+    fun setTitle(titleText: String) {
+        this.titleText = titleText
     }
 
     fun setList(list: MutableList<ItemDetails>) {
@@ -71,12 +72,16 @@ class HSLBottomSheet : BottomSheetDialogFragment() {
     private fun initClickExit(): View.OnClickListener = View.OnClickListener { dismiss() }
 
     private fun initList(view: View) {
-        val adapter = RecyclerDetailsAdapter()
-        val linearLayoutManager = LinearLayoutManager(view.context)
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        view.list.layoutManager = linearLayoutManager
-        view.list.adapter = adapter
-        adapter.addList(list)
+
+        LinearLayoutManager(view.context).apply {
+            orientation = LinearLayoutManager.VERTICAL
+            view.list.layoutManager = this
+        }
+        RecyclerDetailsAdapter().apply {
+            view.list.adapter = this
+
+            this.addList(list)
+        }
     }
 
     private fun initCallback(): BottomSheetBehavior.BottomSheetCallback =

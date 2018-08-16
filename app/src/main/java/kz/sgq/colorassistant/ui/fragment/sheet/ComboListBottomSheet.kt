@@ -40,18 +40,19 @@ class ComboListBottomSheet : BottomSheetDialogFragment() {
     override fun setupDialog(dialog: Dialog?, style: Int) {
         super.setupDialog(dialog, style)
 
-        val view = View.inflate(context, R.layout.bottom_sheet_combo_list, null)
+        View.inflate(context, R.layout.bottom_sheet_combo_list, null).apply {
 
-        dialog!!.setContentView(view)
+            dialog!!.setContentView(this)
 
-        val bottomSheet = BottomSheetBehavior.from(view.parent as View)
+            val bottomSheet = BottomSheetBehavior.from(parent as View)
 
-        if (bottomSheet != null) {
+            if (bottomSheet != null) {
 
-            view.saturation.setOnClickListener(initClickListener(ComboList.SATURATION))
-            view.lightness.setOnClickListener(initClickListener(ComboList.LIGHTNESS))
-            bottomSheet.setBottomSheetCallback(initCallback())
-            view.requestLayout()
+                saturation.setOnClickListener(initClickListener(ComboList.SATURATION))
+                lightness.setOnClickListener(initClickListener(ComboList.LIGHTNESS))
+                bottomSheet.setBottomSheetCallback(initCallback())
+                requestLayout()
+            }
         }
     }
 

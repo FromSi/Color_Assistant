@@ -23,7 +23,7 @@ import kz.sgq.colorassistant.ui.util.HSLConverter
 import kz.sgq.colorassistant.ui.util.ItemDetails
 
 class ComboModelImpl : ComboModel {
-    private var colorList: MutableList<Int> = arrayListOf()
+    private var colorList: MutableList<Int> = mutableListOf()
 
     private lateinit var share: String
 
@@ -35,31 +35,29 @@ class ComboModelImpl : ComboModel {
 
     override fun getValue(index: Int): String = ColorConverter.getFullAnswer(colorList[index])
 
-    override fun getSaturation(index: Int): MutableList<ItemDetails> {
-        val saturation = HSLConverter.getSaturationList(getColor(index))
-        val saturationList: MutableList<ItemDetails> = arrayListOf()
+    override fun getSaturation(index: Int): MutableList<ItemDetails> = mutableListOf<ItemDetails>()
+            .apply {
+                val saturation = HSLConverter.getSaturationList(getColor(index))
 
-        for (i in saturation.indices)
-            saturationList.add(ItemDetails(
-                    ColorConverter.getFullAnswer(saturation[i]),
-                    saturation[i]
-            ))
+                for (i in saturation.indices)
+                    this.add(ItemDetails(
+                            ColorConverter.getFullAnswer(saturation[i]),
+                            saturation[i]
+                    ))
+            }
 
-        return saturationList
-    }
 
-    override fun getLightness(index: Int): MutableList<ItemDetails> {
-        val lightness = HSLConverter.getLightnessList(getColor(index))
-        val lightnessList: MutableList<ItemDetails> = arrayListOf()
+    override fun getLightness(index: Int): MutableList<ItemDetails> = mutableListOf<ItemDetails>()
+            .apply {
+                val lightness = HSLConverter.getLightnessList(getColor(index))
 
-        for (i in lightness.indices)
-            lightnessList.add(ItemDetails(
-                    ColorConverter.getFullAnswer(lightness[i]),
-                    lightness[i]
-            ))
+                for (i in lightness.indices)
+                    this.add(ItemDetails(
+                            ColorConverter.getFullAnswer(lightness[i]),
+                            lightness[i]
+                    ))
+            }
 
-        return lightnessList
-    }
 
     override fun initColorList(list: MutableList<String>) {
 

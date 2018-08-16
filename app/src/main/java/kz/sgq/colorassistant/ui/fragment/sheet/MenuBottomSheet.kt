@@ -39,19 +39,19 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
     override fun setupDialog(dialog: Dialog?, style: Int) {
         super.setupDialog(dialog, style)
 
-        val view = View.inflate(context, R.layout.bottom_sheet_menu, null)
+        View.inflate(context, R.layout.bottom_sheet_menu, null).apply {
+            dialog!!.setContentView(this)
 
-        dialog!!.setContentView(view)
+            val bottomSheet = BottomSheetBehavior.from(parent as View)
 
-        val bottomSheet = BottomSheetBehavior.from(view.parent as View)
+            if (bottomSheet != null) {
 
-        if (bottomSheet != null) {
-
-            setColor()
-            view.global.setOnClickListener(initClickListener(GLOBAL))
-            view.cloud.setOnClickListener(initClickListener(CLOUD))
-            bottomSheet.setBottomSheetCallback(initCallback())
-            view.requestLayout()
+                setColor()
+                global.setOnClickListener(initClickListener(GLOBAL))
+                cloud.setOnClickListener(initClickListener(CLOUD))
+                bottomSheet.setBottomSheetCallback(initCallback())
+                requestLayout()
+            }
         }
     }
 

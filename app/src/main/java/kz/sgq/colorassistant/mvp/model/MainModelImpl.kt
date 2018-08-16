@@ -41,8 +41,7 @@ class MainModelImpl : MainModel {
     override fun calcQRCode(resultCode: Int, data: Intent?): Boolean {
 
         if (resultCode == Activity.RESULT_OK) {
-            val scanResult = data!!.getStringExtra("scan_result")
-            val size = scanResult.length
+            val size = data!!.getStringExtra("scan_result").length
 
             if ((size == 21) || (size == 28) || (size == 35))
                 return true
@@ -53,18 +52,18 @@ class MainModelImpl : MainModel {
 
     override fun calcQRAnswer(data: Intent?): Cloud {
         val scanResult = data!!.getStringExtra("scan_result")
-        val cloud = Cloud(
+
+        return Cloud(
                 scanResult.substring(0, 7),
                 scanResult.substring(7, 14),
                 scanResult.substring(14, 21)
-        )
+        ).apply {
 
-        if (scanResult.length >= 28)
-            cloud.colFour = scanResult.substring(21, 28)
+            if (scanResult.length >= 28)
+                colFour = scanResult.substring(21, 28)
 
-        if (scanResult.length >= 35)
-            cloud.colFive = scanResult.substring(28, 35)
-
-        return cloud
+            if (scanResult.length >= 35)
+                colFive = scanResult.substring(28, 35)
+        }
     }
 }

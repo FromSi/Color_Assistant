@@ -29,9 +29,11 @@ class ComboPresenter : MvpPresenter<ComboView>() {
     fun initColorList(list: MutableList<String>) {
 
         model.initColorList(list)
-        viewState.handlerVisibly(model.getSize())
-        viewState.initClicks(model.getSize())
-        viewState.initCardClick(model.getSize())
+        viewState.apply {
+            handlerVisibly(model.getSize())
+            initClicks(model.getSize())
+            initCardClick(model.getSize())
+        }
         initHeader()
         initItemBackground()
         initItemValue()
@@ -43,12 +45,12 @@ class ComboPresenter : MvpPresenter<ComboView>() {
 
     fun openSaturation(index: Int) {
 
-        viewState.openSaturation(model.getSaturation(index))
+        viewState.openHSLSheet(model.getSaturation(index))
     }
 
     fun openLightness(index: Int) {
 
-        viewState.openLightness(model.getLightness(index))
+        viewState.openHSLSheet(model.getLightness(index))
     }
 
     fun handlerTextColor(index: Int) {

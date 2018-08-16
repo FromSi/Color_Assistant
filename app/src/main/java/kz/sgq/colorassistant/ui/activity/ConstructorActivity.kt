@@ -18,7 +18,6 @@ package kz.sgq.colorassistant.ui.activity
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.design.bottomappbar.BottomAppBar
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -44,15 +43,16 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
         super.onCreate(savedInstanceState)
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-
-        val helper = SwipeBackActivityHelper(this)
-
-        helper.onActivityCreate()
         setContentView(R.layout.activity_constructor)
-        helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         initActionBar()
         initColorPicker()
-        helper.onPostCreate()
+        SwipeBackActivityHelper(this)
+                .apply {
+
+                    onActivityCreate()
+                    swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
+                    onPostCreate()
+                }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
@@ -76,15 +76,16 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
     }
 
     private fun initActionBar() {
-        bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
 
         setSupportActionBar(bar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         fab.setOnClickListener {
-            val dialog = SaveDialog()
 
-            dialog.clickListener(initClickSave())
-            dialog.show(supportFragmentManager, "save_dialog")
+            SaveDialog().apply {
+
+                clickListener(initClickSave())
+                show(supportFragmentManager, "save_dialog")
+            }
         }
     }
 
@@ -93,26 +94,30 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
 
     private fun initClickSave(): SaveDialog.OnClickListener = object : SaveDialog.OnClickListener {
         override fun onClick() {
-            val cloud = Cloud(
-                    getColorHex(0),
-                    getColorHex(1),
-                    getColorHex(2)
+
+            presenter.save(
+                    Cloud(
+                            getColorHex(0),
+                            getColorHex(1),
+                            getColorHex(2)
+                    ).apply {
+
+                        if (item_list.childCount >= 4)
+                            colFour = getColorHex(3)
+
+                        if (item_list.childCount >= 5)
+                            colFour = getColorHex(4)
+                    }
             )
-
-            if (item_list.childCount >= 4)
-                cloud.colFour = getColorHex(3)
-
-            if (item_list.childCount >= 5)
-                cloud.colFour = getColorHex(4)
-
-            presenter.save(cloud)
         }
     }
 
     private fun initColorPicker() {
 
-        color_picker.addLightnessView(lightness)
-        color_picker.addSaturationView(saturation)
+        color_picker.apply {
+            addLightnessView(lightness)
+            addSaturationView(saturation)
+        }
 
         for (i in 0..2)
             createNewItemColor()
@@ -124,26 +129,25 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
     private fun initClickAdd(): View.OnClickListener = View.OnClickListener {
         ItemColor.ItemColor.boolDelete = true
 
-        if (item_list.childCount <= 3)
-            createNewItemColor()
-        else {
+        if (item_list.childCount > 3)
             add.visibility = View.GONE
 
-            createNewItemColor()
-        }
+        createNewItemColor()
     }
 
     private fun createNewItemColor() {
-        val itemColor = ItemColor(this)
-        itemColor.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        )
 
-        item_list.addView(itemColor)
-        itemColor.setDeleteIndex(item_list.childCount - 1)
-        itemColor.setOnItemColorListener(initItemColor())
-        itemColor.setOnClickItemColorListener(initItemClickColor(itemColor))
+        ItemColor(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+
+            item_list.addView(this)
+            setDeleteIndex(item_list.childCount - 1)
+            setOnItemColorListener(initItemColor())
+            setOnClickItemColorListener(initItemClickColor(this))
+        }
     }
 
     private fun initItemClickColor(
@@ -161,9 +165,17 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
         }
 
         override fun onDelete(index: Int) {
-            val dialog = DeleteDialog()
 
-            dialog.clickListener(index, object : DeleteDialog.OnDeleteListener {
+            DeleteDialog().apply {
+
+                clickListener(index, initDeleteClick())
+                show(supportFragmentManager, "delete_dialog")
+            }
+        }
+    }
+
+    private fun initDeleteClick(): DeleteDialog.OnDeleteListener =
+            object : DeleteDialog.OnDeleteListener {
                 override fun onDelete(index: Int) {
 
                     item_list.removeViewAt(index)
@@ -178,16 +190,14 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
 
                     color_picker.setItemColor(item_list.getChildAt(0) as ItemColor)
                 }
-            })
-
-            dialog.show(supportFragmentManager, "delete_dialog")
-        }
-    }
+            }
 
     private fun initInfoSheet(color: Int) {
-        val dialog = InfoColorBottomSheet()
 
-        dialog.setColor(color)
-        dialog.show(supportFragmentManager, "info_color_bottom_sheet")
+        InfoColorBottomSheet().apply {
+
+            setColor(color)
+            show(supportFragmentManager, "info_color_bottom_sheet")
+        }
     }
 }

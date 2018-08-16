@@ -43,15 +43,16 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
         super.onCreate(savedInstanceState)
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-
-        val helper = SwipeBackActivityHelper(this)
-
-        helper.onActivityCreate()
         setContentView(R.layout.activity_combo)
-        helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         presenter.initColorList(intent.getSerializableExtra("map") as MutableList<String>)
         initActionBar()
-        helper.onPostCreate()
+        SwipeBackActivityHelper(this)
+                .apply {
+
+                    onActivityCreate()
+                    swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
+                    onPostCreate()
+                }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
@@ -83,49 +84,48 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     }
 
     override fun openShare(share: String) {
-        val dialog = ShareDialog()
 
-        dialog.setText(share)
-        dialog.show(supportFragmentManager, "share_dialog")
+        ShareDialog().apply {
+            setText(share)
+            show(supportFragmentManager, "share_dialog")
+        }
     }
 
     override fun cardClick(index: Int) {
-        val dialog = ComboListBottomSheet()
 
-        dialog.setClick(object : ComboListBottomSheet.OnClickListener {
-            override fun onClickSaturation() {
+        ComboListBottomSheet().apply {
 
-                presenter.openSaturation(index)
-            }
+            setClick(object : ComboListBottomSheet.OnClickListener {
+                override fun onClickSaturation() {
 
-            override fun onClickLightness() {
+                    presenter.openSaturation(index)
+                }
 
-                presenter.openLightness(index)
-            }
-        })
-        dialog.show(supportFragmentManager, "combo_list_bottom_sheet")
+                override fun onClickLightness() {
+
+                    presenter.openLightness(index)
+                }
+            })
+            show(supportFragmentManager, "combo_list_bottom_sheet")
+        }
     }
 
-    override fun openSaturation(list: MutableList<ItemDetails>) {
-        val dialog = HSLBottomSheet()
+    override fun openHSLSheet(list: MutableList<ItemDetails>) {
 
-        dialog.setTitle(resources.getString(R.string.bottom_sheet_hsl_saturation))
-        dialog.setList(list)
-        dialog.show(supportFragmentManager, "hsl_bottom_sheet")
-    }
+        HSLBottomSheet().apply {
 
-    override fun openLightness(list: MutableList<ItemDetails>) {
-        val dialog = HSLBottomSheet()
-
-        dialog.setTitle(resources.getString(R.string.bottom_sheet_hsl_lightness))
-        dialog.setList(list)
-        dialog.show(supportFragmentManager, "hsl_bottom_sheet")
+            setTitle(resources.getString(R.string.bottom_sheet_hsl_saturation))
+            setList(list)
+            show(supportFragmentManager, "hsl_bottom_sheet")
+        }
     }
 
     override fun initHeader(i: Int, j: Int, color: Int) {
-        list_card.getChildAt(i).list.getChildAt(j).visibility = View.VISIBLE
 
-        list_card.getChildAt(i).list.getChildAt(j).setBackgroundColor(color)
+        list_card.getChildAt(i).list.getChildAt(j).apply {
+            visibility = View.VISIBLE
+            setBackgroundColor(color)
+        }
     }
 
     override fun initItemBackground(i: Int, color: Int) {
@@ -158,7 +158,6 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     }
 
     private fun initActionBar() {
-        bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
 
         setSupportActionBar(bar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -166,19 +165,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
 
             presenter.showShare()
         }
-        scroll.setOnScrollChangeListener(initScroll())
     }
-
-    private fun initScroll(): NestedScrollView.OnScrollChangeListener =
-            NestedScrollView.OnScrollChangeListener { n: NestedScrollView, i: Int, i1: Int,
-                                                      i2: Int, i3: Int ->
-
-                if (i1 > i3)
-                    fab.hide()
-
-                if (i1 < i3)
-                    fab.show()
-            }
 
     private fun initExample(index: Int, color: Int) {
         list_item_bg.getChildAt(index).visibility = View.VISIBLE

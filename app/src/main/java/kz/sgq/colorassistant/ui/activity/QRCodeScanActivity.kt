@@ -41,14 +41,14 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
         super.onCreate(savedInstanceState)
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-
-        val helper = SwipeBackActivityHelper(this)
-
-        helper.onActivityCreate()
         setContentView(R.layout.activity_qrcode_scan)
-        helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         initEvent()
-        helper.onPostCreate()
+        SwipeBackActivityHelper(this).apply {
+
+            onActivityCreate()
+            swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
+            onPostCreate()
+        }
     }
 
     override fun onResume() {
@@ -85,10 +85,12 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
     }
 
     private fun initEvent() {
-        bar.title = ""
 
         setSupportActionBar(bar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
         bar!!.setNavigationOnClickListener {
 
             finish()
