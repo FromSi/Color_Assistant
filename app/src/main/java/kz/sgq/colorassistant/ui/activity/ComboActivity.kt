@@ -114,7 +114,8 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
 
         HSLBottomSheet().apply {
 
-            setTitle(resources.getString(R.string.bottom_sheet_hsl_saturation))
+            //setTitle(resources.getString(R.string.bottom_sheet_hsl_saturation))
+            setTitle("HSL")
             setList(list)
             show(supportFragmentManager, "hsl_bottom_sheet")
         }

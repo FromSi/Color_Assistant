@@ -24,6 +24,7 @@ import android.os.Bundle
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -36,6 +37,7 @@ import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.mvp.presenter.MainPresenter
 import kz.sgq.colorassistant.mvp.view.MainView
 import kz.sgq.colorassistant.room.table.Cloud
+import kz.sgq.colorassistant.ui.fragment.CloudFragment
 import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
 import kz.sgq.colorassistant.ui.util.CodeActivity
@@ -91,6 +93,18 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
         else -> super.onOptionsItemSelected(item)
     }
 
+    override fun refreshFragmentCloud(fragment: CloudFragment) {
+        supportFragmentManager
+                .beginTransaction()
+                .apply {
+
+                    presenter.setFragment(fragment)
+                    replace(R.id.fragment, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
+    }
+
     override fun global() {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.GLOBAL)
@@ -107,6 +121,16 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.CLOUD)
         fab.setImageDrawable(resources.getDrawable(R.drawable.constructor))
+        supportFragmentManager
+                .beginTransaction()
+                .apply {
+                    val fragment = CloudFragment()
+
+                    presenter.setFragment(fragment)
+                    replace(R.id.fragment, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
     }
 
     override fun constructor() {

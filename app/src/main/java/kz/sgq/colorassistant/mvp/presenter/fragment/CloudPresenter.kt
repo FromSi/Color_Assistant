@@ -16,8 +16,6 @@
 
 package kz.sgq.colorassistant.mvp.presenter.fragment
 
-import android.app.Activity
-import android.content.Intent
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
@@ -40,17 +38,6 @@ class CloudPresenter : MvpPresenter<CloudView>() {
         })
     }
 
-    fun initResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        if (requestCode == 1)
-            if (model.calcQRCode(resultCode, data))
-                viewState.answerQR(model.calcQRAnswer(data))
-            else
-                viewState.errorQR()
-        else if (requestCode == 2 && resultCode == Activity.RESULT_OK)
-            initInitList()
-    }
-
     fun onItemViewClick(cloud: Cloud) {
 
         viewState.showActivityInfo(model.calcColorList(cloud))
@@ -59,20 +46,6 @@ class CloudPresenter : MvpPresenter<CloudView>() {
     fun onItemShareClick(cloud: Cloud) {
 
         viewState.shareItem(model.calcShare(cloud))
-    }
-
-    fun save(cloud: Cloud) {
-
-        model.save(cloud, object : DataBaseRequest.OnEventListener {
-            override fun onSuccess() {
-
-                viewState.addItem(cloud)
-            }
-
-            override fun onError() {
-
-            }
-        })
     }
 
     fun onItemDeleteClick(cloud: Cloud, index: Int) {

@@ -16,8 +16,6 @@
 
 package kz.sgq.colorassistant.mvp.model.fragment
 
-import android.app.Activity
-import android.content.Intent
 import kz.sgq.colorassistant.mvp.model.fragment.interfaces.CloudModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
@@ -27,36 +25,6 @@ class CloudModelImpl : CloudModel {
     interface OnInitListener {
 
         fun onResult(list: MutableList<Cloud>)
-    }
-
-    override fun calcQRCode(resultCode: Int, data: Intent?): Boolean {
-
-        if (resultCode == Activity.RESULT_OK) {
-            val scanResult = data!!.getStringExtra("scan_result")
-            val size = scanResult.length
-
-            if ((size == 21) || (size == 28) || (size == 35))
-                return true
-        }
-
-        return false
-    }
-
-    override fun calcQRAnswer(data: Intent?): Cloud {
-        val scanResult = data!!.getStringExtra("scan_result")
-        val cloud = Cloud(
-                scanResult.substring(0, 7),
-                scanResult.substring(7, 14),
-                scanResult.substring(14, 21)
-        )
-
-        if (scanResult.length >= 28)
-            cloud.colFour = scanResult.substring(21, 28)
-
-        if (scanResult.length >= 35)
-            cloud.colFive = scanResult.substring(28, 35)
-
-        return cloud
     }
 
     override fun calcShare(cloud: Cloud): String {
@@ -71,11 +39,6 @@ class CloudModelImpl : CloudModel {
         return text.toString()
     }
 
-    override fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
-
-        DataBaseRequest.insertCloud(cloud, eventListener)
-    }
-
     override fun deleteItem(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
 
         DataBaseRequest.deleteCloud(cloud, eventListener)
@@ -88,7 +51,7 @@ class CloudModelImpl : CloudModel {
     }
 
     override fun calcColorList(cloud: Cloud): MutableList<String> {
-        val list: MutableList<String> = arrayListOf()
+        val list: MutableList<String> = mutableListOf()
 
         list.add(cloud.colOne)
         list.add(cloud.colTwo)

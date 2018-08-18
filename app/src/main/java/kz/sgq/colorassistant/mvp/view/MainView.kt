@@ -19,10 +19,13 @@ package kz.sgq.colorassistant.mvp.view
 import com.arellomobile.mvp.MvpView
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.room.table.Cloud
+import kz.sgq.colorassistant.ui.fragment.CloudFragment
 
 interface MainView : MvpView {
 
     fun answerQR(cloud: Cloud)
+
+    fun refreshFragmentCloud(fragment: CloudFragment)
 
     fun errorQR()
 

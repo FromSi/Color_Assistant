@@ -18,12 +18,14 @@ package kz.sgq.colorassistant.mvp.model
 
 import android.app.Activity
 import android.content.Intent
+import android.support.v4.app.Fragment
 import kz.sgq.colorassistant.mvp.model.interfaces.MainModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
 
 class MainModelImpl : MainModel {
     private var fragmentCurrent = MainFragment.GLOBAL
+    private lateinit var fragment: Fragment
 
     enum class MainFragment { GLOBAL, LIKE, CLOUD }
 
@@ -31,6 +33,12 @@ class MainModelImpl : MainModel {
 
     override fun setCurrentFragment(fragmentCurrent: MainFragment) {
         this.fragmentCurrent = fragmentCurrent
+    }
+
+    override fun getFragment(): Fragment = fragment
+
+    override fun setFragment(fragment: Fragment) {
+        this.fragment = fragment
     }
 
     override fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {

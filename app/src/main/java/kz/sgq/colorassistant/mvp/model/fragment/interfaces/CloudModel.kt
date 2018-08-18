@@ -29,11 +29,5 @@ interface CloudModel {
 
     fun calcShare(cloud: Cloud): String
 
-    fun calcQRAnswer(data: Intent?): Cloud
-
-    fun calcQRCode(resultCode: Int, data: Intent?): Boolean
-
-    fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener)
-
     fun deleteItem(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener)
 }

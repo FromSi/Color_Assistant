@@ -105,8 +105,8 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
                         if (item_list.childCount >= 4)
                             colFour = getColorHex(3)
 
-                        if (item_list.childCount >= 5)
-                            colFour = getColorHex(4)
+                        if (item_list.childCount == 5)
+                            colFive = getColorHex(4)
                     }
             )
         }

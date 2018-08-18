@@ -17,6 +17,7 @@
 package kz.sgq.colorassistant.mvp.model.interfaces
 
 import android.content.Intent
+import android.support.v4.app.Fragment
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
@@ -24,6 +25,10 @@ import kz.sgq.colorassistant.room.table.Cloud
 interface MainModel {
 
     fun getCurrentFragment(): MainModelImpl.MainFragment
+
+    fun getFragment(): Fragment
+
+    fun setFragment(fragment: Fragment)
 
     fun setCurrentFragment(fragmentCurrent: MainModelImpl.MainFragment)
 

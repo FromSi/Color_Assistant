@@ -18,6 +18,7 @@ package kz.sgq.colorassistant.mvp.presenter
 
 import android.app.Activity
 import android.content.Intent
+import android.support.v4.app.Fragment
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
@@ -26,6 +27,7 @@ import kz.sgq.colorassistant.mvp.model.interfaces.MainModel
 import kz.sgq.colorassistant.mvp.view.MainView
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
+import kz.sgq.colorassistant.ui.fragment.CloudFragment
 import kz.sgq.colorassistant.ui.util.CodeActivity
 
 @InjectViewState
@@ -54,13 +56,19 @@ class MainPresenter : MvpPresenter<MainView>() {
 
         model.save(cloud, object : DataBaseRequest.OnEventListener {
             override fun onSuccess() {
-
+                if (model.getFragment() is CloudFragment)
+                    (model.getFragment() as CloudFragment).addItem(cloud)
             }
 
             override fun onError() {
 
             }
         })
+    }
+
+    fun setFragment(fragment: Fragment) {
+
+        model.setFragment(fragment)
     }
 
     fun initResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -70,12 +78,14 @@ class MainPresenter : MvpPresenter<MainView>() {
                 viewState.answerQR(model.calcQRAnswer(data))
             else
                 viewState.errorQR()
-        else if (requestCode == CodeActivity.IMAGE_SCAN.ID && resultCode == Activity.RESULT_OK){
+        else if (requestCode == CodeActivity.IMAGE_SCAN.ID && resultCode == Activity.RESULT_OK) {
 
-            Log.d("TestTAGSSSS", "IMAGE_SCAN")
-        } else if (requestCode == CodeActivity.CONSTRUCTOR.ID && resultCode == Activity.RESULT_OK){
+            if (model.getFragment() is CloudFragment)
+                viewState.refreshFragmentCloud(CloudFragment())
+        } else if (requestCode == CodeActivity.CONSTRUCTOR.ID && resultCode == Activity.RESULT_OK) {
 
-            Log.d("TestTAGSSSS", "CONSTRUCTOR")
+            if (model.getFragment() is CloudFragment)
+                viewState.refreshFragmentCloud(CloudFragment())
         }
     }
 
