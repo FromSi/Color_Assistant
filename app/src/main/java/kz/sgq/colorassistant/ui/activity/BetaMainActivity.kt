@@ -37,6 +37,7 @@ import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.mvp.presenter.MainPresenter
 import kz.sgq.colorassistant.mvp.view.MainView
 import kz.sgq.colorassistant.room.table.Cloud
+import kz.sgq.colorassistant.ui.fragment.BetaLikeFragment
 import kz.sgq.colorassistant.ui.fragment.CloudFragment
 import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
@@ -115,6 +116,16 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.LIKE)
         fab.setImageDrawable(resources.getDrawable(R.drawable.cancel))
+        supportFragmentManager
+                .beginTransaction()
+                .apply {
+                    val fragment = BetaLikeFragment()
+
+                    presenter.setFragment(fragment)
+                    replace(R.id.fragment, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
     }
 
     override fun cloud() {

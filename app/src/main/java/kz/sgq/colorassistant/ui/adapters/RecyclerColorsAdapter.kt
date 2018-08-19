@@ -36,9 +36,9 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
 
     interface OnClickListener {
 
-        fun onLike(view: View, id: Int, like: Boolean)
+        fun onLike(id: Int, like: Boolean)
 
-        fun onView(view: View, itemColor: ItemColor)
+        fun onView(itemColor: ItemColor)
     }
 
     override fun onCreateViewHolder(
@@ -103,12 +103,12 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     private fun initLike(p1: Int): OnLikeListener = object : OnLikeListener {
         override fun liked(likeButton: LikeButton) {
 
-            onLikeClick(p1, true, likeButton.rootView)
+            onLikeClick(p1, true)
         }
 
         override fun unLiked(likeButton: LikeButton) {
 
-            onLikeClick(p1, false, likeButton.rootView)
+            onLikeClick(p1, false)
         }
     }
 
@@ -128,9 +128,9 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
         }
     }
 
-    private fun onLikeClick(position: Int, like: Boolean, view: View) {
+    private fun onLikeClick(position: Int, like: Boolean) {
 
-        clickListener.onLike(view, itemContainer.itemList[position].id, like)
+        clickListener.onLike(itemContainer.itemList[position].id, like)
         itemContainer.likeList[position] = like
     }
 }

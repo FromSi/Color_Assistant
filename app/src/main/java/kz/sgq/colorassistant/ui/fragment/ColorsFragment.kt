@@ -99,17 +99,17 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
 
     private fun clickListener() {
 
-        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
-            override fun onLike(view: View, id: Int, like: Boolean) {
-
-                presenter.onItemLikeClick(view, id, like)
-            }
-
-            override fun onView(view: View, itemColor: ItemColor) {
-
-                presenter.onItemViewClick(view, itemColor)
-            }
-        })
+//        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
+//            override fun onLike(view: View, id: Int, like: Boolean) {
+//
+//                presenter.onItemLikeClick(view, id, like)
+//            }
+//
+//            override fun onView(view: View, itemColor: ItemColor) {
+//
+//                presenter.onItemViewClick(view, itemColor)
+//            }
+//        })
     }
 
     private fun setUpLoadMoreListener() {
