@@ -9,7 +9,8 @@
         android:id="@+id/rv_colors"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:paddingBottom="?attr/actionBarSize"/>
 
     <ProgressBar
         android:id="@+id/download"

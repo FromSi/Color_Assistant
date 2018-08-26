@@ -63,11 +63,6 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         adapter.addList(list)
     }
 
-    override fun deleteItem(index: Int) {
-
-        adapter.deleteItem(index)
-    }
-
     override fun shareItem(text: String) {
         val dialog = ShareDialog()
 
@@ -109,9 +104,9 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
                 presenter.onItemShareClick(cloud)
             }
 
-            override fun onDelete(cloud: Cloud, index: Int) {
+            override fun onDelete(cloud: Cloud) {
 
-                presenter.onItemDeleteClick(cloud, index)
+                presenter.onItemDeleteClick(cloud)
             }
         })
     }

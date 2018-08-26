@@ -40,11 +40,6 @@ class ImagePresenter : MvpPresenter<ImageView>() {
             viewState.finishActivity()
     }
 
-    fun showMore(index: Int) {
-
-        viewState.showMore(model.getCloud(index))
-    }
-
     fun setCurrentImage(currentImage: Bitmap) {
 
         model.apply {

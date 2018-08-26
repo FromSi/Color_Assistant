@@ -16,14 +16,22 @@
 
 package kz.sgq.colorassistant.ui.adapters.holders
 
+import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.LightingColorFilter
+import android.support.transition.TransitionManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.f_info.view.*
 import kotlinx.android.synthetic.main.item_color_image.view.*
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.view.ItemColor
 
 class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
@@ -33,17 +41,20 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         itemView.list.removeAllViews()
 
         for (i in 0 until colors.size) {
-            val itemColor = ItemColor(itemView.context)
 
-            itemColor.layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    (itemView.resources.getDimension(R.dimen.image_item_colors_height)).toInt()
+            itemView.list.addView(
+                    ItemColor(itemView.context).apply {
+                        layoutParams = LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                (itemView.resources.getDimension(R.dimen.image_item_colors_height))
+                                        .toInt()
+                        )
+
+                        setMoveItem(false)
+                        setScroll(true)
+                        setColor(colors[i])
+                    }
             )
-
-            itemColor.setMoveItem(false)
-            itemColor.setScroll(true)
-            itemColor.setColor(colors[i])
-            itemView.list.addView(itemColor)
         }
     }
 
@@ -65,5 +76,129 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
     fun initBackground(color: Int) {
 
         itemView.list.setBackgroundColor(color)
+    }
+
+    fun initTextColors(color: Int) {
+
+        itemView.hex.text = ColorConverter.getHex(color)
+
+        for (i in 0 until itemView.rgb.childCount)
+            (itemView.rgb.getChildAt(i) as TextView).text = when (i) {
+                0 -> Color.red(color).toString()
+                1 -> Color.green(color).toString()
+                2 -> Color.blue(color).toString()
+                else -> "error"
+            }
+
+        for (i in 0 until itemView.hsv.childCount)
+            (itemView.hsv.getChildAt(i) as TextView).text = ColorConverter.getHSV(color, i)
+
+        for (i in 0 until itemView.cmyk.childCount)
+            (itemView.cmyk.getChildAt(i) as TextView).text = ColorConverter.getCMYK(color, i)
+    }
+
+    fun initIcons(colors: MutableList<Int>) {
+
+        itemView.icons.removeAllViews()
+        itemView.info.visibility = View.GONE
+
+        for (i in 0 until colors.size) {
+
+            addCircleView(i, colors[i])
+            addLineView(i != (colors.size - 1))
+        }
+    }
+
+    fun initMore() {
+
+        itemView.apply {
+
+            more.setOnClickListener {
+
+                //                TransitionManager.beginDelayedTransition()
+
+                if (info.visibility == View.VISIBLE) {
+                    more.text = resources.getString(R.string.more)
+                    info.visibility = View.GONE
+                } else {
+                    more.text = resources.getString(R.string.hide)
+                    info.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
+    private fun addLineView(bool: Boolean) {
+
+        if (bool)
+            itemView.icons.addView(
+                    View(itemView.context).apply {
+                        layoutParams = LinearLayout.LayoutParams(
+                                (itemView.resources.getDimension(R.dimen.line_image_w))
+                                        .toInt(),
+                                (itemView.resources.getDimension(R.dimen.line_image_h))
+                                        .toInt()
+                        )
+
+                        setBackgroundColor(Color.BLACK)
+                    }
+            )
+    }
+
+    private fun addCircleView(i: Int, color: Int) {
+
+        itemView.icons.addView(
+                CircleImageView(itemView.context).apply {
+                    layoutParams = LinearLayout.LayoutParams(
+                            (itemView.resources.getDimension(R.dimen.item_view_image))
+                                    .toInt(),
+                            (itemView.resources.getDimension(R.dimen.item_view_image))
+                                    .toInt()
+                    ).apply {
+                        val margin = (itemView.resources.getDimension(
+                                R.dimen.item_view_image_margin
+                        ).toInt())
+
+                        if (i != 0)
+                            setMargins(0, margin, 0, margin)
+                        else
+                            setMargins(0, 0, 0, margin)
+                    }
+
+                    setImageBitmap(
+                            Bitmap.createBitmap(
+                                    1,
+                                    1,
+                                    Bitmap.Config.RGB_565
+                            ).apply {
+
+                                if (i != 0)
+                                    eraseColor(Color.GRAY)
+                                else
+                                    eraseColor(color)
+                            }
+                    )
+
+                    setOnClickListener {
+
+                        allGrayIcon()
+                        setImageBitmap(
+                                Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565)
+                                        .apply { eraseColor(color) }
+                        )
+                        initTextColors(color)
+                    }
+                }
+        )
+    }
+
+    private fun allGrayIcon() {
+
+        for (i in 0 until itemView.icons.childCount)
+            if ((i % 2) == 0)
+                (itemView.icons.getChildAt(i) as CircleImageView).setImageBitmap(
+                        Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565)
+                                .apply { eraseColor(Color.GRAY) }
+                )
     }
 }

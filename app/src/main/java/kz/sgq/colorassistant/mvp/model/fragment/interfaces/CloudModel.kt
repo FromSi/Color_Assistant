@@ -16,9 +16,7 @@
 
 package kz.sgq.colorassistant.mvp.model.fragment.interfaces
 
-import android.content.Intent
 import kz.sgq.colorassistant.mvp.model.fragment.CloudModelImpl
-import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Cloud
 
 interface CloudModel {
@@ -29,5 +27,5 @@ interface CloudModel {
 
     fun calcShare(cloud: Cloud): String
 
-    fun deleteItem(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener)
+    fun deleteItem(cloud: Cloud)
 }

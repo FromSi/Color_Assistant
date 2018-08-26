@@ -45,7 +45,7 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
         p0.setImagesView(calcItemColor(p1))
         p0.setView(list[p1], clickListener)
         p0.setShare(list[p1], clickListener)
-        p0.setDelete(list[p1], p1, clickListener)
+        p0.setDelete(list[p1], clickListener)
         p0.onLoadVisibly(visiblyList[p1])
         p0.itemView.items.setOnClickListener(initClick(p0, p1))
     }

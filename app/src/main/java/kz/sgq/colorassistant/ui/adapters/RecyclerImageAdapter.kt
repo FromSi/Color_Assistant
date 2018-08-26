@@ -29,16 +29,14 @@ import kz.sgq.colorassistant.ui.adapters.holders.ImageHolder
 import kz.sgq.colorassistant.ui.util.ColorConverter
 
 class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
-    private var colors: MutableList<MutableList<Int>> = arrayListOf()
-    private var background: MutableList<Int> = arrayListOf()
-    private var shareList: MutableList<String> = arrayListOf()
-    private var likeList: MutableList<Boolean> = arrayListOf()
+    private var colors: MutableList<MutableList<Int>> = mutableListOf()
+    private var background: MutableList<Int> = mutableListOf()
+    private var shareList: MutableList<String> = mutableListOf()
+    private var likeList: MutableList<Boolean> = mutableListOf()
 
     private lateinit var clickListener: OnClickListener
 
     interface OnClickListener {
-
-        fun show(index: Int)
 
         fun onSave(index: Int)
 
@@ -59,12 +57,15 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
         p0.initSaveColor()
         p0.itemView.save.setOnLikeListener(initSave(p1))
         p0.itemView.share.setOnLikeListener(initShare(p1))
-        p0.itemView.more.setOnClickListener(initMore(p1))
+        p0.initMore()
+        p0.initTextColors(colors[p1][0])
+        p0.initIcons(colors[p1])
         initShare(p1)
     }
 
     fun initColors(colors: MutableList<MutableList<Int>>) {
         this.colors = colors
+
         calcAverageColor()
         initShare()
         notifyDataSetChanged()
@@ -77,6 +78,7 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
     private fun initShare(index: Int): OnLikeListener = object : OnLikeListener {
         override fun liked(p0: LikeButton?) {
             p0?.isLiked = false
+
             clickListener.onShare(shareList[index])
         }
 
@@ -85,17 +87,16 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
         }
     }
 
-    private fun initMore(index: Int): View.OnClickListener = View
-            .OnClickListener { clickListener.show(index) }
-
     private fun initSave(index: Int): OnLikeListener = object : OnLikeListener {
         override fun liked(p0: LikeButton?) {
             likeList[index] = true
+
             clickListener.onSave(index)
         }
 
         override fun unLiked(p0: LikeButton?) {
             likeList[index] = false
+
             clickListener.onDelete(index)
         }
     }

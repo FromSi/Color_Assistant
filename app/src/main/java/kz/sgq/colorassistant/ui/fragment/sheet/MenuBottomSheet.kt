@@ -74,19 +74,19 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
         when (fragmentCurrent) {
             GLOBAL -> {
 
-                clickListener.onClick(CLOUD)
+                clickListener.onClick(GLOBAL)
 
                 dismiss()
             }
             CLOUD -> {
 
-                clickListener.onClick(GLOBAL)
+                clickListener.onClick(CLOUD)
 
                 dismiss()
             }
             else -> {
 
-                clickListener.onClick(CLOUD)
+                clickListener.onClick(GLOBAL)
                 dismiss()
             }
         }

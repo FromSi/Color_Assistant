@@ -39,9 +39,9 @@ class CloudModelImpl : CloudModel {
         return text.toString()
     }
 
-    override fun deleteItem(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
+    override fun deleteItem(cloud: Cloud) {
 
-        DataBaseRequest.deleteCloud(cloud, eventListener)
+        DataBaseRequest.deleteCloud(cloud)
     }
 
     override fun initItemList(initListener: OnInitListener) {

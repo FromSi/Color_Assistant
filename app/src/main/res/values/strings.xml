@@ -4,8 +4,13 @@
     <string name="colors">Colors</string>
     <string name="likes">Likes</string>
     <string name="no_items">No combo colors</string>
-    <string name="more">MORE</string>
+    <string name="more">More</string>
+    <string name="hide">Hide</string>
     <string name="type">Hex\nRGB\nHSV\nCMYK</string>
+    <string name="hex">Hex</string>
+    <string name="rgb">RGB</string>
+    <string name="hsv">HSV</string>
+    <string name="cmyk">CMYK</string>
 
     <string name="bar_global">Global</string>
     <string name="bar_combo">Combo</string>

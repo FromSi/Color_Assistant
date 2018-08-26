@@ -48,17 +48,8 @@ class CloudPresenter : MvpPresenter<CloudView>() {
         viewState.shareItem(model.calcShare(cloud))
     }
 
-    fun onItemDeleteClick(cloud: Cloud, index: Int) {
+    fun onItemDeleteClick(cloud: Cloud) {
 
-        model.deleteItem(cloud, object : DataBaseRequest.OnEventListener {
-            override fun onSuccess() {
-
-                viewState.deleteItem(index)
-            }
-
-            override fun onError() {
-
-            }
-        })
+        model.deleteItem(cloud)
     }
 }

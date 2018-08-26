@@ -80,28 +80,6 @@ object DataBaseRequest {
                 .subscribe()
     }
 
-    fun deleteCloud(cloud: Cloud, eventListener: OnEventListener) {
-
-        Completable.fromAction { dataBase?.cloudDao()?.delete(cloud) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : CompletableObserver {
-
-                    override fun onComplete() {
-
-                        eventListener.onSuccess()
-                    }
-
-                    override fun onSubscribe(d: Disposable) {
-
-                    }
-
-                    override fun onError(e: Throwable) {
-                        eventListener.onError()
-                    }
-                })
-    }
-
     fun updateColors(idCol: Int, like: Boolean) {
 
         Completable.fromAction { dataBase?.colorsDao()?.update(idCol, like) }

@@ -20,6 +20,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
+import io.reactivex.Flowable
 import io.reactivex.Maybe
 import kz.sgq.colorassistant.room.table.Cloud
 
@@ -33,7 +34,7 @@ interface CloudDao {
     fun delete(cloud: Cloud)
 
     @Query("SELECT * FROM `cloud`")
-    fun getColors(): Maybe<MutableList<Cloud>>
+    fun getColors(): Flowable<MutableList<Cloud>>
 
     @Query("SELECT * FROM `cloud` ORDER BY `idCol` DESC LIMIT 1")
     fun getColor(): Maybe<Cloud>

@@ -80,12 +80,8 @@ class MainPresenter : MvpPresenter<MainView>() {
                 viewState.errorQR()
         else if (requestCode == CodeActivity.IMAGE_SCAN.ID && resultCode == Activity.RESULT_OK) {
 
-            if (model.getFragment() is CloudFragment)
-                viewState.refreshFragmentCloud(CloudFragment())
         } else if (requestCode == CodeActivity.CONSTRUCTOR.ID && resultCode == Activity.RESULT_OK) {
 
-            if (model.getFragment() is CloudFragment)
-                viewState.refreshFragmentCloud(CloudFragment())
         }
     }
 
@@ -94,16 +90,25 @@ class MainPresenter : MvpPresenter<MainView>() {
         viewState.openMenu(model.getCurrentFragment())
     }
 
-    fun menuClick() {
+    fun menuClick(fragmentCurrent: MainModelImpl.MainFragment) {
 
-        when (model.getCurrentFragment()) {
-            MainModelImpl.MainFragment.GLOBAL, MainModelImpl.MainFragment.LIKE -> {
+        if (fragmentCurrent != model.getCurrentFragment()){
 
-                viewState.cloud()
-            }
-            MainModelImpl.MainFragment.CLOUD -> {
+            model.setCurrentFragment(fragmentCurrent)
 
-                viewState.global()
+            when (model.getCurrentFragment()) {
+                MainModelImpl.MainFragment.GLOBAL -> {
+
+                    viewState.global()
+                }
+                MainModelImpl.MainFragment.CLOUD -> {
+
+                    viewState.cloud()
+                }
+                else -> {
+
+                    viewState.global()
+                }
             }
         }
     }

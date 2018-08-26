@@ -6,7 +6,11 @@
     <dimen name="zero">0dp</dimen>
     <dimen name="header_height">160dp</dimen>
     <dimen name="imgColor_on">36dp</dimen>
-    <dimen name="imgColor_off">18dp</dimen>
+    <dimen name="imgColor_off">24dp</dimen>
+    <dimen name="item_view_image">28dp</dimen>
+    <dimen name="item_view_image_margin">4dp</dimen>
+    <dimen name="line_image_w">1dp</dimen>
+    <dimen name="line_image_h">36dp</dimen>
 
     <dimen name="image_activity_size">250dp</dimen>
 

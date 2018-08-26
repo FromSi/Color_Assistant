@@ -27,6 +27,4 @@ interface ImageView : MvpView {
     fun initItemsColor(list: MutableList<MutableList<Int>>)
 
     fun finishActivity()
-
-    fun showMore(cloud: Cloud)
 }

@@ -166,8 +166,7 @@ class BetaMainActivity : MvpAppCompatActivity(), MainView {
             setClick(object : MenuBottomSheet.OnClickListener {
                 override fun onClick(fragmentCurrent: MainModelImpl.MainFragment) {
 
-                    presenter.setCurrentFragment(fragmentCurrent)
-                    presenter.menuClick()
+                    presenter.menuClick(fragmentCurrent)
                 }
             })
             show(supportFragmentManager, "menu_bottom_sheet")

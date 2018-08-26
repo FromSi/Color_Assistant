@@ -42,7 +42,7 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
     private lateinit var likeListener: OnLikeListener
     private lateinit var layoutManager: LinearLayoutManager
 
-    interface OnLikeListener{
+    interface OnLikeListener {
 
         fun onLike(id: Int)
     }
@@ -56,10 +56,12 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        LinearLayoutManager(view.context).apply {
+            rv_colors.layoutManager = this
+            orientation = LinearLayoutManager.VERTICAL
+        }
+
         likeListener = (parentFragment as OnLikeListener)
-        layoutManager = LinearLayoutManager(view.context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_colors.layoutManager = layoutManager
         rv_colors.adapter = adapter
 
         onClickListenerAdapter()

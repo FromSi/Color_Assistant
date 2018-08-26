@@ -59,6 +59,13 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
                 }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        //Проверить на ответ Activity
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
     override fun finishActivity() {
 
         setResult(Activity.RESULT_CANCELED, null)
@@ -106,21 +113,13 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
                     .getBitmap(this.contentResolver, photoUri)
                     .apply {
 
-                        image.setImageBitmap(this)
+//                        image.setImageBitmap(this) - Для просмотра оригинальной картинки
                         presenter.setCurrentImage(this)
                     }
             setVisibly(false)
         } catch (e: Exception) {
 
             e.printStackTrace()
-        }
-    }
-
-    override fun showMore(cloud: Cloud) {
-        MoreDialog().apply {
-
-            cloud(cloud)
-            show(supportFragmentManager, "image_more_dialog")
         }
     }
 
@@ -156,11 +155,6 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
 
     private fun initClick(adapter: RecyclerImageAdapter) {
         adapter.setClickListener(object : RecyclerImageAdapter.OnClickListener {
-            override fun show(index: Int) {
-
-                presenter.showMore(index)
-            }
-
             override fun onSave(index: Int) {
 
                 presenter.cloudSave(index)
