@@ -14,25 +14,13 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.view.fragment
+package kz.sgq.colorassistant.mvp.model.fragment.interfaces
 
-import com.arellomobile.mvp.MvpView
-import com.arellomobile.mvp.viewstate.strategy.SkipStrategy
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import kz.sgq.colorassistant.ui.util.ItemColor
+import kz.sgq.colorassistant.mvp.model.fragment.LikeModelImpl
 
-interface ColorsView : MvpView {
+interface LikeModel {
 
-    fun showLoadDB()
+    fun updateColor(id: Int, like: Boolean)
 
-    fun showColorList()
-
-    fun addItemsDB(colorList: MutableList<ItemColor>)
-
-    fun clearItemsDB()
-
-    fun updateItemsDB(index: Int)
-
-    @StateStrategyType(SkipStrategy::class)
-    fun showActivityInfo(list: MutableList<String>)
+    fun loadDB(answerListener: LikeModelImpl.OnAnswerListener)
 }

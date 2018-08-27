@@ -17,21 +17,10 @@
 package kz.sgq.colorassistant.ui.util
 
 data class ItemContainer(
-        var itemList: MutableList<ItemColor> = arrayListOf(),
-        var likeList: MutableList<Boolean> = arrayListOf(),
-        var visiblyList: MutableList<Boolean> = arrayListOf()
+        var itemList: MutableList<ItemColor> = mutableListOf(),
+        var likeList: MutableList<Boolean> = mutableListOf(),
+        var visiblyList: MutableList<Boolean> = mutableListOf()
 ) {
-
-    fun addItems(itemList: MutableList<ItemColor>) {
-
-        this.itemList.addAll(itemList)
-
-        for (i in 0 until itemList.size) {
-
-            likeList.add(itemList[i].like)
-            visiblyList.add(true)
-        }
-    }
 
     fun addItem(item: ItemColor) {
 
@@ -40,37 +29,28 @@ data class ItemContainer(
         visiblyList.add(true)
     }
 
-    fun deleteItem(id: Int) {
+    fun addItemList(list: MutableList<ItemColor>) {
 
-        for (i in 0 until itemList.size)
-            if (itemList[i].id == id) {
+        this.itemList.addAll(list)
 
-                itemList.removeAt(i)
-                likeList.removeAt(i)
-                visiblyList.removeAt(i)
+        for (i in 0 until list.size) {
 
-                return
-            }
+            likeList.add(list[i].like)
+            visiblyList.add(true)
+        }
     }
 
-    fun clearItems() {
+    fun setList(list: MutableList<ItemColor>) {
 
-        itemList.clear()
-        likeList.clear()
-        visiblyList.clear()
-    }
+        this.itemList = list
 
-    fun dislike(id: Int) {
+        likeList = mutableListOf()
+        visiblyList = mutableListOf()
 
-        for (i in 0 until itemList.size)
-            if (itemList[i].id == id) {
-                likeList[i] = false
+        for (i in 0 until list.size) {
 
-                return
-            }
-    }
-
-    fun updateItems(index: Int) {
-        itemList[index].like = false
+            likeList.add(list[i].like)
+            visiblyList.add(true)
+        }
     }
 }

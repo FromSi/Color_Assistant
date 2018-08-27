@@ -19,7 +19,6 @@ package kz.sgq.colorassistant.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,25 +26,18 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.fragment_color_list.*
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.mvp.presenter.fragment.LikesPresenter
-import kz.sgq.colorassistant.mvp.view.fragment.LikesView
+import kz.sgq.colorassistant.mvp.presenter.fragment.LikePresenter
+import kz.sgq.colorassistant.mvp.view.fragment.LikeView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
 import java.io.Serializable
 
-class LikesFragment : MvpAppCompatFragment(), LikesView {
+class LikeFragment : MvpAppCompatFragment(), LikeView {
     private var adapter = RecyclerColorsAdapter()
 
     @InjectPresenter
-    lateinit var presenter: LikesPresenter
-    private lateinit var likeListener: OnLikeListener
-    private lateinit var layoutManager: LinearLayoutManager
-
-    interface OnLikeListener {
-
-        fun onLike(id: Int)
-    }
+    lateinit var presenter: LikePresenter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -57,20 +49,14 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
         super.onViewCreated(view, savedInstanceState)
 
         LinearLayoutManager(view.context).apply {
-            rv_colors.layoutManager = this
             orientation = LinearLayoutManager.VERTICAL
+            rv_colors.layoutManager = this
         }
 
-        likeListener = (parentFragment as OnLikeListener)
         rv_colors.adapter = adapter
 
+        presenter.initPresenter()
         onClickListenerAdapter()
-        setUpLoadMoreListener()
-    }
-
-    override fun clearItemsDB() {
-
-        adapter.clearItems()
     }
 
     override fun showLoadDB() {
@@ -83,47 +69,23 @@ class LikesFragment : MvpAppCompatFragment(), LikesView {
         rv_colors.visibility = View.VISIBLE
     }
 
-    override fun addItemsDB(item: ItemColor) {
+    override fun setList(list: MutableList<ItemColor>) {
 
-        adapter.addItem(item)
-    }
-
-    override fun showActivityInfo(list: MutableList<String>) {
-        val intent = Intent(context, ComboActivity::class.java)
-
-        intent.putExtra("map", list as Serializable)
-        startActivity(intent)
-    }
-
-    override fun deleteItem(id: Int) {
-
-        adapter.deleteItem(id)
+        adapter.setItemList(list)
     }
 
     private fun onClickListenerAdapter() {
 
-//        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
-//            override fun onLike(view: View, id: Int, like: Boolean) {
-//
-//                likeListener.onLike(id)
-//                presenter.onItemLikeClick(view, id, like)
-//            }
-//
-//            override fun onView(view: View, itemColor: ItemColor) {
-//
-//                presenter.onItemViewClick(view, itemColor)
-//            }
-//        })
-    }
+        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
+            override fun onLike(id: Int, like: Boolean) {
 
-    private fun setUpLoadMoreListener() {
+                presenter.setLike(id, like)
+            }
 
-        rv_colors.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
+            override fun onView(itemColor: ItemColor) {
 
-                presenter.handlerColorListener(layoutManager.itemCount,
-                        layoutManager.findLastVisibleItemPosition())
+                startActivity(Intent(context, ComboActivity::class.java)
+                        .apply { putExtra("map", itemColor.colors as Serializable) })
             }
         })
     }

@@ -72,6 +72,7 @@ class QRScanDialog : DialogFragment() {
     private fun initView(view: View) {
 
         view.item_list.apply {
+
             addView(createItem(view, Color.parseColor(cloud.colOne)))
             (getChildAt(0) as ItemColor).setEnable(true)
             parseColor(view, Color.parseColor(cloud.colOne))

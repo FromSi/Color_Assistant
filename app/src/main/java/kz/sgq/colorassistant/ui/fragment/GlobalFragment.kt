@@ -16,6 +16,7 @@
 
 package kz.sgq.colorassistant.ui.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -27,18 +28,18 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.fragment_color_list.*
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.mvp.presenter.fragment.ColorsPresenter
-import kz.sgq.colorassistant.mvp.view.fragment.ColorsView
+import kz.sgq.colorassistant.mvp.presenter.fragment.GlobalPresenter
+import kz.sgq.colorassistant.mvp.view.fragment.GlobalView
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.util.ItemColor
 import java.io.Serializable
 
-class ColorsFragment : MvpAppCompatFragment(), ColorsView {
+class GlobalFragment : MvpAppCompatFragment(), GlobalView {
     private var adapter = RecyclerColorsAdapter()
 
     @InjectPresenter
-    lateinit var presenter: ColorsPresenter
+    lateinit var presenter: GlobalPresenter
     private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
@@ -50,13 +51,14 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        layoutManager = LinearLayoutManager(view.context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_colors.layoutManager = layoutManager
-        rv_colors.adapter = adapter
-
-        clickListener()
+        initRecyclerView(view.context)
         setUpLoadMoreListener()
+        presenter.initPresenter()
+    }
+
+    override fun addList(list: MutableList<ItemColor>) {
+
+        adapter.addItemList(list)
     }
 
     override fun showLoadDB() {
@@ -69,49 +71,6 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
         rv_colors.visibility = View.VISIBLE
     }
 
-    override fun addItemsDB(colorList: MutableList<ItemColor>) {
-
-        adapter.addItems(colorList)
-    }
-
-    override fun clearItemsDB() {
-
-        adapter.clearItems()
-        presenter.clear()
-    }
-
-    override fun updateItemsDB(index: Int) {
-
-        adapter.updateItems(index)
-    }
-
-    override fun showActivityInfo(list: MutableList<String>) {
-        val intent = Intent(context, ComboActivity::class.java)
-
-        intent.putExtra("map", list as Serializable)
-        startActivity(intent)
-    }
-
-    fun dislike(id: Int) {
-
-        adapter.dislike(id)
-    }
-
-    private fun clickListener() {
-
-//        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
-//            override fun onLike(view: View, id: Int, like: Boolean) {
-//
-//                presenter.onItemLikeClick(view, id, like)
-//            }
-//
-//            override fun onView(view: View, itemColor: ItemColor) {
-//
-//                presenter.onItemViewClick(view, itemColor)
-//            }
-//        })
-    }
-
     private fun setUpLoadMoreListener() {
 
         rv_colors.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -122,6 +81,26 @@ class ColorsFragment : MvpAppCompatFragment(), ColorsView {
                         layoutManager.itemCount,
                         layoutManager.findLastVisibleItemPosition()
                 )
+            }
+        })
+    }
+
+    private fun initRecyclerView(context: Context) {
+        layoutManager = LinearLayoutManager(context)
+                .apply { orientation = LinearLayoutManager.VERTICAL }
+        rv_colors.layoutManager = layoutManager
+        rv_colors.adapter = adapter
+
+        adapter.setOnItemClickListener(object : RecyclerColorsAdapter.OnClickListener {
+            override fun onLike(id: Int, like: Boolean) {
+
+                presenter.setLike(id, like)
+            }
+
+            override fun onView(itemColor: ItemColor) {
+
+                startActivity(Intent(context, ComboActivity::class.java)
+                        .apply { putExtra("map", itemColor.colors as Serializable) })
             }
         })
     }

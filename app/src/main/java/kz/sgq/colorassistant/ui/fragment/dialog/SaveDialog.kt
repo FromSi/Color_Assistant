@@ -35,16 +35,15 @@ class SaveDialog : DialogFragment() {
         val message = resources.getString(R.string.dialog_save_message)
         val positive = resources.getString(R.string.dialog_save_positive)
         val neutral = resources.getString(R.string.dialog_save_neutral)
-        val dialog = AlertDialog.Builder(activity!!)
 
-        dialog.setTitle(title)
-        dialog.setMessage(message)
+        return AlertDialog.Builder(activity!!).apply {
+            setTitle(title)
+            setMessage(message)
 
-        dialog.setPositiveButton(positive) { _, _ -> clickListener.onClick() }
+            setPositiveButton(positive) { _, _ -> clickListener.onClick() }
 
-        dialog.setNeutralButton(neutral) { _, _ -> }
-
-        return dialog.create()
+            setNeutralButton(neutral) { _, _ -> }
+        }.create()
     }
 
     fun clickListener(clickListener: OnClickListener) {

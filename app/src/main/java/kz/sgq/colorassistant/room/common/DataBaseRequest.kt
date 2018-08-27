@@ -80,21 +80,14 @@ object DataBaseRequest {
                 .subscribe()
     }
 
-    fun updateColors(idCol: Int, like: Boolean) {
+    fun updateLike(idCol: Int, like: Boolean) {
 
         Completable.fromAction { dataBase?.colorsDao()?.update(idCol, like) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }
 
-    fun updateUpdate(first: Int, last: Int) {
-
-        Completable.fromAction { dataBase?.updateDao()?.update(first, last) }
-                .subscribeOn(Schedulers.io())
-                .subscribe()
-    }
-
-    fun getColors(colorIds: IntArray) = dataBase?.colorsDao()
+    fun getColor(colorIds: IntArray) = dataBase?.colorsDao()
             ?.getColors(colorIds)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -104,8 +97,7 @@ object DataBaseRequest {
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
 
-
-    fun getColors(like: Boolean) = dataBase?.colorsDao()
+    fun getColor(like: Boolean) = dataBase?.colorsDao()
             ?.getColors(like)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -114,11 +106,6 @@ object DataBaseRequest {
             ?.getColor()
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
-
-
-    fun getUpdate() = dataBase?.updateDao()
-            ?.getCheck()
-            ?.subscribeOn(Schedulers.io())
 
     fun getCloud() = dataBase?.cloudDao()
             ?.getColors()

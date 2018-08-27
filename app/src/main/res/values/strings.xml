@@ -46,9 +46,6 @@
     <string name="dialog_color_delete_positive">Delete</string>
     <string name="dialog_color_delete_neutral">Cancel</string>
 
-    <string name="dialog_more_title">More</string>
-    <string name="dialog_more_positive">OK</string>
-
     <string name="snack_qr_scan_error_title">Error QR</string>
     <string name="snack_qr_scan_error_click">Try</string>
 

@@ -64,17 +64,17 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     override fun shareItem(text: String) {
-        val dialog = ShareDialog()
 
-        dialog.setText(text)
-        dialog.show(fragmentManager, "share_dialog")
+        ShareDialog().apply {
+            setText(text)
+            show(fragmentManager, "share_dialog")
+        }
     }
 
     override fun showActivityInfo(list: MutableList<String>) {
-        val intent = Intent(context, ComboActivity::class.java)
 
-        intent.putExtra("map", list as Serializable)
-        startActivity(intent)
+        startActivity(Intent(context, ComboActivity::class.java)
+                .apply { putExtra("map", list as Serializable) })
     }
 
     fun addItem(cloud: Cloud) {
@@ -83,16 +83,19 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     }
 
     private fun initRecyclerAdapter(context: Context) {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        cloud.layoutManager = layoutManager
-        cloud.adapter = adapter
+
+        cloud.apply {
+            layoutManager = LinearLayoutManager(context)
+                    .apply { orientation = LinearLayoutManager.VERTICAL }
+            adapter = this@CloudFragment.adapter
+        }
 
         clickListener()
         presenter.initInitList()
     }
 
     private fun clickListener() {
+
         adapter.setOnItemClickListener(object : CloudHolder.OnClickListener {
             override fun onView(cloud: Cloud) {
 

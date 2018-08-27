@@ -30,7 +30,7 @@ import kz.sgq.colorassistant.ui.util.ItemContainer
 import com.like.LikeButton
 
 class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
-    private val itemContainer = ItemContainer()
+    private val list = ItemContainer()
 
     private lateinit var clickListener: OnClickListener
 
@@ -48,51 +48,27 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
             .inflate(R.layout.item_colors, parent, false)
     )
 
-    override fun getItemCount(): Int = itemContainer.itemList.size
+    override fun getItemCount(): Int = list.itemList.size
 
     override fun onBindViewHolder(p0: ColorsHolder, @SuppressLint("RecyclerView") p1: Int) {
 
-        p0.setImagesView(itemContainer.itemList[p1])
-        p0.setLiked(itemContainer.likeList[p1])
-        p0.setView(itemContainer.itemList[p1], clickListener)
-        p0.onLoadVisibly(itemContainer.visiblyList[p1])
+        p0.setImagesView(list.itemList[p1])
+        p0.setLiked(list.likeList[p1])
+        p0.setView(list.itemList[p1], clickListener)
+        p0.onLoadVisibly(list.visiblyList[p1])
         p0.itemView.like.setOnLikeListener(initLike(p1))
         p0.itemView.items.setOnClickListener(initClick(p0, p1))
     }
 
-    fun addItems(itemList: MutableList<ItemColor>) {
+    fun addItemList(list: MutableList<ItemColor>) {
 
-        itemContainer.addItems(itemList)
+        this.list.addItemList(list)
         notifyDataSetChanged()
     }
 
-    fun addItem(item: ItemColor) {
+    fun setItemList(list: MutableList<ItemColor>) {
 
-        itemContainer.addItem(item)
-        notifyDataSetChanged()
-    }
-
-    fun deleteItem(id: Int) {
-
-        itemContainer.deleteItem(id)
-        notifyDataSetChanged()
-    }
-
-    fun clearItems() {
-
-        itemContainer.clearItems()
-        notifyDataSetChanged()
-    }
-
-    fun dislike(id: Int) {
-
-        itemContainer.dislike(id)
-        notifyDataSetChanged()
-    }
-
-    fun updateItems(index: Int) {
-
-        itemContainer.updateItems(index)
+        this.list.setList(list)
         notifyDataSetChanged()
     }
 
@@ -117,12 +93,12 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
             p1: Int
     ): View.OnClickListener = View.OnClickListener {
 
-        if (itemContainer.visiblyList[p1]) {
-            itemContainer.visiblyList[p1] = false
+        if (list.visiblyList[p1]) {
+            list.visiblyList[p1] = false
 
             p0.onLoadVisibly(View.GONE)
         } else {
-            itemContainer.visiblyList[p1] = true
+            list.visiblyList[p1] = true
 
             p0.onLoadVisibly(View.VISIBLE)
         }
@@ -130,7 +106,7 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
 
     private fun onLikeClick(position: Int, like: Boolean) {
 
-        clickListener.onLike(itemContainer.itemList[position].id, like)
-        itemContainer.likeList[position] = like
+        clickListener.onLike(list.itemList[position].id, like)
+        list.likeList[position] = like
     }
 }

@@ -41,7 +41,6 @@ class ShareDialog : DialogFragment() {
             initView(customLayout)
             setPositiveButton(positive) { _, _ -> }
             setNeutralButton(neutral) { _, _ -> }
-
         }.create()
     }
 

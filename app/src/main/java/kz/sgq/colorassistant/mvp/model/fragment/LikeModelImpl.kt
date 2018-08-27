@@ -16,12 +16,12 @@
 
 package kz.sgq.colorassistant.mvp.model.fragment
 
-import kz.sgq.colorassistant.mvp.model.fragment.interfaces.BetaLikeModel
+import kz.sgq.colorassistant.mvp.model.fragment.interfaces.LikeModel
 import kz.sgq.colorassistant.room.common.DataBaseRequest
 import kz.sgq.colorassistant.room.table.Colors
 import kz.sgq.colorassistant.ui.util.ItemColor
 
-class BetaLikeModelImpl : BetaLikeModel {
+class LikeModelImpl : LikeModel {
 
     interface OnAnswerListener {
         fun onAnswer(list: MutableList<ItemColor>)
@@ -29,12 +29,12 @@ class BetaLikeModelImpl : BetaLikeModel {
 
     override fun updateColor(id: Int, like: Boolean) {
 
-        DataBaseRequest.updateColors(id, like)
+        DataBaseRequest.updateLike(id, like)
     }
 
     override fun loadDB(answerListener: OnAnswerListener) {
 
-        DataBaseRequest.getColors(true)
+        DataBaseRequest.getColor(true)
                 ?.subscribe {
 
                     answerListener.onAnswer(handlerList(it))
@@ -42,7 +42,7 @@ class BetaLikeModelImpl : BetaLikeModel {
     }
 
     private fun handlerList(colors: MutableList<Colors>): MutableList<ItemColor> {
-        val itemList: MutableList<ItemColor> = mutableListOf()
+        val itemList = mutableListOf<ItemColor>()
 
         for (i in 0 until colors.size)
             itemList.add(

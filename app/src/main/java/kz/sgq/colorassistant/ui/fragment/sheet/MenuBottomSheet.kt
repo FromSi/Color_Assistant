@@ -21,6 +21,8 @@ import android.app.Dialog
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialogFragment
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import kotlinx.android.synthetic.main.bottom_sheet_menu.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
@@ -46,7 +48,7 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
 
             if (bottomSheet != null) {
 
-                setColor()
+                setColor(this)
                 global.setOnClickListener(initClickListener(GLOBAL))
                 cloud.setOnClickListener(initClickListener(CLOUD))
                 bottomSheet.setBottomSheetCallback(initCallback())
@@ -63,8 +65,25 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
         this.clickListener = clickListener
     }
 
-    private fun setColor() {
+    private fun setColor(view: View) {
+        var color = view.resources.getColor(R.color.colorAccent)
 
+        when (fragmentCurrent){
+
+            GLOBAL -> {
+
+                (view.global.getChildAt(0) as ImageView).setColorFilter(color)
+                (view.global.getChildAt(1) as TextView).setTextColor(color)
+            }
+            CLOUD -> {
+
+                (view.cloud.getChildAt(0) as ImageView).setColorFilter(color)
+                (view.cloud.getChildAt(1) as TextView).setTextColor(color)
+            }
+            else -> {
+
+            }
+        }
     }
 
     private fun initClickListener(

@@ -31,9 +31,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_image.*
 import kz.sgq.colorassistant.mvp.presenter.ImagePresenter
 import kz.sgq.colorassistant.mvp.view.ImageView
-import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.RecyclerImageAdapter
-import kz.sgq.colorassistant.ui.fragment.dialog.MoreDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
@@ -113,7 +111,7 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
                     .getBitmap(this.contentResolver, photoUri)
                     .apply {
 
-//                        image.setImageBitmap(this) - Для просмотра оригинальной картинки
+                        //                        image.setImageBitmap(this) - Для просмотра оригинальной картинки
                         presenter.setCurrentImage(this)
                     }
             setVisibly(false)

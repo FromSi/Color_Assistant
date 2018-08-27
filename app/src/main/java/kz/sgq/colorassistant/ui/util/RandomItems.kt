@@ -16,38 +16,17 @@
 
 package kz.sgq.colorassistant.ui.util
 
-import kz.sgq.colorassistant.mvp.model.fragment.ColorsModelImpl
 import java.util.*
 
-class RandomItemsImpl(private var limit: Int) : ColorsModelImpl.RandomListener {
+class RandomItems(private var limit: Int) {
     private var random: Random = Random(System.currentTimeMillis())
     private var listCheck: MutableList<Boolean> = arrayListOf()
 
-    init {
-
-        initCheckList()
-    }
-
-    override fun onResize(size: Int) {
-        limit += size
-
-        initCheckList()
-    }
-
-    override fun onDelete(index: Int) {
-        limit--
-
-        listCheck.removeAt(index)
-    }
-
-    override fun onClear() {
-        limit = 0
-
-        listCheck.clear()
-    }
-
-    override fun onNumbers(): IntArray {
+    fun onNumbers(): IntArray {
         var freeNum = 0
+
+        for (i in 0 until limit)
+            listCheck.add(true)
 
         for (i in 0 until limit)
             if (listCheck[i])
@@ -57,17 +36,6 @@ class RandomItemsImpl(private var limit: Int) : ColorsModelImpl.RandomListener {
             calc(20)
         else
             calc(freeNum)
-    }
-
-    private fun initCheckList() {
-        val size = listCheck.size
-
-        if (size != 0)
-            for (i in size - 1 until limit)
-                listCheck.add(true)
-        else
-            for (i in 0 until limit)
-                listCheck.add(true)
     }
 
     private fun calc(num: Int): IntArray {

@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package kz.sgq.colorassistant.mvp.model.fragment.interfaces
+package kz.sgq.colorassistant.mvp.view.fragment
 
-import kz.sgq.colorassistant.mvp.model.fragment.BetaLikeModelImpl
+import com.arellomobile.mvp.MvpView
+import kz.sgq.colorassistant.ui.util.ItemColor
 
-interface BetaLikeModel {
+interface LikeView : MvpView {
 
-    fun updateColor(id: Int, like: Boolean)
+    fun setList(list: MutableList<ItemColor>)
 
-    fun loadDB(answerListener: BetaLikeModelImpl.OnAnswerListener)
+    fun showLoadDB()
+
+    fun showColorList()
 }
