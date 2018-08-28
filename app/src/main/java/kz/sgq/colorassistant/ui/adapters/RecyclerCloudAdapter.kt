@@ -27,8 +27,8 @@ import kz.sgq.colorassistant.ui.adapters.holders.CloudHolder
 import kz.sgq.colorassistant.ui.util.ItemColor
 
 class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
-    private var list: MutableList<Cloud> = arrayListOf()
-    private var visiblyList: MutableList<Boolean> = arrayListOf()
+    private var list: MutableList<Cloud> = mutableListOf()
+    private var visiblyList: MutableList<Boolean> = mutableListOf()
 
     private lateinit var clickListener: CloudHolder.OnClickListener
 

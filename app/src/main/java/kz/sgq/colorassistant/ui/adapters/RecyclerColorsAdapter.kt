@@ -41,12 +41,7 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
         fun onView(itemColor: ItemColor)
     }
 
-    override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-    ): ColorsHolder = ColorsHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_colors, parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorsHolder = createView(parent)
 
     override fun getItemCount(): Int = list.itemList.size
 
@@ -75,6 +70,10 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     fun setOnItemClickListener(clickListener: OnClickListener) {
         this.clickListener = clickListener
     }
+
+    private fun createView(parent: ViewGroup): ColorsHolder = ColorsHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_colors, parent, false)
+    )
 
     private fun initLike(p1: Int): OnLikeListener = object : OnLikeListener {
         override fun liked(likeButton: LikeButton) {

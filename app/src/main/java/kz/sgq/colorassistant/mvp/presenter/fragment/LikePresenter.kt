@@ -27,13 +27,17 @@ import kz.sgq.colorassistant.ui.util.ItemColor
 class LikePresenter : MvpPresenter<LikeView>() {
     private val model: LikeModel = LikeModelImpl()
 
-    fun initPresenter(){
+    fun initPresenter() {
 
         viewState.showLoadDB()
-        model.loadDB(object : LikeModelImpl.OnAnswerListener{
-            override fun onAnswer(list: MutableList<ItemColor>)  {
+        model.loadDB(object : LikeModelImpl.OnAnswerListener {
+            override fun onAnswer(list: MutableList<ItemColor>) {
 
-                viewState.showColorList()
+                if (list.size != 0)
+                    viewState.showColorList()
+                else
+                    viewState.showLoadDB()
+
                 viewState.setList(list)
             }
         })
