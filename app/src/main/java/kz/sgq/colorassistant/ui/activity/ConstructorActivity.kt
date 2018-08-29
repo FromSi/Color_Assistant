@@ -42,6 +42,7 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setTheme(intent.getIntExtra("theme", 0))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.activity_constructor)
         initActionBar()

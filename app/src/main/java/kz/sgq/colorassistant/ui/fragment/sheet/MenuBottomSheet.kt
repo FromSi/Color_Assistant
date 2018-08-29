@@ -18,8 +18,12 @@ package kz.sgq.colorassistant.ui.fragment.sheet
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Color
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatDelegate
+import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -66,19 +70,21 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setColor(view: View) {
-        var color = view.resources.getColor(R.color.colorAccent)
+        val typedValue = TypedValue()
 
-        when (fragmentCurrent){
+        view.context.theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
+
+        when (fragmentCurrent) {
 
             GLOBAL -> {
 
-                (view.global.getChildAt(0) as ImageView).setColorFilter(color)
-                (view.global.getChildAt(1) as TextView).setTextColor(color)
+                (view.global.getChildAt(0) as ImageView).setColorFilter(typedValue.data)
+                (view.global.getChildAt(1) as TextView).setTextColor(typedValue.data)
             }
             CLOUD -> {
 
-                (view.cloud.getChildAt(0) as ImageView).setColorFilter(color)
-                (view.cloud.getChildAt(1) as TextView).setTextColor(color)
+                (view.cloud.getChildAt(0) as ImageView).setColorFilter(typedValue.data)
+                (view.cloud.getChildAt(1) as TextView).setTextColor(typedValue.data)
             }
             else -> {
 

@@ -17,11 +17,9 @@
 package kz.sgq.colorassistant.ui.adapters.holders
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.ColorFilter
-import android.graphics.LightingColorFilter
+import android.graphics.*
 import android.support.transition.TransitionManager
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +31,10 @@ import kotlinx.android.synthetic.main.item_color_image.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.view.ItemColor
+import android.content.res.TypedArray
+import android.support.annotation.ColorInt
+import android.util.TypedValue
+
 
 class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
@@ -60,9 +62,13 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
     fun initSaveColor() {
         val d = itemView.resources.getDrawable(R.drawable.save)
+        val typedValue = TypedValue()
+
+        itemView.context.theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
+
         val f: ColorFilter = LightingColorFilter(
                 Color.BLACK,
-                itemView.resources.getColor(R.color.like)
+                typedValue.data
         )
         d.colorFilter = f
 

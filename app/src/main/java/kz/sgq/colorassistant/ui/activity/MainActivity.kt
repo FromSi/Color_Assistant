@@ -24,6 +24,7 @@ import android.os.Bundle
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatDelegate
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -42,16 +43,22 @@ import kz.sgq.colorassistant.ui.fragment.GlobalFragment
 import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
 import kz.sgq.colorassistant.ui.util.CodeActivity
+import kz.sgq.colorassistant.ui.util.java.ThemeEnum
+import kz.sgq.colorassistant.ui.util.java.ThemeUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 import kotlin.math.PI
 
 class MainActivity : MvpAppCompatActivity(), MainView {
+    private var mTheme = ThemeEnum.THEME_TEAL
+
     @InjectPresenter
     lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setTheme(ThemeUtil.getThemeId(mTheme))
+        delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         setContentView(R.layout.activity_beta_main)
         initActionBar()
         firstFragment()
@@ -73,7 +80,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
         R.id.settings -> {
 
-            startActivity(Intent(this, SettingsActivity::class.java))
+            startActivity(Intent(this, SettingsActivity::class.java)
+                    .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) })
 
             true
         }
@@ -86,7 +94,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         R.id.image_scan -> {
 
             startActivityForResult(
-                    Intent(this, ImageActivity::class.java),
+                    Intent(this, ImageActivity::class.java)
+                            .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) },
                     CodeActivity.IMAGE_SCAN.ID
             )
 
@@ -149,7 +158,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun constructor() {
 
         startActivityForResult(
-                Intent(this, ConstructorActivity::class.java),
+                Intent(this, ConstructorActivity::class.java)
+                        .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) },
                 CodeActivity.CONSTRUCTOR.ID
         )
     }
@@ -265,8 +275,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
                 PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(
-                    parent,
-                    arrayOf(Manifest.permission.CAMERA),
+                    this,
+                    arrayOf(android.Manifest.permission.CAMERA),
                     10
             )
         else
@@ -274,9 +284,12 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     private fun openScanActivity() {
-        val intent = Intent(this, QRCodeScanActivity::class.java)
 
-        startActivityForResult(intent, CodeActivity.QR_SCAN.ID)
+        startActivityForResult(
+                Intent(this, QRCodeScanActivity::class.java)
+                        .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) },
+                CodeActivity.QR_SCAN.ID
+        )
     }
 
     private fun initActionBar() {

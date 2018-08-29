@@ -18,5 +18,5 @@
         android:clickable="true"
         android:focusable="true"
         android:textAlignment="center"
-        android:textSize="@dimen/dialog_qr_text_size" />
+        style="@style/TextAppearance.MaterialComponents.Body2"/>
 </LinearLayout>

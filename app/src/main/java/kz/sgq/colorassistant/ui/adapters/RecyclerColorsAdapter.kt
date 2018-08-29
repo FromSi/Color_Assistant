@@ -42,6 +42,10 @@ class RecyclerColorsAdapter : RecyclerView.Adapter<ColorsHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorsHolder = createView(parent)
+            .apply {
+
+                initLikeColor()
+            }
 
     override fun getItemCount(): Int = list.itemList.size
 

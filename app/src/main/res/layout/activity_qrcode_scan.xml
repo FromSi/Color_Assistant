@@ -14,7 +14,9 @@
     <com.sqsong.qrcodelib.view.QRCodeScanView
         android:id="@+id/qr_scan_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:cornerBorderColor="?colorPrimary"
+        app:centerLineColor="?colorAccent"/>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/bar"
@@ -33,9 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bar_qr_scan"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                style="@style/TextAppearance.MaterialComponents.Headline6"/>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.CoordinatorLayout>

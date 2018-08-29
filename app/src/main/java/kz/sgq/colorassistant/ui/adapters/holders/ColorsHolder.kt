@@ -16,8 +16,13 @@
 
 package kz.sgq.colorassistant.ui.adapters.holders
 
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.LightingColorFilter
+import android.util.TypedValue
 import android.view.View
 import kotlinx.android.synthetic.main.item_colors.view.*
+import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.RecyclerColorsAdapter
 import kz.sgq.colorassistant.ui.adapters.holders.base.BaseComboCardHolder
 import kz.sgq.colorassistant.ui.util.ItemColor
@@ -35,5 +40,20 @@ class ColorsHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
             clickListener.onView(itemColor)
         }
+    }
+
+    fun initLikeColor() {
+        val d = itemView.resources.getDrawable(R.drawable.like)
+        val typedValue = TypedValue()
+
+        itemView.context.theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
+
+        val f: ColorFilter = LightingColorFilter(
+                Color.BLACK,
+                typedValue.data
+        )
+        d.colorFilter = f
+
+        itemView.like.setLikeDrawable(d)
     }
 }

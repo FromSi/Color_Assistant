@@ -32,13 +32,14 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:text="@string/hex"
-                android:textStyle="bold" />
+                style="@style/Base.TextAppearance.AppCompat.Body2"/>
 
             <TextView
                 android:id="@+id/hex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:text="test" />
         </LinearLayout>
 
@@ -59,7 +60,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:text="@string/rgb"
-                android:textStyle="bold" />
+                style="@style/Base.TextAppearance.AppCompat.Body2" />
 
             <LinearLayout
                 android:id="@+id/rgb"
@@ -72,17 +73,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
             </LinearLayout>
         </LinearLayout>
@@ -104,7 +108,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:text="@string/hsv"
-                android:textStyle="bold" />
+                style="@style/Base.TextAppearance.AppCompat.Body2"/>
 
             <LinearLayout
                 android:id="@+id/hsv"
@@ -117,17 +121,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
             </LinearLayout>
         </LinearLayout>
@@ -149,7 +156,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:text="@string/cmyk"
-                android:textStyle="bold" />
+                style="@style/Base.TextAppearance.AppCompat.Body2" />
 
             <LinearLayout
                 android:id="@+id/cmyk"
@@ -162,23 +169,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:text="test" />
             </LinearLayout>
         </LinearLayout>

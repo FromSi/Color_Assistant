@@ -6,6 +6,8 @@ import android.support.design.bottomappbar.BottomAppBar
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_settings.*
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.java.ThemeEnum
+import kz.sgq.colorassistant.ui.util.java.ThemeUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
@@ -14,6 +16,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setTheme(intent.getIntExtra("theme", 0))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         val helper = SwipeBackActivityHelper(this)

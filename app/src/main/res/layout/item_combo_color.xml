@@ -64,7 +64,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:textAlignment="textStart"
-            android:textStyle="bold"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:text="@string/type"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgColor"
@@ -78,6 +78,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textAlignment="textStart"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/nameTypeColor"
             app:layout_constraintTop_toTopOf="parent" />

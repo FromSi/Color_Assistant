@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/bottom_sheet_text"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:text="@string/bar_global"
             android:layout_marginStart="@dimen/bottom_sheet_margin" />
     </LinearLayout>
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/bottom_sheet_text"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:text="@string/bar_cloud"
             android:layout_marginStart="@dimen/bottom_sheet_margin" />
     </LinearLayout>

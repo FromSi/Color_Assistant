@@ -17,9 +17,11 @@
 package kz.sgq.colorassistant.ui.fragment.dialog
 
 import android.app.Dialog
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.util.TypedValue
 import android.view.View
 import kotlinx.android.synthetic.main.dialog_share.view.*
 import kz.sgq.colorassistant.R
@@ -50,7 +52,15 @@ class ShareDialog : DialogFragment() {
 
     private fun initView(view: View) {
         val size = resources.getDimension(R.dimen.dialog_share_size)
+        val typedValue = TypedValue()
 
-        view.qr.setImageBitmap(QRCode.from(text).withSize(size.toInt(), size.toInt()).bitmap())
+        view.context.theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        view.qr.setImageBitmap(
+                QRCode
+                        .from(text)
+                        .withSize(size.toInt(), size.toInt())
+                        .withColor(typedValue.data, Color.argb(0, 0, 0, 0))
+                        .bitmap()
+        )
     }
 }

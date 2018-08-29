@@ -19,7 +19,6 @@ package kz.sgq.colorassistant.ui.adapters
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.like.LikeButton
 import com.like.OnLikeListener
@@ -45,8 +44,11 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
         fun onShare(share: String)
     }
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ImageHolder = ImageHolder(LayoutInflater
-            .from(p0.context).inflate(R.layout.item_color_image, p0, false))
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ImageHolder = createView(p0)
+            .apply {
+
+                initSaveColor()
+            }
 
     override fun getItemCount(): Int = background.size
 
@@ -54,7 +56,6 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
         p0.initColors(colors[p1])
         p0.initLike(likeList[p1])
         p0.initBackground(background[p1])
-        p0.initSaveColor()
         p0.itemView.save.setOnLikeListener(initSave(p1))
         p0.itemView.share.setOnLikeListener(initShare(p1))
         p0.initMore()
@@ -74,6 +75,10 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
     fun setClickListener(clickListener: OnClickListener) {
         this.clickListener = clickListener
     }
+
+    private fun createView(parent: ViewGroup): ImageHolder = ImageHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_color_image, parent, false)
+    )
 
     private fun initShare(index: Int): OnLikeListener = object : OnLikeListener {
         override fun liked(p0: LikeButton?) {

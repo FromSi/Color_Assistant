@@ -78,10 +78,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:circle_end_color="@color/colorAccent"
-                app:circle_start_color="@color/primary"
-                app:dots_primary_color="@color/colorAccent"
-                app:dots_secondary_color="@color/primary"
+                app:circle_end_color="?colorAccent"
+                app:circle_start_color="?colorPrimary"
+                app:dots_primary_color="?colorAccent"
+                app:dots_secondary_color="?colorPrimary"
+                app:unlike_drawable="@drawable/like"
                 app:icon_size="@dimen/item_icon_size"
                 app:icon_type="heart" />
         </LinearLayout>
