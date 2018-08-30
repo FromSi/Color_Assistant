@@ -93,9 +93,9 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     override fun openShare(share: String) {
 
         ShareDialog().apply {
+
             setText(share)
-            show(supportFragmentManager, "share_dialog")
-        }
+        }.show(supportFragmentManager, "share_dialog")
     }
 
     override fun cardClick(index: Int) {
@@ -113,8 +113,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
                     presenter.openLightness(index)
                 }
             })
-            show(supportFragmentManager, "combo_list_bottom_sheet")
-        }
+        }.show(supportFragmentManager, "combo_list_bottom_sheet")
     }
 
     override fun openHSLSheet(list: MutableList<ItemDetails>) {
@@ -124,8 +123,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
             //setTitle(resources.getString(R.string.bottom_sheet_hsl_saturation))
             setTitle("HSL")
             setList(list)
-            show(supportFragmentManager, "hsl_bottom_sheet")
-        }
+        }.show(supportFragmentManager, "hsl_bottom_sheet")
     }
 
     override fun initHeader(i: Int, j: Int, color: Int) {

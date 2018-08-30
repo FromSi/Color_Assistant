@@ -25,13 +25,15 @@ import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatDelegate
+import android.view.ContextThemeWrapper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.TextView
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
-import kotlinx.android.synthetic.main.activity_beta_main.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.mvp.presenter.MainPresenter
@@ -43,6 +45,7 @@ import kz.sgq.colorassistant.ui.fragment.GlobalFragment
 import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
 import kz.sgq.colorassistant.ui.util.CodeActivity
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 import kz.sgq.colorassistant.ui.util.java.ThemeEnum
 import kz.sgq.colorassistant.ui.util.java.ThemeUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
@@ -58,8 +61,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
 
         setTheme(ThemeUtil.getThemeId(mTheme))
-        delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        setContentView(R.layout.activity_beta_main)
+        nightMode()
+        setContentView(R.layout.activity_main)
         initActionBar()
         firstFragment()
     }
@@ -67,6 +70,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.main_menu, menu)
+
+        menu?.
 
         return true
     }
@@ -181,8 +186,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                     presenter.menuClick(fragmentCurrent)
                 }
             })
-            show(supportFragmentManager, "menu_bottom_sheet")
-        }
+        }.show(supportFragmentManager, "menu_bottom_sheet")
     }
 
     override fun answerQR(cloud: Cloud) {
@@ -191,8 +195,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
             cloud(cloud)
             clickListener(initClickAnswer(cloud))
-            show(supportFragmentManager, "qr_dialog")
-        }
+        }.show(supportFragmentManager, "qr_dialog")
     }
 
     override fun errorQR() {
@@ -241,6 +244,16 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                 openScanActivity()
         } else
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun nightMode(){
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO){
+
+
+        }
     }
 
     private fun firstFragment() {
@@ -296,6 +309,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         setSupportActionBar(bar)
         supportActionBar?.apply {
+
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.menu)
         }

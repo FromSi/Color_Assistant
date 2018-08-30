@@ -18,11 +18,15 @@ package kz.sgq.colorassistant.ui.fragment.sheet
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Color
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v7.app.AppCompatDelegate
 import android.view.View
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.bottom_sheet_combo_list.view.*
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 
 class ComboListBottomSheet : BottomSheetDialogFragment() {
     private lateinit var clickListener: OnClickListener
@@ -48,6 +52,7 @@ class ComboListBottomSheet : BottomSheetDialogFragment() {
 
             if (bottomSheet != null) {
 
+                nightMode(this)
                 saturation.setOnClickListener(initClickListener(ComboList.SATURATION))
                 lightness.setOnClickListener(initClickListener(ComboList.LIGHTNESS))
                 bottomSheet.setBottomSheetCallback(initCallback())
@@ -58,6 +63,16 @@ class ComboListBottomSheet : BottomSheetDialogFragment() {
 
     fun setClick(clickListener: OnClickListener) {
         this.clickListener = clickListener
+    }
+
+    private fun nightMode(view: View){
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+
+            view.main.setBackgroundColor(ColorAttrUtil.getColorNightSheet(view.context))
+            (view.saturation.getChildAt(0) as ImageView).setColorFilter(Color.GRAY)
+            (view.lightness.getChildAt(0) as ImageView).setColorFilter(Color.GRAY)
+        }
     }
 
     private fun initClickListener(enum: ComboList): View.OnClickListener = View.OnClickListener {

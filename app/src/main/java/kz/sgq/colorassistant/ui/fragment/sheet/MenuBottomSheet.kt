@@ -21,9 +21,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialogFragment
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatDelegate
-import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -31,6 +29,7 @@ import kotlinx.android.synthetic.main.bottom_sheet_menu.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.model.MainModelImpl
 import kz.sgq.colorassistant.mvp.model.MainModelImpl.MainFragment.*
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 
 class MenuBottomSheet : BottomSheetDialogFragment() {
     private lateinit var fragmentCurrent: MainModelImpl.MainFragment
@@ -52,6 +51,7 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
 
             if (bottomSheet != null) {
 
+                nightMode(this)
                 setColor(this)
                 global.setOnClickListener(initClickListener(GLOBAL))
                 cloud.setOnClickListener(initClickListener(CLOUD))
@@ -69,22 +69,29 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
         this.clickListener = clickListener
     }
 
-    private fun setColor(view: View) {
-        val typedValue = TypedValue()
+    private fun nightMode(view: View){
 
-        view.context.theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+
+            view.main.setBackgroundColor(ColorAttrUtil.getColorNightSheet(view.context))
+            (view.global.getChildAt(0) as ImageView).setColorFilter(Color.GRAY)
+            (view.cloud.getChildAt(0) as ImageView).setColorFilter(Color.GRAY)
+        }
+    }
+
+    private fun setColor(view: View) {
 
         when (fragmentCurrent) {
 
             GLOBAL -> {
 
-                (view.global.getChildAt(0) as ImageView).setColorFilter(typedValue.data)
-                (view.global.getChildAt(1) as TextView).setTextColor(typedValue.data)
+                (view.global.getChildAt(0) as ImageView).setColorFilter(ColorAttrUtil.getColorAccent(view.context))
+                (view.global.getChildAt(1) as TextView).setTextColor(ColorAttrUtil.getColorAccent(view.context))
             }
             CLOUD -> {
 
-                (view.cloud.getChildAt(0) as ImageView).setColorFilter(typedValue.data)
-                (view.cloud.getChildAt(1) as TextView).setTextColor(typedValue.data)
+                (view.cloud.getChildAt(0) as ImageView).setColorFilter(ColorAttrUtil.getColorAccent(view.context))
+                (view.cloud.getChildAt(1) as TextView).setTextColor(ColorAttrUtil.getColorAccent(view.context))
             }
             else -> {
 

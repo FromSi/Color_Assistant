@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     app:icon_size="@dimen/item_icon_size"
-                    app:unlike_drawable="@drawable/ic_remove_red_eye_black_24dp_off" />
+                    app:unlike_drawable="@drawable/view" />
 
                 <com.like.LikeButton
                     android:id="@+id/share"

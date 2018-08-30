@@ -2,12 +2,17 @@ package kz.sgq.colorassistant.ui.fragment.sheet
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v7.app.AppCompatDelegate
+import android.util.TypedValue
 import android.view.View
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.bottom_sheet_info_color.view.*
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 import kz.sgq.colorassistant.ui.util.ColorConverter
 
 
@@ -29,6 +34,7 @@ class InfoColorBottomSheet : BottomSheetDialogFragment() {
                         .getDimension(R.dimen.bottom_sheet_info_color)
                         .toInt()
 
+                nightMode(this)
                 initView(this)
                 bottomSheet.setBottomSheetCallback(initCallback())
                 requestLayout()
@@ -38,6 +44,14 @@ class InfoColorBottomSheet : BottomSheetDialogFragment() {
 
     fun setColor(color: Int) {
         this.color = color
+    }
+
+    private fun nightMode(view: View){
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+
+            view.main.setBackgroundColor(ColorAttrUtil.getColorNightSheet(view.context))
+        }
     }
 
     @SuppressLint("SetTextI18n")

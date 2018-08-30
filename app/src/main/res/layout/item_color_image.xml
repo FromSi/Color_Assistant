@@ -44,8 +44,7 @@
                 android:layout_marginEnd="8dp"
                 app:icon_size="@dimen/item_icon_size"
                 app:layout_constraintEnd_toStartOf="@+id/save"
-                app:layout_constraintTop_toTopOf="parent"
-                app:unlike_drawable="@drawable/share" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.like.LikeButton
                 android:id="@+id/save"
@@ -53,14 +52,12 @@
                 android:layout_height="45dp"
                 android:layout_marginEnd="8dp"
                 app:icon_size="@dimen/item_icon_size"
-                app:icon_type="heart"
                 app:circle_end_color="?colorAccent"
                 app:circle_start_color="?colorPrimary"
                 app:dots_primary_color="?colorAccent"
                 app:dots_secondary_color="?colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:unlike_drawable="@drawable/save" />
+                app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

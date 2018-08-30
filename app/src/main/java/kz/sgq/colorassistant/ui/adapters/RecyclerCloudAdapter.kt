@@ -32,11 +32,11 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
 
     private lateinit var clickListener: CloudHolder.OnClickListener
 
-    override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-    ): CloudHolder = CloudHolder(LayoutInflater
-            .from(parent.context).inflate(R.layout.item_colors_cloud, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CloudHolder = createView(parent)
+            .apply {
+
+                nightMode()
+            }
 
     override fun getItemCount(): Int = list.size
 
@@ -49,6 +49,10 @@ class RecyclerCloudAdapter : RecyclerView.Adapter<CloudHolder>() {
         p0.onLoadVisibly(visiblyList[p1])
         p0.itemView.items.setOnClickListener(initClick(p0, p1))
     }
+
+    private fun createView(parent: ViewGroup): CloudHolder = CloudHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_colors_cloud, parent, false)
+    )
 
     fun addList(list: MutableList<Cloud>) {
         this.list = list

@@ -47,12 +47,13 @@ class RecyclerImageAdapter : RecyclerView.Adapter<ImageHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ImageHolder = createView(p0)
             .apply {
 
-                initSaveColor()
+                nightMode()
             }
 
     override fun getItemCount(): Int = background.size
 
     override fun onBindViewHolder(p0: ImageHolder, p1: Int) {
+        p0.itemView.more.text = p0.itemView.resources.getString(R.string.more)
         p0.initColors(colors[p1])
         p0.initLike(likeList[p1])
         p0.initBackground(background[p1])

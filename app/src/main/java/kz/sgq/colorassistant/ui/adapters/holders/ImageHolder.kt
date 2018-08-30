@@ -16,13 +16,9 @@
 
 package kz.sgq.colorassistant.ui.adapters.holders
 
-import android.content.Context
 import android.graphics.*
-import android.support.transition.TransitionManager
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
@@ -31,9 +27,8 @@ import kotlinx.android.synthetic.main.item_color_image.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.view.ItemColor
-import android.content.res.TypedArray
-import android.support.annotation.ColorInt
-import android.util.TypedValue
+import android.support.v7.app.AppCompatDelegate
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 
 
 class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
@@ -60,19 +55,43 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         }
     }
 
-    fun initSaveColor() {
-        val d = itemView.resources.getDrawable(R.drawable.save)
-        val typedValue = TypedValue()
+    fun nightMode() {
+        val share = itemView.resources.getDrawable(R.drawable.share)
+        val save = itemView.resources.getDrawable(R.drawable.save)
 
-        itemView.context.theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
 
-        val f: ColorFilter = LightingColorFilter(
-                Color.BLACK,
-                typedValue.data
-        )
-        d.colorFilter = f
+            itemView.share.setUnlikeDrawable(share.apply {
 
-        itemView.save.setLikeDrawable(d)
+                colorFilter = LightingColorFilter(Color.GRAY, Color.GRAY)
+            })
+            itemView.save.setLikeDrawable(save.apply {
+
+                colorFilter = LightingColorFilter(Color.GRAY, ColorAttrUtil.getColorAccent(itemView.context))
+            })
+            itemView.save.setUnlikeDrawable(save.apply {
+
+                colorFilter = LightingColorFilter(Color.GRAY, Color.GRAY)
+            })
+        } else {
+
+            itemView.share.setUnlikeDrawable(share.apply {
+
+                colorFilter = LightingColorFilter(Color.BLACK, Color.BLACK)
+            })
+            itemView.save.setLikeDrawable(save.apply {
+
+                colorFilter = LightingColorFilter(Color.BLACK, ColorAttrUtil.getColorAccent(itemView.context))
+            })
+            itemView.save.setUnlikeDrawable(save.apply {
+
+                colorFilter = LightingColorFilter(Color.BLACK, Color.BLACK)
+            })
+        }
+
+        for (i in 0 until itemView.info_text.childCount)
+            if ((i % 2) == 1)
+                (itemView.info_text.getChildAt(i) as View).setBackgroundColor(nightColor())
     }
 
     fun initLike(like: Boolean) {
@@ -146,10 +165,15 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
                                         .toInt()
                         )
 
-                        setBackgroundColor(Color.BLACK)
+                        setBackgroundColor(nightColor())
                     }
             )
     }
+
+    private fun nightColor(): Int = if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        Color.GRAY
+    else
+        Color.BLACK
 
     private fun addCircleView(i: Int, color: Int) {
 
@@ -179,7 +203,7 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
                             ).apply {
 
                                 if (i != 0)
-                                    eraseColor(Color.GRAY)
+                                    eraseColor(nightColor())
                                 else
                                     eraseColor(color)
                             }
@@ -187,7 +211,7 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
                     setOnClickListener {
 
-                        allGrayIcon()
+                        recolorIcon()
                         setImageBitmap(
                                 Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565)
                                         .apply { eraseColor(color) }
@@ -198,13 +222,13 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         )
     }
 
-    private fun allGrayIcon() {
+    private fun recolorIcon() {
 
         for (i in 0 until itemView.icons.childCount)
             if ((i % 2) == 0)
                 (itemView.icons.getChildAt(i) as CircleImageView).setImageBitmap(
                         Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565)
-                                .apply { eraseColor(Color.GRAY) }
+                                .apply { eraseColor(nightColor()) }
                 )
     }
 }

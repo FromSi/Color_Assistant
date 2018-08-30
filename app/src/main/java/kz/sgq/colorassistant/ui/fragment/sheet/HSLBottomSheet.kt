@@ -18,8 +18,11 @@ package kz.sgq.colorassistant.ui.fragment.sheet
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
+import android.graphics.Color
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.bottom_sheet_hsl.view.*
@@ -27,7 +30,10 @@ import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.adapters.RecyclerDetailsAdapter
 import kz.sgq.colorassistant.ui.util.ItemDetails
 import android.util.DisplayMetrics
+import android.util.TypedValue
 import android.widget.ImageButton
+import android.widget.ImageView
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 
 class HSLBottomSheet : BottomSheetDialogFragment() {
     private lateinit var titleText: String
@@ -53,6 +59,7 @@ class HSLBottomSheet : BottomSheetDialogFragment() {
                 title.text = titleText
                 button = exit
 
+                nightMode(this)
                 button.setOnClickListener(initClickExit())
                 initList(this)
                 bottomSheet.setBottomSheetCallback(initCallback())
@@ -81,6 +88,15 @@ class HSLBottomSheet : BottomSheetDialogFragment() {
             view.list.adapter = this
 
             this.addList(list)
+        }
+    }
+
+    private fun nightMode(view: View) {
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+
+            view.main.setBackgroundColor(ColorAttrUtil.getColorNightSheet(view.context))
+            view.exit.setColorFilter(Color.GRAY)
         }
     }
 

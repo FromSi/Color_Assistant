@@ -69,9 +69,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:icon_size="@dimen/item_icon_size"
-                app:like_drawable="@drawable/ic_remove_red_eye_black_24dp_on"
-                app:unlike_drawable="@drawable/ic_remove_red_eye_black_24dp_off" />
+                app:icon_size="@dimen/item_icon_size" />
 
             <com.like.LikeButton
                 android:id="@+id/like"
@@ -82,9 +80,7 @@
                 app:circle_start_color="?colorPrimary"
                 app:dots_primary_color="?colorAccent"
                 app:dots_secondary_color="?colorPrimary"
-                app:unlike_drawable="@drawable/like"
-                app:icon_size="@dimen/item_icon_size"
-                app:icon_type="heart" />
+                app:icon_size="@dimen/item_icon_size"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

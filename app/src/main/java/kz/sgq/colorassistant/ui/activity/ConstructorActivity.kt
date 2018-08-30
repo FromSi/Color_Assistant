@@ -31,6 +31,7 @@ import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.fragment.dialog.DeleteDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.SaveDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.InfoColorBottomSheet
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
@@ -47,6 +48,7 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
         setContentView(R.layout.activity_constructor)
         initActionBar()
         initColorPicker()
+        add.setColorFilter(ColorAttrUtil.getColorAccent(this))
         SwipeBackActivityHelper(this)
                 .apply {
 
@@ -85,8 +87,7 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
             SaveDialog().apply {
 
                 clickListener(initClickSave())
-                show(supportFragmentManager, "save_dialog")
-            }
+            }.show(supportFragmentManager, "save_dialog")
         }
     }
 
@@ -176,8 +177,7 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
             DeleteDialog().apply {
 
                 clickListener(index, initDeleteClick())
-                show(supportFragmentManager, "delete_dialog")
-            }
+            }.show(supportFragmentManager, "delete_dialog")
         }
     }
 
@@ -204,7 +204,6 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
         InfoColorBottomSheet().apply {
 
             setColor(color)
-            show(supportFragmentManager, "info_color_bottom_sheet")
-        }
+        }.show(supportFragmentManager, "info_color_bottom_sheet")
     }
 }

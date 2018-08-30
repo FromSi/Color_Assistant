@@ -169,8 +169,7 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
                 ShareDialog().apply {
 
                     setText(share)
-                    show(supportFragmentManager, "share_dialog")
-                }
+                }.show(supportFragmentManager, "share_dialog")
             }
         })
     }

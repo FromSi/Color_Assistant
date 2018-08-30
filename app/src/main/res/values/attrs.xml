@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="colorNightSheet" format="color" />
+
+    <attr name="colorNightPopupMenu" format="color" />
+
     <declare-styleable name="ColorPicker">
         <attr name="color_wheel_thickness" format="dimension" />
         <attr name="color_wheel_radius" format="dimension" />

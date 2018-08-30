@@ -66,9 +66,9 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
     override fun shareItem(text: String) {
 
         ShareDialog().apply {
+
             setText(text)
-            show(fragmentManager, "share_dialog")
-        }
+        }.show(fragmentManager, "share_dialog")
     }
 
     override fun showActivityInfo(list: MutableList<String>) {

@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/primaryColorAmber</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorAmber</item>
         <item name="colorAccent">@color/secondaryColorAmber</item>
+        <item name="colorNightSheet">@color/nightSheetColorBlueGray</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -18,6 +20,8 @@
         <item name="colorPrimary">@color/primaryColorRed</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorRed</item>
         <item name="colorAccent">@color/secondaryColorRed</item>
+        <item name="colorNightSheet">@color/nightSheetColorRed</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.PINK" parent="AppTheme.NoActionBar">
@@ -25,6 +29,8 @@
         <item name="colorPrimary">@color/primaryColorPink</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorPink</item>
         <item name="colorAccent">@color/secondaryColorPink</item>
+        <item name="colorNightSheet">@color/nightSheetColorPink</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.PURPLE" parent="AppTheme.NoActionBar">
@@ -32,6 +38,8 @@
         <item name="colorPrimary">@color/primaryColorPurple</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorPurple</item>
         <item name="colorAccent">@color/secondaryColorPurple</item>
+        <item name="colorNightSheet">@color/nightSheetColorPurple</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.DEEPPURPLE" parent="AppTheme.NoActionBar">
@@ -39,6 +47,8 @@
         <item name="colorPrimary">@color/primaryColorDeepPurple</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorDeepPurple</item>
         <item name="colorAccent">@color/secondaryColorDeepPurple</item>
+        <item name="colorNightSheet">@color/nightSheetColorDeepPurple</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.INDIGO" parent="AppTheme.NoActionBar">
@@ -46,6 +56,8 @@
         <item name="colorPrimary">@color/primaryColorIndigo</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorIndigo</item>
         <item name="colorAccent">@color/secondaryColorIndigo</item>
+        <item name="colorNightSheet">@color/nightSheetColorIndigo</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.BLUE" parent="AppTheme.NoActionBar">
@@ -53,6 +65,8 @@
         <item name="colorPrimary">@color/primaryColorBlue</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorBlue</item>
         <item name="colorAccent">@color/secondaryColorBlue</item>
+        <item name="colorNightSheet">@color/nightSheetColorBlue</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.LIGHTBLUE" parent="AppTheme.NoActionBar">
@@ -60,6 +74,8 @@
         <item name="colorPrimary">@color/primaryColorLightBlue</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorLightBlue</item>
         <item name="colorAccent">@color/secondaryColorLightBlue</item>
+        <item name="colorNightSheet">@color/nightSheetColorLightBlue</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.CYAN" parent="AppTheme.NoActionBar">
@@ -67,6 +83,8 @@
         <item name="colorPrimary">@color/primaryColorCyan</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorCyan</item>
         <item name="colorAccent">@color/secondaryColorCyan</item>
+        <item name="colorNightSheet">@color/nightSheetColorCyan</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.TEAL" parent="AppTheme.NoActionBar">
@@ -74,6 +92,8 @@
         <item name="colorPrimary">@color/primaryColorTeal</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorTeal</item>
         <item name="colorAccent">@color/secondaryColorTeal</item>
+        <item name="colorNightSheet">@color/nightSheetColorTeal</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.GREEN" parent="AppTheme.NoActionBar">
@@ -81,6 +101,8 @@
         <item name="colorPrimary">@color/primaryColorGreen</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorGreen</item>
         <item name="colorAccent">@color/secondaryColorGreen</item>
+        <item name="colorNightSheet">@color/nightSheetColorGreen</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.LIGHTGREEN" parent="AppTheme.NoActionBar">
@@ -88,6 +110,8 @@
         <item name="colorPrimary">@color/primaryColorLightGreen</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorLightGreen</item>
         <item name="colorAccent">@color/secondaryColorLightGreen</item>
+        <item name="colorNightSheet">@color/nightSheetColorLightGreen</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.LIME" parent="AppTheme.NoActionBar">
@@ -95,6 +119,8 @@
         <item name="colorPrimary">@color/primaryColorLime</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorLime</item>
         <item name="colorAccent">@color/secondaryColorLime</item>
+        <item name="colorNightSheet">@color/nightSheetColorLime</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.YELLOW" parent="AppTheme.NoActionBar">
@@ -102,6 +128,8 @@
         <item name="colorPrimary">@color/primaryColorYellow</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorYellow</item>
         <item name="colorAccent">@color/secondaryColorYellow</item>
+        <item name="colorNightSheet">@color/nightSheetColorYellow</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.AMBER" parent="AppTheme.NoActionBar">
@@ -109,6 +137,8 @@
         <item name="colorPrimary">@color/primaryColorAmber</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorAmber</item>
         <item name="colorAccent">@color/secondaryColorAmber</item>
+        <item name="colorNightSheet">@color/nightSheetColorAmber</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.ORANGE" parent="AppTheme.NoActionBar">
@@ -116,6 +146,8 @@
         <item name="colorPrimary">@color/primaryColorOrange</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorOrange</item>
         <item name="colorAccent">@color/secondaryColorOrange</item>
+        <item name="colorNightSheet">@color/nightSheetColorOrange</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.DEEPORANGE" parent="AppTheme.NoActionBar">
@@ -123,6 +155,8 @@
         <item name="colorPrimary">@color/primaryColorDeepOrange</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorDeepOrange</item>
         <item name="colorAccent">@color/secondaryColorDeepOrange</item>
+        <item name="colorNightSheet">@color/nightSheetColorDeepOrange</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.BROWN" parent="AppTheme.NoActionBar">
@@ -130,6 +164,8 @@
         <item name="colorPrimary">@color/primaryColorBrown</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorBrown</item>
         <item name="colorAccent">@color/secondaryColorBrown</item>
+        <item name="colorNightSheet">@color/nightSheetColorBrown</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.GRAY" parent="AppTheme.NoActionBar">
@@ -137,6 +173,8 @@
         <item name="colorPrimary">@color/primaryColorGray</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorGray</item>
         <item name="colorAccent">@color/secondaryColorGray</item>
+        <item name="colorNightSheet">@color/nightSheetColorGray</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.BLUEGRAY" parent="AppTheme.NoActionBar">
@@ -144,30 +182,11 @@
         <item name="colorPrimary">@color/primaryColorBlueGray</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorBlueGray</item>
         <item name="colorAccent">@color/secondaryColorBlueGray</item>
+        <item name="colorNightSheet">@color/nightSheetColorBlueGray</item>
+        <item name="colorNightPopupMenu">@color/secondaryColorAmber</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <!-- Text styles -->
-    <style name="Text" parent="TextAppearance.AppCompat" />
-    <style name="Text.Caption" parent="TextAppearance.AppCompat.Caption"/>
-    <style name="Text.Small" parent="TextAppearance.AppCompat.Small"/>
-    <style name="Text.Body1" parent="TextAppearance.AppCompat.Body1"/>
-    <style name="Text.Body2" parent="TextAppearance.AppCompat.Body2"/>
-    <style name="Text.Medium" parent="TextAppearance.AppCompat.Medium"/>
-    <style name="Text.Large" parent="TextAppearance.AppCompat.Large"/>
-    <style name="Text.Headline" parent="TextAppearance.AppCompat.Headline"/>
-    <style name="Text.Title" parent="TextAppearance.AppCompat.Title"/>
-    <style name="Text.Display1" parent="TextAppearance.AppCompat.Display1"/>
-    <style name="Text.Subhead" parent="TextAppearance.AppCompat.Subhead"/>
-    <style name="Text.Button" parent="TextAppearance.AppCompat.Button"/>
-
-    <!-- Button Styles-->
-    <style name="Buton" parent="Widget.AppCompat.Button"/>
-    <style name="Buton.Small" parent="Widget.AppCompat.Button.Small"/>
-    <style name="Buton.Colored" parent="Widget.AppCompat.Button.Colored"/>
-    <style name="Buton.Borderless" parent="Widget.AppCompat.Button.Borderless"/>
-    <style name="Buton.Borderless.Colored" parent="Widget.AppCompat.Button.Borderless.Colored"/>
 </resources>

@@ -16,10 +16,15 @@
 
 package kz.sgq.colorassistant.ui.adapters.holders
 
+import android.graphics.Color
+import android.graphics.LightingColorFilter
+import android.support.v7.app.AppCompatDelegate
 import android.view.View
 import kotlinx.android.synthetic.main.item_colors_cloud.view.*
+import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.adapters.holders.base.BaseComboCardHolder
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 
 class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
 
@@ -38,6 +43,42 @@ class CloudHolder(itemView: View?) : BaseComboCardHolder(itemView!!) {
             itemView.view.isLiked = false
 
             clickListener.onView(cloud)
+        }
+    }
+
+    fun nightMode() {
+        val v = itemView.resources.getDrawable(R.drawable.view)
+        val s = itemView.resources.getDrawable(R.drawable.share)
+        val d = itemView.resources.getDrawable(R.drawable.delete)
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+
+            itemView.view.setUnlikeDrawable(v.apply {
+
+                colorFilter = LightingColorFilter(Color.GRAY, Color.GRAY)
+            })
+            itemView.share.setUnlikeDrawable(s.apply {
+
+                colorFilter = LightingColorFilter(Color.GRAY, Color.GRAY)
+            })
+            itemView.delete.setUnlikeDrawable(d.apply {
+
+                colorFilter = LightingColorFilter(Color.GRAY, Color.GRAY)
+            })
+        } else {
+
+            itemView.view.setUnlikeDrawable(v.apply {
+
+                colorFilter = LightingColorFilter(Color.BLACK, Color.BLACK)
+            })
+            itemView.share.setUnlikeDrawable(s.apply {
+
+                colorFilter = LightingColorFilter(Color.BLACK, Color.BLACK)
+            })
+            itemView.delete.setUnlikeDrawable(d.apply {
+
+                colorFilter = LightingColorFilter(Color.BLACK, Color.BLACK)
+            })
         }
     }
 
