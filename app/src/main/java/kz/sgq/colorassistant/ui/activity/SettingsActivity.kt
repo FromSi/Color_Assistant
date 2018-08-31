@@ -1,17 +1,21 @@
 package kz.sgq.colorassistant.ui.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.bottomappbar.BottomAppBar
 import android.view.MenuItem
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.f_settings.view.*
 import kz.sgq.colorassistant.R
-import kz.sgq.colorassistant.ui.util.java.ThemeEnum
-import kz.sgq.colorassistant.ui.util.java.ThemeUtil
+import kz.sgq.colorassistant.mvp.presenter.SettingsPresenter
+import kz.sgq.colorassistant.mvp.view.SettingsView
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : MvpAppCompatActivity(), SettingsView {
+    @InjectPresenter
+    lateinit var presenter: SettingsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,8 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
         helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         initActionBar()
+        initItems()
+        initClickMenu()
         helper.onPostCreate()
     }
 
@@ -43,6 +49,32 @@ class SettingsActivity : AppCompatActivity() {
         super.onBackPressed()
 
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    private fun initItems() {
+
+        for (i in 0 until menu.childCount) {
+            menu.getChildAt(i).title.text = resources.getStringArray(R.array.settings_title)[i]
+
+            menu.getChildAt(i).icon.setImageDrawable(
+                    resources
+                            .obtainTypedArray(R.array.settings_icon)
+                            .getDrawable(i)
+            )
+        }
+    }
+
+    private fun initClickMenu() {
+
+        for (i in 0 until menu.childCount)
+            menu.getChildAt(i).setOnClickListener {
+
+            }
+    }
+
+    private fun nightMode() {
+
+
     }
 
     private fun initActionBar() {

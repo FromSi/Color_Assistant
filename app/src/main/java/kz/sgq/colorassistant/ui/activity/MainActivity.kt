@@ -61,7 +61,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
 
         setTheme(ThemeUtil.getThemeId(mTheme))
-        nightMode()
+//        nightMode()
         setContentView(R.layout.activity_main)
         initActionBar()
         firstFragment()
@@ -70,8 +70,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.main_menu, menu)
-
-        menu?.
 
         return true
     }
@@ -246,11 +244,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    private fun nightMode(){
+    private fun nightMode() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
 
 
         }

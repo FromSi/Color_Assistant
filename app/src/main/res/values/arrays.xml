@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="settings_title">
+
+        <item>Theme</item>
+    </string-array>
+
+    <string-array name="settings_theme_night_mode">
+
+        <item>Day</item>
+        <item>Night</item>
+        <item>Automatic</item>
+    </string-array>
+
+    <string-array name="settings_theme_color_title">
+
+        <item>Red</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Deep Purple</item>
+        <item>Indigo</item>
+        <item>Blue</item>
+        <item>Light Blue</item>
+        <item>Cyan</item>
+        <item>Teal</item>
+        <item>Green</item>
+        <item>Light Green</item>
+        <item>Lime</item>
+        <item>Yellow</item>
+        <item>Amber</item>
+        <item>Orange</item>
+        <item>Deep Orange</item>
+        <item>Brown</item>
+        <item>Gray</item>
+        <item>Blue Gray</item>
+    </string-array>
+
+    <array name="settings_theme_color">
+
+        <item>@color/primaryColorRed</item>
+        <item>@color/primaryColorPink</item>
+        <item>@color/primaryColorPurple</item>
+        <item>@color/primaryColorDeepPurple</item>
+        <item>@color/primaryColorIndigo</item>
+        <item>@color/primaryColorBlue</item>
+        <item>@color/primaryColorLightBlue</item>
+        <item>@color/primaryColorCyan</item>
+        <item>@color/primaryColorTeal</item>
+        <item>@color/primaryColorGreen</item>
+        <item>@color/primaryColorLightGreen</item>
+        <item>@color/primaryColorLime</item>
+        <item>@color/primaryColorYellow</item>
+        <item>@color/primaryColorAmber</item>
+        <item>@color/primaryColorOrange</item>
+        <item>@color/primaryColorDeepOrange</item>
+        <item>@color/primaryColorBrown</item>
+        <item>@color/primaryColorGray</item>
+        <item>@color/primaryColorBlueGray</item>
+    </array>
+    
+    <array name="settings_icon">
+
+        <item>@drawable/theme</item>
+    </array>
+
+</resources>

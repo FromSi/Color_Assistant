@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.SettingsActivity">
 
+    <LinearLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/f_settings"/>
+    </LinearLayout>
+
     <android.support.design.bottomappbar.BottomAppBar
         android:id="@+id/bar"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
