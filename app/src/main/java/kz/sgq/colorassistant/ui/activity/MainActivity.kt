@@ -52,7 +52,7 @@ import kz.sgq.colorassistant.ui.view.ItemColor
 import kotlin.math.PI
 
 class MainActivity : MvpAppCompatActivity(), MainView {
-    private var mTheme = ThemeEnum.THEME_TEAL
+    private var mTheme = ThemeEnum.BLUE_GRAY
 
     @InjectPresenter
     lateinit var presenter: MainPresenter

@@ -17,6 +17,8 @@
         android:layout_weight="1"/>
 
     <RadioButton
+        android:clickable="false"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

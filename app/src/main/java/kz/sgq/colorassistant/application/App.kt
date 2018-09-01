@@ -38,6 +38,7 @@ class App : Application() {
 
         dataBase = Room.databaseBuilder(this, AppDataBase::class.java, "local")
                 .build()
+
     }
 
     fun getDataBase() = dataBase

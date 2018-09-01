@@ -1,7 +1,5 @@
 package kz.sgq.colorassistant.ui.util.java;
 
-import java.util.ArrayList;
-
 import kz.sgq.colorassistant.R;
 
 public class ThemeUtil {
@@ -10,90 +8,66 @@ public class ThemeUtil {
         int themeId = 0;
 
         switch (theme) {
-            case THEME_RED:
+            case RED:
                 themeId = R.style.AppTheme_RED;
                 break;
-            case THEME_PINK:
+            case PINK:
                 themeId = R.style.AppTheme_PINK;
                 break;
-            case THEME_PURPLE:
+            case PURPLE:
                 themeId = R.style.AppTheme_PURPLE;
                 break;
-            case THEME_DEEPPURPLE:
+            case DEEP_PURPLE:
                 themeId = R.style.AppTheme_DEEPPURPLE;
                 break;
-            case THEME_INDIGO:
+            case INDIGO:
                 themeId = R.style.AppTheme_INDIGO;
                 break;
-            case THEME_BLUE:
+            case BLUE:
                 themeId = R.style.AppTheme_BLUE;
                 break;
-            case THEME_LIGHTBLUE:
+            case LIGHT_BLUE:
                 themeId = R.style.AppTheme_LIGHTBLUE;
                 break;
-            case THEME_CYAN:
+            case CYAN:
                 themeId = R.style.AppTheme_CYAN;
                 break;
-            case THEME_TEAL:
+            case TEAL:
                 themeId = R.style.AppTheme_TEAL;
                 break;
-            case THEME_GREEN:
+            case GREEN:
                 themeId = R.style.AppTheme_GREEN;
                 break;
-            case THEME_LIGHTGREEN:
+            case LIGHT_GREEN:
                 themeId = R.style.AppTheme_LIGHTGREEN;
                 break;
-            case THEME_LIME:
+            case LIME:
                 themeId = R.style.AppTheme_LIME;
                 break;
-            case THEME_YELLOW:
+            case YELLOW:
                 themeId = R.style.AppTheme_YELLOW;
                 break;
-            case THEME_AMBER:
+            case AMBER:
                 themeId = R.style.AppTheme_AMBER;
                 break;
-            case THEME_ORANGE:
+            case ORANGE:
                 themeId = R.style.AppTheme_ORANGE;
                 break;
-            case THEME_DEEPORANGE:
+            case DEEP_ORANGE:
                 themeId = R.style.AppTheme_DEEPORANGE;
                 break;
-            case THEME_BROWN:
+            case BROWN:
                 themeId = R.style.AppTheme_BROWN;
                 break;
-            case THEME_GRAY:
+            case GRAY:
                 themeId = R.style.AppTheme_GRAY;
                 break;
-            case THEME_BLUEGRAY:
+            case BLUE_GRAY:
                 themeId = R.style.AppTheme_BLUEGRAY;
                 break;
             default:
                 break;
         }
         return themeId;
-    }
-
-    public static ArrayList<Theme> getThemeList() {
-        ArrayList<Theme> themeArrayList = new ArrayList<>();
-        themeArrayList.add(new Theme(0, R.color.primaryColorRed, R.color.primaryDarkColorRed, R.color.secondaryColorRed));
-        themeArrayList.add(new Theme(1, R.color.primaryColorPink, R.color.primaryDarkColorPink, R.color.secondaryColorPink));
-        themeArrayList.add(new Theme(2, R.color.primaryColorPurple, R.color.primaryDarkColorPurple, R.color.secondaryColorPurple));
-        themeArrayList.add(new Theme(3, R.color.primaryColorDeepPurple, R.color.primaryDarkColorDeepPurple, R.color.secondaryColorDeepPurple));
-        themeArrayList.add(new Theme(4, R.color.primaryColorIndigo, R.color.primaryDarkColorIndigo, R.color.secondaryColorIndigo));
-        themeArrayList.add(new Theme(5, R.color.primaryColorBlue, R.color.primaryDarkColorBlue, R.color.secondaryColorBlue));
-        themeArrayList.add(new Theme(6, R.color.primaryColorLightBlue, R.color.primaryDarkColorLightBlue, R.color.secondaryColorLightBlue));
-        themeArrayList.add(new Theme(7, R.color.primaryColorCyan, R.color.primaryDarkColorCyan, R.color.secondaryColorCyan));
-        themeArrayList.add(new Theme(8, R.color.primaryColorTeal, R.color.primaryDarkColorTeal, R.color.secondaryColorTeal));
-        themeArrayList.add(new Theme(9, R.color.primaryColorGreen, R.color.primaryDarkColorGreen, R.color.secondaryColorGreen));
-        themeArrayList.add(new Theme(10, R.color.primaryColorLightGreen, R.color.primaryDarkColorLightGreen, R.color.secondaryColorLightGreen));
-        themeArrayList.add(new Theme(11, R.color.primaryColorLime, R.color.primaryDarkColorLime, R.color.secondaryColorLime));
-        themeArrayList.add(new Theme(12, R.color.primaryColorYellow, R.color.primaryDarkColorYellow, R.color.secondaryColorYellow));
-        themeArrayList.add(new Theme(13, R.color.primaryColorAmber, R.color.primaryDarkColorAmber, R.color.secondaryColorAmber));
-        themeArrayList.add(new Theme(14, R.color.primaryColorOrange, R.color.primaryDarkColorOrange, R.color.secondaryColorOrange));
-        themeArrayList.add(new Theme(15, R.color.primaryColorDeepOrange, R.color.primaryDarkColorDeepOrange, R.color.secondaryColorDeepOrange));
-        themeArrayList.add(new Theme(16, R.color.primaryColorBrown, R.color.primaryDarkColorBrown, R.color.secondaryColorBrown));
-        themeArrayList.add(new Theme(17, R.color.primaryColorGray, R.color.primaryDarkColorGray, R.color.secondaryColorGray));
-        themeArrayList.add(new Theme(18, R.color.primaryColorBlueGray, R.color.primaryDarkColorBlueGray, R.color.secondaryColorBlueGray));
-        return themeArrayList;
     }
 }

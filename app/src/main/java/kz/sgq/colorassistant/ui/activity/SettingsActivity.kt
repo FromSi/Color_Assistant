@@ -1,5 +1,6 @@
 package kz.sgq.colorassistant.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.bottomappbar.BottomAppBar
 import android.view.MenuItem
@@ -69,6 +70,15 @@ class SettingsActivity : MvpAppCompatActivity(), SettingsView {
         for (i in 0 until menu.childCount)
             menu.getChildAt(i).setOnClickListener {
 
+                startActivity(
+                        Intent(
+                                this,
+                                when (i) {
+                                    0 -> SettingsThemeActivity::class.java
+                                    else -> SettingsThemeActivity::class.java
+                                }
+                        )
+                )
             }
     }
 

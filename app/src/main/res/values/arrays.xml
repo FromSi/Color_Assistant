@@ -6,7 +6,7 @@
         <item>Theme</item>
     </string-array>
 
-    <string-array name="settings_theme_night_mode">
+    <string-array name="settings_theme_night_title">
 
         <item>Day</item>
         <item>Night</item>
