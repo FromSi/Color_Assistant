@@ -32,6 +32,7 @@ import kz.sgq.colorassistant.ui.fragment.dialog.DeleteDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.SaveDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.InfoColorBottomSheet
 import kz.sgq.colorassistant.ui.util.ColorAttrUtil
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
@@ -43,7 +44,7 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(intent.getIntExtra("theme", 0))
+        setTheme(PreferencesUtil.getThemeId(this))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.activity_constructor)
         initActionBar()

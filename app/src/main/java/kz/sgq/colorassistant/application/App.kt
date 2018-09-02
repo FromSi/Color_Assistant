@@ -18,7 +18,10 @@ package kz.sgq.colorassistant.application
 
 import android.app.Application
 import android.arch.persistence.room.Room
+import android.content.Context
+import android.support.v7.app.AppCompatDelegate
 import kz.sgq.colorassistant.room.AppDataBase
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 
 class App : Application() {
     private lateinit var dataBase: AppDataBase
@@ -39,6 +42,7 @@ class App : Application() {
         dataBase = Room.databaseBuilder(this, AppDataBase::class.java, "local")
                 .build()
 
+        AppCompatDelegate.setDefaultNightMode(PreferencesUtil.getNightMode(this))
     }
 
     fun getDataBase() = dataBase

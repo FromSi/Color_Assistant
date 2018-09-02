@@ -33,6 +33,7 @@ import kz.sgq.colorassistant.mvp.presenter.ImagePresenter
 import kz.sgq.colorassistant.mvp.view.ImageView
 import kz.sgq.colorassistant.ui.adapters.RecyclerImageAdapter
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
@@ -43,7 +44,7 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(intent.getIntExtra("theme", 0))
+        setTheme(PreferencesUtil.getThemeId(this))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.activity_image)
         initActionBar()

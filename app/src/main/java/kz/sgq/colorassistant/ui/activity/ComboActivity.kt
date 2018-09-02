@@ -17,8 +17,6 @@
 package kz.sgq.colorassistant.ui.activity
 
 import android.os.Bundle
-import android.support.design.bottomappbar.BottomAppBar
-import android.support.v4.widget.NestedScrollView
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -32,6 +30,7 @@ import kz.sgq.colorassistant.ui.fragment.sheet.ComboListBottomSheet
 import kz.sgq.colorassistant.ui.fragment.sheet.HSLBottomSheet
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 import kz.sgq.colorassistant.ui.util.ItemDetails
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
@@ -42,7 +41,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(intent.getIntExtra("theme", 0))
+        setTheme(PreferencesUtil.getThemeId(this))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.activity_combo)
         presenter.initColorList(intent.getSerializableExtra("map") as MutableList<String>)

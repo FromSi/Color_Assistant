@@ -19,6 +19,7 @@ package kz.sgq.colorassistant.ui.activity
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.MenuItem
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_settings_theme.*
@@ -26,9 +27,13 @@ import kotlinx.android.synthetic.main.f_settings_theme.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.SettingsThemePresenter
 import kz.sgq.colorassistant.mvp.view.SettingsThemeView
-import kz.sgq.colorassistant.ui.util.java.ThemeEnum
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
+import kz.sgq.colorassistant.ui.util.java.theme.ThemeStyle
+import kz.sgq.colorassistant.ui.util.java.theme.ThemeMode
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
+import android.content.Intent
+import android.support.v7.app.AppCompatDelegate
 
 
 class SettingsThemeActivity : MvpAppCompatActivity(), SettingsThemeView {
@@ -38,6 +43,7 @@ class SettingsThemeActivity : MvpAppCompatActivity(), SettingsThemeView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setTheme(PreferencesUtil.getThemeId(this))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         val helper = SwipeBackActivityHelper(this)
@@ -46,7 +52,9 @@ class SettingsThemeActivity : MvpAppCompatActivity(), SettingsThemeView {
         setContentView(R.layout.activity_settings_theme)
         helper.swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         initItems()
+        initActionBar()
         initClickMenu()
+        initCheckRadioButton()
         helper.onPostCreate()
     }
 
@@ -56,13 +64,30 @@ class SettingsThemeActivity : MvpAppCompatActivity(), SettingsThemeView {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
+        android.R.id.home -> {
+
+            finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
+    private fun initActionBar() {
+
+        setSupportActionBar(bar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
     private fun initItems() {
         var index = 0
 
         for (i in 0 until mode.childCount)
             if ((i % 2) == 0)
                 mode.getChildAt(i).title.text = resources
-                        .getStringArray(R.array.settings_theme_night_title)[index]
+                        .getStringArray(R.array.settings_theme_night_title)[index++]
 
         index = 0
 
@@ -75,6 +100,18 @@ class SettingsThemeActivity : MvpAppCompatActivity(), SettingsThemeView {
                             intArrayOf(resources.getIntArray(R.array.settings_theme_color)[index++])
                     )
                 }
+    }
+
+    private fun initCheckRadioButton() {
+
+        mode.getChildAt(ThemeMode.getId(PreferencesUtil.getNightMode(this)) * 2).button.isChecked = true
+
+        color.getChildAt(
+                ThemeStyle.valueOf(
+                        getSharedPreferences("settings", Context.MODE_PRIVATE)
+                                .getString("theme_color", "RED")!!
+                ).id * 2
+        ).button.isChecked = true
     }
 
     private fun initClickMenu() {
@@ -92,11 +129,12 @@ class SettingsThemeActivity : MvpAppCompatActivity(), SettingsThemeView {
 
                     getSharedPreferences("settings", Context.MODE_PRIVATE)
                             .edit()
-                            .putString(
+                            .putInt(
                                     "night_mode",
-                                    resources.getStringArray(R.array.settings_theme_night_title)[i / 2]
+                                    getNightMode(i / 2)
                             )
                             .apply()
+                    restartTheme()
                 }
             }
 
@@ -120,7 +158,24 @@ class SettingsThemeActivity : MvpAppCompatActivity(), SettingsThemeView {
                                             .toUpperCase()
                             )
                             .apply()
+                    restartTheme()
                 }
             }
     }
+
+    private fun getNightMode(int: Int): Int = when (int) {
+        0 -> AppCompatDelegate.MODE_NIGHT_NO
+        1 -> AppCompatDelegate.MODE_NIGHT_YES
+        2 -> AppCompatDelegate.MODE_NIGHT_AUTO
+        else -> AppCompatDelegate.MODE_NIGHT_NO
+    }
+
+    private fun restartTheme() {
+        val i = applicationContext.packageManager
+                .getLaunchIntentForPackage(packageName)
+
+        i!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(i)
+    }
+
 }

@@ -29,6 +29,7 @@ import com.sqsong.qrcodelib.camera.QRCodeManager
 import com.sqsong.qrcodelib.view.QRCodeScanView
 import kotlinx.android.synthetic.main.activity_qrcode_scan.*
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
@@ -40,7 +41,7 @@ class QRCodeScanActivity : AppCompatActivity(), QRCodeDecodeCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(intent.getIntExtra("theme", 0))
+        setTheme(PreferencesUtil.getThemeId(this))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.activity_qrcode_scan)
         initEvent()

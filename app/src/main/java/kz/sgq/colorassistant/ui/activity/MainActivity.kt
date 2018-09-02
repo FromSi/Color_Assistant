@@ -25,11 +25,9 @@ import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatDelegate
-import android.view.ContextThemeWrapper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.PopupMenu
 import android.widget.TextView
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -45,14 +43,13 @@ import kz.sgq.colorassistant.ui.fragment.GlobalFragment
 import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
 import kz.sgq.colorassistant.ui.util.CodeActivity
-import kz.sgq.colorassistant.ui.util.ColorAttrUtil
-import kz.sgq.colorassistant.ui.util.java.ThemeEnum
-import kz.sgq.colorassistant.ui.util.java.ThemeUtil
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
+import kz.sgq.colorassistant.ui.util.java.theme.ThemeStyle
+import kz.sgq.colorassistant.ui.util.java.theme.ThemeUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 import kotlin.math.PI
 
 class MainActivity : MvpAppCompatActivity(), MainView {
-    private var mTheme = ThemeEnum.BLUE_GRAY
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
@@ -60,8 +57,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(ThemeUtil.getThemeId(mTheme))
-//        nightMode()
+        setTheme(PreferencesUtil.getThemeId(this))
+        AppCompatDelegate.setDefaultNightMode(PreferencesUtil.getNightMode(this))
         setContentView(R.layout.activity_main)
         initActionBar()
         firstFragment()
@@ -83,8 +80,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
         R.id.settings -> {
 
-            startActivity(Intent(this, SettingsActivity::class.java)
-                    .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) })
+            startActivity(Intent(this, SettingsActivity::class.java))
 
             true
         }
@@ -97,8 +93,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         R.id.image_scan -> {
 
             startActivityForResult(
-                    Intent(this, ImageActivity::class.java)
-                            .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) },
+                    Intent(this, ImageActivity::class.java),
                     CodeActivity.IMAGE_SCAN.ID
             )
 
@@ -161,8 +156,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun constructor() {
 
         startActivityForResult(
-                Intent(this, ConstructorActivity::class.java)
-                        .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) },
+                Intent(this, ConstructorActivity::class.java),
                 CodeActivity.CONSTRUCTOR.ID
         )
     }
@@ -244,16 +238,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    private fun nightMode() {
-
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
-
-
-        }
-    }
-
     private fun firstFragment() {
 
         supportFragmentManager
@@ -297,8 +281,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private fun openScanActivity() {
 
         startActivityForResult(
-                Intent(this, QRCodeScanActivity::class.java)
-                        .apply { putExtra("theme", ThemeUtil.getThemeId(mTheme)) },
+                Intent(this, QRCodeScanActivity::class.java),
                 CodeActivity.QR_SCAN.ID
         )
     }

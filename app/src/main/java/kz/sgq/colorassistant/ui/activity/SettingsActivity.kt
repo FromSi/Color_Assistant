@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.f_settings.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.SettingsPresenter
 import kz.sgq.colorassistant.mvp.view.SettingsView
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
@@ -21,7 +22,7 @@ class SettingsActivity : MvpAppCompatActivity(), SettingsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(intent.getIntExtra("theme", 0))
+        setTheme(PreferencesUtil.getThemeId(this))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         val helper = SwipeBackActivityHelper(this)
@@ -80,11 +81,6 @@ class SettingsActivity : MvpAppCompatActivity(), SettingsView {
                         )
                 )
             }
-    }
-
-    private fun nightMode() {
-
-
     }
 
     private fun initActionBar() {
