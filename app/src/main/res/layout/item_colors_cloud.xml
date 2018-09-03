@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_colors_height"
+    android:backgroundTint="?attr/colorCard"
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginStart="16dp"

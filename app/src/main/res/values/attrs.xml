@@ -2,8 +2,18 @@
 <resources>
 
     <attr name="colorNightSheet" format="color" />
-
     <attr name="colorNightPopupMenu" format="color" />
+
+    <attr name="colorCard" format="color" />
+    <attr name="colorBackground" format="color" />
+    <attr name="colorPopupMenu" format="color" />
+    <attr name="colorLine" format="color" />
+    <attr name="colorIconSettings" format="color" />
+    <attr name="colorIcon" format="color" />
+    <attr name="colorQR" format="color" />
+    <attr name="colorMusk" format="color" />
+    <attr name="colorSnackText" format="color" />
+    <attr name="colorErrorText" format="color" />
 
     <declare-styleable name="ColorPicker">
         <attr name="color_wheel_thickness" format="dimension" />
