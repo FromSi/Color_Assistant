@@ -34,7 +34,6 @@ class InfoColorBottomSheet : BottomSheetDialogFragment() {
                         .getDimension(R.dimen.bottom_sheet_info_color)
                         .toInt()
 
-                nightMode(this)
                 initView(this)
                 bottomSheet.setBottomSheetCallback(initCallback())
                 requestLayout()
@@ -44,14 +43,6 @@ class InfoColorBottomSheet : BottomSheetDialogFragment() {
 
     fun setColor(color: Int) {
         this.color = color
-    }
-
-    private fun nightMode(view: View){
-
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-
-            view.main.setBackgroundColor(ColorAttrUtil.getColorNightSheet(view.context))
-        }
     }
 
     @SuppressLint("SetTextI18n")

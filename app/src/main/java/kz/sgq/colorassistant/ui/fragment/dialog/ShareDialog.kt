@@ -58,7 +58,10 @@ class ShareDialog : DialogFragment() {
                 QRCode
                         .from(text)
                         .withSize(size.toInt(), size.toInt())
-                        .withColor(ColorAttrUtil.getColorAccent(view.context), Color.argb(0, 0, 0, 0))
+                        .withColor(
+                                ColorAttrUtil.getColorQR(view.context),
+                                Color.argb(0, 0, 0, 0)
+                        )
                         .bitmap()
         )
     }

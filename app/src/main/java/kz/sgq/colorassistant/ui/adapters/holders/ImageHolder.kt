@@ -88,10 +88,6 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
                 colorFilter = LightingColorFilter(Color.BLACK, Color.BLACK)
             })
         }
-
-        for (i in 0 until itemView.info_text.childCount)
-            if ((i % 2) == 1)
-                (itemView.info_text.getChildAt(i) as View).setBackgroundColor(nightColor())
     }
 
     fun initLike(like: Boolean) {
@@ -165,15 +161,10 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
                                         .toInt()
                         )
 
-                        setBackgroundColor(nightColor())
+                        setBackgroundColor(ColorAttrUtil.getColorLine(itemView.context))
                     }
             )
     }
-
-    private fun nightColor(): Int = if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-        Color.GRAY
-    else
-        Color.BLACK
 
     private fun addCircleView(i: Int, color: Int) {
 
@@ -203,7 +194,7 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
                             ).apply {
 
                                 if (i != 0)
-                                    eraseColor(nightColor())
+                                    eraseColor(ColorAttrUtil.getColorLine(itemView.context))
                                 else
                                     eraseColor(color)
                             }
@@ -228,7 +219,7 @@ class ImageHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
             if ((i % 2) == 0)
                 (itemView.icons.getChildAt(i) as CircleImageView).setImageBitmap(
                         Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565)
-                                .apply { eraseColor(nightColor()) }
+                                .apply { eraseColor(ColorAttrUtil.getColorLine(itemView.context)) }
                 )
     }
 }

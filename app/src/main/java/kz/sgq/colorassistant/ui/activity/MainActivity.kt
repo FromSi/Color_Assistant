@@ -117,14 +117,14 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun global() {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.GLOBAL)
-        fab.setImageDrawable(resources.getDrawable(R.drawable.like))
+        fab.setImageDrawable(resources.getDrawable(R.drawable.like, theme))
         firstFragment()
     }
 
     override fun like() {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.LIKE)
-        fab.setImageDrawable(resources.getDrawable(R.drawable.cancel))
+        fab.setImageDrawable(resources.getDrawable(R.drawable.cancel, theme))
         supportFragmentManager
                 .beginTransaction()
                 .apply {
@@ -140,7 +140,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun cloud() {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.CLOUD)
-        fab.setImageDrawable(resources.getDrawable(R.drawable.constructor))
+        fab.setImageDrawable(resources.getDrawable(R.drawable.constructor, theme))
         supportFragmentManager
                 .beginTransaction()
                 .apply {
@@ -164,7 +164,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun cancel() {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.LIKE)
-        fab.setImageDrawable(resources.getDrawable(R.drawable.like))
+        fab.setImageDrawable(resources.getDrawable(R.drawable.like, theme))
     }
 
     override fun openMenu(fragmentCurrent: MainModelImpl.MainFragment) {

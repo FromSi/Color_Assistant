@@ -113,7 +113,7 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
                     .getBitmap(this.contentResolver, photoUri)
                     .apply {
 
-                        //                        image.setImageBitmap(this) - Для просмотра оригинальной картинки
+                        //         image.setImageBitmap(this) - Для просмотра оригинальной картинки
                         presenter.setCurrentImage(this)
                     }
             setVisibly(false)

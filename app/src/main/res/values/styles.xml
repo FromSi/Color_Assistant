@@ -40,6 +40,23 @@
         <item name="colorErrorText">@color/snackErrorRed</item>
     </style>
 
+    <style name="AppTheme.RED.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorRedNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorRedNight</item>
+        <item name="colorAccent">@color/secondaryColorRedNight</item>
+        <item name="colorCard">@color/cardColorRedNight</item>
+        <item name="colorBackground">@color/backgroundColorRedNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorRedNight</item>
+        <item name="colorLine">@color/lineColorRedNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorRedNight</item>
+        <item name="colorIcon">@color/iconColorRedNight</item>
+        <item name="colorQR">@color/QRColorRedNight</item>
+        <item name="colorMusk">@color/muskColorRedNight</item>
+        <item name="colorSnackText">@color/snackTextRedNight</item>
+        <item name="colorErrorText">@color/snackErrorRedNight</item>
+    </style>
+
     <style name="AppTheme.PINK" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorPink</item>
@@ -55,6 +72,23 @@
         <item name="colorMusk">@color/muskColorPink</item>
         <item name="colorSnackText">@color/snackTextPink</item>
         <item name="colorErrorText">@color/snackErrorPink</item>
+    </style>
+
+    <style name="AppTheme.PINK.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorPinkNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorPinkNight</item>
+        <item name="colorAccent">@color/secondaryColorPinkNight</item>
+        <item name="colorCard">@color/cardColorPinkNight</item>
+        <item name="colorBackground">@color/backgroundColorPinkNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorPinkNight</item>
+        <item name="colorLine">@color/lineColorPinkNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorPinkNight</item>
+        <item name="colorIcon">@color/iconColorPinkNight</item>
+        <item name="colorQR">@color/QRColorPinkNight</item>
+        <item name="colorMusk">@color/muskColorPinkNight</item>
+        <item name="colorSnackText">@color/snackTextPinkNight</item>
+        <item name="colorErrorText">@color/snackErrorPinkNight</item>
     </style>
 
     <style name="AppTheme.PURPLE" parent="AppTheme.NoActionBar">
@@ -74,6 +108,23 @@
         <item name="colorErrorText">@color/snackErrorPurple</item>
     </style>
 
+    <style name="AppTheme.PURPLE.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorPurpleNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorPurpleNight</item>
+        <item name="colorAccent">@color/secondaryColorPurpleNight</item>
+        <item name="colorCard">@color/cardColorPurpleNight</item>
+        <item name="colorBackground">@color/backgroundColorPurpleNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorPurpleNight</item>
+        <item name="colorLine">@color/lineColorPurpleNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorPurpleNight</item>
+        <item name="colorIcon">@color/iconColorPurpleNight</item>
+        <item name="colorQR">@color/QRColorPurpleNight</item>
+        <item name="colorMusk">@color/muskColorPurpleNight</item>
+        <item name="colorSnackText">@color/snackTextPurpleNight</item>
+        <item name="colorErrorText">@color/snackErrorPurpleNight</item>
+    </style>
+
     <style name="AppTheme.DEEPPURPLE" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorDeepPurple</item>
@@ -89,6 +140,23 @@
         <item name="colorMusk">@color/muskColorDeepPurple</item>
         <item name="colorSnackText">@color/snackTextDeepPurple</item>
         <item name="colorErrorText">@color/snackErrorDeepPurple</item>
+    </style>
+
+    <style name="AppTheme.DEEPPURPLE.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorDeepPurpleNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorDeepPurpleNight</item>
+        <item name="colorAccent">@color/secondaryColorDeepPurpleNight</item>
+        <item name="colorCard">@color/cardColorDeepPurpleNight</item>
+        <item name="colorBackground">@color/backgroundColorDeepPurpleNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorDeepPurpleNight</item>
+        <item name="colorLine">@color/lineColorDeepPurpleNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorDeepPurpleNight</item>
+        <item name="colorIcon">@color/iconColorDeepPurpleNight</item>
+        <item name="colorQR">@color/QRColorDeepPurpleNight</item>
+        <item name="colorMusk">@color/muskColorDeepPurpleNight</item>
+        <item name="colorSnackText">@color/snackTextDeepPurpleNight</item>
+        <item name="colorErrorText">@color/snackErrorDeepPurpleNight</item>
     </style>
 
     <style name="AppTheme.INDIGO" parent="AppTheme.NoActionBar">
@@ -108,6 +176,23 @@
         <item name="colorErrorText">@color/snackErrorIndigo</item>
     </style>
 
+    <style name="AppTheme.INDIGO.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorIndigoNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorIndigoNight</item>
+        <item name="colorAccent">@color/secondaryColorIndigoNight</item>
+        <item name="colorCard">@color/cardColorIndigoNight</item>
+        <item name="colorBackground">@color/backgroundColorIndigoNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorIndigoNight</item>
+        <item name="colorLine">@color/lineColorIndigoNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorIndigoNight</item>
+        <item name="colorIcon">@color/iconColorIndigoNight</item>
+        <item name="colorQR">@color/QRColorIndigoNight</item>
+        <item name="colorMusk">@color/muskColorIndigoNight</item>
+        <item name="colorSnackText">@color/snackTextIndigoNight</item>
+        <item name="colorErrorText">@color/snackErrorIndigoNight</item>
+    </style>
+
     <style name="AppTheme.BLUE" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorBlue</item>
@@ -123,6 +208,23 @@
         <item name="colorMusk">@color/muskColorBlue</item>
         <item name="colorSnackText">@color/snackTextBlue</item>
         <item name="colorErrorText">@color/snackErrorBlue</item>
+    </style>
+
+    <style name="AppTheme.BLUE.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorBlueNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorBlueNight</item>
+        <item name="colorAccent">@color/secondaryColorBlueNight</item>
+        <item name="colorCard">@color/cardColorBlueNight</item>
+        <item name="colorBackground">@color/backgroundColorBlueNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorBlueNight</item>
+        <item name="colorLine">@color/lineColorBlueNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorBlueNight</item>
+        <item name="colorIcon">@color/iconColorBlueNight</item>
+        <item name="colorQR">@color/QRColorBlueNight</item>
+        <item name="colorMusk">@color/muskColorBlueNight</item>
+        <item name="colorSnackText">@color/snackTextBlueNight</item>
+        <item name="colorErrorText">@color/snackErrorBlueNight</item>
     </style>
 
     <style name="AppTheme.LIGHTBLUE" parent="AppTheme.NoActionBar">
@@ -142,6 +244,23 @@
         <item name="colorErrorText">@color/snackErrorLightBlue</item>
     </style>
 
+    <style name="AppTheme.LIGHTBLUE.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorLightBlueNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorLightBlueNight</item>
+        <item name="colorAccent">@color/secondaryColorLightBlueNight</item>
+        <item name="colorCard">@color/cardColorLightBlueNight</item>
+        <item name="colorBackground">@color/backgroundColorLightBlueNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorLightBlueNight</item>
+        <item name="colorLine">@color/lineColorLightBlueNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorLightBlueNight</item>
+        <item name="colorIcon">@color/iconColorLightBlueNight</item>
+        <item name="colorQR">@color/QRColorLightBlueNight</item>
+        <item name="colorMusk">@color/muskColorLightBlueNight</item>
+        <item name="colorSnackText">@color/snackTextLightBlueNight</item>
+        <item name="colorErrorText">@color/snackErrorLightBlueNight</item>
+    </style>
+
     <style name="AppTheme.CYAN" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorCyan</item>
@@ -157,6 +276,23 @@
         <item name="colorMusk">@color/muskColorCyan</item>
         <item name="colorSnackText">@color/snackTextCyan</item>
         <item name="colorErrorText">@color/snackErrorCyan</item>
+    </style>
+
+    <style name="AppTheme.CYAN.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorCyanNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorCyanNight</item>
+        <item name="colorAccent">@color/secondaryColorCyanNight</item>
+        <item name="colorCard">@color/cardColorCyanNight</item>
+        <item name="colorBackground">@color/backgroundColorCyanNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorCyanNight</item>
+        <item name="colorLine">@color/lineColorCyanNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorCyanNight</item>
+        <item name="colorIcon">@color/iconColorCyanNight</item>
+        <item name="colorQR">@color/QRColorCyanNight</item>
+        <item name="colorMusk">@color/muskColorCyanNight</item>
+        <item name="colorSnackText">@color/snackTextCyanNight</item>
+        <item name="colorErrorText">@color/snackErrorCyanNight</item>
     </style>
 
     <style name="AppTheme.TEAL" parent="AppTheme.NoActionBar">
@@ -176,6 +312,23 @@
         <item name="colorErrorText">@color/snackErrorTeal</item>
     </style>
 
+    <style name="AppTheme.TEAL.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorTealNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorTealNight</item>
+        <item name="colorAccent">@color/secondaryColorTealNight</item>
+        <item name="colorCard">@color/cardColorTealNight</item>
+        <item name="colorBackground">@color/backgroundColorTealNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorTealNight</item>
+        <item name="colorLine">@color/lineColorTealNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorTealNight</item>
+        <item name="colorIcon">@color/iconColorTealNight</item>
+        <item name="colorQR">@color/QRColorTealNight</item>
+        <item name="colorMusk">@color/muskColorTealNight</item>
+        <item name="colorSnackText">@color/snackTextTealNight</item>
+        <item name="colorErrorText">@color/snackErrorTealNight</item>
+    </style>
+
     <style name="AppTheme.GREEN" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorGreen</item>
@@ -191,6 +344,23 @@
         <item name="colorMusk">@color/muskColorGreen</item>
         <item name="colorSnackText">@color/snackTextGreen</item>
         <item name="colorErrorText">@color/snackErrorGreen</item>
+    </style>
+
+    <style name="AppTheme.GREEN.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorGreenNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorGreenNight</item>
+        <item name="colorAccent">@color/secondaryColorGreenNight</item>
+        <item name="colorCard">@color/cardColorGreenNight</item>
+        <item name="colorBackground">@color/backgroundColorGreenNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorGreenNight</item>
+        <item name="colorLine">@color/lineColorGreenNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorGreenNight</item>
+        <item name="colorIcon">@color/iconColorGreenNight</item>
+        <item name="colorQR">@color/QRColorGreenNight</item>
+        <item name="colorMusk">@color/muskColorGreenNight</item>
+        <item name="colorSnackText">@color/snackTextGreenNight</item>
+        <item name="colorErrorText">@color/snackErrorGreenNight</item>
     </style>
 
     <style name="AppTheme.LIGHTGREEN" parent="AppTheme.NoActionBar">
@@ -210,6 +380,23 @@
         <item name="colorErrorText">@color/snackErrorLightGreen</item>
     </style>
 
+    <style name="AppTheme.LIGHTGREEN.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorLightGreenNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorLightGreenNight</item>
+        <item name="colorAccent">@color/secondaryColorLightGreenNight</item>
+        <item name="colorCard">@color/cardColorLightGreenNight</item>
+        <item name="colorBackground">@color/backgroundColorLightGreenNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorLightGreenNight</item>
+        <item name="colorLine">@color/lineColorLightGreenNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorLightGreenNight</item>
+        <item name="colorIcon">@color/iconColorLightGreenNight</item>
+        <item name="colorQR">@color/QRColorLightGreenNight</item>
+        <item name="colorMusk">@color/muskColorLightGreenNight</item>
+        <item name="colorSnackText">@color/snackTextLightGreenNight</item>
+        <item name="colorErrorText">@color/snackErrorLightGreenNight</item>
+    </style>
+
     <style name="AppTheme.LIME" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorLime</item>
@@ -225,6 +412,23 @@
         <item name="colorMusk">@color/muskColorLime</item>
         <item name="colorSnackText">@color/snackTextLime</item>
         <item name="colorErrorText">@color/snackErrorLime</item>
+    </style>
+
+    <style name="AppTheme.LIME.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorLimeNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorLimeNight</item>
+        <item name="colorAccent">@color/secondaryColorLimeNight</item>
+        <item name="colorCard">@color/cardColorLimeNight</item>
+        <item name="colorBackground">@color/backgroundColorLimeNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorLimeNight</item>
+        <item name="colorLine">@color/lineColorLimeNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorLimeNight</item>
+        <item name="colorIcon">@color/iconColorLimeNight</item>
+        <item name="colorQR">@color/QRColorLimeNight</item>
+        <item name="colorMusk">@color/muskColorLimeNight</item>
+        <item name="colorSnackText">@color/snackTextLimeNight</item>
+        <item name="colorErrorText">@color/snackErrorLimeNight</item>
     </style>
 
     <style name="AppTheme.YELLOW" parent="AppTheme.NoActionBar">
@@ -244,6 +448,23 @@
         <item name="colorErrorText">@color/snackErrorYellow</item>
     </style>
 
+    <style name="AppTheme.YELLOW.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorYellowNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorYellowNight</item>
+        <item name="colorAccent">@color/secondaryColorYellowNight</item>
+        <item name="colorCard">@color/cardColorYellowNight</item>
+        <item name="colorBackground">@color/backgroundColorYellowNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorYellowNight</item>
+        <item name="colorLine">@color/lineColorYellowNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorYellowNight</item>
+        <item name="colorIcon">@color/iconColorYellowNight</item>
+        <item name="colorQR">@color/QRColorYellowNight</item>
+        <item name="colorMusk">@color/muskColorYellowNight</item>
+        <item name="colorSnackText">@color/snackTextYellowNight</item>
+        <item name="colorErrorText">@color/snackErrorYellowNight</item>
+    </style>
+
     <style name="AppTheme.AMBER" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorAmber</item>
@@ -259,6 +480,23 @@
         <item name="colorMusk">@color/muskColorAmber</item>
         <item name="colorSnackText">@color/snackTextAmber</item>
         <item name="colorErrorText">@color/snackErrorAmber</item>
+    </style>
+
+    <style name="AppTheme.AMBER.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorAmberNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorAmberNight</item>
+        <item name="colorAccent">@color/secondaryColorAmberNight</item>
+        <item name="colorCard">@color/cardColorAmberNight</item>
+        <item name="colorBackground">@color/backgroundColorAmberNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorAmberNight</item>
+        <item name="colorLine">@color/lineColorAmberNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorAmberNight</item>
+        <item name="colorIcon">@color/iconColorAmberNight</item>
+        <item name="colorQR">@color/QRColorAmberNight</item>
+        <item name="colorMusk">@color/muskColorAmberNight</item>
+        <item name="colorSnackText">@color/snackTextAmberNight</item>
+        <item name="colorErrorText">@color/snackErrorAmberNight</item>
     </style>
 
     <style name="AppTheme.ORANGE" parent="AppTheme.NoActionBar">
@@ -278,6 +516,23 @@
         <item name="colorErrorText">@color/snackErrorOrange</item>
     </style>
 
+    <style name="AppTheme.ORANGE.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorOrangeNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorOrangeNight</item>
+        <item name="colorAccent">@color/secondaryColorOrangeNight</item>
+        <item name="colorCard">@color/cardColorOrangeNight</item>
+        <item name="colorBackground">@color/backgroundColorOrangeNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorOrangeNight</item>
+        <item name="colorLine">@color/lineColorOrangeNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorOrangeNight</item>
+        <item name="colorIcon">@color/iconColorOrangeNight</item>
+        <item name="colorQR">@color/QRColorOrangeNight</item>
+        <item name="colorMusk">@color/muskColorOrangeNight</item>
+        <item name="colorSnackText">@color/snackTextOrangeNight</item>
+        <item name="colorErrorText">@color/snackErrorOrangeNight</item>
+    </style>
+
     <style name="AppTheme.DEEPORANGE" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorDeepOrange</item>
@@ -293,6 +548,23 @@
         <item name="colorMusk">@color/muskColorOrange</item>
         <item name="colorSnackText">@color/snackTextOrange</item>
         <item name="colorErrorText">@color/snackErrorOrange</item>
+    </style>
+
+    <style name="AppTheme.DEEPORANGE.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorDeepOrangeNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorDeepOrangeNight</item>
+        <item name="colorAccent">@color/secondaryColorDeepOrangeNight</item>
+        <item name="colorCard">@color/cardColorDeepOrangeNight</item>
+        <item name="colorBackground">@color/backgroundColorDeepOrangeNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorDeepOrangeNight</item>
+        <item name="colorLine">@color/lineColorDeepOrangeNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorDeepOrangeNight</item>
+        <item name="colorIcon">@color/iconColorDeepOrangeNight</item>
+        <item name="colorQR">@color/QRColorDeepOrangeNight</item>
+        <item name="colorMusk">@color/muskColorOrangeNight</item>
+        <item name="colorSnackText">@color/snackTextOrangeNight</item>
+        <item name="colorErrorText">@color/snackErrorOrangeNight</item>
     </style>
 
     <style name="AppTheme.BROWN" parent="AppTheme.NoActionBar">
@@ -312,6 +584,23 @@
         <item name="colorErrorText">@color/snackErrorBrown</item>
     </style>
 
+    <style name="AppTheme.BROWN.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorBrownNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorBrownNight</item>
+        <item name="colorAccent">@color/secondaryColorBrownNight</item>
+        <item name="colorCard">@color/cardColorBrownNight</item>
+        <item name="colorBackground">@color/backgroundColorBrownNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorBrownNight</item>
+        <item name="colorLine">@color/lineColorBrownNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorBrownNight</item>
+        <item name="colorIcon">@color/iconColorBrownNight</item>
+        <item name="colorQR">@color/QRColorBrownNight</item>
+        <item name="colorMusk">@color/muskColorBrownNight</item>
+        <item name="colorSnackText">@color/snackTextBrownNight</item>
+        <item name="colorErrorText">@color/snackErrorBrownNight</item>
+    </style>
+
     <style name="AppTheme.GRAY" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorGray</item>
@@ -329,6 +618,23 @@
         <item name="colorErrorText">@color/snackErrorGray</item>
     </style>
 
+    <style name="AppTheme.GRAY.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorGrayNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorGrayNight</item>
+        <item name="colorAccent">@color/secondaryColorGrayNight</item>
+        <item name="colorCard">@color/cardColorGrayNight</item>
+        <item name="colorBackground">@color/backgroundColorGrayNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorGrayNight</item>
+        <item name="colorLine">@color/lineColorGrayNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorGrayNight</item>
+        <item name="colorIcon">@color/iconColorGrayNight</item>
+        <item name="colorQR">@color/QRColorGrayNight</item>
+        <item name="colorMusk">@color/muskColorGrayNight</item>
+        <item name="colorSnackText">@color/snackTextGrayNight</item>
+        <item name="colorErrorText">@color/snackErrorGrayNight</item>
+    </style>
+
     <style name="AppTheme.BLUEGRAY" parent="AppTheme.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColorBlueGray</item>
@@ -344,6 +650,23 @@
         <item name="colorMusk">@color/muskColorBlueGray</item>
         <item name="colorSnackText">@color/snackTextBlueGray</item>
         <item name="colorErrorText">@color/snackErrorBlueGray</item>
+    </style>
+
+    <style name="AppTheme.BLUEGRAY.Night" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColorBlueGrayNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorBlueGrayNight</item>
+        <item name="colorAccent">@color/secondaryColorBlueGrayNight</item>
+        <item name="colorCard">@color/cardColorBlueGrayNight</item>
+        <item name="colorBackground">@color/backgroundColorBlueGrayNight</item>
+        <item name="colorPopupMenu">@color/popupMenuColorBlueGrayNight</item>
+        <item name="colorLine">@color/lineColorBlueGrayNight</item>
+        <item name="colorIconSettings">@color/iconSettingsColorBlueGrayNight</item>
+        <item name="colorIcon">@color/iconColorBlueGrayNight</item>
+        <item name="colorQR">@color/QRColorBlueGrayNight</item>
+        <item name="colorMusk">@color/muskColorBlueGrayNight</item>
+        <item name="colorSnackText">@color/snackTextBlueGrayNight</item>
+        <item name="colorErrorText">@color/snackErrorBlueGrayNight</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

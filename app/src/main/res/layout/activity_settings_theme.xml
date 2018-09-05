@@ -38,14 +38,14 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
             </LinearLayout>
@@ -70,126 +70,126 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="#000" />
+                    android:background="?attr/colorLine" />
 
                 <include layout="@layout/f_settings_theme" />
             </LinearLayout>

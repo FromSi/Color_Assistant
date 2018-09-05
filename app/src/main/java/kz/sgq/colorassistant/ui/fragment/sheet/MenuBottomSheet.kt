@@ -51,7 +51,6 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
 
             if (bottomSheet != null) {
 
-                nightMode(this)
                 setColor(this)
                 global.setOnClickListener(initClickListener(GLOBAL))
                 cloud.setOnClickListener(initClickListener(CLOUD))
@@ -67,16 +66,6 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
 
     fun setClick(clickListener: OnClickListener) {
         this.clickListener = clickListener
-    }
-
-    private fun nightMode(view: View){
-
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-
-            view.main.setBackgroundColor(ColorAttrUtil.getColorNightSheet(view.context))
-            (view.global.getChildAt(0) as ImageView).setColorFilter(Color.GRAY)
-            (view.cloud.getChildAt(0) as ImageView).setColorFilter(Color.GRAY)
-        }
     }
 
     private fun setColor(view: View) {

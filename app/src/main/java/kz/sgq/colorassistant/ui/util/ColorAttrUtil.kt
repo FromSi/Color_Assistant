@@ -22,6 +22,10 @@ import kz.sgq.colorassistant.R
 
 object ColorAttrUtil {
 
+    fun getColorQR(context: Context): Int = getColor(context, R.attr.colorQR)
+
+    fun getColorLine(context: Context): Int = getColor(context, R.attr.colorLine)
+
     fun getColorPrimary(context: Context): Int = getColor(context, R.attr.colorPrimary)
 
     fun getColorPrimaryDark(context: Context): Int = getColor(context, R.attr.colorPrimaryDark)

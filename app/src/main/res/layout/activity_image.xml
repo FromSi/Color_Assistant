@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:background="?attr/colorBackground"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.ImageActivity">
+    tools:context=".ui.activity.ImageActivity"
+    android:backgroundTint="?attr/colorBackground">
 
     <ProgressBar
         android:id="@+id/loading"

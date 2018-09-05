@@ -59,7 +59,6 @@ class HSLBottomSheet : BottomSheetDialogFragment() {
                 title.text = titleText
                 button = exit
 
-                nightMode(this)
                 button.setOnClickListener(initClickExit())
                 initList(this)
                 bottomSheet.setBottomSheetCallback(initCallback())
@@ -88,15 +87,6 @@ class HSLBottomSheet : BottomSheetDialogFragment() {
             view.list.adapter = this
 
             this.addList(list)
-        }
-    }
-
-    private fun nightMode(view: View) {
-
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-
-            view.main.setBackgroundColor(ColorAttrUtil.getColorNightSheet(view.context))
-            view.exit.setColorFilter(Color.GRAY)
         }
     }
 
