@@ -17,6 +17,7 @@
     <color name="backgroundColorRed">#FFFFFF</color>
     <color name="QRColorRed">#FFC107</color>
     <color name="iconColorRed">#ffffff</color>
+    <color name="iconMenuColorRed">#000000</color>
     <color name="iconSettingsColorRed">#F44336</color>
     <color name="lineColorRed">#E0E0E0</color>
     <color name="cardColorRed">#FFFFFF</color>
@@ -39,6 +40,7 @@
     <color name="backgroundColorRedNight">#180301</color>
     <color name="QRColorRedNight">#FFC107</color>
     <color name="iconColorRedNight">#ffffff</color>
+    <color name="iconMenuColorRedNight">#ffffff</color>
     <!--https://www.w3schools.com/colors/colors_picker.asp?colorhex=00ffff  15% primaryColorRedNight-->
     <color name="iconSettingsColorRedNight">#3f0d0d</color>
     <color name="lineColorRedNight">#E0E0E0</color>
@@ -59,6 +61,7 @@
     <color name="backgroundColorPink">#FFFFFF</color>
     <color name="QRColorPink">#448AFF</color>
     <color name="iconColorPink">#ffffff</color>
+    <color name="iconMenuColorPink">#000000</color>
     <color name="iconSettingsColorPink">#E91E63</color>
     <color name="lineColorPink">#E0E0E0</color>
     <color name="cardColorPink">#FFFFFF</color>
@@ -77,6 +80,7 @@
     <color name="backgroundColorPinkNight">#170209</color>
     <color name="QRColorPinkNight">#448AFF</color>
     <color name="iconColorPinkNight">#ffffff</color>
+    <color name="iconMenuColorPinkNight">#ffffff</color>
     <color name="iconSettingsColorPinkNight">#440820</color>
     <color name="lineColorPinkNight">#E0E0E0</color>
     <color name="cardColorPinkNight">#440820</color>
@@ -95,6 +99,7 @@
     <color name="backgroundColorPurple">#FFFFFF</color>
     <color name="QRColorPurple">#CDDC39</color>
     <color name="iconColorPurple">#ffffff</color>
+    <color name="iconMenuColorPurple">#000000</color>
     <color name="iconSettingsColorPurple">#9C27B0</color>
     <color name="lineColorPurple">#E0E0E0</color>
     <color name="cardColorPurple">#FFFFFF</color>
@@ -113,6 +118,7 @@
     <color name="backgroundColorPurpleNight">#120515</color>
     <color name="QRColorPurpleNight">#CDDC39</color>
     <color name="iconColorPurpleNight">#ffffff</color>
+    <color name="iconMenuColorPurpleNight">#ffffff</color>
     <color name="iconSettingsColorPurpleNight">#310c40</color>
     <color name="lineColorPurpleNight">#E0E0E0</color>
     <color name="cardColorPurpleNight">#310c40</color>
@@ -131,6 +137,7 @@
     <color name="backgroundColorDeepPurple">#FFFFFF</color>
     <color name="QRColorDeepPurple">#FFEB3B</color>
     <color name="iconColorDeepPurple">#ffffff</color>
+    <color name="iconMenuColorDeepPurple">#000000</color>
     <color name="iconSettingsColorDeepPurple">#673AB7</color>
     <color name="lineColorDeepPurple">#E0E0E0</color>
     <color name="cardColorDeepPurple">#FFFFFF</color>
@@ -149,6 +156,7 @@
     <color name="backgroundColorDeepPurpleNight">#0b0613</color>
     <color name="QRColorDeepPurpleNight">#FFEB3B</color>
     <color name="iconColorDeepPurpleNight">#ffffff</color>
+    <color name="iconMenuColorDeepPurpleNight">#ffffff</color>
     <color name="iconSettingsColorDeepPurpleNight">#1d103c</color>
     <color name="lineColorDeepPurpleNight">#E0E0E0</color>
     <color name="cardColorDeepPurpleNight">#1d103c</color>
@@ -167,6 +175,7 @@
     <color name="backgroundColorIndigo">#FFFFFF</color>
     <color name="QRColorIndigo">#FF9800</color>
     <color name="iconColorIndigo">#ffffff</color>
+    <color name="iconMenuColorIndigo">#000000</color>
     <color name="iconSettingsColorIndigo">#3F51B5</color>
     <color name="lineColorIndigo">#E0E0E0</color>
     <color name="cardColorIndigo">#FFFFFF</color>
@@ -185,6 +194,7 @@
     <color name="backgroundColorIndigoNight">#070813</color>
     <color name="QRColorIndigoNight">#FF9800</color>
     <color name="iconColorIndigoNight">#ffffff</color>
+    <color name="iconMenuColorIndigoNight">#ffffff</color>
     <color name="iconSettingsColorIndigoNight">#12173b</color>
     <color name="lineColorIndigoNight">#E0E0E0</color>
     <color name="cardColorIndigoNight">#12173b</color>
@@ -203,6 +213,7 @@
     <color name="backgroundColorBlue">#FFFFFF</color>
     <color name="QRColorBlue">#607D8B</color>
     <color name="iconColorBlue">#ffffff</color>
+    <color name="iconMenuColorBlue">#000000</color>
     <color name="iconSettingsColorBlue">#1e88e5</color>
     <color name="lineColorBlue">#E0E0E0</color>
     <color name="cardColorBlue">#FFFFFF</color>
@@ -221,6 +232,7 @@
     <color name="backgroundColorBlueNight">#030d17</color>
     <color name="QRColorBlueNight">#607D8B</color>
     <color name="iconColorBlueNight">#ffffff</color>
+    <color name="iconMenuColorBlueNight">#ffffff</color>
     <color name="iconSettingsColorBlueNight">#00284d</color>
     <color name="lineColorBlueNight">#E0E0E0</color>
     <color name="cardColorBlueNight">#00284d</color>
@@ -239,6 +251,7 @@
     <color name="backgroundColorLightBlue">#FFFFFF</color>
     <color name="QRColorLightBlue">#CDDC39</color>
     <color name="iconColorLightBlue">#ffffff</color>
+    <color name="iconMenuColorLightBlue">#000000</color>
     <color name="iconSettingsColorLightBlue">#039be5</color>
     <color name="lineColorLightBlue">#E0E0E0</color>
     <color name="cardColorLightBlue">#FFFFFF</color>
@@ -257,6 +270,7 @@
     <color name="backgroundColorLightBlueNight">#001119</color>
     <color name="QRColorLightBlueNight">#CDDC39</color>
     <color name="iconColorLightBlueNight">#ffffff</color>
+    <color name="iconMenuColorLightBlueNight">#ffffff</color>
     <color name="iconSettingsColorLightBlueNight">#002f4d</color>
     <color name="lineColorLightBlueNight">#E0E0E0</color>
     <color name="cardColorLightBlueNight">#002f4d</color>
@@ -275,6 +289,7 @@
     <color name="backgroundColorCyan">#FFFFFF</color>
     <color name="QRColorCyan">#f50057</color>
     <color name="iconColorCyan">#ffffff</color>
+    <color name="iconMenuColorCyan">#000000</color>
     <color name="iconSettingsColorCyan">#00acc1</color>
     <color name="lineColorCyan">#E0E0E0</color>
     <color name="cardColorCyan">#FFFFFF</color>
@@ -293,6 +308,7 @@
     <color name="backgroundColorCyanNight">#00171a</color>
     <color name="QRColorCyanNight">#f50057</color>
     <color name="iconColorCyanNight">#ffffff</color>
+    <color name="iconMenuColorCyanNight">#ffffff</color>
     <color name="iconSettingsColorCyanNight">#00414d</color>
     <color name="lineColorCyanNight">#E0E0E0</color>
     <color name="cardColorCyanNight">#00414d</color>
@@ -311,6 +327,7 @@
     <color name="backgroundColorTeal">#FFFFFF</color>
     <color name="QRColorTeal">#ffd180</color>
     <color name="iconColorTeal">#ffffff</color>
+    <color name="iconMenuColorTeal">#000000</color>
     <color name="iconSettingsColorTeal">#00796b</color>
     <color name="lineColorTeal">#E0E0E0</color>
     <color name="cardColorTeal">#FFFFFF</color>
@@ -329,6 +346,7 @@
     <color name="backgroundColorTealNight">#001a17</color>
     <color name="QRColorTealNight">#ffd180</color>
     <color name="iconColorTealNight">#ffffff</color>
+    <color name="iconMenuColorTealNight">#ffffff</color>
     <color name="iconSettingsColorTealNight">#004c40</color>
     <color name="lineColorTealNight">#E0E0E0</color>
     <color name="cardColorTealNight">#004c40</color>
@@ -347,6 +365,7 @@
     <color name="backgroundColorGreen">#FFFFFF</color>
     <color name="QRColorGreen">#00BCD4</color>
     <color name="iconColorGreen">#ffffff</color>
+    <color name="iconMenuColorGreen">#000000</color>
     <color name="iconSettingsColorGreen">#4CAF50</color>
     <color name="lineColorGreen">#E0E0E0</color>
     <color name="cardColorGreen">#FFFFFF</color>
@@ -365,6 +384,7 @@
     <color name="backgroundColorGreenNight">#081208</color>
     <color name="QRColorGreenNight">#00BCD4</color>
     <color name="iconColorGreenNight">#ffffff</color>
+    <color name="iconMenuColorGreenNight">#ffffff</color>
     <color name="iconSettingsColorGreenNight">#163717</color>
     <color name="lineColorGreenNight">#E0E0E0</color>
     <color name="cardColorGreenNight">#163717</color>
@@ -383,6 +403,7 @@
     <color name="backgroundColorLightGreen">#FFFFFF</color>
     <color name="QRColorLightGreen">#448AFF</color>
     <color name="iconColorLightGreen">#ffffff</color>
+    <color name="iconMenuColorLightGreen">#000000</color>
     <color name="iconSettingsColorLightGreen">#8BC34A</color>
     <color name="lineColorLightGreen">#E0E0E0</color>
     <color name="cardColorLightGreen">#FFFFFF</color>
@@ -401,6 +422,7 @@
     <color name="backgroundColorLightGreenNight">#0d1306</color>
     <color name="QRColorLightGreenNight">#448AFF</color>
     <color name="iconColorLightGreenNight">#ffffff</color>
+    <color name="iconMenuColorLightGreenNight">#ffffff</color>
     <color name="iconSettingsColorLightGreenNight">#253914</color>
     <color name="lineColorLightGreenNight">#E0E0E0</color>
     <color name="cardColorLightGreenNight">#253914</color>
@@ -419,6 +441,7 @@
     <color name="backgroundColorLime">#FFFFFF</color>
     <color name="QRColorLime">#7C4DFF</color>
     <color name="iconColorLime">#ffffff</color>
+    <color name="iconMenuColorLime">#000000</color>
     <color name="iconSettingsColorLime">#CDDC39</color>
     <color name="lineColorLime">#E0E0E0</color>
     <color name="cardColorLime">#FFFFFF</color>
@@ -437,6 +460,7 @@
     <color name="backgroundColorLimeNight">#141604</color>
     <color name="QRColorLimeNight">#7C4DFF</color>
     <color name="iconColorLimeNight">#ffffff</color>
+    <color name="iconMenuColorLimeNight">#ffffff</color>
     <color name="iconSettingsColorLimeNight">#3c3e0f</color>
     <color name="lineColorLimeNight">#E0E0E0</color>
     <color name="cardColorLimeNight">#3c3e0f</color>
@@ -455,6 +479,7 @@
     <color name="backgroundColorYellow">#FFFFFF</color>
     <color name="QRColorYellow">#536DFE</color>
     <color name="iconColorYellow">#ffffff</color>
+    <color name="iconMenuColorYellow">#000000</color>
     <color name="iconSettingsColorYellow">#FFEB3B</color>
     <color name="lineColorYellow">#E0E0E0</color>
     <color name="cardColorYellow">#FFFFFF</color>
@@ -473,6 +498,7 @@
     <color name="backgroundColorYellowNight">#1a1700</color>
     <color name="QRColorYellowNight">#536DFE</color>
     <color name="iconColorYellowNight">#ffffff</color>
+    <color name="iconMenuColorYellowNight">#ffffff</color>
     <color name="iconSettingsColorYellowNight">#4b3602</color>
     <color name="lineColorYellowNight">#E0E0E0</color>
     <color name="cardColorYellowNight">#4b3602</color>
@@ -491,6 +517,7 @@
     <color name="backgroundColorAmber">#FFFFFF</color>
     <color name="QRColorAmber">#03A9F4</color>
     <color name="iconColorAmber">#ffffff</color>
+    <color name="iconMenuColorAmber">#000000</color>
     <color name="iconSettingsColorAmber">#FFC107</color>
     <color name="lineColorAmber">#E0E0E0</color>
     <color name="cardColorAmber">#FFFFFF</color>
@@ -509,6 +536,7 @@
     <color name="backgroundColorAmberNight">#1a1300</color>
     <color name="QRColorAmberNight">#03A9F4</color>
     <color name="iconColorAmberNight">#ffffff</color>
+    <color name="iconMenuColorAmberNight">#ffffff</color>
     <color name="iconSettingsColorAmberNight">#4d3000</color>
     <color name="lineColorAmberNight">#E0E0E0</color>
     <color name="cardColorAmberNight">#4d3000</color>
@@ -527,6 +555,7 @@
     <color name="backgroundColorOrange">#FFFFFF</color>
     <color name="QRColorOrange">#8BC34A</color>
     <color name="iconColorOrange">#ffffff</color>
+    <color name="iconMenuColorOrange">#000000</color>
     <color name="iconSettingsColorOrange">#FF9800</color>
     <color name="lineColorOrange">#E0E0E0</color>
     <color name="cardColorOrange">#FFFFFF</color>
@@ -545,6 +574,7 @@
     <color name="backgroundColorOrangeNight">#1a0f00</color>
     <color name="QRColorOrangeNight">#8BC34A</color>
     <color name="iconColorOrangeNight">#ffffff</color>
+    <color name="iconMenuColorOrangeNight">#ffffff</color>
     <color name="iconSettingsColorOrangeNight">#4d2600</color>
     <color name="lineColorOrangeNight">#E0E0E0</color>
     <color name="cardColorOrangeNight">#4d2600</color>
@@ -563,6 +593,7 @@
     <color name="backgroundColorDeepOrange">#FFFFFF</color>
     <color name="QRColorDeepOrange">#00BCD4</color>
     <color name="iconColorDeepOrange">#ffffff</color>
+    <color name="iconMenuColorDeepOrange">#000000</color>
     <color name="iconSettingsColorDeepOrange">#FF5722</color>
     <color name="lineColorDeepOrange">#E0E0E0</color>
     <color name="cardColorDeepOrange">#FFFFFF</color>
@@ -581,6 +612,7 @@
     <color name="backgroundColorDeepOrangeNight">#1a0600</color>
     <color name="QRColorDeepOrangeNight">#00BCD4</color>
     <color name="iconColorDeepOrangeNight">#ffffff</color>
+    <color name="iconMenuColorDeepOrangeNight">#ffffff</color>
     <color name="iconSettingsColorDeepOrangeNight">#451608</color>
     <color name="lineColorDeepOrangeNight">#E0E0E0</color>
     <color name="cardColorDeepOrangeNight">#451608</color>
@@ -599,6 +631,7 @@
     <color name="backgroundColorBrown">#FFFFFF</color>
     <color name="QRColorBrown">#FFC107</color>
     <color name="iconColorBrown">#ffffff</color>
+    <color name="iconMenuColorBrown">#000000</color>
     <color name="iconSettingsColorBrown">#795548</color>
     <color name="lineColorBrown">#E0E0E0</color>
     <color name="cardColorBrown">#FFFFFF</color>
@@ -617,6 +650,7 @@
     <color name="backgroundColorBrownNight">#100b0a</color>
     <color name="QRColorBrownNight">#FFC107</color>
     <color name="iconColorBrownNight">#ffffff</color>
+    <color name="iconMenuColorBrownNight">#ffffff</color>
     <color name="iconSettingsColorBrownNight">#30211c</color>
     <color name="lineColorBrownNight">#E0E0E0</color>
     <color name="cardColorBrownNight">#30211c</color>
@@ -635,6 +669,7 @@
     <color name="backgroundColorGray">#FFFFFF</color>
     <color name="QRColorGray">#536DFE</color>
     <color name="iconColorGray">#ffffff</color>
+    <color name="iconMenuColorGray">#000000</color>
     <color name="iconSettingsColorGray">#9E9E9E</color>
     <color name="lineColorGray">#E0E0E0</color>
     <color name="cardColorGray">#FFFFFF</color>
@@ -653,6 +688,7 @@
     <color name="backgroundColorGrayNight">#0d0d0d</color>
     <color name="QRColorGrayNight">#536DFE</color>
     <color name="iconColorGrayNight">#ffffff</color>
+    <color name="iconMenuColorGrayNight">#ffffff</color>
     <color name="iconSettingsColorGrayNight">#262626</color>
     <color name="lineColorGrayNight">#E0E0E0</color>
     <color name="cardColorGrayNight">#262626</color>
@@ -671,6 +707,7 @@
     <color name="backgroundColorBlueGray">#FFFFFF</color>
     <color name="QRColorBlueGray">#CDDC39</color>
     <color name="iconColorBlueGray">#ffffff</color>
+    <color name="iconMenuColorBlueGray">#000000</color>
     <color name="iconSettingsColorBlueGray">#607D8B</color>
     <color name="lineColorBlueGray">#E0E0E0</color>
     <color name="cardColorBlueGray">#FFFFFF</color>
@@ -689,6 +726,7 @@
     <color name="backgroundColorBlueGrayNight">#0a0e0f</color>
     <color name="QRColorBlueGrayNight">#CDDC39</color>
     <color name="iconColorBlueGrayNight">#ffffff</color>
+    <color name="iconMenuColorBlueGrayNight">#ffffff</color>
     <color name="iconSettingsColorBlueGrayNight">#1f292d</color>
     <color name="lineColorBlueGrayNight">#E0E0E0</color>
     <color name="cardColorBlueGrayNight">#1f292d</color>

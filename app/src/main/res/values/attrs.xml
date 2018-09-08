@@ -10,6 +10,7 @@
     <attr name="colorLine" format="color" />
     <attr name="colorIconSettings" format="color" />
     <attr name="colorIcon" format="color" />
+    <attr name="colorMenuIcon" format="color" />
     <attr name="colorQR" format="color" />
     <attr name="colorMusk" format="color" />
     <attr name="colorSnackText" format="color" />

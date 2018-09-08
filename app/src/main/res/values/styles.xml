@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/secondaryColorAmber</item>
         <item name="colorCard">@color/cardColorRed</item>
         <item name="colorBackground">@color/backgroundColorRed</item>
-        <item name="colorPopupMenu">@color/popupMenuColorRed</item>
+        <item name="android:itemBackground">@color/popupMenuColorRed</item>
         <item name="colorLine">@color/lineColorRed</item>
         <item name="colorIconSettings">@color/iconSettingsColorRed</item>
         <item name="colorIcon">@color/iconColorRed</item>
@@ -16,6 +16,7 @@
         <item name="colorMusk">@color/muskColorRed</item>
         <item name="colorSnackText">@color/snackTextRed</item>
         <item name="colorErrorText">@color/snackErrorRed</item>
+        <item name="colorMenuIcon">@color/iconMenuColorRed</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -30,7 +31,7 @@
         <item name="colorAccent">@color/secondaryColorRed</item>
         <item name="colorCard">@color/cardColorRed</item>
         <item name="colorBackground">@color/backgroundColorRed</item>
-        <item name="colorPopupMenu">@color/popupMenuColorRed</item>
+        <item name="android:itemBackground">@color/popupMenuColorRed</item>
         <item name="colorLine">@color/lineColorRed</item>
         <item name="colorIconSettings">@color/iconSettingsColorRed</item>
         <item name="colorIcon">@color/iconColorRed</item>
@@ -38,6 +39,7 @@
         <item name="colorMusk">@color/muskColorRed</item>
         <item name="colorSnackText">@color/snackTextRed</item>
         <item name="colorErrorText">@color/snackErrorRed</item>
+        <item name="colorMenuIcon">@color/iconMenuColorRed</item>
     </style>
 
     <style name="AppTheme.RED.Night" parent="AppTheme.NoActionBar">
@@ -47,7 +49,7 @@
         <item name="colorAccent">@color/secondaryColorRedNight</item>
         <item name="colorCard">@color/cardColorRedNight</item>
         <item name="colorBackground">@color/backgroundColorRedNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorRedNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorRedNight</item>
         <item name="colorLine">@color/lineColorRedNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorRedNight</item>
         <item name="colorIcon">@color/iconColorRedNight</item>
@@ -55,6 +57,7 @@
         <item name="colorMusk">@color/muskColorRedNight</item>
         <item name="colorSnackText">@color/snackTextRedNight</item>
         <item name="colorErrorText">@color/snackErrorRedNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorRedNight</item>
     </style>
 
     <style name="AppTheme.PINK" parent="AppTheme.NoActionBar">
@@ -64,7 +67,7 @@
         <item name="colorAccent">@color/secondaryColorPink</item>
         <item name="colorCard">@color/cardColorPink</item>
         <item name="colorBackground">@color/backgroundColorPink</item>
-        <item name="colorPopupMenu">@color/popupMenuColorPink</item>
+        <item name="android:itemBackground">@color/popupMenuColorPink</item>
         <item name="colorLine">@color/lineColorPink</item>
         <item name="colorIconSettings">@color/iconSettingsColorPink</item>
         <item name="colorIcon">@color/iconColorPink</item>
@@ -72,6 +75,7 @@
         <item name="colorMusk">@color/muskColorPink</item>
         <item name="colorSnackText">@color/snackTextPink</item>
         <item name="colorErrorText">@color/snackErrorPink</item>
+        <item name="colorMenuIcon">@color/iconMenuColorPink</item>
     </style>
 
     <style name="AppTheme.PINK.Night" parent="AppTheme.NoActionBar">
@@ -81,7 +85,7 @@
         <item name="colorAccent">@color/secondaryColorPinkNight</item>
         <item name="colorCard">@color/cardColorPinkNight</item>
         <item name="colorBackground">@color/backgroundColorPinkNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorPinkNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorPinkNight</item>
         <item name="colorLine">@color/lineColorPinkNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorPinkNight</item>
         <item name="colorIcon">@color/iconColorPinkNight</item>
@@ -89,6 +93,7 @@
         <item name="colorMusk">@color/muskColorPinkNight</item>
         <item name="colorSnackText">@color/snackTextPinkNight</item>
         <item name="colorErrorText">@color/snackErrorPinkNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorPinkNight</item>
     </style>
 
     <style name="AppTheme.PURPLE" parent="AppTheme.NoActionBar">
@@ -98,7 +103,7 @@
         <item name="colorAccent">@color/secondaryColorPurple</item>
         <item name="colorCard">@color/cardColorPurple</item>
         <item name="colorBackground">@color/backgroundColorPurple</item>
-        <item name="colorPopupMenu">@color/popupMenuColorPurple</item>
+        <item name="android:itemBackground">@color/popupMenuColorPurple</item>
         <item name="colorLine">@color/lineColorPurple</item>
         <item name="colorIconSettings">@color/iconSettingsColorPurple</item>
         <item name="colorIcon">@color/iconColorPurple</item>
@@ -106,6 +111,7 @@
         <item name="colorMusk">@color/muskColorPurple</item>
         <item name="colorSnackText">@color/snackTextPurple</item>
         <item name="colorErrorText">@color/snackErrorPurple</item>
+        <item name="colorMenuIcon">@color/iconMenuColorPurple</item>
     </style>
 
     <style name="AppTheme.PURPLE.Night" parent="AppTheme.NoActionBar">
@@ -115,7 +121,7 @@
         <item name="colorAccent">@color/secondaryColorPurpleNight</item>
         <item name="colorCard">@color/cardColorPurpleNight</item>
         <item name="colorBackground">@color/backgroundColorPurpleNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorPurpleNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorPurpleNight</item>
         <item name="colorLine">@color/lineColorPurpleNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorPurpleNight</item>
         <item name="colorIcon">@color/iconColorPurpleNight</item>
@@ -123,6 +129,7 @@
         <item name="colorMusk">@color/muskColorPurpleNight</item>
         <item name="colorSnackText">@color/snackTextPurpleNight</item>
         <item name="colorErrorText">@color/snackErrorPurpleNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorPurpleNight</item>
     </style>
 
     <style name="AppTheme.DEEPPURPLE" parent="AppTheme.NoActionBar">
@@ -132,7 +139,7 @@
         <item name="colorAccent">@color/secondaryColorDeepPurple</item>
         <item name="colorCard">@color/cardColorDeepPurple</item>
         <item name="colorBackground">@color/backgroundColorDeepPurple</item>
-        <item name="colorPopupMenu">@color/popupMenuColorDeepPurple</item>
+        <item name="android:itemBackground">@color/popupMenuColorDeepPurple</item>
         <item name="colorLine">@color/lineColorDeepPurple</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepPurple</item>
         <item name="colorIcon">@color/iconColorDeepPurple</item>
@@ -140,6 +147,7 @@
         <item name="colorMusk">@color/muskColorDeepPurple</item>
         <item name="colorSnackText">@color/snackTextDeepPurple</item>
         <item name="colorErrorText">@color/snackErrorDeepPurple</item>
+        <item name="colorMenuIcon">@color/iconMenuColorDeepPurple</item>
     </style>
 
     <style name="AppTheme.DEEPPURPLE.Night" parent="AppTheme.NoActionBar">
@@ -149,7 +157,7 @@
         <item name="colorAccent">@color/secondaryColorDeepPurpleNight</item>
         <item name="colorCard">@color/cardColorDeepPurpleNight</item>
         <item name="colorBackground">@color/backgroundColorDeepPurpleNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorDeepPurpleNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorDeepPurpleNight</item>
         <item name="colorLine">@color/lineColorDeepPurpleNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepPurpleNight</item>
         <item name="colorIcon">@color/iconColorDeepPurpleNight</item>
@@ -157,6 +165,7 @@
         <item name="colorMusk">@color/muskColorDeepPurpleNight</item>
         <item name="colorSnackText">@color/snackTextDeepPurpleNight</item>
         <item name="colorErrorText">@color/snackErrorDeepPurpleNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorDeepPurpleNight</item>
     </style>
 
     <style name="AppTheme.INDIGO" parent="AppTheme.NoActionBar">
@@ -166,7 +175,7 @@
         <item name="colorAccent">@color/secondaryColorIndigo</item>
         <item name="colorCard">@color/cardColorIndigo</item>
         <item name="colorBackground">@color/backgroundColorIndigo</item>
-        <item name="colorPopupMenu">@color/popupMenuColorIndigo</item>
+        <item name="android:itemBackground">@color/popupMenuColorIndigo</item>
         <item name="colorLine">@color/lineColorIndigo</item>
         <item name="colorIconSettings">@color/iconSettingsColorIndigo</item>
         <item name="colorIcon">@color/iconColorIndigo</item>
@@ -174,6 +183,7 @@
         <item name="colorMusk">@color/muskColorIndigo</item>
         <item name="colorSnackText">@color/snackTextIndigo</item>
         <item name="colorErrorText">@color/snackErrorIndigo</item>
+        <item name="colorMenuIcon">@color/iconMenuColorIndigo</item>
     </style>
 
     <style name="AppTheme.INDIGO.Night" parent="AppTheme.NoActionBar">
@@ -183,7 +193,7 @@
         <item name="colorAccent">@color/secondaryColorIndigoNight</item>
         <item name="colorCard">@color/cardColorIndigoNight</item>
         <item name="colorBackground">@color/backgroundColorIndigoNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorIndigoNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorIndigoNight</item>
         <item name="colorLine">@color/lineColorIndigoNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorIndigoNight</item>
         <item name="colorIcon">@color/iconColorIndigoNight</item>
@@ -191,6 +201,7 @@
         <item name="colorMusk">@color/muskColorIndigoNight</item>
         <item name="colorSnackText">@color/snackTextIndigoNight</item>
         <item name="colorErrorText">@color/snackErrorIndigoNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorIndigoNight</item>
     </style>
 
     <style name="AppTheme.BLUE" parent="AppTheme.NoActionBar">
@@ -200,7 +211,7 @@
         <item name="colorAccent">@color/secondaryColorBlue</item>
         <item name="colorCard">@color/cardColorBlue</item>
         <item name="colorBackground">@color/backgroundColorBlue</item>
-        <item name="colorPopupMenu">@color/popupMenuColorBlue</item>
+        <item name="android:itemBackground">@color/popupMenuColorBlue</item>
         <item name="colorLine">@color/lineColorBlue</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlue</item>
         <item name="colorIcon">@color/iconColorBlue</item>
@@ -208,6 +219,7 @@
         <item name="colorMusk">@color/muskColorBlue</item>
         <item name="colorSnackText">@color/snackTextBlue</item>
         <item name="colorErrorText">@color/snackErrorBlue</item>
+        <item name="colorMenuIcon">@color/iconMenuColorBlue</item>
     </style>
 
     <style name="AppTheme.BLUE.Night" parent="AppTheme.NoActionBar">
@@ -217,7 +229,7 @@
         <item name="colorAccent">@color/secondaryColorBlueNight</item>
         <item name="colorCard">@color/cardColorBlueNight</item>
         <item name="colorBackground">@color/backgroundColorBlueNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorBlueNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorBlueNight</item>
         <item name="colorLine">@color/lineColorBlueNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlueNight</item>
         <item name="colorIcon">@color/iconColorBlueNight</item>
@@ -225,6 +237,7 @@
         <item name="colorMusk">@color/muskColorBlueNight</item>
         <item name="colorSnackText">@color/snackTextBlueNight</item>
         <item name="colorErrorText">@color/snackErrorBlueNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorBlueNight</item>
     </style>
 
     <style name="AppTheme.LIGHTBLUE" parent="AppTheme.NoActionBar">
@@ -234,7 +247,7 @@
         <item name="colorAccent">@color/secondaryColorLightBlue</item>
         <item name="colorCard">@color/cardColorLightBlue</item>
         <item name="colorBackground">@color/backgroundColorLightBlue</item>
-        <item name="colorPopupMenu">@color/popupMenuColorLightBlue</item>
+        <item name="android:itemBackground">@color/popupMenuColorLightBlue</item>
         <item name="colorLine">@color/lineColorLightBlue</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightBlue</item>
         <item name="colorIcon">@color/iconColorLightBlue</item>
@@ -242,6 +255,7 @@
         <item name="colorMusk">@color/muskColorLightBlue</item>
         <item name="colorSnackText">@color/snackTextLightBlue</item>
         <item name="colorErrorText">@color/snackErrorLightBlue</item>
+        <item name="colorMenuIcon">@color/iconMenuColorLightBlue</item>
     </style>
 
     <style name="AppTheme.LIGHTBLUE.Night" parent="AppTheme.NoActionBar">
@@ -251,7 +265,7 @@
         <item name="colorAccent">@color/secondaryColorLightBlueNight</item>
         <item name="colorCard">@color/cardColorLightBlueNight</item>
         <item name="colorBackground">@color/backgroundColorLightBlueNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorLightBlueNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorLightBlueNight</item>
         <item name="colorLine">@color/lineColorLightBlueNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightBlueNight</item>
         <item name="colorIcon">@color/iconColorLightBlueNight</item>
@@ -259,6 +273,7 @@
         <item name="colorMusk">@color/muskColorLightBlueNight</item>
         <item name="colorSnackText">@color/snackTextLightBlueNight</item>
         <item name="colorErrorText">@color/snackErrorLightBlueNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorLightBlueNight</item>
     </style>
 
     <style name="AppTheme.CYAN" parent="AppTheme.NoActionBar">
@@ -268,7 +283,7 @@
         <item name="colorAccent">@color/secondaryColorCyan</item>
         <item name="colorCard">@color/cardColorCyan</item>
         <item name="colorBackground">@color/backgroundColorCyan</item>
-        <item name="colorPopupMenu">@color/popupMenuColorCyan</item>
+        <item name="android:itemBackground">@color/popupMenuColorCyan</item>
         <item name="colorLine">@color/lineColorCyan</item>
         <item name="colorIconSettings">@color/iconSettingsColorCyan</item>
         <item name="colorIcon">@color/iconColorCyan</item>
@@ -276,6 +291,7 @@
         <item name="colorMusk">@color/muskColorCyan</item>
         <item name="colorSnackText">@color/snackTextCyan</item>
         <item name="colorErrorText">@color/snackErrorCyan</item>
+        <item name="colorMenuIcon">@color/iconMenuColorCyan</item>
     </style>
 
     <style name="AppTheme.CYAN.Night" parent="AppTheme.NoActionBar">
@@ -285,7 +301,7 @@
         <item name="colorAccent">@color/secondaryColorCyanNight</item>
         <item name="colorCard">@color/cardColorCyanNight</item>
         <item name="colorBackground">@color/backgroundColorCyanNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorCyanNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorCyanNight</item>
         <item name="colorLine">@color/lineColorCyanNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorCyanNight</item>
         <item name="colorIcon">@color/iconColorCyanNight</item>
@@ -293,6 +309,7 @@
         <item name="colorMusk">@color/muskColorCyanNight</item>
         <item name="colorSnackText">@color/snackTextCyanNight</item>
         <item name="colorErrorText">@color/snackErrorCyanNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorCyanNight</item>
     </style>
 
     <style name="AppTheme.TEAL" parent="AppTheme.NoActionBar">
@@ -302,7 +319,7 @@
         <item name="colorAccent">@color/secondaryColorTeal</item>
         <item name="colorCard">@color/cardColorTeal</item>
         <item name="colorBackground">@color/backgroundColorTeal</item>
-        <item name="colorPopupMenu">@color/popupMenuColorTeal</item>
+        <item name="android:itemBackground">@color/popupMenuColorTeal</item>
         <item name="colorLine">@color/lineColorTeal</item>
         <item name="colorIconSettings">@color/iconSettingsColorTeal</item>
         <item name="colorIcon">@color/iconColorTeal</item>
@@ -310,6 +327,7 @@
         <item name="colorMusk">@color/muskColorTeal</item>
         <item name="colorSnackText">@color/snackTextTeal</item>
         <item name="colorErrorText">@color/snackErrorTeal</item>
+        <item name="colorMenuIcon">@color/iconMenuColorTeal</item>
     </style>
 
     <style name="AppTheme.TEAL.Night" parent="AppTheme.NoActionBar">
@@ -319,7 +337,7 @@
         <item name="colorAccent">@color/secondaryColorTealNight</item>
         <item name="colorCard">@color/cardColorTealNight</item>
         <item name="colorBackground">@color/backgroundColorTealNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorTealNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorTealNight</item>
         <item name="colorLine">@color/lineColorTealNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorTealNight</item>
         <item name="colorIcon">@color/iconColorTealNight</item>
@@ -327,6 +345,7 @@
         <item name="colorMusk">@color/muskColorTealNight</item>
         <item name="colorSnackText">@color/snackTextTealNight</item>
         <item name="colorErrorText">@color/snackErrorTealNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorTealNight</item>
     </style>
 
     <style name="AppTheme.GREEN" parent="AppTheme.NoActionBar">
@@ -336,7 +355,7 @@
         <item name="colorAccent">@color/secondaryColorGreen</item>
         <item name="colorCard">@color/cardColorGreen</item>
         <item name="colorBackground">@color/backgroundColorGreen</item>
-        <item name="colorPopupMenu">@color/popupMenuColorGreen</item>
+        <item name="android:itemBackground">@color/popupMenuColorGreen</item>
         <item name="colorLine">@color/lineColorGreen</item>
         <item name="colorIconSettings">@color/iconSettingsColorGreen</item>
         <item name="colorIcon">@color/iconColorGreen</item>
@@ -344,6 +363,7 @@
         <item name="colorMusk">@color/muskColorGreen</item>
         <item name="colorSnackText">@color/snackTextGreen</item>
         <item name="colorErrorText">@color/snackErrorGreen</item>
+        <item name="colorMenuIcon">@color/iconMenuColorGreen</item>
     </style>
 
     <style name="AppTheme.GREEN.Night" parent="AppTheme.NoActionBar">
@@ -353,7 +373,7 @@
         <item name="colorAccent">@color/secondaryColorGreenNight</item>
         <item name="colorCard">@color/cardColorGreenNight</item>
         <item name="colorBackground">@color/backgroundColorGreenNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorGreenNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorGreenNight</item>
         <item name="colorLine">@color/lineColorGreenNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorGreenNight</item>
         <item name="colorIcon">@color/iconColorGreenNight</item>
@@ -361,6 +381,7 @@
         <item name="colorMusk">@color/muskColorGreenNight</item>
         <item name="colorSnackText">@color/snackTextGreenNight</item>
         <item name="colorErrorText">@color/snackErrorGreenNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorGreenNight</item>
     </style>
 
     <style name="AppTheme.LIGHTGREEN" parent="AppTheme.NoActionBar">
@@ -370,7 +391,7 @@
         <item name="colorAccent">@color/secondaryColorLightGreen</item>
         <item name="colorCard">@color/cardColorLightGreen</item>
         <item name="colorBackground">@color/backgroundColorLightGreen</item>
-        <item name="colorPopupMenu">@color/popupMenuColorLightGreen</item>
+        <item name="android:itemBackground">@color/popupMenuColorLightGreen</item>
         <item name="colorLine">@color/lineColorLightGreen</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightGreen</item>
         <item name="colorIcon">@color/iconColorLightGreen</item>
@@ -378,6 +399,7 @@
         <item name="colorMusk">@color/muskColorLightGreen</item>
         <item name="colorSnackText">@color/snackTextLightGreen</item>
         <item name="colorErrorText">@color/snackErrorLightGreen</item>
+        <item name="colorMenuIcon">@color/iconMenuColorLightGreen</item>
     </style>
 
     <style name="AppTheme.LIGHTGREEN.Night" parent="AppTheme.NoActionBar">
@@ -387,7 +409,7 @@
         <item name="colorAccent">@color/secondaryColorLightGreenNight</item>
         <item name="colorCard">@color/cardColorLightGreenNight</item>
         <item name="colorBackground">@color/backgroundColorLightGreenNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorLightGreenNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorLightGreenNight</item>
         <item name="colorLine">@color/lineColorLightGreenNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightGreenNight</item>
         <item name="colorIcon">@color/iconColorLightGreenNight</item>
@@ -395,6 +417,7 @@
         <item name="colorMusk">@color/muskColorLightGreenNight</item>
         <item name="colorSnackText">@color/snackTextLightGreenNight</item>
         <item name="colorErrorText">@color/snackErrorLightGreenNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorLightGreenNight</item>
     </style>
 
     <style name="AppTheme.LIME" parent="AppTheme.NoActionBar">
@@ -404,7 +427,7 @@
         <item name="colorAccent">@color/secondaryColorLime</item>
         <item name="colorCard">@color/cardColorLime</item>
         <item name="colorBackground">@color/backgroundColorLime</item>
-        <item name="colorPopupMenu">@color/popupMenuColorLime</item>
+        <item name="android:itemBackground">@color/popupMenuColorLime</item>
         <item name="colorLine">@color/lineColorLime</item>
         <item name="colorIconSettings">@color/iconSettingsColorLime</item>
         <item name="colorIcon">@color/iconColorLime</item>
@@ -412,6 +435,7 @@
         <item name="colorMusk">@color/muskColorLime</item>
         <item name="colorSnackText">@color/snackTextLime</item>
         <item name="colorErrorText">@color/snackErrorLime</item>
+        <item name="colorMenuIcon">@color/iconMenuColorLime</item>
     </style>
 
     <style name="AppTheme.LIME.Night" parent="AppTheme.NoActionBar">
@@ -421,7 +445,7 @@
         <item name="colorAccent">@color/secondaryColorLimeNight</item>
         <item name="colorCard">@color/cardColorLimeNight</item>
         <item name="colorBackground">@color/backgroundColorLimeNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorLimeNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorLimeNight</item>
         <item name="colorLine">@color/lineColorLimeNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorLimeNight</item>
         <item name="colorIcon">@color/iconColorLimeNight</item>
@@ -429,6 +453,7 @@
         <item name="colorMusk">@color/muskColorLimeNight</item>
         <item name="colorSnackText">@color/snackTextLimeNight</item>
         <item name="colorErrorText">@color/snackErrorLimeNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorLimeNight</item>
     </style>
 
     <style name="AppTheme.YELLOW" parent="AppTheme.NoActionBar">
@@ -438,7 +463,7 @@
         <item name="colorAccent">@color/secondaryColorYellow</item>
         <item name="colorCard">@color/cardColorYellow</item>
         <item name="colorBackground">@color/backgroundColorYellow</item>
-        <item name="colorPopupMenu">@color/popupMenuColorYellow</item>
+        <item name="android:itemBackground">@color/popupMenuColorYellow</item>
         <item name="colorLine">@color/lineColorYellow</item>
         <item name="colorIconSettings">@color/iconSettingsColorYellow</item>
         <item name="colorIcon">@color/iconColorYellow</item>
@@ -446,6 +471,7 @@
         <item name="colorMusk">@color/muskColorYellow</item>
         <item name="colorSnackText">@color/snackTextYellow</item>
         <item name="colorErrorText">@color/snackErrorYellow</item>
+        <item name="colorMenuIcon">@color/iconMenuColorYellow</item>
     </style>
 
     <style name="AppTheme.YELLOW.Night" parent="AppTheme.NoActionBar">
@@ -455,7 +481,7 @@
         <item name="colorAccent">@color/secondaryColorYellowNight</item>
         <item name="colorCard">@color/cardColorYellowNight</item>
         <item name="colorBackground">@color/backgroundColorYellowNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorYellowNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorYellowNight</item>
         <item name="colorLine">@color/lineColorYellowNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorYellowNight</item>
         <item name="colorIcon">@color/iconColorYellowNight</item>
@@ -463,6 +489,7 @@
         <item name="colorMusk">@color/muskColorYellowNight</item>
         <item name="colorSnackText">@color/snackTextYellowNight</item>
         <item name="colorErrorText">@color/snackErrorYellowNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorYellowNight</item>
     </style>
 
     <style name="AppTheme.AMBER" parent="AppTheme.NoActionBar">
@@ -472,7 +499,7 @@
         <item name="colorAccent">@color/secondaryColorAmber</item>
         <item name="colorCard">@color/cardColorAmber</item>
         <item name="colorBackground">@color/backgroundColorAmber</item>
-        <item name="colorPopupMenu">@color/popupMenuColorAmber</item>
+        <item name="android:itemBackground">@color/popupMenuColorAmber</item>
         <item name="colorLine">@color/lineColorAmber</item>
         <item name="colorIconSettings">@color/iconSettingsColorAmber</item>
         <item name="colorIcon">@color/iconColorAmber</item>
@@ -480,6 +507,7 @@
         <item name="colorMusk">@color/muskColorAmber</item>
         <item name="colorSnackText">@color/snackTextAmber</item>
         <item name="colorErrorText">@color/snackErrorAmber</item>
+        <item name="colorMenuIcon">@color/iconMenuColorAmber</item>
     </style>
 
     <style name="AppTheme.AMBER.Night" parent="AppTheme.NoActionBar">
@@ -489,7 +517,7 @@
         <item name="colorAccent">@color/secondaryColorAmberNight</item>
         <item name="colorCard">@color/cardColorAmberNight</item>
         <item name="colorBackground">@color/backgroundColorAmberNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorAmberNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorAmberNight</item>
         <item name="colorLine">@color/lineColorAmberNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorAmberNight</item>
         <item name="colorIcon">@color/iconColorAmberNight</item>
@@ -497,6 +525,7 @@
         <item name="colorMusk">@color/muskColorAmberNight</item>
         <item name="colorSnackText">@color/snackTextAmberNight</item>
         <item name="colorErrorText">@color/snackErrorAmberNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorAmberNight</item>
     </style>
 
     <style name="AppTheme.ORANGE" parent="AppTheme.NoActionBar">
@@ -506,7 +535,7 @@
         <item name="colorAccent">@color/secondaryColorOrange</item>
         <item name="colorCard">@color/cardColorOrange</item>
         <item name="colorBackground">@color/backgroundColorOrange</item>
-        <item name="colorPopupMenu">@color/popupMenuColorOrange</item>
+        <item name="android:itemBackground">@color/popupMenuColorOrange</item>
         <item name="colorLine">@color/lineColorOrange</item>
         <item name="colorIconSettings">@color/iconSettingsColorOrange</item>
         <item name="colorIcon">@color/iconColorOrange</item>
@@ -514,6 +543,7 @@
         <item name="colorMusk">@color/muskColorOrange</item>
         <item name="colorSnackText">@color/snackTextOrange</item>
         <item name="colorErrorText">@color/snackErrorOrange</item>
+        <item name="colorMenuIcon">@color/iconMenuColorOrange</item>
     </style>
 
     <style name="AppTheme.ORANGE.Night" parent="AppTheme.NoActionBar">
@@ -523,7 +553,7 @@
         <item name="colorAccent">@color/secondaryColorOrangeNight</item>
         <item name="colorCard">@color/cardColorOrangeNight</item>
         <item name="colorBackground">@color/backgroundColorOrangeNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorOrangeNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorOrangeNight</item>
         <item name="colorLine">@color/lineColorOrangeNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorOrangeNight</item>
         <item name="colorIcon">@color/iconColorOrangeNight</item>
@@ -531,6 +561,7 @@
         <item name="colorMusk">@color/muskColorOrangeNight</item>
         <item name="colorSnackText">@color/snackTextOrangeNight</item>
         <item name="colorErrorText">@color/snackErrorOrangeNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorOrangeNight</item>
     </style>
 
     <style name="AppTheme.DEEPORANGE" parent="AppTheme.NoActionBar">
@@ -540,7 +571,7 @@
         <item name="colorAccent">@color/secondaryColorDeepOrange</item>
         <item name="colorCard">@color/cardColorDeepOrange</item>
         <item name="colorBackground">@color/backgroundColorDeepOrange</item>
-        <item name="colorPopupMenu">@color/popupMenuColorDeepOrange</item>
+        <item name="android:itemBackground">@color/popupMenuColorDeepOrange</item>
         <item name="colorLine">@color/lineColorDeepOrange</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepOrange</item>
         <item name="colorIcon">@color/iconColorDeepOrange</item>
@@ -548,6 +579,7 @@
         <item name="colorMusk">@color/muskColorOrange</item>
         <item name="colorSnackText">@color/snackTextOrange</item>
         <item name="colorErrorText">@color/snackErrorOrange</item>
+        <item name="colorMenuIcon">@color/iconMenuColorOrange</item>
     </style>
 
     <style name="AppTheme.DEEPORANGE.Night" parent="AppTheme.NoActionBar">
@@ -557,7 +589,7 @@
         <item name="colorAccent">@color/secondaryColorDeepOrangeNight</item>
         <item name="colorCard">@color/cardColorDeepOrangeNight</item>
         <item name="colorBackground">@color/backgroundColorDeepOrangeNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorDeepOrangeNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorDeepOrangeNight</item>
         <item name="colorLine">@color/lineColorDeepOrangeNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepOrangeNight</item>
         <item name="colorIcon">@color/iconColorDeepOrangeNight</item>
@@ -565,6 +597,7 @@
         <item name="colorMusk">@color/muskColorOrangeNight</item>
         <item name="colorSnackText">@color/snackTextOrangeNight</item>
         <item name="colorErrorText">@color/snackErrorOrangeNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorOrangeNight</item>
     </style>
 
     <style name="AppTheme.BROWN" parent="AppTheme.NoActionBar">
@@ -574,7 +607,7 @@
         <item name="colorAccent">@color/secondaryColorBrown</item>
         <item name="colorCard">@color/cardColorBrown</item>
         <item name="colorBackground">@color/backgroundColorBrown</item>
-        <item name="colorPopupMenu">@color/popupMenuColorBrown</item>
+        <item name="android:itemBackground">@color/popupMenuColorBrown</item>
         <item name="colorLine">@color/lineColorBrown</item>
         <item name="colorIconSettings">@color/iconSettingsColorBrown</item>
         <item name="colorIcon">@color/iconColorBrown</item>
@@ -582,6 +615,7 @@
         <item name="colorMusk">@color/muskColorBrown</item>
         <item name="colorSnackText">@color/snackTextBrown</item>
         <item name="colorErrorText">@color/snackErrorBrown</item>
+        <item name="colorMenuIcon">@color/iconMenuColorBrown</item>
     </style>
 
     <style name="AppTheme.BROWN.Night" parent="AppTheme.NoActionBar">
@@ -591,7 +625,7 @@
         <item name="colorAccent">@color/secondaryColorBrownNight</item>
         <item name="colorCard">@color/cardColorBrownNight</item>
         <item name="colorBackground">@color/backgroundColorBrownNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorBrownNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorBrownNight</item>
         <item name="colorLine">@color/lineColorBrownNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorBrownNight</item>
         <item name="colorIcon">@color/iconColorBrownNight</item>
@@ -599,6 +633,7 @@
         <item name="colorMusk">@color/muskColorBrownNight</item>
         <item name="colorSnackText">@color/snackTextBrownNight</item>
         <item name="colorErrorText">@color/snackErrorBrownNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorBrownNight</item>
     </style>
 
     <style name="AppTheme.GRAY" parent="AppTheme.NoActionBar">
@@ -608,7 +643,7 @@
         <item name="colorAccent">@color/secondaryColorGray</item>
         <item name="colorCard">@color/cardColorGray</item>
         <item name="colorBackground">@color/backgroundColorGray</item>
-        <item name="colorPopupMenu">@color/popupMenuColorGray</item>
+        <item name="android:itemBackground">@color/popupMenuColorGray</item>
         <item name="colorLine">@color/lineColorGray</item>
         <item name="colorIconSettings">@color/iconSettingsColorGray</item>
         <item name="colorIcon">@color/iconColorGray</item>
@@ -616,6 +651,7 @@
         <item name="colorMusk">@color/muskColorGray</item>
         <item name="colorSnackText">@color/snackTextGray</item>
         <item name="colorErrorText">@color/snackErrorGray</item>
+        <item name="colorMenuIcon">@color/iconMenuColorGray</item>
     </style>
 
     <style name="AppTheme.GRAY.Night" parent="AppTheme.NoActionBar">
@@ -625,14 +661,14 @@
         <item name="colorAccent">@color/secondaryColorGrayNight</item>
         <item name="colorCard">@color/cardColorGrayNight</item>
         <item name="colorBackground">@color/backgroundColorGrayNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorGrayNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorGrayNight</item>
         <item name="colorLine">@color/lineColorGrayNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorGrayNight</item>
         <item name="colorIcon">@color/iconColorGrayNight</item>
         <item name="colorQR">@color/QRColorGrayNight</item>
         <item name="colorMusk">@color/muskColorGrayNight</item>
         <item name="colorSnackText">@color/snackTextGrayNight</item>
-        <item name="colorErrorText">@color/snackErrorGrayNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorGrayNight</item>
     </style>
 
     <style name="AppTheme.BLUEGRAY" parent="AppTheme.NoActionBar">
@@ -642,7 +678,7 @@
         <item name="colorAccent">@color/secondaryColorBlueGray</item>
         <item name="colorCard">@color/cardColorBlueGray</item>
         <item name="colorBackground">@color/backgroundColorBlueGray</item>
-        <item name="colorPopupMenu">@color/popupMenuColorBlueGray</item>
+        <item name="android:itemBackground">@color/popupMenuColorBlueGray</item>
         <item name="colorLine">@color/lineColorBlueGray</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlueGray</item>
         <item name="colorIcon">@color/iconColorBlueGray</item>
@@ -650,6 +686,7 @@
         <item name="colorMusk">@color/muskColorBlueGray</item>
         <item name="colorSnackText">@color/snackTextBlueGray</item>
         <item name="colorErrorText">@color/snackErrorBlueGray</item>
+        <item name="colorMenuIcon">@color/iconMenuColorBlueGray</item>
     </style>
 
     <style name="AppTheme.BLUEGRAY.Night" parent="AppTheme.NoActionBar">
@@ -659,7 +696,7 @@
         <item name="colorAccent">@color/secondaryColorBlueGrayNight</item>
         <item name="colorCard">@color/cardColorBlueGrayNight</item>
         <item name="colorBackground">@color/backgroundColorBlueGrayNight</item>
-        <item name="colorPopupMenu">@color/popupMenuColorBlueGrayNight</item>
+        <item name="android:itemBackground">@color/popupMenuColorBlueGrayNight</item>
         <item name="colorLine">@color/lineColorBlueGrayNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlueGrayNight</item>
         <item name="colorIcon">@color/iconColorBlueGrayNight</item>
@@ -667,6 +704,7 @@
         <item name="colorMusk">@color/muskColorBlueGrayNight</item>
         <item name="colorSnackText">@color/snackTextBlueGrayNight</item>
         <item name="colorErrorText">@color/snackErrorBlueGrayNight</item>
+        <item name="colorMenuIcon">@color/iconMenuColorBlueGrayNight</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

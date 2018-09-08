@@ -49,7 +49,6 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
         setContentView(R.layout.activity_constructor)
         initActionBar()
         initColorPicker()
-        add.setColorFilter(ColorAttrUtil.getColorAccent(this))
         SwipeBackActivityHelper(this)
                 .apply {
 
