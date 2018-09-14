@@ -16,6 +16,7 @@
         android:id="@+id/qr_scan_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:muskColor="?attr/colorMusk"
         app:cornerBorderColor="?colorPrimary"
         app:centerLineColor="?colorAccent"/>
 
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:background="@color/colorMusk"
+        android:background="?attr/colorMusk"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <LinearLayout

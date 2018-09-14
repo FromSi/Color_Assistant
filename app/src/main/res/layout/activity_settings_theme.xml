@@ -23,6 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:background="?attr/colorBackgroundTitle"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:text="@string/night_mode" />
@@ -55,6 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:background="?attr/colorBackgroundTitle"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:text="@string/color_theme" />

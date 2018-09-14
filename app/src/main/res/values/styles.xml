@@ -8,10 +8,12 @@
         <item name="colorAccent">@color/secondaryColorAmber</item>
         <item name="colorCard">@color/cardColorRed</item>
         <item name="colorBackground">@color/backgroundColorRed</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorRed</item>
         <item name="android:itemBackground">@color/popupMenuColorRed</item>
         <item name="colorLine">@color/lineColorRed</item>
         <item name="colorIconSettings">@color/iconSettingsColorRed</item>
         <item name="colorIcon">@color/iconColorRed</item>
+        <item name="actionBarItemBackground">@color/iconColorRed</item>
         <item name="colorQR">@color/QRColorRed</item>
         <item name="colorMusk">@color/muskColorRed</item>
         <item name="colorSnackText">@color/snackTextRed</item>
@@ -31,6 +33,7 @@
         <item name="colorAccent">@color/secondaryColorRed</item>
         <item name="colorCard">@color/cardColorRed</item>
         <item name="colorBackground">@color/backgroundColorRed</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorRed</item>
         <item name="android:itemBackground">@color/popupMenuColorRed</item>
         <item name="colorLine">@color/lineColorRed</item>
         <item name="colorIconSettings">@color/iconSettingsColorRed</item>
@@ -49,6 +52,7 @@
         <item name="colorAccent">@color/secondaryColorRedNight</item>
         <item name="colorCard">@color/cardColorRedNight</item>
         <item name="colorBackground">@color/backgroundColorRedNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorRedNight</item>
         <item name="android:itemBackground">@color/popupMenuColorRedNight</item>
         <item name="colorLine">@color/lineColorRedNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorRedNight</item>
@@ -67,6 +71,7 @@
         <item name="colorAccent">@color/secondaryColorPink</item>
         <item name="colorCard">@color/cardColorPink</item>
         <item name="colorBackground">@color/backgroundColorPink</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorPink</item>
         <item name="android:itemBackground">@color/popupMenuColorPink</item>
         <item name="colorLine">@color/lineColorPink</item>
         <item name="colorIconSettings">@color/iconSettingsColorPink</item>
@@ -85,6 +90,7 @@
         <item name="colorAccent">@color/secondaryColorPinkNight</item>
         <item name="colorCard">@color/cardColorPinkNight</item>
         <item name="colorBackground">@color/backgroundColorPinkNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorPinkNight</item>
         <item name="android:itemBackground">@color/popupMenuColorPinkNight</item>
         <item name="colorLine">@color/lineColorPinkNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorPinkNight</item>
@@ -103,6 +109,7 @@
         <item name="colorAccent">@color/secondaryColorPurple</item>
         <item name="colorCard">@color/cardColorPurple</item>
         <item name="colorBackground">@color/backgroundColorPurple</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorPurple</item>
         <item name="android:itemBackground">@color/popupMenuColorPurple</item>
         <item name="colorLine">@color/lineColorPurple</item>
         <item name="colorIconSettings">@color/iconSettingsColorPurple</item>
@@ -121,6 +128,7 @@
         <item name="colorAccent">@color/secondaryColorPurpleNight</item>
         <item name="colorCard">@color/cardColorPurpleNight</item>
         <item name="colorBackground">@color/backgroundColorPurpleNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorPurpleNight</item>
         <item name="android:itemBackground">@color/popupMenuColorPurpleNight</item>
         <item name="colorLine">@color/lineColorPurpleNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorPurpleNight</item>
@@ -139,6 +147,7 @@
         <item name="colorAccent">@color/secondaryColorDeepPurple</item>
         <item name="colorCard">@color/cardColorDeepPurple</item>
         <item name="colorBackground">@color/backgroundColorDeepPurple</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorDeepPurple</item>
         <item name="android:itemBackground">@color/popupMenuColorDeepPurple</item>
         <item name="colorLine">@color/lineColorDeepPurple</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepPurple</item>
@@ -157,6 +166,7 @@
         <item name="colorAccent">@color/secondaryColorDeepPurpleNight</item>
         <item name="colorCard">@color/cardColorDeepPurpleNight</item>
         <item name="colorBackground">@color/backgroundColorDeepPurpleNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorDeepPurpleNight</item>
         <item name="android:itemBackground">@color/popupMenuColorDeepPurpleNight</item>
         <item name="colorLine">@color/lineColorDeepPurpleNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepPurpleNight</item>
@@ -175,6 +185,7 @@
         <item name="colorAccent">@color/secondaryColorIndigo</item>
         <item name="colorCard">@color/cardColorIndigo</item>
         <item name="colorBackground">@color/backgroundColorIndigo</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorIndigo</item>
         <item name="android:itemBackground">@color/popupMenuColorIndigo</item>
         <item name="colorLine">@color/lineColorIndigo</item>
         <item name="colorIconSettings">@color/iconSettingsColorIndigo</item>
@@ -193,6 +204,7 @@
         <item name="colorAccent">@color/secondaryColorIndigoNight</item>
         <item name="colorCard">@color/cardColorIndigoNight</item>
         <item name="colorBackground">@color/backgroundColorIndigoNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorIndigoNight</item>
         <item name="android:itemBackground">@color/popupMenuColorIndigoNight</item>
         <item name="colorLine">@color/lineColorIndigoNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorIndigoNight</item>
@@ -211,6 +223,7 @@
         <item name="colorAccent">@color/secondaryColorBlue</item>
         <item name="colorCard">@color/cardColorBlue</item>
         <item name="colorBackground">@color/backgroundColorBlue</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorBlue</item>
         <item name="android:itemBackground">@color/popupMenuColorBlue</item>
         <item name="colorLine">@color/lineColorBlue</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlue</item>
@@ -229,6 +242,7 @@
         <item name="colorAccent">@color/secondaryColorBlueNight</item>
         <item name="colorCard">@color/cardColorBlueNight</item>
         <item name="colorBackground">@color/backgroundColorBlueNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorBlueNight</item>
         <item name="android:itemBackground">@color/popupMenuColorBlueNight</item>
         <item name="colorLine">@color/lineColorBlueNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlueNight</item>
@@ -247,6 +261,7 @@
         <item name="colorAccent">@color/secondaryColorLightBlue</item>
         <item name="colorCard">@color/cardColorLightBlue</item>
         <item name="colorBackground">@color/backgroundColorLightBlue</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorLightBlue</item>
         <item name="android:itemBackground">@color/popupMenuColorLightBlue</item>
         <item name="colorLine">@color/lineColorLightBlue</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightBlue</item>
@@ -265,6 +280,7 @@
         <item name="colorAccent">@color/secondaryColorLightBlueNight</item>
         <item name="colorCard">@color/cardColorLightBlueNight</item>
         <item name="colorBackground">@color/backgroundColorLightBlueNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorLightBlueNight</item>
         <item name="android:itemBackground">@color/popupMenuColorLightBlueNight</item>
         <item name="colorLine">@color/lineColorLightBlueNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightBlueNight</item>
@@ -283,6 +299,7 @@
         <item name="colorAccent">@color/secondaryColorCyan</item>
         <item name="colorCard">@color/cardColorCyan</item>
         <item name="colorBackground">@color/backgroundColorCyan</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorCyan</item>
         <item name="android:itemBackground">@color/popupMenuColorCyan</item>
         <item name="colorLine">@color/lineColorCyan</item>
         <item name="colorIconSettings">@color/iconSettingsColorCyan</item>
@@ -301,6 +318,7 @@
         <item name="colorAccent">@color/secondaryColorCyanNight</item>
         <item name="colorCard">@color/cardColorCyanNight</item>
         <item name="colorBackground">@color/backgroundColorCyanNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorCyanNight</item>
         <item name="android:itemBackground">@color/popupMenuColorCyanNight</item>
         <item name="colorLine">@color/lineColorCyanNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorCyanNight</item>
@@ -319,6 +337,7 @@
         <item name="colorAccent">@color/secondaryColorTeal</item>
         <item name="colorCard">@color/cardColorTeal</item>
         <item name="colorBackground">@color/backgroundColorTeal</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorTeal</item>
         <item name="android:itemBackground">@color/popupMenuColorTeal</item>
         <item name="colorLine">@color/lineColorTeal</item>
         <item name="colorIconSettings">@color/iconSettingsColorTeal</item>
@@ -337,6 +356,7 @@
         <item name="colorAccent">@color/secondaryColorTealNight</item>
         <item name="colorCard">@color/cardColorTealNight</item>
         <item name="colorBackground">@color/backgroundColorTealNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorTealNight</item>
         <item name="android:itemBackground">@color/popupMenuColorTealNight</item>
         <item name="colorLine">@color/lineColorTealNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorTealNight</item>
@@ -355,6 +375,7 @@
         <item name="colorAccent">@color/secondaryColorGreen</item>
         <item name="colorCard">@color/cardColorGreen</item>
         <item name="colorBackground">@color/backgroundColorGreen</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorGreen</item>
         <item name="android:itemBackground">@color/popupMenuColorGreen</item>
         <item name="colorLine">@color/lineColorGreen</item>
         <item name="colorIconSettings">@color/iconSettingsColorGreen</item>
@@ -373,6 +394,7 @@
         <item name="colorAccent">@color/secondaryColorGreenNight</item>
         <item name="colorCard">@color/cardColorGreenNight</item>
         <item name="colorBackground">@color/backgroundColorGreenNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorGreenNight</item>
         <item name="android:itemBackground">@color/popupMenuColorGreenNight</item>
         <item name="colorLine">@color/lineColorGreenNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorGreenNight</item>
@@ -391,6 +413,7 @@
         <item name="colorAccent">@color/secondaryColorLightGreen</item>
         <item name="colorCard">@color/cardColorLightGreen</item>
         <item name="colorBackground">@color/backgroundColorLightGreen</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorLightGreen</item>
         <item name="android:itemBackground">@color/popupMenuColorLightGreen</item>
         <item name="colorLine">@color/lineColorLightGreen</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightGreen</item>
@@ -409,6 +432,7 @@
         <item name="colorAccent">@color/secondaryColorLightGreenNight</item>
         <item name="colorCard">@color/cardColorLightGreenNight</item>
         <item name="colorBackground">@color/backgroundColorLightGreenNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorLightGreenNight</item>
         <item name="android:itemBackground">@color/popupMenuColorLightGreenNight</item>
         <item name="colorLine">@color/lineColorLightGreenNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorLightGreenNight</item>
@@ -427,6 +451,7 @@
         <item name="colorAccent">@color/secondaryColorLime</item>
         <item name="colorCard">@color/cardColorLime</item>
         <item name="colorBackground">@color/backgroundColorLime</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorLime</item>
         <item name="android:itemBackground">@color/popupMenuColorLime</item>
         <item name="colorLine">@color/lineColorLime</item>
         <item name="colorIconSettings">@color/iconSettingsColorLime</item>
@@ -445,6 +470,7 @@
         <item name="colorAccent">@color/secondaryColorLimeNight</item>
         <item name="colorCard">@color/cardColorLimeNight</item>
         <item name="colorBackground">@color/backgroundColorLimeNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorLimeNight</item>
         <item name="android:itemBackground">@color/popupMenuColorLimeNight</item>
         <item name="colorLine">@color/lineColorLimeNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorLimeNight</item>
@@ -463,6 +489,7 @@
         <item name="colorAccent">@color/secondaryColorYellow</item>
         <item name="colorCard">@color/cardColorYellow</item>
         <item name="colorBackground">@color/backgroundColorYellow</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorYellow</item>
         <item name="android:itemBackground">@color/popupMenuColorYellow</item>
         <item name="colorLine">@color/lineColorYellow</item>
         <item name="colorIconSettings">@color/iconSettingsColorYellow</item>
@@ -481,6 +508,7 @@
         <item name="colorAccent">@color/secondaryColorYellowNight</item>
         <item name="colorCard">@color/cardColorYellowNight</item>
         <item name="colorBackground">@color/backgroundColorYellowNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorYellowNight</item>
         <item name="android:itemBackground">@color/popupMenuColorYellowNight</item>
         <item name="colorLine">@color/lineColorYellowNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorYellowNight</item>
@@ -499,6 +527,7 @@
         <item name="colorAccent">@color/secondaryColorAmber</item>
         <item name="colorCard">@color/cardColorAmber</item>
         <item name="colorBackground">@color/backgroundColorAmber</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorAmber</item>
         <item name="android:itemBackground">@color/popupMenuColorAmber</item>
         <item name="colorLine">@color/lineColorAmber</item>
         <item name="colorIconSettings">@color/iconSettingsColorAmber</item>
@@ -517,6 +546,7 @@
         <item name="colorAccent">@color/secondaryColorAmberNight</item>
         <item name="colorCard">@color/cardColorAmberNight</item>
         <item name="colorBackground">@color/backgroundColorAmberNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorAmberNight</item>
         <item name="android:itemBackground">@color/popupMenuColorAmberNight</item>
         <item name="colorLine">@color/lineColorAmberNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorAmberNight</item>
@@ -535,6 +565,7 @@
         <item name="colorAccent">@color/secondaryColorOrange</item>
         <item name="colorCard">@color/cardColorOrange</item>
         <item name="colorBackground">@color/backgroundColorOrange</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorOrange</item>
         <item name="android:itemBackground">@color/popupMenuColorOrange</item>
         <item name="colorLine">@color/lineColorOrange</item>
         <item name="colorIconSettings">@color/iconSettingsColorOrange</item>
@@ -553,6 +584,7 @@
         <item name="colorAccent">@color/secondaryColorOrangeNight</item>
         <item name="colorCard">@color/cardColorOrangeNight</item>
         <item name="colorBackground">@color/backgroundColorOrangeNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorOrangeNight</item>
         <item name="android:itemBackground">@color/popupMenuColorOrangeNight</item>
         <item name="colorLine">@color/lineColorOrangeNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorOrangeNight</item>
@@ -571,6 +603,7 @@
         <item name="colorAccent">@color/secondaryColorDeepOrange</item>
         <item name="colorCard">@color/cardColorDeepOrange</item>
         <item name="colorBackground">@color/backgroundColorDeepOrange</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorDeepOrange</item>
         <item name="android:itemBackground">@color/popupMenuColorDeepOrange</item>
         <item name="colorLine">@color/lineColorDeepOrange</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepOrange</item>
@@ -589,6 +622,7 @@
         <item name="colorAccent">@color/secondaryColorDeepOrangeNight</item>
         <item name="colorCard">@color/cardColorDeepOrangeNight</item>
         <item name="colorBackground">@color/backgroundColorDeepOrangeNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorDeepOrangeNight</item>
         <item name="android:itemBackground">@color/popupMenuColorDeepOrangeNight</item>
         <item name="colorLine">@color/lineColorDeepOrangeNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorDeepOrangeNight</item>
@@ -607,6 +641,7 @@
         <item name="colorAccent">@color/secondaryColorBrown</item>
         <item name="colorCard">@color/cardColorBrown</item>
         <item name="colorBackground">@color/backgroundColorBrown</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorBrown</item>
         <item name="android:itemBackground">@color/popupMenuColorBrown</item>
         <item name="colorLine">@color/lineColorBrown</item>
         <item name="colorIconSettings">@color/iconSettingsColorBrown</item>
@@ -625,6 +660,7 @@
         <item name="colorAccent">@color/secondaryColorBrownNight</item>
         <item name="colorCard">@color/cardColorBrownNight</item>
         <item name="colorBackground">@color/backgroundColorBrownNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorBrownNight</item>
         <item name="android:itemBackground">@color/popupMenuColorBrownNight</item>
         <item name="colorLine">@color/lineColorBrownNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorBrownNight</item>
@@ -643,6 +679,7 @@
         <item name="colorAccent">@color/secondaryColorGray</item>
         <item name="colorCard">@color/cardColorGray</item>
         <item name="colorBackground">@color/backgroundColorGray</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorGray</item>
         <item name="android:itemBackground">@color/popupMenuColorGray</item>
         <item name="colorLine">@color/lineColorGray</item>
         <item name="colorIconSettings">@color/iconSettingsColorGray</item>
@@ -661,6 +698,7 @@
         <item name="colorAccent">@color/secondaryColorGrayNight</item>
         <item name="colorCard">@color/cardColorGrayNight</item>
         <item name="colorBackground">@color/backgroundColorGrayNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorGrayNight</item>
         <item name="android:itemBackground">@color/popupMenuColorGrayNight</item>
         <item name="colorLine">@color/lineColorGrayNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorGrayNight</item>
@@ -678,6 +716,7 @@
         <item name="colorAccent">@color/secondaryColorBlueGray</item>
         <item name="colorCard">@color/cardColorBlueGray</item>
         <item name="colorBackground">@color/backgroundColorBlueGray</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorBlueGray</item>
         <item name="android:itemBackground">@color/popupMenuColorBlueGray</item>
         <item name="colorLine">@color/lineColorBlueGray</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlueGray</item>
@@ -696,6 +735,7 @@
         <item name="colorAccent">@color/secondaryColorBlueGrayNight</item>
         <item name="colorCard">@color/cardColorBlueGrayNight</item>
         <item name="colorBackground">@color/backgroundColorBlueGrayNight</item>
+        <item name="colorBackgroundTitle">@color/backgroundTitleColorBlueGrayNight</item>
         <item name="android:itemBackground">@color/popupMenuColorBlueGrayNight</item>
         <item name="colorLine">@color/lineColorBlueGrayNight</item>
         <item name="colorIconSettings">@color/iconSettingsColorBlueGrayNight</item>

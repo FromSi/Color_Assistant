@@ -15,13 +15,14 @@
     <color name="secondaryTextColorRed">#000000</color>
     <color name="popupMenuColorRed">#FFFFFF</color>
     <color name="backgroundColorRed">#FFFFFF</color>
+    <color name="backgroundTitleColorRed">#FFEBEE</color>
     <color name="QRColorRed">#FFC107</color>
     <color name="iconColorRed">#ffffff</color>
     <color name="iconMenuColorRed">#000000</color>
     <color name="iconSettingsColorRed">#F44336</color>
     <color name="lineColorRed">#E0E0E0</color>
     <color name="cardColorRed">#FFFFFF</color>
-    <color name="muskColorRed">#70000000</color>
+    <color name="muskColorRed">#70F44336</color>
     <color name="snackTextRed">#fff</color>
     <color name="snackErrorRed">#ff0000</color>
 
@@ -38,6 +39,7 @@
     <color name="popupMenuColorRedNight">#180301</color>
     <!--https://www.w3schools.com/colors/colors_picker.asp?colorhex=00ffff  5%  material.io-->
     <color name="backgroundColorRedNight">#180301</color>
+    <color name="backgroundTitleColorRedNight">#3f0d0d</color>
     <color name="QRColorRedNight">#FFC107</color>
     <color name="iconColorRedNight">#ffffff</color>
     <color name="iconMenuColorRedNight">#ffffff</color>
@@ -46,7 +48,7 @@
     <color name="lineColorRedNight">#E0E0E0</color>
     <!--https://www.w3schools.com/colors/colors_picker.asp?colorhex=00ffff  15% primaryColorRedNight-->
     <color name="cardColorRedNight">#3f0d0d</color>
-    <color name="muskColorRedNight">#70000000</color>
+    <color name="muskColorRedNight">#70610b05</color>
     <color name="snackTextRedNight">#fff</color>
     <color name="snackErrorRedNight">#ff0000</color>
 
@@ -59,13 +61,14 @@
     <color name="secondaryTextColorPink">#000000</color>
     <color name="popupMenuColorPink">#FFFFFF</color>
     <color name="backgroundColorPink">#FFFFFF</color>
+    <color name="backgroundTitleColorPink">#FCE4EC</color>
     <color name="QRColorPink">#448AFF</color>
     <color name="iconColorPink">#ffffff</color>
     <color name="iconMenuColorPink">#000000</color>
     <color name="iconSettingsColorPink">#E91E63</color>
     <color name="lineColorPink">#E0E0E0</color>
     <color name="cardColorPink">#FFFFFF</color>
-    <color name="muskColorPink">#70000000</color>
+    <color name="muskColorPink">#70E91E63</color>
     <color name="snackTextPink">#fff</color>
     <color name="snackErrorPink">#ff0000</color>
 
@@ -78,13 +81,14 @@
     <color name="secondaryTextColorPinkNight">#000000</color>
     <color name="popupMenuColorPinkNight">#170209</color>
     <color name="backgroundColorPinkNight">#170209</color>
+    <color name="backgroundTitleColorPinkNight">#440820</color>
     <color name="QRColorPinkNight">#448AFF</color>
     <color name="iconColorPinkNight">#ffffff</color>
     <color name="iconMenuColorPinkNight">#ffffff</color>
     <color name="iconSettingsColorPinkNight">#440820</color>
     <color name="lineColorPinkNight">#E0E0E0</color>
     <color name="cardColorPinkNight">#440820</color>
-    <color name="muskColorPinkNight">#70000000</color>
+    <color name="muskColorPinkNight">#705d0925</color>
     <color name="snackTextPinkNight">#fff</color>
     <color name="snackErrorPinkNight">#ff0000</color>
 
@@ -97,13 +101,14 @@
     <color name="secondaryTextColorPurple">#000000</color>
     <color name="popupMenuColorPurple">#FFFFFF</color>
     <color name="backgroundColorPurple">#FFFFFF</color>
+    <color name="backgroundTitleColorPurple">#F3E5F5</color>
     <color name="QRColorPurple">#CDDC39</color>
     <color name="iconColorPurple">#ffffff</color>
     <color name="iconMenuColorPurple">#000000</color>
     <color name="iconSettingsColorPurple">#9C27B0</color>
     <color name="lineColorPurple">#E0E0E0</color>
     <color name="cardColorPurple">#FFFFFF</color>
-    <color name="muskColorPurple">#70000000</color>
+    <color name="muskColorPurple">#709C27B0</color>
     <color name="snackTextPurple">#fff</color>
     <color name="snackErrorPurple">#ff0000</color>
 
@@ -116,13 +121,14 @@
     <color name="secondaryTextColorPurpleNight">#000000</color>
     <color name="popupMenuColorPurpleNight">#120515</color>
     <color name="backgroundColorPurpleNight">#120515</color>
+    <color name="backgroundTitleColorPurpleNight">#310c40</color>
     <color name="QRColorPurpleNight">#CDDC39</color>
     <color name="iconColorPurpleNight">#ffffff</color>
     <color name="iconMenuColorPurpleNight">#ffffff</color>
     <color name="iconSettingsColorPurpleNight">#310c40</color>
     <color name="lineColorPurpleNight">#E0E0E0</color>
     <color name="cardColorPurpleNight">#310c40</color>
-    <color name="muskColorPurpleNight">#70000000</color>
+    <color name="muskColorPurpleNight">#704a1254</color>
     <color name="snackTextPurpleNight">#fff</color>
     <color name="snackErrorPurpleNight">#ff0000</color>
 
@@ -135,13 +141,14 @@
     <color name="secondaryTextColorDeepPurple">#000000</color>
     <color name="popupMenuColorDeepPurple">#FFFFFF</color>
     <color name="backgroundColorDeepPurple">#FFFFFF</color>
+    <color name="backgroundTitleColorDeepPurple">#EDE7F6</color>
     <color name="QRColorDeepPurple">#FFEB3B</color>
     <color name="iconColorDeepPurple">#ffffff</color>
     <color name="iconMenuColorDeepPurple">#000000</color>
     <color name="iconSettingsColorDeepPurple">#673AB7</color>
     <color name="lineColorDeepPurple">#E0E0E0</color>
     <color name="cardColorDeepPurple">#FFFFFF</color>
-    <color name="muskColorDeepPurple">#70000000</color>
+    <color name="muskColorDeepPurple">#70673AB7</color>
     <color name="snackTextDeepPurple">#fff</color>
     <color name="snackErrorDeepPurple">#ff0000</color>
 
@@ -154,13 +161,14 @@
     <color name="secondaryTextColorDeepPurpleNight">#000000</color>
     <color name="popupMenuColorDeepPurpleNight">#0b0613</color>
     <color name="backgroundColorDeepPurpleNight">#0b0613</color>
+    <color name="backgroundTitleColorDeepPurpleNight">#1d103c</color>
     <color name="QRColorDeepPurpleNight">#FFEB3B</color>
     <color name="iconColorDeepPurpleNight">#ffffff</color>
     <color name="iconMenuColorDeepPurpleNight">#ffffff</color>
     <color name="iconSettingsColorDeepPurpleNight">#1d103c</color>
     <color name="lineColorDeepPurpleNight">#E0E0E0</color>
     <color name="cardColorDeepPurpleNight">#1d103c</color>
-    <color name="muskColorDeepPurpleNight">#70000000</color>
+    <color name="muskColorDeepPurpleNight">#702c184e</color>
     <color name="snackTextDeepPurpleNight">#fff</color>
     <color name="snackErrorDeepPurpleNight">#ff0000</color>
 
@@ -173,13 +181,14 @@
     <color name="secondaryTextColorIndigo">#000000</color>
     <color name="popupMenuColorIndigo">#FFFFFF</color>
     <color name="backgroundColorIndigo">#FFFFFF</color>
+    <color name="backgroundTitleColorIndigo">#E8EAF6</color>
     <color name="QRColorIndigo">#FF9800</color>
     <color name="iconColorIndigo">#ffffff</color>
     <color name="iconMenuColorIndigo">#000000</color>
     <color name="iconSettingsColorIndigo">#3F51B5</color>
     <color name="lineColorIndigo">#E0E0E0</color>
     <color name="cardColorIndigo">#FFFFFF</color>
-    <color name="muskColorIndigo">#70000000</color>
+    <color name="muskColorIndigo">#703F51B5</color>
     <color name="snackTextIndigo">#fff</color>
     <color name="snackErrorIndigo">#ff0000</color>
 
@@ -192,13 +201,14 @@
     <color name="secondaryTextColorIndigoNight">#000000</color>
     <color name="popupMenuColorIndigoNight">#070813</color>
     <color name="backgroundColorIndigoNight">#070813</color>
+    <color name="backgroundTitleColorIndigoNight">#12173b</color>
     <color name="QRColorIndigoNight">#FF9800</color>
     <color name="iconColorIndigoNight">#ffffff</color>
     <color name="iconMenuColorIndigoNight">#ffffff</color>
     <color name="iconSettingsColorIndigoNight">#12173b</color>
     <color name="lineColorIndigoNight">#E0E0E0</color>
     <color name="cardColorIndigoNight">#12173b</color>
-    <color name="muskColorIndigoNight">#70000000</color>
+    <color name="muskColorIndigoNight">#701b224b</color>
     <color name="snackTextIndigoNight">#fff</color>
     <color name="snackErrorIndigoNight">#ff0000</color>
 
@@ -211,13 +221,14 @@
     <color name="secondaryTextColorBlue">#000000</color>
     <color name="popupMenuColorBlue">#FFFFFF</color>
     <color name="backgroundColorBlue">#FFFFFF</color>
+    <color name="backgroundTitleColorBlue">#E3F2FD</color>
     <color name="QRColorBlue">#607D8B</color>
     <color name="iconColorBlue">#ffffff</color>
     <color name="iconMenuColorBlue">#000000</color>
     <color name="iconSettingsColorBlue">#1e88e5</color>
     <color name="lineColorBlue">#E0E0E0</color>
     <color name="cardColorBlue">#FFFFFF</color>
-    <color name="muskColorBlue">#70000000</color>
+    <color name="muskColorBlue">#701e88e5</color>
     <color name="snackTextBlue">#fff</color>
     <color name="snackErrorBlue">#ff0000</color>
 
@@ -230,13 +241,14 @@
     <color name="secondaryTextColorBlueNight">#000000</color>
     <color name="popupMenuColorBlueNight">#030d17</color>
     <color name="backgroundColorBlueNight">#030d17</color>
+    <color name="backgroundTitleColorBlueNight">#00284d</color>
     <color name="QRColorBlueNight">#607D8B</color>
     <color name="iconColorBlueNight">#ffffff</color>
     <color name="iconMenuColorBlueNight">#ffffff</color>
     <color name="iconSettingsColorBlueNight">#00284d</color>
     <color name="lineColorBlueNight">#E0E0E0</color>
     <color name="cardColorBlueNight">#00284d</color>
-    <color name="muskColorBlueNight">#70000000</color>
+    <color name="muskColorBlueNight">#700b365b</color>
     <color name="snackTextBlueNight">#fff</color>
     <color name="snackErrorBlueNight">#ff0000</color>
 
@@ -249,13 +261,14 @@
     <color name="secondaryTextColorLightBlue">#000000</color>
     <color name="popupMenuColorLightBlue">#FFFFFF</color>
     <color name="backgroundColorLightBlue">#FFFFFF</color>
+    <color name="backgroundTitleColorLightBlue">#E1F5FE</color>
     <color name="QRColorLightBlue">#CDDC39</color>
     <color name="iconColorLightBlue">#ffffff</color>
     <color name="iconMenuColorLightBlue">#000000</color>
     <color name="iconSettingsColorLightBlue">#039be5</color>
     <color name="lineColorLightBlue">#E0E0E0</color>
     <color name="cardColorLightBlue">#FFFFFF</color>
-    <color name="muskColorLightBlue">#70000000</color>
+    <color name="muskColorLightBlue">#70039be5</color>
     <color name="snackTextLightBlue">#fff</color>
     <color name="snackErrorLightBlue">#ff0000</color>
 
@@ -268,13 +281,14 @@
     <color name="secondaryTextColorLightBlueNight">#000000</color>
     <color name="popupMenuColorLightBlueNight">#001119</color>
     <color name="backgroundColorLightBlueNight">#001119</color>
+    <color name="backgroundTitleColorLightBlueNight">#002f4d</color>
     <color name="QRColorLightBlueNight">#CDDC39</color>
     <color name="iconColorLightBlueNight">#ffffff</color>
     <color name="iconMenuColorLightBlueNight">#ffffff</color>
     <color name="iconSettingsColorLightBlueNight">#002f4d</color>
     <color name="lineColorLightBlueNight">#E0E0E0</color>
     <color name="cardColorLightBlueNight">#002f4d</color>
-    <color name="muskColorLightBlueNight">#70000000</color>
+    <color name="muskColorLightBlueNight">#70024364</color>
     <color name="snackTextLightBlueNight">#fff</color>
     <color name="snackErrorLightBlueNight">#ff0000</color>
 
@@ -287,13 +301,14 @@
     <color name="secondaryTextColorCyan">#000000</color>
     <color name="popupMenuColorCyan">#FFFFFF</color>
     <color name="backgroundColorCyan">#FFFFFF</color>
+    <color name="backgroundTitleColorCyan">#E0F7FA</color>
     <color name="QRColorCyan">#f50057</color>
     <color name="iconColorCyan">#ffffff</color>
     <color name="iconMenuColorCyan">#000000</color>
     <color name="iconSettingsColorCyan">#00acc1</color>
     <color name="lineColorCyan">#E0E0E0</color>
     <color name="cardColorCyan">#FFFFFF</color>
-    <color name="muskColorCyan">#70000000</color>
+    <color name="muskColorCyan">#7000acc1</color>
     <color name="snackTextCyan">#fff</color>
     <color name="snackErrorCyan">#ff0000</color>
 
@@ -306,13 +321,14 @@
     <color name="secondaryTextColorCyanNight">#000000</color>
     <color name="popupMenuColorCyanNight">#00171a</color>
     <color name="backgroundColorCyanNight">#00171a</color>
+    <color name="backgroundTitleColorCyanNight">#00414d</color>
     <color name="QRColorCyanNight">#f50057</color>
     <color name="iconColorCyanNight">#ffffff</color>
     <color name="iconMenuColorCyanNight">#ffffff</color>
     <color name="iconSettingsColorCyanNight">#00414d</color>
     <color name="lineColorCyanNight">#E0E0E0</color>
     <color name="cardColorCyanNight">#00414d</color>
-    <color name="muskColorCyanNight">#70000000</color>
+    <color name="muskColorCyanNight">#70005a66</color>
     <color name="snackTextCyanNight">#fff</color>
     <color name="snackErrorCyanNight">#ff0000</color>
 
@@ -325,13 +341,14 @@
     <color name="secondaryTextColorTeal">#000000</color>
     <color name="popupMenuColorTeal">#FFFFFF</color>
     <color name="backgroundColorTeal">#FFFFFF</color>
+    <color name="backgroundTitleColorTeal">#E0F2F1</color>
     <color name="QRColorTeal">#ffd180</color>
     <color name="iconColorTeal">#ffffff</color>
     <color name="iconMenuColorTeal">#000000</color>
     <color name="iconSettingsColorTeal">#00796b</color>
     <color name="lineColorTeal">#E0E0E0</color>
     <color name="cardColorTeal">#FFFFFF</color>
-    <color name="muskColorTeal">#70000000</color>
+    <color name="muskColorTeal">#7000796b</color>
     <color name="snackTextTeal">#fff</color>
     <color name="snackErrorTeal">#ff0000</color>
 
@@ -344,13 +361,14 @@
     <color name="secondaryTextColorTealNight">#000000</color>
     <color name="popupMenuColorTealNight">#001a17</color>
     <color name="backgroundColorTealNight">#001a17</color>
+    <color name="backgroundTitleColorTealNight">#004c40</color>
     <color name="QRColorTealNight">#ffd180</color>
     <color name="iconColorTealNight">#ffffff</color>
     <color name="iconMenuColorTealNight">#ffffff</color>
     <color name="iconSettingsColorTealNight">#004c40</color>
     <color name="lineColorTealNight">#E0E0E0</color>
     <color name="cardColorTealNight">#004c40</color>
-    <color name="muskColorTealNight">#70000000</color>
+    <color name="muskColorTealNight">#7000665a</color>
     <color name="snackTextTealNight">#fff</color>
     <color name="snackErrorTealNight">#ff0000</color>
 
@@ -363,13 +381,14 @@
     <color name="secondaryTextColorGreen">#000000</color>
     <color name="popupMenuColorGreen">#FFFFFF</color>
     <color name="backgroundColorGreen">#FFFFFF</color>
+    <color name="backgroundTitleColorGreen">#E8F5E9</color>
     <color name="QRColorGreen">#00BCD4</color>
     <color name="iconColorGreen">#ffffff</color>
     <color name="iconMenuColorGreen">#000000</color>
     <color name="iconSettingsColorGreen">#4CAF50</color>
     <color name="lineColorGreen">#E0E0E0</color>
     <color name="cardColorGreen">#FFFFFF</color>
-    <color name="muskColorGreen">#70000000</color>
+    <color name="muskColorGreen">#704CAF50</color>
     <color name="snackTextGreen">#fff</color>
     <color name="snackErrorGreen">#ff0000</color>
 
@@ -382,13 +401,14 @@
     <color name="secondaryTextColorGreenNight">#000000</color>
     <color name="popupMenuColorGreenNight">#081208</color>
     <color name="backgroundColorGreenNight">#081208</color>
+    <color name="backgroundTitleColorGreenNight">#163717</color>
     <color name="QRColorGreenNight">#00BCD4</color>
     <color name="iconColorGreenNight">#ffffff</color>
     <color name="iconMenuColorGreenNight">#ffffff</color>
     <color name="iconSettingsColorGreenNight">#163717</color>
     <color name="lineColorGreenNight">#E0E0E0</color>
     <color name="cardColorGreenNight">#163717</color>
-    <color name="muskColorGreenNight">#70000000</color>
+    <color name="muskColorGreenNight">#701f4720</color>
     <color name="snackTextGreenNight">#fff</color>
     <color name="snackErrorGreenNight">#ff0000</color>
 
@@ -401,13 +421,14 @@
     <color name="secondaryTextColorLightGreen">#000000</color>
     <color name="popupMenuColorLightGreen">#FFFFFF</color>
     <color name="backgroundColorLightGreen">#FFFFFF</color>
+    <color name="backgroundTitleColorLightGreen">#F1F8E9</color>
     <color name="QRColorLightGreen">#448AFF</color>
     <color name="iconColorLightGreen">#ffffff</color>
     <color name="iconMenuColorLightGreen">#000000</color>
     <color name="iconSettingsColorLightGreen">#8BC34A</color>
     <color name="lineColorLightGreen">#E0E0E0</color>
     <color name="cardColorLightGreen">#FFFFFF</color>
-    <color name="muskColorLightGreen">#70000000</color>
+    <color name="muskColorLightGreen">#708BC34A</color>
     <color name="snackTextLightGreen">#fff</color>
     <color name="snackErrorLightGreen">#ff0000</color>
 
@@ -420,13 +441,14 @@
     <color name="secondaryTextColorLightGreenNight">#000000</color>
     <color name="popupMenuColorLightGreenNight">#0d1306</color>
     <color name="backgroundColorLightGreenNight">#0d1306</color>
+    <color name="backgroundTitleColorLightGreenNight">#253914</color>
     <color name="QRColorLightGreenNight">#448AFF</color>
     <color name="iconColorLightGreenNight">#ffffff</color>
     <color name="iconMenuColorLightGreenNight">#ffffff</color>
     <color name="iconSettingsColorLightGreenNight">#253914</color>
     <color name="lineColorLightGreenNight">#E0E0E0</color>
     <color name="cardColorLightGreenNight">#253914</color>
-    <color name="muskColorLightGreenNight">#70000000</color>
+    <color name="muskColorLightGreenNight">#70354d19</color>
     <color name="snackTextLightGreenNight">#fff</color>
     <color name="snackErrorLightGreenNight">#ff0000</color>
 
@@ -439,13 +461,14 @@
     <color name="secondaryTextColorLime">#000000</color>
     <color name="popupMenuColorLime">#FFFFFF</color>
     <color name="backgroundColorLime">#FFFFFF</color>
+    <color name="backgroundTitleColorLime">#F9FBE7</color>
     <color name="QRColorLime">#7C4DFF</color>
     <color name="iconColorLime">#ffffff</color>
     <color name="iconMenuColorLime">#000000</color>
     <color name="iconSettingsColorLime">#CDDC39</color>
     <color name="lineColorLime">#E0E0E0</color>
     <color name="cardColorLime">#FFFFFF</color>
-    <color name="muskColorLime">#70000000</color>
+    <color name="muskColorLime">#70CDDC39</color>
     <color name="snackTextLime">#fff</color>
     <color name="snackErrorLime">#ff0000</color>
 
@@ -458,13 +481,14 @@
     <color name="secondaryTextColorLimeNight">#000000</color>
     <color name="popupMenuColorLimeNight">#141604</color>
     <color name="backgroundColorLimeNight">#141604</color>
+    <color name="backgroundTitleColorLimeNight">#3c3e0f</color>
     <color name="QRColorLimeNight">#7C4DFF</color>
     <color name="iconColorLimeNight">#ffffff</color>
     <color name="iconMenuColorLimeNight">#ffffff</color>
     <color name="iconSettingsColorLimeNight">#3c3e0f</color>
     <color name="lineColorLimeNight">#E0E0E0</color>
     <color name="cardColorLimeNight">#3c3e0f</color>
-    <color name="muskColorLimeNight">#70000000</color>
+    <color name="muskColorLimeNight">#7050570f</color>
     <color name="snackTextLimeNight">#fff</color>
     <color name="snackErrorLimeNight">#ff0000</color>
 
@@ -477,13 +501,14 @@
     <color name="secondaryTextColorYellow">#000000</color>
     <color name="popupMenuColorYellow">#FFFFFF</color>
     <color name="backgroundColorYellow">#FFFFFF</color>
+    <color name="backgroundTitleColorYellow">#FFFDE7</color>
     <color name="QRColorYellow">#536DFE</color>
     <color name="iconColorYellow">#ffffff</color>
     <color name="iconMenuColorYellow">#000000</color>
     <color name="iconSettingsColorYellow">#FFEB3B</color>
     <color name="lineColorYellow">#E0E0E0</color>
     <color name="cardColorYellow">#FFFFFF</color>
-    <color name="muskColorYellow">#70000000</color>
+    <color name="muskColorYellow">#70FFEB3B</color>
     <color name="snackTextYellow">#fff</color>
     <color name="snackErrorYellow">#ff0000</color>
 
@@ -496,13 +521,14 @@
     <color name="secondaryTextColorYellowNight">#000000</color>
     <color name="popupMenuColorYellowNight">#1a1700</color>
     <color name="backgroundColorYellowNight">#1a1700</color>
+    <color name="backgroundTitleColorYellowNight">#4b3602</color>
     <color name="QRColorYellowNight">#536DFE</color>
     <color name="iconColorYellowNight">#ffffff</color>
     <color name="iconMenuColorYellowNight">#ffffff</color>
     <color name="iconSettingsColorYellowNight">#4b3602</color>
     <color name="lineColorYellowNight">#E0E0E0</color>
     <color name="cardColorYellowNight">#4b3602</color>
-    <color name="muskColorYellowNight">#70000000</color>
+    <color name="muskColorYellowNight">#70665c00</color>
     <color name="snackTextYellowNight">#fff</color>
     <color name="snackErrorYellowNight">#ff0000</color>
 
@@ -515,13 +541,14 @@
     <color name="secondaryTextColorAmber">#000000</color>
     <color name="popupMenuColorAmber">#FFFFFF</color>
     <color name="backgroundColorAmber">#FFFFFF</color>
+    <color name="backgroundTitleColorAmber">#FFF8E1</color>
     <color name="QRColorAmber">#03A9F4</color>
     <color name="iconColorAmber">#ffffff</color>
     <color name="iconMenuColorAmber">#000000</color>
     <color name="iconSettingsColorAmber">#FFC107</color>
     <color name="lineColorAmber">#E0E0E0</color>
     <color name="cardColorAmber">#FFFFFF</color>
-    <color name="muskColorAmber">#70000000</color>
+    <color name="muskColorAmber">#70FFC107</color>
     <color name="snackTextAmber">#fff</color>
     <color name="snackErrorAmber">#ff0000</color>
 
@@ -534,13 +561,14 @@
     <color name="secondaryTextColorAmberNight">#000000</color>
     <color name="popupMenuColorAmberNight">#1a1300</color>
     <color name="backgroundColorAmberNight">#1a1300</color>
+    <color name="backgroundTitleColorAmberNight">#4d3000</color>
     <color name="QRColorAmberNight">#03A9F4</color>
     <color name="iconColorAmberNight">#ffffff</color>
     <color name="iconMenuColorAmberNight">#ffffff</color>
     <color name="iconSettingsColorAmberNight">#4d3000</color>
     <color name="lineColorAmberNight">#E0E0E0</color>
     <color name="cardColorAmberNight">#4d3000</color>
-    <color name="muskColorAmberNight">#70000000</color>
+    <color name="muskColorAmberNight">#70664d00</color>
     <color name="snackTextAmberNight">#fff</color>
     <color name="snackErrorAmberNight">#ff0000</color>
 
@@ -553,13 +581,14 @@
     <color name="secondaryTextColorOrange">#000000</color>
     <color name="popupMenuColorOrange">#FFFFFF</color>
     <color name="backgroundColorOrange">#FFFFFF</color>
+    <color name="backgroundTitleColorOrange">#FFF3E0</color>
     <color name="QRColorOrange">#8BC34A</color>
     <color name="iconColorOrange">#ffffff</color>
     <color name="iconMenuColorOrange">#000000</color>
     <color name="iconSettingsColorOrange">#FF9800</color>
     <color name="lineColorOrange">#E0E0E0</color>
     <color name="cardColorOrange">#FFFFFF</color>
-    <color name="muskColorOrange">#70000000</color>
+    <color name="muskColorOrange">#70FF9800</color>
     <color name="snackTextOrange">#fff</color>
     <color name="snackErrorOrange">#ff0000</color>
 
@@ -572,13 +601,14 @@
     <color name="secondaryTextColorOrangeNight">#000000</color>
     <color name="popupMenuColorOrangeNight">#1a0f00</color>
     <color name="backgroundColorOrangeNight">#1a0f00</color>
+    <color name="backgroundTitleColorOrangeNight">#4d2600</color>
     <color name="QRColorOrangeNight">#8BC34A</color>
     <color name="iconColorOrangeNight">#ffffff</color>
     <color name="iconMenuColorOrangeNight">#ffffff</color>
     <color name="iconSettingsColorOrangeNight">#4d2600</color>
     <color name="lineColorOrangeNight">#E0E0E0</color>
     <color name="cardColorOrangeNight">#4d2600</color>
-    <color name="muskColorOrangeNight">#70000000</color>
+    <color name="muskColorOrangeNight">#70663d00</color>
     <color name="snackTextOrangeNight">#fff</color>
     <color name="snackErrorOrangeNight">#ff0000</color>
 
@@ -591,13 +621,14 @@
     <color name="secondaryTextColorDeepOrange">#000000</color>
     <color name="popupMenuColorDeepOrange">#FFFFFF</color>
     <color name="backgroundColorDeepOrange">#FFFFFF</color>
+    <color name="backgroundTitleColorDeepOrange">#FBE9E7</color>
     <color name="QRColorDeepOrange">#00BCD4</color>
     <color name="iconColorDeepOrange">#ffffff</color>
     <color name="iconMenuColorDeepOrange">#000000</color>
     <color name="iconSettingsColorDeepOrange">#FF5722</color>
     <color name="lineColorDeepOrange">#E0E0E0</color>
     <color name="cardColorDeepOrange">#FFFFFF</color>
-    <color name="muskColorDeepOrange">#70000000</color>
+    <color name="muskColorDeepOrange">#70FF5722</color>
     <color name="snackTextDeepOrange">#fff</color>
     <color name="snackErrorDeepOrange">#ff0000</color>
 
@@ -610,13 +641,14 @@
     <color name="secondaryTextColorDeepOrangeNight">#000000</color>
     <color name="popupMenuColorDeepOrangeNight">#1a0600</color>
     <color name="backgroundColorDeepOrangeNight">#1a0600</color>
+    <color name="backgroundTitleColorDeepOrangeNight">#451608</color>
     <color name="QRColorDeepOrangeNight">#00BCD4</color>
     <color name="iconColorDeepOrangeNight">#ffffff</color>
     <color name="iconMenuColorDeepOrangeNight">#ffffff</color>
     <color name="iconSettingsColorDeepOrangeNight">#451608</color>
     <color name="lineColorDeepOrangeNight">#E0E0E0</color>
     <color name="cardColorDeepOrangeNight">#451608</color>
-    <color name="muskColorDeepOrangeNight">#70000000</color>
+    <color name="muskColorDeepOrangeNight">#70661800</color>
     <color name="snackTextDeepOrangeNight">#fff</color>
     <color name="snackErrorDeepOrangeNight">#ff0000</color>
 
@@ -629,13 +661,14 @@
     <color name="secondaryTextColorBrown">#000000</color>
     <color name="popupMenuColorBrown">#FFFFFF</color>
     <color name="backgroundColorBrown">#FFFFFF</color>
+    <color name="backgroundTitleColorBrown">#EFEBE9</color>
     <color name="QRColorBrown">#FFC107</color>
     <color name="iconColorBrown">#ffffff</color>
     <color name="iconMenuColorBrown">#000000</color>
     <color name="iconSettingsColorBrown">#795548</color>
     <color name="lineColorBrown">#E0E0E0</color>
     <color name="cardColorBrown">#FFFFFF</color>
-    <color name="muskColorBrown">#70000000</color>
+    <color name="muskColorBrown">#70795548</color>
     <color name="snackTextBrown">#fff</color>
     <color name="snackErrorBrown">#ff0000</color>
 
@@ -648,13 +681,14 @@
     <color name="secondaryTextColorBrownNight">#000000</color>
     <color name="popupMenuColorBrownNight">#100b0a</color>
     <color name="backgroundColorBrownNight">#100b0a</color>
+    <color name="backgroundTitleColorBrownNight">#30211c</color>
     <color name="QRColorBrownNight">#FFC107</color>
     <color name="iconColorBrownNight">#ffffff</color>
     <color name="iconMenuColorBrownNight">#ffffff</color>
     <color name="iconSettingsColorBrownNight">#30211c</color>
     <color name="lineColorBrownNight">#E0E0E0</color>
     <color name="cardColorBrownNight">#30211c</color>
-    <color name="muskColorBrownNight">#70000000</color>
+    <color name="muskColorBrownNight">#70402d26</color>
     <color name="snackTextBrownNight">#fff</color>
     <color name="snackErrorBrownNight">#ff0000</color>
 
@@ -667,13 +701,14 @@
     <color name="secondaryTextColorGray">#000000</color>
     <color name="popupMenuColorGray">#FFFFFF</color>
     <color name="backgroundColorGray">#FFFFFF</color>
+    <color name="backgroundTitleColorGray">#FAFAFA</color>
     <color name="QRColorGray">#536DFE</color>
     <color name="iconColorGray">#ffffff</color>
     <color name="iconMenuColorGray">#000000</color>
     <color name="iconSettingsColorGray">#9E9E9E</color>
     <color name="lineColorGray">#E0E0E0</color>
     <color name="cardColorGray">#FFFFFF</color>
-    <color name="muskColorGray">#70000000</color>
+    <color name="muskColorGray">#709E9E9E</color>
     <color name="snackTextGray">#fff</color>
     <color name="snackErrorGray">#ff0000</color>
 
@@ -686,13 +721,14 @@
     <color name="secondaryTextColorGrayNight">#000000</color>
     <color name="popupMenuColorGrayNight">#0d0d0d</color>
     <color name="backgroundColorGrayNight">#0d0d0d</color>
+    <color name="backgroundTitleColorGrayNight">#262626</color>
     <color name="QRColorGrayNight">#536DFE</color>
     <color name="iconColorGrayNight">#ffffff</color>
     <color name="iconMenuColorGrayNight">#ffffff</color>
     <color name="iconSettingsColorGrayNight">#262626</color>
     <color name="lineColorGrayNight">#E0E0E0</color>
     <color name="cardColorGrayNight">#262626</color>
-    <color name="muskColorGrayNight">#70000000</color>
+    <color name="muskColorGrayNight">#70333333</color>
     <color name="snackTextGrayNight">#fff</color>
     <color name="snackErrorGrayNight">#ff0000</color>
 
@@ -705,13 +741,14 @@
     <color name="secondaryTextColorBlueGray">#000000</color>
     <color name="popupMenuColorBlueGray">#FFFFFF</color>
     <color name="backgroundColorBlueGray">#FFFFFF</color>
+    <color name="backgroundTitleColorBlueGray">#ECEFF1</color>
     <color name="QRColorBlueGray">#CDDC39</color>
     <color name="iconColorBlueGray">#ffffff</color>
     <color name="iconMenuColorBlueGray">#000000</color>
     <color name="iconSettingsColorBlueGray">#607D8B</color>
     <color name="lineColorBlueGray">#E0E0E0</color>
     <color name="cardColorBlueGray">#FFFFFF</color>
-    <color name="muskColorBlueGray">#70000000</color>
+    <color name="muskColorBlueGray">#70607D8B</color>
     <color name="snackTextBlueGray">#fff</color>
     <color name="snackErrorBlueGray">#ff0000</color>
 
@@ -724,13 +761,14 @@
     <color name="secondaryTextColorBlueGrayNight">#000000</color>
     <color name="popupMenuColorBlueGrayNight">#0a0e0f</color>
     <color name="backgroundColorBlueGrayNight">#0a0e0f</color>
+    <color name="backgroundTitleColorBlueGrayNight">#1f292d</color>
     <color name="QRColorBlueGrayNight">#CDDC39</color>
     <color name="iconColorBlueGrayNight">#ffffff</color>
     <color name="iconMenuColorBlueGrayNight">#ffffff</color>
     <color name="iconSettingsColorBlueGrayNight">#1f292d</color>
     <color name="lineColorBlueGrayNight">#E0E0E0</color>
     <color name="cardColorBlueGrayNight">#1f292d</color>
-    <color name="muskColorBlueGrayNight">#70000000</color>
+    <color name="muskColorBlueGrayNight">#702a363c</color>
     <color name="snackTextBlueGrayNight">#fff</color>
     <color name="snackErrorBlueGrayNight">#ff0000</color>
 </resources>

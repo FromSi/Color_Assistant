@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.f_settings.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.mvp.presenter.SettingsPresenter
 import kz.sgq.colorassistant.mvp.view.SettingsView
+import kz.sgq.colorassistant.ui.util.ColorAttrUtil
 import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
@@ -58,11 +59,15 @@ class SettingsActivity : MvpAppCompatActivity(), SettingsView {
         for (i in 0 until menu.childCount) {
             menu.getChildAt(i).title.text = resources.getStringArray(R.array.settings_title)[i]
 
-            menu.getChildAt(i).icon.setImageDrawable(
-                    resources
-                            .obtainTypedArray(R.array.settings_icon)
-                            .getDrawable(i)
-            )
+            menu.getChildAt(i).icon.apply {
+
+                setImageDrawable(
+                        resources
+                                .obtainTypedArray(R.array.settings_icon)
+                                .getDrawable(i)
+                )
+                setColorFilter(ColorAttrUtil.getColorPrimary(this@SettingsActivity))
+            }
         }
     }
 

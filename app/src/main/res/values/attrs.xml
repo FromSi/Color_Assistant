@@ -6,6 +6,7 @@
 
     <attr name="colorCard" format="color" />
     <attr name="colorBackground" format="color" />
+    <attr name="colorBackgroundTitle" format="color" />
     <attr name="colorPopupMenu" format="color" />
     <attr name="colorLine" format="color" />
     <attr name="colorIconSettings" format="color" />
