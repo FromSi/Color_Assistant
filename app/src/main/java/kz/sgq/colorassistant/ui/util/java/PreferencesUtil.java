@@ -34,6 +34,16 @@ public class PreferencesUtil {
         );
     }
 
+    public static int getThemeDialogId(Context context) {
+        return ThemeUtil.getThemeDialogId(
+                ThemeStyle.valueOf(
+                        context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+                                .getString("theme_color", "RED")
+                ),
+                getNightMode(context)
+        );
+    }
+
     public static int getNightMode(Context context) {
         return context.getSharedPreferences("settings", Context.MODE_PRIVATE)
                 .getInt("night_mode", AppCompatDelegate.MODE_NIGHT_NO);

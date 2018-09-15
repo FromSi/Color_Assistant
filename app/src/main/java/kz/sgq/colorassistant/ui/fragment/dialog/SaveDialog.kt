@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 
 class SaveDialog : DialogFragment() {
     private lateinit var clickListener: OnClickListener
@@ -36,7 +37,7 @@ class SaveDialog : DialogFragment() {
         val positive = resources.getString(R.string.dialog_save_positive)
         val neutral = resources.getString(R.string.dialog_save_neutral)
 
-        return AlertDialog.Builder(activity!!).apply {
+        return AlertDialog.Builder(activity!!, PreferencesUtil.getThemeDialogId(context)).apply {
             setTitle(title)
             setMessage(message)
 

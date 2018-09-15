@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import kz.sgq.colorassistant.R
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 
 class DeleteDialog : DialogFragment() {
     private var index: Int = 0
@@ -37,7 +38,7 @@ class DeleteDialog : DialogFragment() {
         val message = resources.getString(R.string.dialog_color_delete_message)
         val positive = resources.getString(R.string.dialog_color_delete_positive)
         val neutral = resources.getString(R.string.dialog_color_delete_neutral)
-        return AlertDialog.Builder(activity!!).apply {
+        return AlertDialog.Builder(activity!!, PreferencesUtil.getThemeDialogId(context)).apply {
 
             setTitle(title)
             setMessage(message)

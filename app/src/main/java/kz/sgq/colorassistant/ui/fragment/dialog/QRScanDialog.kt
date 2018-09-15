@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.dialog_qr.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.ColorConverter
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 
 class QRScanDialog : DialogFragment() {
@@ -41,7 +42,7 @@ class QRScanDialog : DialogFragment() {
         val positive = resources.getString(R.string.dialog_qr_scan_positive)
         val neutral = resources.getString(R.string.dialog_qr_scan_neutral)
 
-        return AlertDialog.Builder(activity!!).apply {
+        return AlertDialog.Builder(activity!!, PreferencesUtil.getThemeDialogId(context)).apply {
             val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_qr, null)
 
             setTitle(title)

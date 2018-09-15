@@ -127,4 +127,110 @@ public class ThemeUtil {
                     return R.style.AppTheme_RED_Night;
         }
     }
+
+    public static int getThemeDialogId(ThemeStyle theme, int modeTheme) {
+
+        switch (theme) {
+            case RED:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_RED;
+                else
+                    return R.style.AppTheme_Dialog_RED_Night;
+            case PINK:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_PINK;
+                else
+                    return R.style.AppTheme_Dialog_PINK_Night;
+            case PURPLE:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_PURPLE;
+                else
+                    return R.style.AppTheme_Dialog_PURPLE_Night;
+            case DEEP_PURPLE:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_DEEPPURPLE;
+                else
+                    return R.style.AppTheme_Dialog_DEEPPURPLE_Night;
+            case INDIGO:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_INDIGO;
+                else
+                    return R.style.AppTheme_Dialog_INDIGO_Night;
+            case BLUE:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_BLUE;
+                else
+                    return R.style.AppTheme_Dialog_BLUE_Night;
+            case LIGHT_BLUE:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_LIGHTBLUE;
+                else
+                    return R.style.AppTheme_Dialog_LIGHTBLUE_Night;
+            case CYAN:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_CYAN;
+                else
+                    return R.style.AppTheme_Dialog_CYAN_Night;
+            case TEAL:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_TEAL;
+                else
+                    return R.style.AppTheme_Dialog_TEAL_Night;
+            case GREEN:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_GREEN;
+                else
+                    return R.style.AppTheme_Dialog_GREEN_Night;
+            case LIGHT_GREEN:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_LIGHTGREEN;
+                else
+                    return R.style.AppTheme_Dialog_LIGHTGREEN_Night;
+            case LIME:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_LIME;
+                else
+                    return R.style.AppTheme_Dialog_LIME_Night;
+            case YELLOW:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_YELLOW;
+                else
+                    return R.style.AppTheme_Dialog_YELLOW_Night;
+            case AMBER:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_AMBER;
+                else
+                    return R.style.AppTheme_Dialog_AMBER_Night;
+            case ORANGE:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_ORANGE;
+                else
+                    return R.style.AppTheme_Dialog_ORANGE_Night;
+            case DEEP_ORANGE:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_DEEPORANGE;
+                else
+                    return R.style.AppTheme_Dialog_DEEPORANGE_Night;
+            case BROWN:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_BROWN;
+                else
+                    return R.style.AppTheme_Dialog_BROWN_Night;
+            case GRAY:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_GRAY;
+                else
+                    return R.style.AppTheme_Dialog_GRAY_Night;
+            case BLUE_GRAY:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_BLUEGRAY;
+                else
+                    return R.style.AppTheme_Dialog_BLUEGRAY_Night;
+            default:
+                if (AppCompatDelegate.MODE_NIGHT_NO == modeTheme)
+                    return R.style.AppTheme_Dialog_RED;
+                else
+                    return R.style.AppTheme_Dialog_RED_Night;
+        }
+    }
 }

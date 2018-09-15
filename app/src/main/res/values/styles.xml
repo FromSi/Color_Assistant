@@ -24,6 +24,11 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="actionOverflowButtonStyle">@style/OverFlow</item>
+    </style>
+
+    <style name="OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/more</item>
     </style>
 
     <style name="AppTheme.RED" parent="AppTheme.NoActionBar">
@@ -745,6 +750,196 @@
         <item name="colorSnackText">@color/snackTextBlueGrayNight</item>
         <item name="colorErrorText">@color/snackErrorBlueGrayNight</item>
         <item name="colorMenuIcon">@color/iconMenuColorBlueGrayNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.RED" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorRed</item>
+        <item name="colorAccent">@color/secondaryColorRedNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.RED.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorRedNight</item>
+        <item name="colorAccent">@color/secondaryColorRedNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.PINK" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorPink</item>
+        <item name="colorAccent">@color/secondaryColorPink</item>
+    </style>
+
+    <style name="AppTheme.Dialog.PINK.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorPinkNight</item>
+        <item name="colorAccent">@color/secondaryColorPinkNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.PURPLE" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorPurple</item>
+        <item name="colorAccent">@color/secondaryColorPurple</item>
+    </style>
+
+    <style name="AppTheme.Dialog.PURPLE.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorPurpleNight</item>
+        <item name="colorAccent">@color/secondaryColorPurpleNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DEEPPURPLE" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorDeepPurple</item>
+        <item name="colorAccent">@color/secondaryColorDeepPurple</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DEEPPURPLE.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorDeepPurpleNight</item>
+        <item name="colorAccent">@color/secondaryColorDeepPurpleNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.INDIGO" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorIndigo</item>
+        <item name="colorAccent">@color/secondaryColorIndigo</item>
+    </style>
+
+    <style name="AppTheme.Dialog.INDIGO.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorIndigoNight</item>
+        <item name="colorAccent">@color/secondaryColorIndigoNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.BLUE" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorBlue</item>
+        <item name="colorAccent">@color/secondaryColorBlue</item>
+    </style>
+
+    <style name="AppTheme.Dialog.BLUE.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorBlueNight</item>
+        <item name="colorAccent">@color/secondaryColorBlueNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.LIGHTBLUE" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorLightBlue</item>
+        <item name="colorAccent">@color/secondaryColorLightBlue</item>
+    </style>
+
+    <style name="AppTheme.Dialog.LIGHTBLUE.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorLightBlueNight</item>
+        <item name="colorAccent">@color/secondaryColorLightBlueNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.CYAN" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorCyan</item>
+        <item name="colorAccent">@color/secondaryColorCyan</item>
+    </style>
+
+    <style name="AppTheme.Dialog.CYAN.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorCyanNight</item>
+        <item name="colorAccent">@color/secondaryColorCyanNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.TEAL" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorTeal</item>
+        <item name="colorAccent">@color/secondaryColorTeal</item>
+    </style>
+
+    <style name="AppTheme.Dialog.TEAL.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorTealNight</item>
+        <item name="colorAccent">@color/secondaryColorTealNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.GREEN" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorGreen</item>
+        <item name="colorAccent">@color/secondaryColorGreen</item>
+    </style>
+
+    <style name="AppTheme.Dialog.GREEN.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorGreenNight</item>
+        <item name="colorAccent">@color/secondaryColorGreenNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.LIGHTGREEN" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorLightGreen</item>
+        <item name="colorAccent">@color/secondaryColorLightGreen</item>
+    </style>
+
+    <style name="AppTheme.Dialog.LIGHTGREEN.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorLightGreenNight</item>
+        <item name="colorAccent">@color/secondaryColorLightGreenNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.LIME" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorLime</item>
+        <item name="colorAccent">@color/secondaryColorLime</item>
+    </style>
+
+    <style name="AppTheme.Dialog.LIME.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorLimeNight</item>
+        <item name="colorAccent">@color/secondaryColorLimeNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.YELLOW" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorYellow</item>
+        <item name="colorAccent">@color/secondaryColorYellow</item>
+    </style>
+
+    <style name="AppTheme.Dialog.YELLOW.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorYellowNight</item>
+        <item name="colorAccent">@color/secondaryColorYellowNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.AMBER" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorAmber</item>
+        <item name="colorAccent">@color/secondaryColorAmber</item>
+    </style>
+
+    <style name="AppTheme.Dialog.AMBER.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorAmberNight</item>
+        <item name="colorAccent">@color/secondaryColorAmberNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.ORANGE" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorOrange</item>
+        <item name="colorAccent">@color/secondaryColorOrange</item>
+    </style>
+
+    <style name="AppTheme.Dialog.ORANGE.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorOrangeNight</item>
+        <item name="colorAccent">@color/secondaryColorOrangeNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DEEPORANGE" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorDeepOrange</item>
+        <item name="colorAccent">@color/secondaryColorDeepOrange</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DEEPORANGE.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorDeepOrangeNight</item>
+        <item name="colorAccent">@color/secondaryColorDeepOrangeNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.BROWN" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorBrown</item>
+        <item name="colorAccent">@color/secondaryColorBrown</item>
+    </style>
+
+    <style name="AppTheme.Dialog.BROWN.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorBrownNight</item>
+        <item name="colorAccent">@color/secondaryColorBrownNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.GRAY" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorGray</item>
+        <item name="colorAccent">@color/secondaryColorGray</item>
+    </style>
+
+    <style name="AppTheme.Dialog.GRAY.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorGrayNight</item>
+        <item name="colorAccent">@color/secondaryColorGrayNight</item>
+    </style>
+
+    <style name="AppTheme.Dialog.BLUEGRAY" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorBlueGray</item>
+        <item name="colorAccent">@color/secondaryColorBlueGray</item>
+    </style>
+
+    <style name="AppTheme.Dialog.BLUEGRAY.Night" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/backgroundColorBlueGrayNight</item>
+        <item name="colorAccent">@color/secondaryColorBlueGrayNight</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

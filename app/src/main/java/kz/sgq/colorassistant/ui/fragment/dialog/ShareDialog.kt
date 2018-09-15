@@ -27,6 +27,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.dialog_share.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.ui.util.ColorAttrUtil
+import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import net.glxn.qrgen.android.QRCode
 
 class ShareDialog : DialogFragment() {
@@ -37,7 +38,7 @@ class ShareDialog : DialogFragment() {
         val positive = resources.getString(R.string.dialog_share_positive)
         val neutral = resources.getString(R.string.dialog_share_neutral)
 
-        return AlertDialog.Builder(activity!!).apply {
+        return AlertDialog.Builder(activity!!, PreferencesUtil.getThemeDialogId(context)).apply {
             val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_share, null)
 
             setTitle(title)
