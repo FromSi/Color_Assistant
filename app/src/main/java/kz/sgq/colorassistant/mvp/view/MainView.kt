@@ -25,6 +25,8 @@ interface MainView : MvpView {
 
     fun answerQR(cloud: Cloud)
 
+    fun answerLink(cloud: Cloud)
+
     fun refreshFragmentCloud(fragment: CloudFragment)
 
     fun errorQR()

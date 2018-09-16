@@ -8,6 +8,7 @@
     <string name="hide">Hide</string>
     <string name="color_theme">Color Theme</string>
     <string name="night_mode">Night Mode</string>
+    <string name="back_exit">Please click BACK again to exit</string>
 
     <string name="type">Hex\nRGB\nHSV\nCMYK</string>
     <string name="hex">Hex</string>
@@ -32,9 +33,10 @@
 
     <string name="bottom_sheet_info_color_title">Information</string>
 
-    <string name="dialog_qr_scan_title">QR</string>
-    <string name="dialog_qr_scan_positive">Add</string>
-    <string name="dialog_qr_scan_neutral">Cancel</string>
+    <string name="dialog_scan_title_qr">QR</string>
+    <string name="dialog_scan_title_link">Link</string>
+    <string name="dialog_scan_positive">Add</string>
+    <string name="dialog_scan_neutral">Cancel</string>
 
     <string name="dialog_save_title">Save</string>
     <string name="dialog_save_message">Are you sure you want to save?</string>

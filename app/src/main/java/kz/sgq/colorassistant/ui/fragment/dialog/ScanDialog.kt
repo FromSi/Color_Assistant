@@ -23,27 +23,27 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.dialog_qr.view.*
+import kotlinx.android.synthetic.main.dialog_scan.view.*
 import kz.sgq.colorassistant.R
 import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.util.ColorConverter
 import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 
-class QRScanDialog : DialogFragment() {
+class ScanDialog : DialogFragment() {
     private var index: Int = 0
     private var textType: Array<String> = arrayOf("Hex", "RGB", "HSV", "CMYK")
 
+    private lateinit var title: String
     private lateinit var cloud: Cloud
     private lateinit var clickListener: ItemColor.OnClickListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val title = resources.getString(R.string.dialog_qr_scan_title)
-        val positive = resources.getString(R.string.dialog_qr_scan_positive)
-        val neutral = resources.getString(R.string.dialog_qr_scan_neutral)
+        val positive = resources.getString(R.string.dialog_scan_positive)
+        val neutral = resources.getString(R.string.dialog_scan_neutral)
 
         return AlertDialog.Builder(activity!!, PreferencesUtil.getThemeDialogId(context)).apply {
-            val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_qr, null)
+            val customLayout = activity!!.layoutInflater.inflate(R.layout.dialog_scan, null)
 
             setTitle(title)
             setView(customLayout)
@@ -64,6 +64,10 @@ class QRScanDialog : DialogFragment() {
 
     fun clickListener(clickListener: ItemColor.OnClickListener) {
         this.clickListener = clickListener
+    }
+
+    fun setTitle(title: String){
+        this.title = title
     }
 
     fun cloud(cloud: Cloud) {

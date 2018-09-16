@@ -21,6 +21,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
@@ -29,6 +30,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,16 +42,15 @@ import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.fragment.LikeFragment
 import kz.sgq.colorassistant.ui.fragment.CloudFragment
 import kz.sgq.colorassistant.ui.fragment.GlobalFragment
-import kz.sgq.colorassistant.ui.fragment.dialog.QRScanDialog
+import kz.sgq.colorassistant.ui.fragment.dialog.ScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
 import kz.sgq.colorassistant.ui.util.CodeActivity
 import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
-import kz.sgq.colorassistant.ui.util.java.theme.ThemeStyle
-import kz.sgq.colorassistant.ui.util.java.theme.ThemeUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 import kotlin.math.PI
 
 class MainActivity : MvpAppCompatActivity(), MainView {
+    private var doubleBackToExitPressedOnce = false
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
@@ -62,6 +63,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
         initActionBar()
         firstFragment()
+        handlerLink()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -125,6 +127,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.LIKE)
         fab.setImageDrawable(resources.getDrawable(R.drawable.cancel, theme))
+        supportFragmentManager.popBackStack()
         supportFragmentManager
                 .beginTransaction()
                 .apply {
@@ -141,6 +144,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         presenter.setCurrentFragment(MainModelImpl.MainFragment.CLOUD)
         fab.setImageDrawable(resources.getDrawable(R.drawable.constructor, theme))
+        supportFragmentManager.popBackStack()
         supportFragmentManager
                 .beginTransaction()
                 .apply {
@@ -183,10 +187,21 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     override fun answerQR(cloud: Cloud) {
 
-        QRScanDialog().apply {
+        ScanDialog().apply {
 
             cloud(cloud)
             clickListener(initClickAnswer(cloud))
+            setTitle(this@MainActivity.resources.getString(R.string.dialog_scan_title_qr))
+        }.show(supportFragmentManager, "qr_dialog")
+    }
+
+    override fun answerLink(cloud: Cloud) {
+
+        ScanDialog().apply {
+
+            cloud(cloud)
+            clickListener(initClickAnswer(cloud))
+            setTitle(this@MainActivity.resources.getString(R.string.dialog_scan_title_link))
         }.show(supportFragmentManager, "qr_dialog")
     }
 
@@ -238,8 +253,26 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    override fun onBackPressed() {
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            finish()
+
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+
+        Toast.makeText(this, resources.getString(R.string.back_exit), Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+    }
+
     private fun firstFragment() {
 
+        supportFragmentManager.popBackStack()
         supportFragmentManager
                 .beginTransaction()
                 .apply {
@@ -298,5 +331,10 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
             presenter.fabClick()
         }
+    }
+
+    private fun handlerLink() {
+        if (intent.data != null)
+            presenter.handlerLink(intent?.data.toString())
     }
 }

@@ -85,6 +85,10 @@ class MainPresenter : MvpPresenter<MainView>() {
         }
     }
 
+    fun handlerLink(data: String){
+        viewState.answerLink(model.calcLinkAnswer(data))
+    }
+
     fun openMenu() {
 
         viewState.openMenu(model.getCurrentFragment())

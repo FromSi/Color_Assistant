@@ -36,5 +36,7 @@ interface MainModel {
 
     fun calcQRAnswer(data: Intent?): Cloud
 
+    fun calcLinkAnswer(data: String): Cloud
+
     fun calcQRCode(resultCode: Int, data: Intent?): Boolean
 }

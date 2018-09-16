@@ -41,6 +41,26 @@ class MainModelImpl : MainModel {
         this.fragment = fragment
     }
 
+    override fun calcLinkAnswer(data: String): Cloud {
+        val text = if (data.substring(0, 5).equals("https"))
+            data.substring(1)
+        else
+            data.substring(0)
+
+        return Cloud(
+                text.substring(44, 51),
+                text.substring(56, 63),
+                text.substring(70, 77)
+        ).apply {
+
+            if (text.length >= 90)
+                colFour = text.substring(83, 90)
+
+            if (text.length >= 103)
+                colFive = text.substring(96, 103)
+        }
+    }
+
     override fun save(cloud: Cloud, eventListener: DataBaseRequest.OnEventListener) {
 
         DataBaseRequest.insertCloud(cloud, eventListener)
