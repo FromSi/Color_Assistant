@@ -16,7 +16,9 @@
 
 package kz.sgq.colorassistant.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.ShareActionProvider
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -94,6 +96,24 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
         ShareDialog().apply {
 
             setText(share)
+            setClickListener(object : ShareDialog.OnClickListener{
+                override fun onClickPositive(link: String) {
+                    val intent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+
+                        putExtra(
+                                Intent.EXTRA_SUBJECT,
+                                this@ComboActivity.resources.getString(R.string.share)
+                        )
+                        putExtra(
+                                Intent.EXTRA_TEXT,
+                                link
+                        )
+                    }
+
+                    startActivity(Intent.createChooser(intent, resources.getString(R.string.app_name)))
+                }
+            })
         }.show(supportFragmentManager, "share_dialog")
     }
 

@@ -87,11 +87,12 @@ class MainModelImpl : MainModel {
                 scanResult.substring(14, 21)
         ).apply {
 
-            if (scanResult.length >= 28)
+            if (scanResult.length >= 28) {
                 colFour = scanResult.substring(21, 28)
 
-            if (scanResult.length >= 35)
-                colFive = scanResult.substring(28, 35)
+                if (scanResult.length >= 35)
+                    colFive = scanResult.substring(28, 35)
+            }
         }
     }
 }

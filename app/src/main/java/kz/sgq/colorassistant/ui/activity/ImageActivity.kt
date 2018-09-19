@@ -24,6 +24,8 @@ import android.provider.MediaStore
 import android.net.Uri
 import android.support.design.bottomappbar.BottomAppBar
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.ShareActionProvider
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -170,6 +172,25 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
                 ShareDialog().apply {
 
                     setText(share)
+                    setClickListener(object : ShareDialog.OnClickListener{
+                        override fun onClickPositive(link: String) {
+
+                            val intent = Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+
+                                putExtra(
+                                        Intent.EXTRA_SUBJECT,
+                                        this@ImageActivity.resources.getString(R.string.share)
+                                )
+                                putExtra(
+                                        Intent.EXTRA_TEXT,
+                                        link
+                                )
+                            }
+
+                            startActivity(Intent.createChooser(intent, resources.getString(R.string.app_name)))
+                        }
+                    })
                 }.show(supportFragmentManager, "share_dialog")
             }
         })

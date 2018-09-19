@@ -71,7 +71,7 @@ class ComboModelImpl : ComboModel {
         val text = StringBuffer()
 
         for (i in 0 until colorList.size)
-            text.append(colorList[i])
+            text.append(ColorConverter.getHex(colorList[i]))
 
         share = text.toString()
     }

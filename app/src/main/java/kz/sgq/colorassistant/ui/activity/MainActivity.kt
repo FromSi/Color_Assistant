@@ -334,6 +334,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     private fun handlerLink() {
+
         if (intent.data != null)
             presenter.handlerLink(intent?.data.toString())
     }

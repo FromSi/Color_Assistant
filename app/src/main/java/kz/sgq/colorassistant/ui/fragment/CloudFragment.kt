@@ -20,6 +20,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.ShareActionProvider
 import android.view.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -68,6 +69,24 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
         ShareDialog().apply {
 
             setText(text)
+            setClickListener(object : ShareDialog.OnClickListener{
+                override fun onClickPositive(link: String) {
+                    val intent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+
+                        putExtra(
+                                Intent.EXTRA_SUBJECT,
+                                this@CloudFragment.resources.getString(R.string.share)
+                        )
+                        putExtra(
+                                Intent.EXTRA_TEXT,
+                                link
+                        )
+                    }
+
+                    startActivity(Intent.createChooser(intent, resources.getString(R.string.app_name)))
+                }
+            })
         }.show(fragmentManager, "share_dialog")
     }
 

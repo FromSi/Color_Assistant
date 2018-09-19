@@ -33,6 +33,12 @@ import net.glxn.qrgen.android.QRCode
 class ShareDialog : DialogFragment() {
     private var text: String = "Error"
 
+    private lateinit var onClickListener: OnClickListener
+
+    interface OnClickListener {
+        fun onClickPositive(link: String)
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val title = resources.getString(R.string.dialog_share_title)
         val positive = resources.getString(R.string.dialog_share_positive)
@@ -44,7 +50,7 @@ class ShareDialog : DialogFragment() {
             setTitle(title)
             setView(customLayout)
             initView(customLayout)
-            setPositiveButton(positive) { _, _ -> }
+            setPositiveButton(positive) { _, _ -> onClickListener.onClickPositive(handlerLink()) }
             setNeutralButton(neutral) { _, _ -> }
         }.create()
     }
@@ -53,8 +59,27 @@ class ShareDialog : DialogFragment() {
         this.text = text
     }
 
+    fun setClickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
+    }
+
+    private fun handlerLink(): String {
+        var link: String = "https://colorsapp-sgq.herokuapp.com/link?" +
+                "one=${text.substring(0, 7)}&two=${text.substring(7, 14)}&three=${text.substring(14, 21)}"
+
+        if (text.length >= 28) {
+            link += "&four=${text.substring(21, 28)}"
+
+            if (text.length >= 35)
+                link += "&five=${text.substring(28, 35)}"
+        }
+
+        return link
+    }
+
     private fun initView(view: View) {
         val size = resources.getDimension(R.dimen.dialog_share_size)
+
         view.qr.setImageBitmap(
                 QRCode
                         .from(text)

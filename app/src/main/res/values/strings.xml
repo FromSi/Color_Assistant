@@ -8,6 +8,7 @@
     <string name="hide">Hide</string>
     <string name="color_theme">Color Theme</string>
     <string name="night_mode">Night Mode</string>
+    <string name="share">Share</string>
     <string name="back_exit">Please click BACK again to exit</string>
 
     <string name="type">Hex\nRGB\nHSV\nCMYK</string>
