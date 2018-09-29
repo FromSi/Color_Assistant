@@ -35,6 +35,7 @@ import kz.sgq.colorassistant.mvp.presenter.ImagePresenter
 import kz.sgq.colorassistant.mvp.view.ImageView
 import kz.sgq.colorassistant.ui.adapters.RecyclerImageAdapter
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
+import kz.sgq.colorassistant.ui.util.TagsSystemApp
 import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
@@ -191,7 +192,7 @@ class ImageActivity : MvpAppCompatActivity(), ImageView {
                             startActivity(Intent.createChooser(intent, resources.getString(R.string.app_name)))
                         }
                     })
-                }.show(supportFragmentManager, "share_dialog")
+                }.show(supportFragmentManager, TagsSystemApp.SHARE_DIALOG)
             }
         })
     }

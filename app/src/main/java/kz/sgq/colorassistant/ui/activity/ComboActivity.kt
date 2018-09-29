@@ -18,7 +18,6 @@ package kz.sgq.colorassistant.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.ShareActionProvider
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -32,6 +31,7 @@ import kz.sgq.colorassistant.ui.fragment.sheet.ComboListBottomSheet
 import kz.sgq.colorassistant.ui.fragment.sheet.HSLBottomSheet
 import kz.sgq.colorassistant.ui.fragment.dialog.ShareDialog
 import kz.sgq.colorassistant.ui.util.ItemDetails
+import kz.sgq.colorassistant.ui.util.TagsSystemApp
 import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
@@ -114,7 +114,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
                     startActivity(Intent.createChooser(intent, resources.getString(R.string.app_name)))
                 }
             })
-        }.show(supportFragmentManager, "share_dialog")
+        }.show(supportFragmentManager, TagsSystemApp.SHARE_DIALOG)
     }
 
     override fun cardClick(index: Int) {
@@ -132,7 +132,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
                     presenter.openLightness(index)
                 }
             })
-        }.show(supportFragmentManager, "combo_list_bottom_sheet")
+        }.show(supportFragmentManager, TagsSystemApp.COMBO_LIST_BOTTOM_SHEET)
     }
 
     override fun openHSLSheet(list: MutableList<ItemDetails>) {
@@ -142,7 +142,7 @@ class ComboActivity : MvpAppCompatActivity(), ComboView {
             //setTitle(resources.getString(R.string.bottom_sheet_hsl_saturation))
             setTitle("HSL")
             setList(list)
-        }.show(supportFragmentManager, "hsl_bottom_sheet")
+        }.show(supportFragmentManager, TagsSystemApp.HSL_BOTTOM_SHEET)
     }
 
     override fun initHeader(i: Int, j: Int, color: Int) {

@@ -45,6 +45,7 @@ import kz.sgq.colorassistant.ui.fragment.GlobalFragment
 import kz.sgq.colorassistant.ui.fragment.dialog.ScanDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.MenuBottomSheet
 import kz.sgq.colorassistant.ui.util.CodeActivity
+import kz.sgq.colorassistant.ui.util.TagsSystemApp
 import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 import kotlin.math.PI
@@ -182,7 +183,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                     presenter.menuClick(fragmentCurrent)
                 }
             })
-        }.show(supportFragmentManager, "menu_bottom_sheet")
+        }.show(supportFragmentManager, TagsSystemApp.MENU_BOTTOM_SHEET)
     }
 
     override fun answerQR(cloud: Cloud) {
@@ -192,7 +193,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             cloud(cloud)
             clickListener(initClickAnswer(cloud))
             setTitle(this@MainActivity.resources.getString(R.string.dialog_scan_title_qr))
-        }.show(supportFragmentManager, "qr_dialog")
+        }.show(supportFragmentManager, TagsSystemApp.SCAN_DIALOG)
     }
 
     override fun answerLink(cloud: Cloud) {
@@ -202,7 +203,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             cloud(cloud)
             clickListener(initClickAnswer(cloud))
             setTitle(this@MainActivity.resources.getString(R.string.dialog_scan_title_link))
-        }.show(supportFragmentManager, "qr_dialog")
+        }.show(supportFragmentManager, TagsSystemApp.SCAN_DIALOG)
     }
 
     override fun errorQR() {

@@ -31,7 +31,7 @@ import kz.sgq.colorassistant.room.table.Cloud
 import kz.sgq.colorassistant.ui.fragment.dialog.DeleteDialog
 import kz.sgq.colorassistant.ui.fragment.dialog.SaveDialog
 import kz.sgq.colorassistant.ui.fragment.sheet.InfoColorBottomSheet
-import kz.sgq.colorassistant.ui.util.ColorAttrUtil
+import kz.sgq.colorassistant.ui.util.TagsSystemApp
 import kz.sgq.colorassistant.ui.util.java.PreferencesUtil
 import kz.sgq.colorassistant.ui.view.ItemColor
 import me.imid.swipebacklayout.lib.SwipeBackLayout
@@ -87,7 +87,7 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
             SaveDialog().apply {
 
                 clickListener(initClickSave())
-            }.show(supportFragmentManager, "save_dialog")
+            }.show(supportFragmentManager, TagsSystemApp.SAVE_DIALOG)
         }
     }
 
@@ -177,7 +177,7 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
             DeleteDialog().apply {
 
                 clickListener(index, initDeleteClick())
-            }.show(supportFragmentManager, "delete_dialog")
+            }.show(supportFragmentManager, TagsSystemApp.DELETE_DIALOG)
         }
     }
 
@@ -204,6 +204,6 @@ class ConstructorActivity : MvpAppCompatActivity(), ConstructorView {
         InfoColorBottomSheet().apply {
 
             setColor(color)
-        }.show(supportFragmentManager, "info_color_bottom_sheet")
+        }.show(supportFragmentManager, TagsSystemApp.INFO_COLOR_BOTTOM_SHEET)
     }
 }

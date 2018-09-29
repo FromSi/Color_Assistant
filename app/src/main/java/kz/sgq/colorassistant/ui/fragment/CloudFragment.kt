@@ -18,6 +18,7 @@ package kz.sgq.colorassistant.ui.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.nfc.Tag
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.ShareActionProvider
@@ -34,6 +35,7 @@ import kz.sgq.colorassistant.ui.fragment.dialog.*
 import java.io.Serializable
 import kz.sgq.colorassistant.ui.activity.ComboActivity
 import kz.sgq.colorassistant.ui.adapters.holders.CloudHolder
+import kz.sgq.colorassistant.ui.util.TagsSystemApp
 
 class CloudFragment : MvpAppCompatFragment(), CloudView {
     private var adapter = RecyclerCloudAdapter()
@@ -87,7 +89,7 @@ class CloudFragment : MvpAppCompatFragment(), CloudView {
                     startActivity(Intent.createChooser(intent, resources.getString(R.string.app_name)))
                 }
             })
-        }.show(fragmentManager, "share_dialog")
+        }.show(fragmentManager, TagsSystemApp.SHARE_DIALOG)
     }
 
     override fun showActivityInfo(list: MutableList<String>) {

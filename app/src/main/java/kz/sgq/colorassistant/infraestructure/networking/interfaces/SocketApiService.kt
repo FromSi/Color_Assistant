@@ -41,7 +41,7 @@ interface SocketApiService {
         fun create(): SocketApiService = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://colorsapp-sgq.herokuapp.com/")
+                .baseUrl("https://color-assistant.herokuapp.com/")
                 .build()
                 .create(SocketApiService::class.java)
     }
