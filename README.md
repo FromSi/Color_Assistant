@@ -1,3 +1,20 @@
+# Sreenshots
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <img src="screenshot/img1.jpg" width="227" heght="450"/>
+      </td>
+      <td align="center" valign="middle">
+        <img src="screenshot/img2.jpg" width="302" heght="600"/>
+      </td>
+      <td align="center" valign="middle">
+        <img src="screenshot/img3.jpg" width="227" heght="450"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 # Thanks for the Color Thief
 * Henrique Rocha - for the Java Color Thief version available at https://github.com/HenriqueRocha/android-colorthief
 * Simon Oualid (simon@oualid.net) - for the Java Color Thief version available at https://github.com/soualid/java-colorthief
