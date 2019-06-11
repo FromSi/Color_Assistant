@@ -10,7 +10,7 @@
 * [Глобальный (с сервера) и локальный список комбинированных цветов](https://github.com/FromSi/Color_Assistant/blob/master/screenshot/img2.jpg)
 * [Вычисление доминирующих цветов на картинке](https://github.com/FromSi/Color_Assistant/blob/master/screenshot/img3.jpg)
 * [Предпросмотр в cветлм-тёмном или насыщенном состоянии цвета](https://github.com/FromSi/Color_Assistant/blob/master/screenshot/img8.jpg)
-<strong>Пока только идея с кодом :)</strong>
+<br /><strong>Пока только идея с кодом :)</strong>
 
 ## Sreenshots
 <table>
